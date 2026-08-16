@@ -3,6 +3,6 @@
    - exopter-tokens.css mirrors the Sillage app's exopter_design_system.css (canonical).
    - aliases.css adds role/convenience names mapped onto those tokens. */
 
-@import "tokens/fonts.css";
-@import "tokens/exopter-tokens.css";
-@import "tokens/aliases.css";
+@import "tokens/fonts.css?v=4";
+@import "tokens/exopter-tokens.css?v=4";
+@import "tokens/aliases.css?v=4";

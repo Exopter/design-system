@@ -35,6 +35,6 @@ If the user invokes this skill without other guidance, ask them what they want t
 build or design, ask some questions, and act as an expert designer who outputs HTML
 artifacts _or_ production code, depending on the need.
 
-Caveats to relay: webfonts are Google Fonts substitutes (Inter, IBM Plex Mono); the
-icon set is Lucide (substitution); all logo marks are non-final placeholders derived
-from the wing photo, not official artwork.
+Caveats to relay: the Aptos families are self-hosted; Inter and system fonts remain
+fallbacks only. The icon set is Lucide (substitution); all logo marks are non-final
+placeholders derived from the wing photo, not official artwork.

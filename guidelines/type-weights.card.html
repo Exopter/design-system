@@ -1,0 +1,26 @@
+<!-- @dsCard group="Type" viewport="1100x230" name="UI type weights" subtitle="Supported Aptos UI weights with a concise italic specimen" -->
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css?v=4">
+<style>
+  body{margin:0;background:var(--surface-app);padding:var(--sp-6);color:var(--text-strong);font-family:var(--font-ui)}
+  .weights{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border:1px solid var(--border-rule);border-radius:var(--radius);overflow:hidden;background:var(--surface-card)}
+  .weight{min-width:0;padding:var(--sp-4);border-right:1px solid var(--border-rule)}
+  .weight:last-child{border-right:0}
+  .name{display:block;margin-bottom:var(--sp-2);color:var(--text-muted);font-family:var(--font-family-mono);font-size:var(--fs-xs);letter-spacing:var(--ls-label);text-transform:uppercase}
+  .sample{display:block;font-size:32px;line-height:1;font-weight:var(--weight)}
+  .italics{display:flex;gap:var(--sp-6);margin-top:var(--sp-4);color:var(--text-body);font-style:italic}
+  .italics span:nth-child(1){font-weight:400}.italics span:nth-child(2){font-weight:600}.italics span:nth-child(3){font-weight:700}
+  @media(max-width:760px){body{padding:var(--sp-4)}.weights{grid-template-columns:repeat(3,1fr)}.weight{border-bottom:1px solid var(--border-rule)}.weight:nth-child(3n){border-right:0}.weight:nth-last-child(-n+3){border-bottom:0}.italics{flex-wrap:wrap;gap:var(--sp-3)}}
+</style></head>
+<body>
+  <div class="weights">
+    <div class="weight" style="--weight:300"><span class="name">Light · 300</span><span class="sample">Aa 214</span></div>
+    <div class="weight" style="--weight:400"><span class="name">Regular · 400</span><span class="sample">Aa 214</span></div>
+    <div class="weight" style="--weight:600"><span class="name">Semibold · 600</span><span class="sample">Aa 214</span></div>
+    <div class="weight" style="--weight:700"><span class="name">Bold · 700</span><span class="sample">Aa 214</span></div>
+    <div class="weight" style="--weight:800"><span class="name">Extra bold · 800</span><span class="sample">Aa 214</span></div>
+    <div class="weight" style="--weight:900"><span class="name">Black · 900</span><span class="sample">Aa 214</span></div>
+  </div>
+  <div class="italics" aria-label="Italic styles"><span>Regular italic</span><span>Semibold italic</span><span>Bold italic</span></div>
+</body></html>

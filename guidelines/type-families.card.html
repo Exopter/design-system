@@ -1,0 +1,43 @@
+<!-- @dsCard group="Type" viewport="1100x390" name="Typeface families" subtitle="Five self-hosted Aptos families with explicit production-role status" -->
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css?v=4">
+<style>
+  body{margin:0;background:var(--surface-app);padding:var(--sp-6);color:var(--text-strong)}
+  .families{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-3)}
+  .family{min-width:0;border:1px solid var(--border-rule);border-radius:var(--radius);background:var(--surface-card);padding:var(--sp-4)}
+  .family:first-child{grid-column:1/-1}
+  .meta{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-3);margin-bottom:var(--sp-2);font-family:var(--font-family-mono);font-size:var(--fs-xs);letter-spacing:var(--ls-label);text-transform:uppercase}
+  .role{color:var(--text-muted);text-align:right}
+  .sample{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:clamp(24px,3.5vw,38px);line-height:1.08}
+  .ui .sample{font-family:var(--font-family-ui);font-weight:600}
+  .display .sample{font-family:var(--font-family-display);font-weight:700}
+  .mono .sample{font-family:var(--font-family-mono);font-weight:700;font-variant-numeric:tabular-nums}
+  .narrow .sample{font-family:var(--font-family-narrow);font-weight:700}
+  .serif .sample{font-family:var(--font-family-serif)}
+  @media(max-width:700px){body{padding:var(--sp-4)}.families{grid-template-columns:1fr}.family:first-child{grid-column:auto}.sample{font-size:25px}}
+</style></head>
+<body>
+  <div class="families">
+    <section class="family ui">
+      <div class="meta"><strong>Aptos</strong><span class="role">Primary product UI · --font-ui</span></div>
+      <div class="sample">Verify flight readiness</div>
+    </section>
+    <section class="family display">
+      <div class="meta"><strong>Aptos Display</strong><span class="role">Large brand type · --font-display</span></div>
+      <div class="sample">Exopter</div>
+    </section>
+    <section class="family mono">
+      <div class="meta"><strong>Aptos Mono</strong><span class="role">Instruments · --font-data</span></div>
+      <div class="sample">214 km/h · T0+06:32</div>
+    </section>
+    <section class="family narrow">
+      <div class="meta"><strong>Aptos Narrow</strong><span class="role">Available · no active role</span></div>
+      <div class="sample">DENSE REFERENCE 118</div>
+    </section>
+    <section class="family serif">
+      <div class="meta"><strong>Aptos Serif</strong><span class="role">Available · no active role</span></div>
+      <div class="sample">Technical field notes</div>
+    </section>
+  </div>
+</body></html>

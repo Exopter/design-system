@@ -4,91 +4,201 @@
   const DS = window.ExopterDesignSystem_4c9fc9;
   const { Switch } = DS;
 
-  const G = 'var(--ex-hud-green)', AMBER = 'var(--ex-amber-500)', GREY = 'var(--ex-graphite-600)';
+  const HUD_GREEN = 'var(--ex-hud-green)';
+  const HUD_AMBER = '#ffe000';
+  const HUD_RED = 'var(--ex-red-600)';
 
-  function Ladder({ value, label, unit, x }) {
-    // vertical tape with the current value boxed
-    const rows = [-2, -1, 0, 1, 2];
+  const STATUS_ITEMS = [
+    { icon: 'signal', label: 'GPS', value: '3D' },
+    { icon: 'activity', label: 'IMU', value: 'OK' },
+    { icon: 'plane', label: 'GLD', value: 'ARMED' },
+    { icon: 'radio', label: 'FDR', value: 'LIVE' },
+  ];
+
+  const HEADING_MARKS = ['33', '34', '35', '036', '37', '38', '39'];
+
+  function StatusItem({ icon, label, value }) {
     return (
-      <div style={{ position: 'absolute', top: '50%', [x]: 40, transform: 'translateY(-50%)', textAlign: x === 'left' ? 'left' : 'right', fontFamily: 'var(--font-data)', fontVariantNumeric: 'tabular-nums', color: G }}>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.12em', color: GREY, marginBottom: 6, textTransform: 'uppercase' }}>{label}</div>
-        {rows.map((r) => (
-          <div key={r} style={{ display: 'flex', alignItems: 'center', gap: 8, justifyContent: x === 'left' ? 'flex-start' : 'flex-end', opacity: r === 0 ? 1 : .4, height: 26 }}>
-            {r === 0 ? (
-              <span style={{ border: '2px solid ' + G, padding: '2px 8px', fontSize: 30, fontWeight: 600, lineHeight: 1 }}>{value}</span>
-            ) : (
-              <span style={{ fontSize: 16 }}>{value + r * (label === 'AIRSPEED' ? 5 : 50)}</span>
-            )}
+      <div className="hud-status-item">
+        <Icon name={icon} size={22} strokeWidth={1.8} />
+        <span>{label}</span>
+        <b>{value}</b>
+      </div>
+    );
+  }
+
+  function Tape({ side, label, unit, value, step, detail }) {
+    const offsets = Array.from({ length: 21 }, (_, index) => index - 10);
+
+    return (
+      <div className={`hud-tape hud-tape--${side}`} aria-label={`${label}: ${value} ${unit}`}>
+        <div className="hud-tape__title">{unit}</div>
+        <div className="hud-tape__rail" aria-hidden="true">
+          {offsets.map((offset, index) => {
+            const displayValue = value - (offset * step);
+            const major = offset % 2 === 0;
+            return (
+              <div
+                className={`hud-tape__tick${major ? ' hud-tape__tick--major' : ''}`}
+                key={offset}
+                style={{ '--tick-position': `${(index / 20) * 100}%` }}
+              >
+                {major && <span>{displayValue}</span>}
+                <i />
+              </div>
+            );
+          })}
+        </div>
+        <div className="hud-tape__readout">{value}</div>
+        <div className="hud-tape__meta">
+          <strong>{label}</strong>
+          <span>{detail}</span>
+        </div>
+      </div>
+    );
+  }
+
+  function PitchLadder() {
+    const rows = [
+      { label: '5', position: '12%' },
+      { label: '−5', position: '48%' },
+      { label: '−10', position: '78%' },
+    ];
+
+    return (
+      <div className="hud-pitch-ladder" aria-label="Pitch ladder">
+        {rows.map((row) => (
+          <div className="hud-pitch-row" key={row.label} style={{ '--pitch-position': row.position }}>
+            <span>{row.label}</span><i /><i /><span>{row.label}</span>
           </div>
         ))}
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: GREY, marginTop: 6 }}>{unit}</div>
+      </div>
+    );
+  }
+
+  function HeadingTape() {
+    return (
+      <div className="hud-heading-tape" aria-label="Heading 036 degrees">
+        {HEADING_MARKS.map((mark) => (
+          <div className={`hud-heading-mark${mark === '036' ? ' hud-heading-mark--active' : ''}`} key={mark}>
+            <span>{mark}</span><i />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  function AltitudeAlerts() {
+    const alerts = [
+      { label: 'BREAK OFF', top: '15%', tone: 'primary' },
+      { label: 'PULL', top: '30%', tone: 'caution' },
+      { label: 'HARD DECK', top: '80%', tone: 'fault' },
+    ];
+
+    return (
+      <div className="hud-altitude-alerts" aria-label="Altitude thresholds">
+        {alerts.map((alert) => (
+          <div className={`hud-threshold hud-threshold--${alert.tone}`} key={alert.label} style={{ '--alert-position': alert.top }}>
+            <span>{alert.label}</span>
+            <Icon name="chevron-right" size={16} strokeWidth={3} />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  function TelemetryFooter() {
+    return (
+      <div className="hud-telemetry-footer" aria-label="Navigation telemetry">
+        <div><span>GLIDE</span><b>12.4</b></div>
+        <div className="hud-heading-box"><span>HDG</span><b>036°</b></div>
+        <div><span>DIST</span><b>8.6 <small>km</small></b></div>
+      </div>
+    );
+  }
+
+  function HudDisplay() {
+    return (
+      <div className="hud-display" data-testid="hud-canvas" aria-label="Exopter pilot head-up display">
+        <div className="hud-status-bar">
+          <div className="hud-status-cluster">
+            {STATUS_ITEMS.map((item) => <StatusItem key={item.label} {...item} />)}
+          </div>
+
+          <div className="hud-mode">
+            <strong>Pilot mode</strong>
+            <div aria-label="Display mode 3 of 5"><i /><i /><i /><i /><i /></div>
+          </div>
+
+          <div className="hud-status-cluster hud-status-cluster--right">
+            <StatusItem icon="radio" label="LINK" value="OK" />
+            <StatusItem icon="battery" label="BATT" value="78%" />
+            <StatusItem icon="clock" label="UTC" value="03:30" />
+          </div>
+        </div>
+
+        <HeadingTape />
+        <PitchLadder />
+
+        <div className="hud-flight-path" aria-label="Flight path marker">
+          <Icon name="crosshair" size={42} strokeWidth={1.4} />
+        </div>
+
+        <div className="hud-landing-zone">
+          <Icon name="crosshair" size={20} strokeWidth={1.5} />
+          <span>LZ · 8.6 km</span>
+        </div>
+
+        <Tape side="left" label="TAS" unit="km/h" value={214} step={5} detail="GS 198 · 1.0 G" />
+        <div className="hud-speed-limit"><Icon name="triangle-alert" size={14} /><span>MAX 250</span></div>
+
+        <Tape side="right" label="MSL" unit="m" value={1480} step={100} detail="AGL 1210" />
+        <AltitudeAlerts />
+
+        <div className="hud-primary-alert" role="status">
+          <span>PULL</span>
+          <small>ALTITUDE GATE</small>
+        </div>
+
+        <TelemetryFooter />
       </div>
     );
   }
 
   function Hud() {
     const [failsafe, setFailsafe] = React.useState(false);
+
     return (
-      <div style={{ padding: 24, maxWidth: 1100, margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 16, marginBottom: 16 }}>
-          <div style={{ flex: 1 }}>
-            <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, letterSpacing: '-.01em', color: 'var(--text-strong)' }}>HUD preview</h1>
-            <p style={{ margin: '4px 0 0', fontSize: 14, color: 'var(--text-muted)' }}>Pilot display concept · readable in sun, fail-safe to black, never full white.</p>
+      <div className="hud-page">
+        <div className="hud-page-header">
+          <div>
+            <h1>HUD preview</h1>
+            <p>Final pilot-display direction · high-contrast symbology, fixed scan zones, fail-safe to black.</p>
           </div>
-          <Switch label="Fail-safe" checked={failsafe} onChange={(e) => setFailsafe(e.target.checked)} />
+          <Switch label="Fail-safe" checked={failsafe} onChange={(event) => setFailsafe(event.target.checked)} />
         </div>
 
-        {/* HUD canvas */}
-        <div style={{ position: 'relative', aspectRatio: '16 / 8', borderRadius: 8, overflow: 'hidden', border: '1px solid var(--ex-carbon-700)',
-          background: 'var(--ex-carbon-950)' }}>
+        <div className="hud-frame ex-dark">
           {failsafe ? (
-            <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '.2em', color: GREY, textTransform: 'uppercase' }}>Fail-safe · display blank</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--ex-carbon-700)' }}>Recover outside HUD context — no white flash</span>
+            <div className="hud-failsafe" data-testid="hud-canvas" aria-label="Fail-safe display blank">
+              <span>FAIL-SAFE · DISPLAY BLANK</span>
+              <small>Recovery remains outside the pilot field of view</small>
             </div>
-          ) : (
-            <React.Fragment>
-              {/* horizon */}
-              <div style={{ position: 'absolute', left: 0, right: 0, top: '52%', height: 1, background: G, opacity: .5 }} />
-              {/* compass top */}
-              <div style={{ position: 'absolute', top: 14, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 22, fontFamily: 'var(--font-data)', fontVariantNumeric: 'tabular-nums', color: G, fontSize: 13, alignItems: 'center' }}>
-                <span style={{ opacity: .4 }}>33</span><span style={{ opacity: .6 }}>N</span>
-                <span style={{ fontSize: 18, fontWeight: 600, borderBottom: '2px solid ' + G, paddingBottom: 2 }}>036</span>
-                <span style={{ opacity: .6 }}>06</span><span style={{ opacity: .4 }}>09</span>
-              </div>
-              {/* flight path marker */}
-              <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', color: G }}>
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke={G} strokeWidth="2"><circle cx="24" cy="24" r="7" /><line x1="31" y1="24" x2="42" y2="24" /><line x1="17" y1="24" x2="6" y2="24" /><line x1="24" y1="17" x2="24" y2="9" /></svg>
-              </div>
-              <div style={{ position: 'absolute', top: '34%', left: '63%', color: AMBER, textAlign: 'center', fontFamily: 'var(--font-mono)', fontSize: 11 }}>
-                <Icon name="crosshair" size={24} />
-                <div style={{ marginTop: 2 }}>LANDING ZONE · 8.6 km</div>
-              </div>
-              <Ladder value={214} label="AIRSPEED" unit="km/h" x="left" />
-              <Ladder value={1480} label="ALTITUDE" unit="m" x="right" />
-              {/* glide & distance center-bottom */}
-              <div style={{ position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 40, color: G, fontFamily: 'var(--font-data)', fontVariantNumeric: 'tabular-nums', textAlign: 'center' }}>
-                <div><div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: GREY, letterSpacing: '.1em' }}>GLIDE</div><div style={{ fontSize: 22, fontWeight: 600 }}>12.4</div></div>
-                <div><div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: GREY, letterSpacing: '.1em' }}>DIST</div><div style={{ fontSize: 22, fontWeight: 600 }}>8.6<span style={{ fontSize: 12, color: GREY }}> km</span></div></div>
-                <div><div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: GREY, letterSpacing: '.1em' }}>TCAS</div><div style={{ fontSize: 22, fontWeight: 600, color: GREY }}>—</div></div>
-              </div>
-              {/* fault area — consistent location, top-right */}
-              <div style={{ position: 'absolute', top: 12, right: 16, display: 'flex', alignItems: 'center', gap: 6, color: AMBER, fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, letterSpacing: '.08em' }}>
-                <Icon name="triangle-alert" size={13} /> BATT 74%
-              </div>
-            </React.Fragment>
-          )}
+          ) : <HudDisplay />}
         </div>
 
-        <div style={{ display: 'flex', gap: 20, marginTop: 14, flexWrap: 'wrap' }}>
-          {[['Primary data', G], ['Caution', AMBER], ['Inactive / unknown', GREY]].map(([k, c]) => (
-            <span key={k} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: 'var(--font-mono)', fontSize: 11, textTransform: 'uppercase', letterSpacing: '.06em', color: 'var(--text-muted)' }}>
-              <i style={{ width: 10, height: 10, borderRadius: 2, background: c }} /> {k}
-            </span>
+        <div className="hud-legend" aria-label="HUD colour legend">
+          {[
+            ['Primary data', HUD_GREEN],
+            ['Immediate action', HUD_AMBER],
+            ['Limit / fault', HUD_RED],
+          ].map(([label, colour]) => (
+            <span key={label}><i style={{ background: colour }} />{label}</span>
           ))}
         </div>
       </div>
     );
   }
+
   window.OSHud = { Hud };
 })();

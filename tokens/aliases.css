@@ -5,9 +5,16 @@
    ============================================================ */
 :root {
   /* --- Type families --- */
-  --font-ui:   var(--ex-font-sans);
-  --font-mono: var(--ex-font-mono);
-  --font-data: var(--ex-font-mono); /* instrument/telemetry, used with tabular figures */
+  --font-family-ui:      var(--ex-font-sans); /* @kind font */
+  --font-family-display: "Aptos Display", var(--ex-font-sans); /* @kind font */
+  --font-family-mono:    "Aptos Mono", var(--ex-font-mono); /* @kind font */
+  --font-family-narrow:  "Aptos Narrow", var(--ex-font-sans); /* @kind font */
+  --font-family-serif:   "Aptos Serif", Georgia, "Times New Roman", serif; /* @kind font */
+
+  --font-ui:      var(--font-family-ui);
+  --font-display: var(--font-family-display);
+  --font-mono:    var(--font-family-mono);
+  --font-data:    var(--font-family-mono); /* instrument/telemetry, used with tabular figures */
 
   --num-tabular: "tnum" 1, "lnum" 1; /* @kind other */
 

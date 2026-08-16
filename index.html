@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Exopter Design System</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="catalog.css">
+  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="catalog.css?v=5">
 </head>
 <body>
   <header class="catalog-topbar">
@@ -26,6 +26,7 @@
       <nav aria-label="Design system sections">
         <a href="#overview">Overview</a>
         <a href="#foundations">Foundations</a>
+        <a href="#typography">Typography</a>
         <a href="#components">Components</a>
         <a href="#product-kit">Product UI kit</a>
         <a href="#implementation">Implementation</a>
@@ -97,10 +98,6 @@
             <iframe title="Vapor colour tokens" src="guidelines/colors-vapor.card.html" loading="lazy"></iframe>
           </article>
           <article class="catalog-specimen">
-            <div><strong>Operational type</strong><span>Compact headings and data hierarchy</span></div>
-            <iframe title="Display typography" src="guidelines/type-display.card.html" loading="lazy"></iframe>
-          </article>
-          <article class="catalog-specimen">
             <div><strong>State language</strong><span>Label plus colour, never colour alone</span></div>
             <iframe title="Operational state tokens" src="guidelines/colors-states.card.html" loading="lazy"></iframe>
           </article>
@@ -111,6 +108,42 @@
           <article class="catalog-specimen">
             <div><strong>Geometry</strong><span>Eight-pixel surfaces, four-pixel instruments</span></div>
             <iframe title="Radius and elevation tokens" src="guidelines/spacing-radius.card.html" loading="lazy"></iframe>
+          </article>
+        </div>
+      </section>
+
+      <section id="typography" class="catalog-section catalog-section-typography">
+        <header class="catalog-section-header">
+          <div>
+            <p class="catalog-eyebrow">Typography</p>
+            <h2>Families, roles, and weights</h2>
+          </div>
+          <p>Aptos is the product voice. Display and Mono have explicit roles; Narrow and Serif remain available assets without an active product role.</p>
+        </header>
+        <div class="catalog-specimen-grid">
+          <article class="catalog-specimen catalog-specimen-wide">
+            <div><strong>Typeface families</strong><span>Five self-hosted Aptos families</span></div>
+            <iframe title="Typeface families" src="guidelines/type-families.card.html?v=4" loading="lazy"></iframe>
+          </article>
+          <article class="catalog-specimen catalog-specimen-wide">
+            <div><strong>UI weights</strong><span>Supported Aptos weights and italics</span></div>
+            <iframe title="UI type weights" src="guidelines/type-weights.card.html?v=4" loading="lazy"></iframe>
+          </article>
+          <article class="catalog-specimen">
+            <div><strong>Display and headings</strong><span>Brand display and product hierarchy</span></div>
+            <iframe title="Display typography" src="guidelines/type-display.card.html?v=4" loading="lazy"></iframe>
+          </article>
+          <article class="catalog-specimen">
+            <div><strong>Body and UI</strong><span>Default interface text</span></div>
+            <iframe title="Body typography" src="guidelines/type-body.card.html?v=4" loading="lazy"></iframe>
+          </article>
+          <article class="catalog-specimen">
+            <div><strong>Instrument data</strong><span>Telemetry, metrics, and logs</span></div>
+            <iframe title="Instrument typography" src="guidelines/type-mono.card.html?v=4" loading="lazy"></iframe>
+          </article>
+          <article class="catalog-specimen">
+            <div><strong>Status labels</strong><span>Tracked uppercase operational tokens</span></div>
+            <iframe title="Status label typography" src="guidelines/type-labels.card.html?v=4" loading="lazy"></iframe>
           </article>
         </div>
       </section>

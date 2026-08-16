@@ -313,6 +313,12 @@ a:focus-visible {
   color: var(--ex-vapor-50);
 }
 
+.catalog-section-typography {
+  background: var(--ex-vapor-100);
+  border-bottom: 1px solid var(--border-rule);
+  border-top: 1px solid var(--border-rule);
+}
+
 .catalog-section-header {
   align-items: end;
   display: flex;
@@ -405,6 +411,27 @@ a:focus-visible {
 
 .catalog-specimen-wide iframe {
   height: 210px;
+}
+
+.catalog-specimen iframe[title="Typeface families"] {
+  height: 350px;
+}
+
+.catalog-specimen iframe[title="UI type weights"] {
+  height: 250px;
+}
+
+.catalog-specimen iframe[title="Body typography"],
+.catalog-specimen iframe[title="Instrument typography"] {
+  height: 230px;
+}
+
+.catalog-specimen iframe[title="Display typography"] {
+  height: 240px;
+}
+
+.catalog-specimen iframe[title="Status label typography"] {
+  height: 160px;
 }
 
 .catalog-component-stack {
@@ -584,6 +611,14 @@ a:focus-visible {
 
   .catalog-specimen-wide {
     grid-column: auto;
+  }
+
+  .catalog-specimen iframe[title="Typeface families"] {
+    height: 550px;
+  }
+
+  .catalog-specimen iframe[title="UI type weights"] {
+    height: 360px;
   }
 
   .catalog-paths a,

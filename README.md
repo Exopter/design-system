@@ -7,8 +7,9 @@ the [Exopter Design System in Notion](https://app.notion.com/p/3abe497e504f81c8a
 ## Structure
 
 - `tokens/`: CSS design tokens.
+- `fonts/`: self-hosted Aptos family binaries used by the package.
 - `components/`: reusable component implementations and coding prompts.
-- `guidelines/`: visual specimens for implemented foundations.
+- `guidelines/`: visual specimens for implemented foundations, including the complete typography reference.
 - `ui_kits/os-flight/`: shared Sillage operations UI kit.
 - `assets/`: implementation assets used by the catalogue and UI kit.
 - `index.html`: local visual catalogue.
