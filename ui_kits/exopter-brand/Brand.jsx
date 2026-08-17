@@ -125,7 +125,7 @@
   }
 
   function OperatingSuite() {
-    const rooms = [['Flight', 'Prep, replay, logbook, maintenance'], ['Atlas', 'Maps, terrain, route comparison'], ['Hangar', 'Fleet, hardware, spare parts'], ['Signal', 'Telemetry, live feeds, comms'], ['Forge', 'Agent workflows, documentation'], ['Core', 'Auth, audit, storage, ops']];
+    const rooms = [['Flight', 'Prep, replay, logbook, maintenance'], ['Hangar', 'Fleet, hardware, spare parts'], ['Signal', 'Telemetry, live feeds, comms'], ['Forge', 'Agent workflows, documentation'], ['Core', 'Auth, audit, storage, ops']];
     return (
       <section id="os" style={{ background: 'var(--ex-vapor-50)', padding: '80px 40px' }}>
         <Reveal><Eyebrow>Operating suite</Eyebrow>

@@ -1,7 +1,7 @@
 # Sillage · Flight — UI kit
 
 The **operations workbench** interpretation of Sillage Flight: a left-rail shell
-(Flights / Hangar / Atlas, then separated Signal) with a Flights room that holds
+(Flights / Hangar, then separated Signal) with a Flights room that holds
 **Flights**, **Flight prep**, **Replay**, and **HUD** states. Built entirely on
 the Exopter design-system components and tokens.
 
@@ -23,7 +23,7 @@ Component files are siblings: `Shell.jsx`, `Logbook.jsx`, `Replay.jsx`,
 | **Replay** | 3D trajectory (SVG) + scrubber/play, analysis. |
 | **HUD** | Pilot display preview. |
 
-Atlas, Hangar, and Signal are interactive rooms in this kit. Signal combines
+Hangar and Signal are interactive rooms in this kit. Signal combines
 Live map, Instruments, and Charts as movable widgets on one live canvas. Every
 widget can be Enlarged, Mini, or Hidden down to its draggable header; no view
 tabs remain. A single compact session row holds acquisition and session actions,
@@ -31,9 +31,9 @@ while one shared telemetry strip replaces the repeated Map and Instruments
 values. A presentation mode fills the whole display for a large monitor or
 projector. Hangar exposes the fleet and installed
 configuration hierarchy plus Assemblies, Parts, Functions, Builds, and Test
-Runs; Atlas is the landing-zone directory. The operator rail is ordered Flights,
-Hangar, Atlas, then separated Signal. Signal can attach to a prepared Flight or
-create one automatically from detected aircraft and landing-zone context. Forge
+Runs. The operator rail is ordered Flights, Hangar, then separated Signal.
+Signal can attach to a prepared Flight or
+create one automatically from detected aircraft identity. Forge
 and Core remain outside the primary navigation.
 
 ## Archive

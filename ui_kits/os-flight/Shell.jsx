@@ -7,7 +7,6 @@
   const ROOMS = [
     { id: 'flight', label: 'Flights', icon: 'plane' },
     { id: 'hangar', label: 'Hangar', icon: 'wrench' },
-    { id: 'atlas', label: 'Atlas', icon: 'map' },
     { id: 'signal', label: 'Signal', icon: 'signal', separated: true },
   ];
 

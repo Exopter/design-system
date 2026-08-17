@@ -112,7 +112,7 @@
       <div className="hud-telemetry-footer" aria-label="Navigation telemetry">
         <div><span>GLIDE</span><b>12.4</b></div>
         <div className="hud-heading-box"><span>HDG</span><b>036°</b></div>
-        <div><span>DIST</span><b>8.6 <small>km</small></b></div>
+        <div><span>V/S</span><b>−4.6 <small>m/s</small></b></div>
       </div>
     );
   }
@@ -142,11 +142,6 @@
 
         <div className="hud-flight-path" aria-label="Flight path marker">
           <Icon name="crosshair" size={42} strokeWidth={1.4} />
-        </div>
-
-        <div className="hud-landing-zone">
-          <Icon name="crosshair" size={20} strokeWidth={1.5} />
-          <span>LZ · 8.6 km</span>
         </div>
 
         <Tape side="left" label="TAS" unit="km/h" value={214} step={5} detail="GS 198 · 1.0 G" />
