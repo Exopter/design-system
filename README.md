@@ -1,25 +1,49 @@
 # Exopter design-system implementation
 
-This repository contains the executable design-system package used by Sillage.
-Design rationale, product rules, governance, and component decisions live in
-the [Exopter Design System in Notion](https://app.notion.com/p/3abe497e504f81c8a557e1f1a26e09ae).
+This repository is the canonical executable source for Exopter design tokens and shared React components. Design rationale, governance, product decisions, and roadmap content live in the [Exopter Design System in Notion](https://app.notion.com/p/3abe497e504f81c8a557e1f1a26e09ae).
 
-## Structure
+## Requirements
 
-- `tokens/`: CSS design tokens.
-- `fonts/`: self-hosted Aptos family binaries used by the package.
-- `components/`: reusable component implementations and coding prompts.
-- `guidelines/`: visual specimens for implemented foundations, including the complete typography reference.
-- `ui_kits/os-flight/`: shared Sillage operations UI kit.
-- `assets/`: implementation assets used by the catalogue and UI kit.
-- `index.html`: local visual catalogue.
+- Node.js 22 or newer
+- npm 11 or newer
 
-The Rails implementation lives in
-[Exopter/sillage](https://github.com/Exopter/sillage), under
-`app/assets/stylesheets/exopter_design_system.css`. Shared Rails compositions
-live in `app/assets/stylesheets/application.css` and
-`app/assets/stylesheets/hangar_forge.css`.
+## Install and validate
 
-Product screens must reuse these shared tokens and components. When a new
-visual pattern is required, evolve the shared implementation first and record
-the product or design decision in Notion.
+```sh
+npm ci
+npm run check
+```
+
+`npm run check` verifies that generated artifacts are current, runs the component and contract tests, and checks the publishable package contents. Use `npm run build` after changing components, tokens, metadata annotations, or specimen sources.
+
+## Public package contract
+
+- `@exopter/design-system`: React component exports from `index.js` and `index.d.ts`.
+- `@exopter/design-system/styles.css`: the single global CSS entrypoint.
+- `@exopter/design-system/tokens/exopter-tokens.css`: canonical low-level Exopter tokens.
+- `@exopter/design-system/tokens/aliases.css`: semantic component aliases.
+- `_ds_bundle.js`: generated browser-global component bundle for static specimens.
+- `_ds_manifest.json`: generated catalogue and component/token adherence metadata.
+- `_adherence.oxlintrc.json`: generated, runnable Oxlint consumer-import guardrail.
+
+The canonical Sillage token source is `tokens/exopter-tokens.css`. A consumer can verify or update an exported copy without adding a second transformation:
+
+```sh
+npm run check:sillage -- /path/to/exopter_design_system.css
+npm run export:sillage -- /path/to/exopter_design_system.css
+```
+
+The export is byte-for-byte identical to the canonical source. Consumer repositories should run the check in CI.
+
+## Repository structure
+
+- `tokens/`: canonical tokens, semantic aliases, and font declarations.
+- `fonts/`: licensed self-hosted families used by active roles.
+- `components/`: React implementations, declarations, prompts, and specimens.
+- `guidelines/`: visual specimens for implemented foundations.
+- `ui_kits/`: precompiled interactive implementation specimens.
+- `templates/`: platform template runtime and entrypoints.
+- `scripts/`: deterministic generation and export tooling.
+- `tests/`: component accessibility and generated-contract tests.
+
+Open `index.html` through a local static server to browse the catalogue. Product screens must reuse shared tokens and components; record new product or design decisions in Notion before extending the executable implementation.

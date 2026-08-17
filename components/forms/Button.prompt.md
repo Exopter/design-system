@@ -8,6 +8,6 @@ Operational button for primary, secondary, and destructive actions — carbon-fi
 ```
 
 - `variant`: `primary` (carbon fill) · `secondary` (outline) · `ghost` (chrome on hover) · `danger` (red, destructive/abort only).
-- `size`: `sm` (28px) · `md` (36px, default) · `lg` (44px, min touch target).
+- `size`: `sm` (32px) · `md` (42px, default) · `lg` (44px, minimum touch target).
 - `block` stretches full width; `iconLeft`/`iconRight` take 18px icon nodes.
 - Reserve `primary` for the single most important action in a view; never use HUD green on buttons.

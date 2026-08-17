@@ -27,8 +27,9 @@ export function Switch({ checked, defaultChecked, onChange, disabled = false, la
   const isControlled = checked !== undefined;
   const [internal, setInternal] = React.useState(!!defaultChecked);
   const on = isControlled ? checked : internal;
-  const handle = (e) => { if (!isControlled) setInternal(e.target.checked); onChange && onChange(e); };
-  const sid = id || (label ? `exds-sw-${label.replace(/\s+/g, '-').toLowerCase()}` : undefined);
+  const handle = (e) => { if (!isControlled) setInternal(e.target.checked); if (onChange) onChange(e); };
+  const generatedId = React.useId().replaceAll(':', '');
+  const sid = id || `exds-switch-${generatedId}`;
   return (
     <label className={['exds-switch', className].filter(Boolean).join(' ')} data-disabled={disabled ? 'true' : 'false'} htmlFor={sid}>
       <input id={sid} type="checkbox" role="switch" checked={on} disabled={disabled} onChange={handle} {...rest} />

@@ -21,7 +21,7 @@ export interface SegmentedControlProps {
 }
 
 /**
- * Instrument-style mode switcher (GLD / EDF / JET, or Flight / Forge / Core).
+ * Instrument-style single-choice switcher with radiogroup keyboard semantics.
  * Mode label always visible; selection never color-only.
  */
 export function SegmentedControl(props: SegmentedControlProps): React.JSX.Element;

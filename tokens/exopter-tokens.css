@@ -1,7 +1,7 @@
 /* ============================================================
-   Exopter — canonical design tokens.
-   Mirrors the Sillage app's app/assets/stylesheets/exopter_design_system.css
-   VERBATIM (source of truth). Do not drift from that file.
+   Exopter — canonical low-level design tokens.
+   This file is the source of truth exported verbatim to product repositories.
+   Change it here, regenerate this package, then synchronize consumers.
    ============================================================ */
 :root {
   color-scheme: light;

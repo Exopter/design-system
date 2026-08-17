@@ -42,6 +42,10 @@ export function IconButton({
   className = '',
   ...rest
 }) {
+  if (typeof label !== 'string' || !label.trim()) {
+    throw new Error('IconButton requires a non-empty `label` for its accessible name.');
+  }
+  const accessibleLabel = label.trim();
   const cls = [
     'exds-iconbtn',
     `exds-iconbtn--${variant}`,
@@ -50,7 +54,7 @@ export function IconButton({
     className,
   ].filter(Boolean).join(' ');
   return (
-    <button type="button" className={cls} aria-label={label} title={label} {...rest}>
+    <button type="button" className={cls} {...rest} aria-label={accessibleLabel} title={accessibleLabel}>
       {icon}
     </button>
   );

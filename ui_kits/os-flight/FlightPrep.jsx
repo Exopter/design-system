@@ -2,7 +2,7 @@
 (function () {
   const { Icon } = window.OSIcons;
   const DS = window.ExopterDesignSystem_4c9fc9;
-  const { Card, ChecklistRow, ReadinessStrip, MetricTile, Button, Switch, Badge } = DS;
+  const { Card, ChecklistRow, ReadinessStrip, MetricTile, Button, Badge } = DS;
 
   function SafetyGate({ armed, onArm }) {
     return (

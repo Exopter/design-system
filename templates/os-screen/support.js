@@ -1,4 +1,4 @@
-// GENERATED from dc-runtime/src/*.ts — do not edit. Rebuild with `cd dc-runtime && bun run build`.
+// Vendored generated Design Components runtime. Update only from an approved runtime release.
 "use strict";
 (() => {
   var __defProp = Object.defineProperty;

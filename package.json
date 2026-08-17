@@ -1,0 +1,66 @@
+{
+  "name": "@exopter/design-system",
+  "version": "0.1.0",
+  "description": "Executable design tokens and React components for Exopter products.",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css",
+    "dist/index.js",
+    "_ds_bundle.js",
+    "components/**/*.jsx",
+    "ui_kits/**/*.jsx"
+  ],
+  "files": [
+    "_adherence.oxlintrc.json",
+    "_ds_bundle.js",
+    "_ds_manifest.json",
+    "components/**/*.d.ts",
+    "dist/index.js",
+    "fonts/",
+    "index.d.ts",
+    "README.md",
+    "styles.css",
+    "THIRD_PARTY_NOTICES.md",
+    "tokens/"
+  ],
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./styles.css",
+    "./browser.js": "./_ds_bundle.js",
+    "./manifest.json": "./_ds_manifest.json",
+    "./adherence.json": "./_adherence.oxlintrc.json",
+    "./tokens/exopter-tokens.css": "./tokens/exopter-tokens.css",
+    "./tokens/aliases.css": "./tokens/aliases.css",
+    "./tokens/fonts.css": "./tokens/fonts.css"
+  },
+  "peerDependencies": {
+    "react": ">=18.3 <20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:check": "node scripts/build.mjs --check",
+    "export:sillage": "node scripts/export-sillage-tokens.mjs --write",
+    "check:sillage": "node scripts/export-sillage-tokens.mjs --check",
+    "lint": "oxlint --config _adherence.oxlintrc.json index.js components ui_kits scripts tests",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run build:check && npm run lint && npm test && npm pack --dry-run"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.2",
+    "esbuild": "0.28.2",
+    "jsdom": "29.1.1",
+    "oxlint": "1.78.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "vitest": "4.1.10"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "UNLICENSED"
+}

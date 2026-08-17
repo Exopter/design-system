@@ -1,1 +1,1498 @@
-{"namespace":"ExopterDesignSystem_4c9fc9","components":[{"name":"Card","sourcePath":"components/data/Card.jsx"},{"name":"ChecklistRow","sourcePath":"components/data/ChecklistRow.jsx"},{"name":"MetricTile","sourcePath":"components/data/MetricTile.jsx"},{"name":"ReadinessStrip","sourcePath":"components/data/ReadinessStrip.jsx"},{"name":"Badge","sourcePath":"components/feedback/Badge.jsx"},{"name":"StatusDot","sourcePath":"components/feedback/StatusDot.jsx"},{"name":"Toast","sourcePath":"components/feedback/Toast.jsx"},{"name":"Button","sourcePath":"components/forms/Button.jsx"},{"name":"IconButton","sourcePath":"components/forms/IconButton.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"SegmentedControl","sourcePath":"components/forms/SegmentedControl.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"}],"startingPoints":[],"cards":[{"path":"guidelines/brand-imagery.card.html","group":"Brand","viewport":"700x230","subtitle":"The object is the proof — real matte wing, white markings, sky & field as context","name":"Imagery"},{"path":"guidelines/brand-marks.card.html","group":"Brand","viewport":"700x160","subtitle":"Compact EXO mark, app icon, aerofoil diagram mark — all NON-FINAL","name":"Marks & app icon"},{"path":"guidelines/brand-wordmark.card.html","group":"Brand","viewport":"700x180","subtitle":"White EXOPTER on carbon — three speed bars form the E. NON-FINAL placeholder.","name":"Wordmark"},{"path":"guidelines/colors-carbon.card.html","group":"Colors","viewport":"700x150","subtitle":"Primary brand black — cockpit, instrument panels, dark cards","name":"Carbon scale"},{"path":"guidelines/colors-signal.card.html","group":"Colors","viewport":"700x170","subtitle":"Annotate information — never large decorative fills. HUD green is reserved.","name":"Signal colors"},{"path":"guidelines/colors-states.card.html","group":"Colors","viewport":"700x210","subtitle":"Every state pairs color with a label, icon, or pattern — never color alone","name":"State legend"},{"path":"guidelines/colors-vapor.card.html","group":"Colors","viewport":"700x150","subtitle":"Light base & white-mark equivalent — backgrounds, panels, dividers","name":"Vapor scale"},{"path":"components/data/data.card.html","group":"Components","viewport":"700x520","subtitle":"Card, MetricTile, ReadinessStrip, ChecklistRow","name":"Data & instruments"},{"path":"components/feedback/feedback.card.html","group":"Components","viewport":"700x340","subtitle":"Badge, StatusDot, Toast","name":"Feedback & status"},{"path":"components/forms/forms.card.html","group":"Components","viewport":"700x430","subtitle":"Button, IconButton, Input, Select, Switch, SegmentedControl","name":"Forms & controls"},{"path":"ui_kits/exopter-brand/index.html","group":"Exopter Brand","viewport":"1280x760","subtitle":"Deep-tech, object-led brand page — hero, program specs, evidence, Sillage, roadmap","name":"Exopter public site"},{"path":"ui_kits/os-flight/index.html","group":"Sillage Flight","viewport":"1280x820","subtitle":"Operations workbench — Logbook, Flight prep, Replay, HUD across Flight / Hangar / Signal / Forge / Core","name":"Sillage · Flight Lab"},{"path":"guidelines/spacing-radius.card.html","group":"Spacing","viewport":"700x160","subtitle":"8px standard, 4px compact, round only when shape is the control","name":"Radius & elevation"},{"path":"guidelines/spacing-scale.card.html","group":"Spacing","viewport":"700x160","subtitle":"4px base grid — sp-1 through sp-16","name":"Spacing scale"},{"path":"guidelines/type-families.card.html","group":"Type","viewport":"1100x390","subtitle":"Five self-hosted Aptos families with explicit production-role status","name":"Typeface families"},{"path":"guidelines/type-body.card.html","group":"Type","viewport":"700x180","subtitle":"Aptos — default interface text, 15px body with 13/11 supporting sizes","name":"Body & UI"},{"path":"guidelines/type-display.card.html","group":"Type","viewport":"700x200","subtitle":"Aptos Display for large brand type; Aptos for compact product headings","name":"Display & headings"},{"path":"guidelines/type-labels.card.html","group":"Type","viewport":"700x150","subtitle":"Uppercase mono tokens with label tracking — GLD, READY, FAULT, T0+6","name":"Status labels"},{"path":"guidelines/type-mono.card.html","group":"Type","viewport":"700x190","subtitle":"Aptos Mono with tabular figures — telemetry, metrics, labels, and logs","name":"Instrument data & mono"},{"path":"guidelines/type-weights.card.html","group":"Type","viewport":"1100x230","subtitle":"Supported Aptos UI weights with a concise italic specimen","name":"UI type weights"}],"templates":[{"name":"Sillage Screen","description":"Sillage workbench screen scaffold — carbon header, readiness band, checklist + metric tiles","folder":"templates/os-screen","entryPath":"templates/os-screen/OSScreen.dc.html","thumbnail":{"path":"templates/os-screen/.thumbnail","kind":"captured"}}],"globalCssPaths":["tokens/fonts.css","tokens/exopter-tokens.css","tokens/aliases.css","styles.css"],"tokens":[{"name":"--ex-font-sans","value":"\"Aptos\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif","kind":"font","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-font-mono","value":"ui-monospace, SFMono-Regular, Menlo, Consolas, \"Liberation Mono\", monospace","kind":"font","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-carbon-950","value":"#070b0d","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-carbon-900","value":"#10181a","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-carbon-800","value":"#182426","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-carbon-700","value":"#243133","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-graphite-600","value":"#5f6c6b","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-graphite-500","value":"#71817e","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-line-200","value":"#d4dfdc","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-line-300","value":"#aebfba","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-vapor-50","value":"#f5f8f6","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-vapor-100","value":"#e5ece9","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-vapor-150","value":"#dce8e5","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-white","value":"#ffffff","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-sky-500","value":"#2ea8ff","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-field-500","value":"#4f7b4e","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-aqua-500","value":"#2fd6c6","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-hud-green","value":"#8cff4d","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-amber-500","value":"#f2a23a","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-red-600","value":"#e63b35","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-violet-500","value":"#6658c7","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-state-ready-bg","value":"rgba(140, 255, 77, 0.18)","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-state-ready-text","value":"#315a26","kind":"font","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-state-live-bg","value":"rgba(47, 214, 198, 0.14)","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-state-live-text","value":"#00615b","kind":"font","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-state-pending-bg","value":"#e5ece9","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-state-pending-text","value":"#5f6c6b","kind":"font","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-state-caution-bg","value":"rgba(242, 162, 58, 0.16)","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-state-caution-text","value":"#7a4b0a","kind":"font","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-state-fault-bg","value":"rgba(230, 59, 53, 0.12)","kind":"color","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-state-fault-text","value":"#b42318","kind":"font","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-space-1","value":"4px","kind":"spacing","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-space-2","value":"8px","kind":"spacing","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-space-3","value":"12px","kind":"spacing","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-space-4","value":"16px","kind":"spacing","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-space-5","value":"20px","kind":"spacing","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-space-6","value":"24px","kind":"spacing","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-space-8","value":"32px","kind":"spacing","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-space-10","value":"40px","kind":"spacing","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-space-12","value":"48px","kind":"spacing","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-radius-instrument","value":"4px","kind":"radius","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-radius-surface","value":"8px","kind":"radius","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-shadow-raised","value":"0 18px 42px rgba(16, 24, 26, 0.12)","kind":"shadow","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-shadow-panel","value":"0 10px 28px rgba(16, 24, 26, 0.08)","kind":"shadow","definedIn":"tokens/exopter-tokens.css"},{"name":"--ex-page-width","value":"min(1220px, calc(100vw - 36px))","kind":"spacing","definedIn":"tokens/exopter-tokens.css","annotation":"spacing"},{"name":"--font-family-ui","value":"var(--ex-font-sans)","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--font-family-display","value":"\"Aptos Display\", var(--ex-font-sans)","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--font-family-mono","value":"\"Aptos Mono\", var(--ex-font-mono)","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--font-family-narrow","value":"\"Aptos Narrow\", var(--ex-font-sans)","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--font-family-serif","value":"\"Aptos Serif\", Georgia, \"Times New Roman\", serif","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--font-ui","value":"var(--font-family-ui)","kind":"font","definedIn":"tokens/aliases.css"},{"name":"--font-display","value":"var(--font-family-display)","kind":"font","definedIn":"tokens/aliases.css"},{"name":"--font-mono","value":"var(--font-family-mono)","kind":"font","definedIn":"tokens/aliases.css"},{"name":"--font-data","value":"var(--font-family-mono)","kind":"font","definedIn":"tokens/aliases.css"},{"name":"--num-tabular","value":"\"tnum\" 1, \"lnum\" 1","kind":"other","definedIn":"tokens/aliases.css","annotation":"other"},{"name":"--fs-display","value":"3.5rem","kind":"spacing","definedIn":"tokens/aliases.css"},{"name":"--fs-h1","value":"2.25rem","kind":"spacing","definedIn":"tokens/aliases.css"},{"name":"--fs-h2","value":"1.75rem","kind":"spacing","definedIn":"tokens/aliases.css"},{"name":"--fs-h3","value":"1.375rem","kind":"spacing","definedIn":"tokens/aliases.css"},{"name":"--fs-h4","value":"1.125rem","kind":"spacing","definedIn":"tokens/aliases.css"},{"name":"--fs-body","value":"0.9375rem","kind":"spacing","definedIn":"tokens/aliases.css"},{"name":"--fs-sm","value":"0.8125rem","kind":"spacing","definedIn":"tokens/aliases.css"},{"name":"--fs-xs","value":"0.6875rem","kind":"spacing","definedIn":"tokens/aliases.css"},{"name":"--fs-metric","value":"2rem","kind":"spacing","definedIn":"tokens/aliases.css"},{"name":"--fs-metric-lg","value":"3rem","kind":"spacing","definedIn":"tokens/aliases.css"},{"name":"--fw-regular","value":"400","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--fw-medium","value":"500","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--fw-semibold","value":"600","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--fw-bold","value":"700","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--lh-tight","value":"1.1","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--lh-snug","value":"1.25","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--lh-normal","value":"1.5","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--ls-label","value":"0.08em","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--ls-wide","value":"0.16em","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--ls-tight","value":"-0.01em","kind":"font","definedIn":"tokens/aliases.css","annotation":"font"},{"name":"--sp-0","value":"0","kind":"spacing","definedIn":"tokens/aliases.css","annotation":"spacing"},{"name":"--sp-1","value":"var(--ex-space-1)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--sp-2","value":"var(--ex-space-2)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--sp-3","value":"var(--ex-space-3)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--sp-4","value":"var(--ex-space-4)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--sp-5","value":"var(--ex-space-5)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--sp-6","value":"var(--ex-space-6)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--sp-8","value":"var(--ex-space-8)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--sp-10","value":"var(--ex-space-10)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--sp-12","value":"var(--ex-space-12)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--sp-16","value":"64px","kind":"spacing","definedIn":"tokens/aliases.css","annotation":"spacing"},{"name":"--sp-20","value":"80px","kind":"spacing","definedIn":"tokens/aliases.css","annotation":"spacing"},{"name":"--radius-compact","value":"var(--ex-radius-instrument)","kind":"radius","definedIn":"tokens/aliases.css"},{"name":"--radius","value":"var(--ex-radius-surface)","kind":"radius","definedIn":"tokens/aliases.css"},{"name":"--radius-lg","value":"12px","kind":"radius","definedIn":"tokens/aliases.css"},{"name":"--radius-round","value":"999px","kind":"radius","definedIn":"tokens/aliases.css"},{"name":"--bw-rule","value":"1px","kind":"spacing","definedIn":"tokens/aliases.css","annotation":"spacing"},{"name":"--bw-strong","value":"2px","kind":"spacing","definedIn":"tokens/aliases.css","annotation":"spacing"},{"name":"--shadow-sm","value":"var(--ex-shadow-panel)","kind":"shadow","definedIn":"tokens/aliases.css"},{"name":"--shadow","value":"var(--ex-shadow-panel)","kind":"shadow","definedIn":"tokens/aliases.css"},{"name":"--shadow-md","value":"var(--ex-shadow-raised)","kind":"shadow","definedIn":"tokens/aliases.css"},{"name":"--shadow-inset","value":"inset 0 1px 2px rgba(7, 11, 13, 0.10)","kind":"shadow","definedIn":"tokens/aliases.css"},{"name":"--ease-out","value":"cubic-bezier(0.2, 0.7, 0.2, 1)","kind":"other","definedIn":"tokens/aliases.css","annotation":"other"},{"name":"--ease-in-out","value":"cubic-bezier(0.4, 0, 0.2, 1)","kind":"other","definedIn":"tokens/aliases.css","annotation":"other"},{"name":"--dur-fast","value":"120ms","kind":"other","definedIn":"tokens/aliases.css","annotation":"other"},{"name":"--dur","value":"180ms","kind":"other","definedIn":"tokens/aliases.css","annotation":"other"},{"name":"--dur-slow","value":"280ms","kind":"other","definedIn":"tokens/aliases.css","annotation":"other"},{"name":"--control-h","value":"42px","kind":"spacing","definedIn":"tokens/aliases.css"},{"name":"--control-h-sm","value":"32px","kind":"spacing","definedIn":"tokens/aliases.css"},{"name":"--control-h-lg","value":"44px","kind":"spacing","definedIn":"tokens/aliases.css"},{"name":"--ex-graphite-400","value":"#97a1a0","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--ex-vapor-200","value":"var(--ex-line-200)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--ex-sky-100","value":"#dceeff","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--ex-field-100","value":"var(--ex-state-ready-bg)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--ex-aqua-100","value":"var(--ex-state-live-bg)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--ex-amber-100","value":"var(--ex-state-caution-bg)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--ex-red-100","value":"var(--ex-state-fault-bg)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--surface-app","value":"var(--ex-vapor-50)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--surface-card","value":"var(--ex-white)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--surface-panel","value":"var(--ex-vapor-100)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--surface-sunken","value":"var(--ex-vapor-100)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--surface-hover","value":"var(--ex-vapor-100)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--text-strong","value":"var(--ex-carbon-950)","kind":"font","definedIn":"tokens/aliases.css"},{"name":"--text-body","value":"var(--ex-carbon-900)","kind":"font","definedIn":"tokens/aliases.css"},{"name":"--text-muted","value":"var(--ex-graphite-600)","kind":"font","definedIn":"tokens/aliases.css"},{"name":"--text-inverse","value":"var(--ex-vapor-50)","kind":"font","definedIn":"tokens/aliases.css"},{"name":"--border-rule","value":"var(--ex-line-200)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--border-strong","value":"var(--ex-line-300)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--focus-ring","value":"var(--ex-sky-500)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--link","value":"var(--ex-sky-500)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--state-ready","value":"var(--ex-field-500)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--state-live","value":"var(--ex-aqua-500)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--state-pending","value":"var(--ex-amber-500)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--state-caution","value":"var(--ex-amber-500)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--state-fault","value":"var(--ex-red-600)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--state-unknown","value":"var(--ex-graphite-500)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--accent","value":"var(--ex-carbon-900)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--accent-contrast","value":"var(--ex-vapor-50)","kind":"color","definedIn":"tokens/aliases.css"},{"name":"--surface-app","value":"var(--ex-carbon-950)","kind":"color","definedIn":"tokens/aliases.css","scope":".ex-dark"},{"name":"--surface-card","value":"var(--ex-carbon-900)","kind":"color","definedIn":"tokens/aliases.css","scope":".ex-dark"},{"name":"--surface-panel","value":"var(--ex-carbon-800)","kind":"color","definedIn":"tokens/aliases.css","scope":".ex-dark"},{"name":"--surface-sunken","value":"var(--ex-carbon-950)","kind":"color","definedIn":"tokens/aliases.css","scope":".ex-dark"},{"name":"--surface-hover","value":"var(--ex-carbon-800)","kind":"color","definedIn":"tokens/aliases.css","scope":".ex-dark"},{"name":"--text-strong","value":"var(--ex-white)","kind":"font","definedIn":"tokens/aliases.css","scope":".ex-dark"},{"name":"--text-body","value":"var(--ex-vapor-50)","kind":"font","definedIn":"tokens/aliases.css","scope":".ex-dark"},{"name":"--text-muted","value":"var(--ex-graphite-400)","kind":"font","definedIn":"tokens/aliases.css","scope":".ex-dark"},{"name":"--text-inverse","value":"var(--ex-carbon-950)","kind":"font","definedIn":"tokens/aliases.css","scope":".ex-dark"},{"name":"--border-rule","value":"var(--ex-carbon-700)","kind":"color","definedIn":"tokens/aliases.css","scope":".ex-dark"},{"name":"--border-strong","value":"var(--ex-graphite-600)","kind":"color","definedIn":"tokens/aliases.css","scope":".ex-dark"},{"name":"--state-ready","value":"var(--ex-hud-green)","kind":"color","definedIn":"tokens/aliases.css","scope":".ex-dark"},{"name":"--accent","value":"var(--ex-aqua-500)","kind":"color","definedIn":"tokens/aliases.css","scope":".ex-dark"},{"name":"--accent-contrast","value":"var(--ex-carbon-950)","kind":"color","definedIn":"tokens/aliases.css","scope":".ex-dark"}],"themes":[{"selector":".ex-dark","label":"Ex Dark"}],"fonts":[{"family":"Aptos","weight":"300","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Light.ttf"]},{"family":"Aptos","weight":"300","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Light-Italic.ttf"]},{"family":"Aptos","weight":"400","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos.ttf"]},{"family":"Aptos","weight":"400","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Italic.ttf"]},{"family":"Aptos","weight":"600","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos-SemiBold.ttf"]},{"family":"Aptos","weight":"600","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-SemiBold-Italic.ttf"]},{"family":"Aptos","weight":"700","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Bold.ttf"]},{"family":"Aptos","weight":"700","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Bold-Italic.ttf"]},{"family":"Aptos","weight":"800","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos-ExtraBold.ttf"]},{"family":"Aptos","weight":"800","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-ExtraBold-Italic.ttf"]},{"family":"Aptos","weight":"900","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Black.ttf"]},{"family":"Aptos","weight":"900","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Black-Italic.ttf"]},{"family":"Aptos Display","weight":"400","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Display.ttf"]},{"family":"Aptos Display","weight":"400","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Display-Italic.ttf"]},{"family":"Aptos Display","weight":"700","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Display-Bold.ttf"]},{"family":"Aptos Display","weight":"700","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Display-Bold-Italic.ttf"]},{"family":"Aptos Narrow","weight":"400","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Narrow.ttf"]},{"family":"Aptos Narrow","weight":"400","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Narrow-Italic.ttf"]},{"family":"Aptos Narrow","weight":"700","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Narrow-Bold.ttf"]},{"family":"Aptos Narrow","weight":"700","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Narrow-Bold-Italic.ttf"]},{"family":"Aptos Serif","weight":"400","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Serif.ttf"]},{"family":"Aptos Serif","weight":"400","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Serif-Italic.ttf"]},{"family":"Aptos Serif","weight":"700","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Serif-Bold.ttf"]},{"family":"Aptos Serif","weight":"700","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Serif-Bold-Italic.ttf"]},{"family":"Aptos Mono","weight":"400","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Mono.ttf"]},{"family":"Aptos Mono","weight":"400","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Mono-Italic.ttf"]},{"family":"Aptos Mono","weight":"700","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Mono-Bold.ttf"]},{"family":"Aptos Mono","weight":"700","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/Aptos-Mono-Bold-Italic.ttf"]}],"brandFonts":[{"family":"Aptos","status":"ok","tokens":["--ex-font-sans"],"path":"tokens/fonts.css"},{"family":"Aptos Display","status":"ok","tokens":["--font-family-display"],"path":"tokens/fonts.css"},{"family":"Aptos Narrow","status":"ok","tokens":["--font-family-narrow"],"path":"tokens/fonts.css"},{"family":"Aptos Serif","status":"ok","tokens":["--font-family-serif"],"path":"tokens/fonts.css"},{"family":"Aptos Mono","status":"ok","tokens":["--font-family-mono"],"path":"tokens/fonts.css"}],"source":"spa"}
+{
+  "namespace": "ExopterDesignSystem_4c9fc9",
+  "components": [
+    {
+      "name": "Card",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "ChecklistRow",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "MetricTile",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "ReadinessStrip",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "Badge",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "StatusDot",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "Toast",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "Button",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "IconButton",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "Input",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "SegmentedControl",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "Select",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "Switch",
+      "sourcePath": "dist/index.js"
+    }
+  ],
+  "startingPoints": [
+    "dist/index.js",
+    "styles.css",
+    "tokens/exopter-tokens.css"
+  ],
+  "cards": [],
+  "templates": [],
+  "globalCssPaths": [
+    "styles.css"
+  ],
+  "tokens": [
+    {
+      "name": "--ex-font-sans",
+      "value": "\"Aptos\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "kind": "font",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-font-mono",
+      "value": "ui-monospace, SFMono-Regular, Menlo, Consolas, \"Liberation Mono\", monospace",
+      "kind": "font",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-carbon-950",
+      "value": "#070b0d",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-carbon-900",
+      "value": "#10181a",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-carbon-800",
+      "value": "#182426",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-carbon-700",
+      "value": "#243133",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-graphite-600",
+      "value": "#5f6c6b",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-graphite-500",
+      "value": "#71817e",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-line-200",
+      "value": "#d4dfdc",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-line-300",
+      "value": "#aebfba",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-vapor-50",
+      "value": "#f5f8f6",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-vapor-100",
+      "value": "#e5ece9",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-vapor-150",
+      "value": "#dce8e5",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-white",
+      "value": "#ffffff",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-sky-500",
+      "value": "#2ea8ff",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-field-500",
+      "value": "#4f7b4e",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-aqua-500",
+      "value": "#2fd6c6",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-hud-green",
+      "value": "#8cff4d",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-amber-500",
+      "value": "#f2a23a",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-red-600",
+      "value": "#e63b35",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-violet-500",
+      "value": "#6658c7",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-state-ready-bg",
+      "value": "rgba(140, 255, 77, 0.18)",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-state-ready-text",
+      "value": "#315a26",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-state-live-bg",
+      "value": "rgba(47, 214, 198, 0.14)",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-state-live-text",
+      "value": "#00615b",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-state-pending-bg",
+      "value": "#e5ece9",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-state-pending-text",
+      "value": "#5f6c6b",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-state-caution-bg",
+      "value": "rgba(242, 162, 58, 0.16)",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-state-caution-text",
+      "value": "#7a4b0a",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-state-fault-bg",
+      "value": "rgba(230, 59, 53, 0.12)",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-state-fault-text",
+      "value": "#b42318",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-space-1",
+      "value": "4px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-space-2",
+      "value": "8px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-space-3",
+      "value": "12px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-space-4",
+      "value": "16px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-space-5",
+      "value": "20px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-space-6",
+      "value": "24px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-space-8",
+      "value": "32px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-space-10",
+      "value": "40px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-space-12",
+      "value": "48px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-radius-instrument",
+      "value": "4px",
+      "kind": "radius",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-radius-surface",
+      "value": "8px",
+      "kind": "radius",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-shadow-raised",
+      "value": "0 18px 42px rgba(16, 24, 26, 0.12)",
+      "kind": "shadow",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-shadow-panel",
+      "value": "0 10px 28px rgba(16, 24, 26, 0.08)",
+      "kind": "shadow",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-page-width",
+      "value": "min(1220px, calc(100vw - 36px))",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--font-family-ui",
+      "value": "var(--ex-font-sans)",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--font-family-display",
+      "value": "\"Aptos Display\", var(--ex-font-sans)",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--font-family-mono",
+      "value": "\"Aptos Mono\", var(--ex-font-mono)",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--font-ui",
+      "value": "var(--font-family-ui)",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--font-display",
+      "value": "var(--font-family-display)",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--font-mono",
+      "value": "var(--font-family-mono)",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--font-data",
+      "value": "var(--font-family-mono)",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--num-tabular",
+      "value": "\"tnum\" 1, \"lnum\" 1",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "other"
+    },
+    {
+      "name": "--fs-display",
+      "value": "3.5rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fs-h1",
+      "value": "2.25rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fs-h2",
+      "value": "1.75rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fs-h3",
+      "value": "1.375rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fs-h4",
+      "value": "1.125rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fs-body",
+      "value": "0.9375rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fs-sm",
+      "value": "0.8125rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fs-xs",
+      "value": "0.6875rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fs-metric",
+      "value": "2rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fs-metric-lg",
+      "value": "3rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fw-regular",
+      "value": "400",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--fw-medium",
+      "value": "500",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--fw-semibold",
+      "value": "600",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--fw-bold",
+      "value": "700",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--lh-tight",
+      "value": "1.1",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--lh-snug",
+      "value": "1.25",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--lh-normal",
+      "value": "1.5",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--ls-label",
+      "value": "0.08em",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--ls-wide",
+      "value": "0.16em",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--ls-tight",
+      "value": "-0.01em",
+      "kind": "font",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "font"
+    },
+    {
+      "name": "--sp-0",
+      "value": "0",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--sp-1",
+      "value": "var(--ex-space-1)",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--sp-2",
+      "value": "var(--ex-space-2)",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--sp-3",
+      "value": "var(--ex-space-3)",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--sp-4",
+      "value": "var(--ex-space-4)",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--sp-5",
+      "value": "var(--ex-space-5)",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--sp-6",
+      "value": "var(--ex-space-6)",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--sp-8",
+      "value": "var(--ex-space-8)",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--sp-10",
+      "value": "var(--ex-space-10)",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--sp-12",
+      "value": "var(--ex-space-12)",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--sp-16",
+      "value": "64px",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--sp-20",
+      "value": "80px",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--radius-compact",
+      "value": "var(--ex-radius-instrument)",
+      "kind": "radius",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--radius",
+      "value": "var(--ex-radius-surface)",
+      "kind": "radius",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--radius-lg",
+      "value": "12px",
+      "kind": "radius",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--radius-round",
+      "value": "999px",
+      "kind": "radius",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--bw-rule",
+      "value": "1px",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--bw-strong",
+      "value": "2px",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--shadow-sm",
+      "value": "var(--ex-shadow-panel)",
+      "kind": "shadow",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--shadow",
+      "value": "var(--ex-shadow-panel)",
+      "kind": "shadow",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--shadow-md",
+      "value": "var(--ex-shadow-raised)",
+      "kind": "shadow",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--shadow-inset",
+      "value": "inset 0 1px 2px rgba(7, 11, 13, 0.10)",
+      "kind": "shadow",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--ease-out",
+      "value": "cubic-bezier(0.2, 0.7, 0.2, 1)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "other"
+    },
+    {
+      "name": "--ease-in-out",
+      "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "other"
+    },
+    {
+      "name": "--dur-fast",
+      "value": "120ms",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "other"
+    },
+    {
+      "name": "--dur",
+      "value": "180ms",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "other"
+    },
+    {
+      "name": "--dur-slow",
+      "value": "280ms",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "other"
+    },
+    {
+      "name": "--control-h",
+      "value": "42px",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--control-h-sm",
+      "value": "32px",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--control-h-lg",
+      "value": "44px",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--ex-graphite-400",
+      "value": "#97a1a0",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--ex-vapor-200",
+      "value": "var(--ex-line-200)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--ex-sky-100",
+      "value": "#dceeff",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--ex-field-100",
+      "value": "var(--ex-state-ready-bg)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--ex-aqua-100",
+      "value": "var(--ex-state-live-bg)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--ex-amber-100",
+      "value": "var(--ex-state-caution-bg)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--ex-red-100",
+      "value": "var(--ex-state-fault-bg)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--surface-app",
+      "value": "var(--ex-vapor-50)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--surface-card",
+      "value": "var(--ex-white)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--surface-panel",
+      "value": "var(--ex-vapor-100)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--surface-sunken",
+      "value": "var(--ex-vapor-100)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--surface-hover",
+      "value": "var(--ex-vapor-100)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--text-strong",
+      "value": "var(--ex-carbon-950)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--text-body",
+      "value": "var(--ex-carbon-900)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--text-muted",
+      "value": "var(--ex-graphite-600)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--text-inverse",
+      "value": "var(--ex-vapor-50)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--border-rule",
+      "value": "var(--ex-line-200)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--border-strong",
+      "value": "var(--ex-line-300)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--focus-ring",
+      "value": "var(--ex-sky-500)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--link",
+      "value": "var(--ex-sky-500)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--state-ready",
+      "value": "var(--ex-field-500)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--state-live",
+      "value": "var(--ex-aqua-500)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--state-pending",
+      "value": "var(--ex-amber-500)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--state-caution",
+      "value": "var(--ex-amber-500)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--state-fault",
+      "value": "var(--ex-red-600)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--state-unknown",
+      "value": "var(--ex-graphite-500)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--accent",
+      "value": "var(--ex-carbon-900)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--accent-contrast",
+      "value": "var(--ex-vapor-50)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--surface-app",
+      "value": "var(--ex-carbon-950)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--surface-card",
+      "value": "var(--ex-carbon-900)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--surface-panel",
+      "value": "var(--ex-carbon-800)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--surface-sunken",
+      "value": "var(--ex-carbon-950)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--surface-hover",
+      "value": "var(--ex-carbon-800)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--text-strong",
+      "value": "var(--ex-white)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--text-body",
+      "value": "var(--ex-vapor-50)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--text-muted",
+      "value": "var(--ex-graphite-400)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--text-inverse",
+      "value": "var(--ex-carbon-950)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--border-rule",
+      "value": "var(--ex-carbon-700)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--border-strong",
+      "value": "var(--ex-graphite-600)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--state-ready",
+      "value": "var(--ex-hud-green)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--accent",
+      "value": "var(--ex-aqua-500)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--accent-contrast",
+      "value": "var(--ex-carbon-950)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    }
+  ],
+  "themes": [
+    {
+      "selector": ".ex-dark, [data-surface=\"carbon\"]",
+      "label": "Carbon dark"
+    }
+  ],
+  "fonts": [
+    {
+      "family": "Aptos",
+      "weight": "300",
+      "style": "normal",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Light.ttf"
+      ]
+    },
+    {
+      "family": "Aptos",
+      "weight": "300",
+      "style": "italic",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Light-Italic.ttf"
+      ]
+    },
+    {
+      "family": "Aptos",
+      "weight": "400",
+      "style": "normal",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos.ttf"
+      ]
+    },
+    {
+      "family": "Aptos",
+      "weight": "400",
+      "style": "italic",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Italic.ttf"
+      ]
+    },
+    {
+      "family": "Aptos",
+      "weight": "600",
+      "style": "normal",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-SemiBold.ttf"
+      ]
+    },
+    {
+      "family": "Aptos",
+      "weight": "600",
+      "style": "italic",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-SemiBold-Italic.ttf"
+      ]
+    },
+    {
+      "family": "Aptos",
+      "weight": "700",
+      "style": "normal",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Bold.ttf"
+      ]
+    },
+    {
+      "family": "Aptos",
+      "weight": "700",
+      "style": "italic",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Bold-Italic.ttf"
+      ]
+    },
+    {
+      "family": "Aptos",
+      "weight": "800",
+      "style": "normal",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-ExtraBold.ttf"
+      ]
+    },
+    {
+      "family": "Aptos",
+      "weight": "800",
+      "style": "italic",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-ExtraBold-Italic.ttf"
+      ]
+    },
+    {
+      "family": "Aptos",
+      "weight": "900",
+      "style": "normal",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Black.ttf"
+      ]
+    },
+    {
+      "family": "Aptos",
+      "weight": "900",
+      "style": "italic",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Black-Italic.ttf"
+      ]
+    },
+    {
+      "family": "Aptos Display",
+      "weight": "400",
+      "style": "normal",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Display.ttf"
+      ]
+    },
+    {
+      "family": "Aptos Display",
+      "weight": "400",
+      "style": "italic",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Display-Italic.ttf"
+      ]
+    },
+    {
+      "family": "Aptos Display",
+      "weight": "700",
+      "style": "normal",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Display-Bold.ttf"
+      ]
+    },
+    {
+      "family": "Aptos Display",
+      "weight": "700",
+      "style": "italic",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Display-Bold-Italic.ttf"
+      ]
+    },
+    {
+      "family": "Aptos Mono",
+      "weight": "400",
+      "style": "normal",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Mono.ttf"
+      ]
+    },
+    {
+      "family": "Aptos Mono",
+      "weight": "400",
+      "style": "italic",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Mono-Italic.ttf"
+      ]
+    },
+    {
+      "family": "Aptos Mono",
+      "weight": "700",
+      "style": "normal",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Mono-Bold.ttf"
+      ]
+    },
+    {
+      "family": "Aptos Mono",
+      "weight": "700",
+      "style": "italic",
+      "cssPath": "tokens/fonts.css",
+      "files": [
+        "fonts/Aptos-Mono-Bold-Italic.ttf"
+      ]
+    }
+  ],
+  "brandFonts": [
+    {
+      "family": "Aptos",
+      "status": "ok",
+      "path": "tokens/fonts.css"
+    },
+    {
+      "family": "Aptos Display",
+      "status": "ok",
+      "path": "tokens/fonts.css"
+    },
+    {
+      "family": "Aptos Mono",
+      "status": "ok",
+      "path": "tokens/fonts.css"
+    }
+  ],
+  "source": "npm",
+  "adherence": {
+    "components": {
+      "Card": {
+        "replaces": []
+      },
+      "ChecklistRow": {
+        "replaces": []
+      },
+      "MetricTile": {
+        "replaces": []
+      },
+      "ReadinessStrip": {
+        "replaces": []
+      },
+      "Badge": {
+        "replaces": []
+      },
+      "StatusDot": {
+        "replaces": []
+      },
+      "Toast": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "IconButton": {
+        "replaces": []
+      },
+      "Input": {
+        "replaces": []
+      },
+      "SegmentedControl": {
+        "replaces": []
+      },
+      "Select": {
+        "replaces": []
+      },
+      "Switch": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent",
+      "--accent-contrast",
+      "--border-rule",
+      "--border-strong",
+      "--bw-rule",
+      "--bw-strong",
+      "--control-h",
+      "--control-h-lg",
+      "--control-h-sm",
+      "--dur",
+      "--dur-fast",
+      "--dur-slow",
+      "--ease-in-out",
+      "--ease-out",
+      "--ex-amber-100",
+      "--ex-amber-500",
+      "--ex-aqua-100",
+      "--ex-aqua-500",
+      "--ex-carbon-700",
+      "--ex-carbon-800",
+      "--ex-carbon-900",
+      "--ex-carbon-950",
+      "--ex-field-100",
+      "--ex-field-500",
+      "--ex-font-mono",
+      "--ex-font-sans",
+      "--ex-graphite-400",
+      "--ex-graphite-500",
+      "--ex-graphite-600",
+      "--ex-hud-green",
+      "--ex-line-200",
+      "--ex-line-300",
+      "--ex-page-width",
+      "--ex-radius-instrument",
+      "--ex-radius-surface",
+      "--ex-red-100",
+      "--ex-red-600",
+      "--ex-shadow-panel",
+      "--ex-shadow-raised",
+      "--ex-sky-100",
+      "--ex-sky-500",
+      "--ex-space-1",
+      "--ex-space-10",
+      "--ex-space-12",
+      "--ex-space-2",
+      "--ex-space-3",
+      "--ex-space-4",
+      "--ex-space-5",
+      "--ex-space-6",
+      "--ex-space-8",
+      "--ex-state-caution-bg",
+      "--ex-state-caution-text",
+      "--ex-state-fault-bg",
+      "--ex-state-fault-text",
+      "--ex-state-live-bg",
+      "--ex-state-live-text",
+      "--ex-state-pending-bg",
+      "--ex-state-pending-text",
+      "--ex-state-ready-bg",
+      "--ex-state-ready-text",
+      "--ex-vapor-100",
+      "--ex-vapor-150",
+      "--ex-vapor-200",
+      "--ex-vapor-50",
+      "--ex-violet-500",
+      "--ex-white",
+      "--focus-ring",
+      "--font-data",
+      "--font-display",
+      "--font-family-display",
+      "--font-family-mono",
+      "--font-family-ui",
+      "--font-mono",
+      "--font-ui",
+      "--fs-body",
+      "--fs-display",
+      "--fs-h1",
+      "--fs-h2",
+      "--fs-h3",
+      "--fs-h4",
+      "--fs-metric",
+      "--fs-metric-lg",
+      "--fs-sm",
+      "--fs-xs",
+      "--fw-bold",
+      "--fw-medium",
+      "--fw-regular",
+      "--fw-semibold",
+      "--lh-normal",
+      "--lh-snug",
+      "--lh-tight",
+      "--link",
+      "--ls-label",
+      "--ls-tight",
+      "--ls-wide",
+      "--num-tabular",
+      "--radius",
+      "--radius-compact",
+      "--radius-lg",
+      "--radius-round",
+      "--shadow",
+      "--shadow-inset",
+      "--shadow-md",
+      "--shadow-sm",
+      "--sp-0",
+      "--sp-1",
+      "--sp-10",
+      "--sp-12",
+      "--sp-16",
+      "--sp-2",
+      "--sp-20",
+      "--sp-3",
+      "--sp-4",
+      "--sp-5",
+      "--sp-6",
+      "--sp-8",
+      "--state-caution",
+      "--state-fault",
+      "--state-live",
+      "--state-pending",
+      "--state-ready",
+      "--state-unknown",
+      "--surface-app",
+      "--surface-card",
+      "--surface-hover",
+      "--surface-panel",
+      "--surface-sunken",
+      "--text-body",
+      "--text-inverse",
+      "--text-muted",
+      "--text-strong"
+    ],
+    "tokenKinds": {
+      "--accent": "color",
+      "--accent-contrast": "color",
+      "--border-rule": "color",
+      "--border-strong": "color",
+      "--bw-rule": "spacing",
+      "--bw-strong": "spacing",
+      "--control-h": "spacing",
+      "--control-h-lg": "spacing",
+      "--control-h-sm": "spacing",
+      "--dur": "other",
+      "--dur-fast": "other",
+      "--dur-slow": "other",
+      "--ease-in-out": "other",
+      "--ease-out": "other",
+      "--ex-amber-100": "color",
+      "--ex-amber-500": "color",
+      "--ex-aqua-100": "color",
+      "--ex-aqua-500": "color",
+      "--ex-carbon-700": "color",
+      "--ex-carbon-800": "color",
+      "--ex-carbon-900": "color",
+      "--ex-carbon-950": "color",
+      "--ex-field-100": "color",
+      "--ex-field-500": "color",
+      "--ex-font-mono": "font",
+      "--ex-font-sans": "font",
+      "--ex-graphite-400": "color",
+      "--ex-graphite-500": "color",
+      "--ex-graphite-600": "color",
+      "--ex-hud-green": "color",
+      "--ex-line-200": "color",
+      "--ex-line-300": "color",
+      "--ex-page-width": "spacing",
+      "--ex-radius-instrument": "radius",
+      "--ex-radius-surface": "radius",
+      "--ex-red-100": "color",
+      "--ex-red-600": "color",
+      "--ex-shadow-panel": "shadow",
+      "--ex-shadow-raised": "shadow",
+      "--ex-sky-100": "color",
+      "--ex-sky-500": "color",
+      "--ex-space-1": "spacing",
+      "--ex-space-10": "spacing",
+      "--ex-space-12": "spacing",
+      "--ex-space-2": "spacing",
+      "--ex-space-3": "spacing",
+      "--ex-space-4": "spacing",
+      "--ex-space-5": "spacing",
+      "--ex-space-6": "spacing",
+      "--ex-space-8": "spacing",
+      "--ex-state-caution-bg": "color",
+      "--ex-state-caution-text": "color",
+      "--ex-state-fault-bg": "color",
+      "--ex-state-fault-text": "color",
+      "--ex-state-live-bg": "color",
+      "--ex-state-live-text": "color",
+      "--ex-state-pending-bg": "color",
+      "--ex-state-pending-text": "color",
+      "--ex-state-ready-bg": "color",
+      "--ex-state-ready-text": "color",
+      "--ex-vapor-100": "color",
+      "--ex-vapor-150": "color",
+      "--ex-vapor-200": "color",
+      "--ex-vapor-50": "color",
+      "--ex-violet-500": "color",
+      "--ex-white": "color",
+      "--focus-ring": "color",
+      "--font-data": "font",
+      "--font-display": "font",
+      "--font-family-display": "font",
+      "--font-family-mono": "font",
+      "--font-family-ui": "font",
+      "--font-mono": "font",
+      "--font-ui": "font",
+      "--fs-body": "spacing",
+      "--fs-display": "spacing",
+      "--fs-h1": "spacing",
+      "--fs-h2": "spacing",
+      "--fs-h3": "spacing",
+      "--fs-h4": "spacing",
+      "--fs-metric": "spacing",
+      "--fs-metric-lg": "spacing",
+      "--fs-sm": "spacing",
+      "--fs-xs": "spacing",
+      "--fw-bold": "font",
+      "--fw-medium": "font",
+      "--fw-regular": "font",
+      "--fw-semibold": "font",
+      "--lh-normal": "font",
+      "--lh-snug": "font",
+      "--lh-tight": "font",
+      "--link": "color",
+      "--ls-label": "font",
+      "--ls-tight": "font",
+      "--ls-wide": "font",
+      "--num-tabular": "other",
+      "--radius": "radius",
+      "--radius-compact": "radius",
+      "--radius-lg": "radius",
+      "--radius-round": "radius",
+      "--shadow": "shadow",
+      "--shadow-inset": "shadow",
+      "--shadow-md": "shadow",
+      "--shadow-sm": "shadow",
+      "--sp-0": "spacing",
+      "--sp-1": "spacing",
+      "--sp-10": "spacing",
+      "--sp-12": "spacing",
+      "--sp-16": "spacing",
+      "--sp-2": "spacing",
+      "--sp-20": "spacing",
+      "--sp-3": "spacing",
+      "--sp-4": "spacing",
+      "--sp-5": "spacing",
+      "--sp-6": "spacing",
+      "--sp-8": "spacing",
+      "--state-caution": "color",
+      "--state-fault": "color",
+      "--state-live": "color",
+      "--state-pending": "color",
+      "--state-ready": "color",
+      "--state-unknown": "color",
+      "--surface-app": "color",
+      "--surface-card": "color",
+      "--surface-hover": "color",
+      "--surface-panel": "color",
+      "--surface-sunken": "color",
+      "--text-body": "color",
+      "--text-inverse": "color",
+      "--text-muted": "color",
+      "--text-strong": "color"
+    },
+    "fontFamilies": [
+      "Aptos",
+      "Aptos Display",
+      "Aptos Mono"
+    ]
+  }
+}

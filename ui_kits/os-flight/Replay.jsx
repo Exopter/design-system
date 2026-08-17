@@ -13,8 +13,7 @@
     const spd = 198 + 26 * Math.sin(t * 7 + 1) + 8 * Math.sin(t * 21);
     const gld = 12.6 - 1.2 * Math.sin(t * 5 + 0.5);
     const vs = -(4.6 + 1.8 * Math.sin(t * 7 + 1));
-    const g = 1 + 0.35 * Math.sin(t * 17);
-    return { alt, spd, gld, vs, g };
+    return { alt, spd, gld, vs };
   });
   const fmtT = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 

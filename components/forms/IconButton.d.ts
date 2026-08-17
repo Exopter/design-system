@@ -3,7 +3,7 @@ import * as React from 'react';
 export type IconButtonVariant = 'ghost' | 'outline' | 'solid' | 'danger';
 export type IconButtonSize = 'sm' | 'md' | 'lg';
 
-export interface IconButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
+export interface IconButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'aria-label' | 'title'> {
   /** Icon node (e.g. an 18px Lucide SVG). Required. */
   icon: React.ReactNode;
   /** @default 'ghost' */
@@ -13,7 +13,7 @@ export interface IconButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLBut
   /** Fully round — use only when the shape IS the control (play, reset, target). */
   round?: boolean;
   /** Accessible label (also the tooltip). */
-  label?: string;
+  label: string;
 }
 
 /** Compact single-icon control for toolbars and instrument panels. */

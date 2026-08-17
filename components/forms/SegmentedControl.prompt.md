@@ -1,18 +1,19 @@
-Instrument-style mode switcher — the canonical GLD / EDF / JET (or Flight / Forge / Core) control. Mode label always visible; selection is never communicated by color alone.
+Instrument-style single-choice switcher for a small, explicit set of mutually exclusive options.
 
 ```jsx
 <SegmentedControl
-  ariaLabel="Flight mode"
+  ariaLabel="Flight view"
+  defaultValue="live"
   options={[
-    { value: 'gld', label: 'GLD' },
-    { value: 'edf', label: 'EDF' },
-    { value: 'jet', label: 'JET', disabled: true },
+    { value: 'live', label: 'Live' },
+    { value: 'replay', label: 'Replay' },
+    { value: 'analysis', label: 'Analysis', disabled: true },
   ]}
-  defaultValue="gld"
-  onChange={setMode}
+  onChange={setView}
 />
 ```
 
-- Controlled (`value`+`onChange`) or uncontrolled (`defaultValue`).
-- Each option may carry an `icon` and `disabled` (use for roadmap-immature modes like JET).
-- `size="lg"` for primary dashboard mode bars.
+- Controlled (`value` + `onChange`) or uncontrolled (`defaultValue`).
+- Each option may carry an `icon` and `disabled`.
+- Prefer 2–4 options. Use `Select` when the set is larger.
+- Arrow keys, Home, and End move the selected option.

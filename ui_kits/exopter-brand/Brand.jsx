@@ -1,7 +1,7 @@
 /* Exopter brand site — deep-tech, object-led public page. window.ExopterBrand. */
 (function () {
   const DS = window.ExopterDesignSystem_4c9fc9;
-  const { Button, Badge, MetricTile } = DS;
+  const { Button, Badge } = DS;
   const WING = '../../assets/exopter-wing-reference.jpeg';
 
   const Eyebrow = ({ children, accent }) => (
@@ -100,7 +100,7 @@
     const mods = [
       { k: 'Wing', d: 'Rigid carbon airframe with pitot, pressure, GPS, and camera placement.' },
       { k: 'FDR', d: 'Flight data recording with integrity state, import, and export.' },
-      { k: 'HUD', d: 'Sun-readable pilot display, fail-safe to black, GLD / EDF / JET modes.' },
+      { k: 'HUD', d: 'Sun-readable pilot display, fail-safe to black, explicit operating state.' },
       { k: 'Parachute & jettison', d: 'Rescue parachute, attachment, harness, and emergency deactivation.' },
       { k: 'Telemetry', d: 'Airspeed, altitude, glide, distance, temperature, and power traces.' },
       { k: 'Test path', d: 'CFD, structural, tunnel, drop, and flight tests through acceptance.' },

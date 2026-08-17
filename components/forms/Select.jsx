@@ -28,7 +28,8 @@ const Chevron = () => (
  * options: [{ value, label, disabled? }] (or pass children <option>s).
  */
 export function Select({ label, options, id, className = '', children, ...rest }) {
-  const sid = id || (label ? `exds-sel-${label.replace(/\s+/g, '-').toLowerCase()}` : undefined);
+  const generatedId = React.useId().replaceAll(':', '');
+  const sid = id || `exds-select-${generatedId}`;
   return (
     <div className={['exds-select-field', className].filter(Boolean).join(' ')}>
       {label && <label className="exds-select-field__label" htmlFor={sid}>{label}</label>}

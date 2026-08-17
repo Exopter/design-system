@@ -1,43 +1,7 @@
-# Sillage · Flight — UI kit
+# Sillage Flight UI kit
 
-The **operations workbench** interpretation of Sillage Flight: a left-rail shell
-(Flights / Hangar, then separated Signal) with a Flights room that holds
-**Flights**, **Flight prep**, **Replay**, and **HUD** states. Built entirely on
-the Exopter design-system components and tokens.
+This directory contains source modules for the interactive Flights, Hangar, and Signal implementation specimen.
 
-## Run
+Run `npm run build` from the repository root after changing a source module. The deterministic build writes `dist/ui-kits/os-flight.js`; `index.html` loads that precompiled application together with the generated shared-component bundle.
 
-Open `index.html`. It links:
-- `../../styles.css` — the design-system tokens.
-- `../../_ds_bundle.js` — the compiled components (SegmentedControl, IconButton, Badge, …).
-
-Component files are siblings: `Shell.jsx`, `Logbook.jsx`, `Replay.jsx`,
-`FlightPrep.jsx`, `Hud.jsx`, `icons.jsx`.
-
-## Screens
-
-| Sub-tab | What it shows |
-| --- | --- |
-| **Flights** | Create a prepared Flight, import FlySight or ExoFDR data, start an attached Signal session, or open a completed Flight. |
-| **Flight prep** | Pre-flight readiness checks. |
-| **Replay** | 3D trajectory (SVG) + scrubber/play, analysis. |
-| **HUD** | Pilot display preview. |
-
-Hangar and Signal are interactive rooms in this kit. Signal combines
-Live map, Instruments, and Charts as movable widgets on one live canvas. Every
-widget can be Enlarged, Mini, or Hidden down to its draggable header; no view
-tabs remain. A single compact session row holds acquisition and session actions,
-while one shared telemetry strip replaces the repeated Map and Instruments
-values. A presentation mode fills the whole display for a large monitor or
-projector. Hangar exposes the fleet and installed
-configuration hierarchy plus Assemblies, Parts, Functions, Builds, and Test
-Runs. The operator rail is ordered Flights, Hangar, then separated Signal.
-Signal can attach to a prepared Flight or
-create one automatically from detected aircraft identity. Forge
-and Core remain outside the primary navigation.
-
-## Archive
-
-- `_codebase-faithful/` holds the codebase-faithful recreation that mirrored the
-  real Rails app (`dashboard`, `jumps`, `flight_imports` routes, verbatim
-  `application.css`). Kept for reference; **this** workbench mockup is the active kit.
+Open `index.html` through a local static server. Product ownership, workflow decisions, and roadmap scope are maintained in the [Exopter Design System in Notion](https://app.notion.com/p/3abe497e504f81c8a557e1f1a26e09ae).

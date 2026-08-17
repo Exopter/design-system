@@ -1,0 +1,14 @@
+(() => {
+  // components/feedback/feedback.card.jsx
+  var { Badge, StatusDot, Toast } = window.ExopterDesignSystem_4c9fc9;
+  var icon = (markup, size = 14) => /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 24 24", width: size, height: size, fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", dangerouslySetInnerHTML: { __html: markup } });
+  var check = icon('<path d="M20 6 9 17l-5-5"/>');
+  var alert = icon('<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>', 20);
+  var synced = icon('<path d="M20 6 9 17l-5-5"/>', 20);
+  function Demo() {
+    return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "group" }, /* @__PURE__ */ React.createElement("span", { className: "gl" }, "Badge"), /* @__PURE__ */ React.createElement("div", { className: "row" }, /* @__PURE__ */ React.createElement(Badge, { tone: "ready", icon: check }, "Ready"), /* @__PURE__ */ React.createElement(Badge, { tone: "live" }, "Live"), /* @__PURE__ */ React.createElement(Badge, { tone: "caution" }, "Pending"), /* @__PURE__ */ React.createElement(Badge, { tone: "fault" }, "Fault"), /* @__PURE__ */ React.createElement(Badge, { tone: "info" }, "Sync"), /* @__PURE__ */ React.createElement(Badge, { tone: "solid" }, "GLD"), /* @__PURE__ */ React.createElement(Badge, { tone: "neutral" }, "T0+06"))), /* @__PURE__ */ React.createElement("div", { className: "group" }, /* @__PURE__ */ React.createElement("span", { className: "gl" }, "StatusDot"), /* @__PURE__ */ React.createElement("div", { className: "row" }, /* @__PURE__ */ React.createElement(StatusDot, { state: "ready" }), /* @__PURE__ */ React.createElement(StatusDot, { state: "live", pulse: true, label: "Streaming" }), /* @__PURE__ */ React.createElement(StatusDot, { state: "pending" }), /* @__PURE__ */ React.createElement(StatusDot, { state: "caution" }), /* @__PURE__ */ React.createElement(StatusDot, { state: "fault" }), /* @__PURE__ */ React.createElement(StatusDot, { state: "unknown", label: "No data" }))), /* @__PURE__ */ React.createElement("div", { className: "group" }, /* @__PURE__ */ React.createElement("span", { className: "gl" }, "Toast"), /* @__PURE__ */ React.createElement("div", { className: "row", style: { alignItems: "stretch" } }, /* @__PURE__ */ React.createElement(Toast, { tone: "ready", title: "FDR-118 synced", icon: synced, onClose: () => {
+    } }, "Flight data uploaded · integrity verified."), /* @__PURE__ */ React.createElement(Toast, { tone: "fault", title: "Sensor fault", icon: alert, onClose: () => {
+    } }, "Pitot pressure lost — do not rely on airspeed."))));
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(/* @__PURE__ */ React.createElement(Demo, null));
+})();
