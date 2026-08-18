@@ -1,4 +1,4 @@
-const { Button, IconButton, Input, Select, Switch, SegmentedControl } = window.ExopterDesignSystem_4c9fc9;
+const { Button, IconButton, Input, Select, Switch, SegmentedControl, Textarea } = window.ExopterDesignSystem_4c9fc9;
 
 const icon = (markup) => (
   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: markup }} />
@@ -49,6 +49,9 @@ function Demo() {
             { value: 'analysis', label: 'Analysis', disabled: true },
           ]} />
         </div>
+      </div>
+      <div className="group"><span className="gl">Textarea</span>
+        <div style={{ width: 360 }}><Textarea label="Qualification notes" defaultValue="Bench run completed without storage faults." hint="Stored with the immutable test evidence" /></div>
       </div>
     </div>
   );

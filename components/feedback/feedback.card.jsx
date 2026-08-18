@@ -1,4 +1,4 @@
-const { Badge, StatusDot, Toast } = window.ExopterDesignSystem_4c9fc9;
+const { Badge, Button, StatusDot, SuccessState, Toast } = window.ExopterDesignSystem_4c9fc9;
 
 const icon = (markup, size = 14) => (
   <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: markup }} />
@@ -36,6 +36,9 @@ function Demo() {
           <Toast tone="ready" title="FDR-118 synced" icon={synced} onClose={() => {}}>Flight data uploaded · integrity verified.</Toast>
           <Toast tone="fault" title="Sensor fault" icon={alert} onClose={() => {}}>Pitot pressure lost — do not rely on airspeed.</Toast>
         </div>
+      </div>
+      <div className="group"><span className="gl">SuccessState</span>
+        <SuccessState title="Flight ready" description="The source files passed integrity checks." action={<Button size="sm">Done</Button>} />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 (() => {
   // components/forms/forms.card.jsx
-  var { Button, IconButton, Input, Select, Switch, SegmentedControl } = window.ExopterDesignSystem_4c9fc9;
+  var { Button, IconButton, Input, Select, Switch, SegmentedControl, Textarea } = window.ExopterDesignSystem_4c9fc9;
   var icon = (markup) => /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 24 24", width: "18", height: "18", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", dangerouslySetInnerHTML: { __html: markup } });
   var playIcon = icon('<polygon points="6 3 20 12 6 21 6 3"/>');
   var replayIcon = icon('<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>');
@@ -11,7 +11,7 @@
       { value: "live", label: "Live" },
       { value: "replay", label: "Replay" },
       { value: "analysis", label: "Analysis", disabled: true }
-    ] }))));
+    ] }))), /* @__PURE__ */ React.createElement("div", { className: "group" }, /* @__PURE__ */ React.createElement("span", { className: "gl" }, "Textarea"), /* @__PURE__ */ React.createElement("div", { style: { width: 360 } }, /* @__PURE__ */ React.createElement(Textarea, { label: "Qualification notes", defaultValue: "Bench run completed without storage faults.", hint: "Stored with the immutable test evidence" }))));
   }
   ReactDOM.createRoot(document.getElementById("root")).render(/* @__PURE__ */ React.createElement(Demo, null));
 })();

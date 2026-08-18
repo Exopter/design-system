@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { IconButton, Input, SegmentedControl, Select, Switch } from '../index.js';
+import { Drawer, IconButton, Input, SegmentedControl, Select, SuccessState, Switch, Textarea } from '../index.js';
 
 describe('Input', () => {
   it('forwards required and connects help and error messages', () => {
@@ -21,6 +21,45 @@ describe('Input', () => {
     render(<><Input label="Serial" /><Input label="Serial" /></>);
     const inputs = screen.getAllByRole('textbox', { name: 'Serial' });
     expect(inputs[0].id).not.toBe(inputs[1].id);
+  });
+});
+
+describe('Textarea', () => {
+  it('forwards required and connects help and error messages', () => {
+    const { rerender } = render(<Textarea label="Notes" required hint="Stored with the test run" />);
+    const textarea = screen.getByRole('textbox', { name: 'Notes' });
+    expect(textarea).toBeRequired();
+    expect(textarea).toHaveAccessibleDescription('Stored with the test run');
+
+    rerender(<Textarea label="Notes" error="Notes are required" />);
+    expect(screen.getByRole('textbox', { name: 'Notes' })).toHaveAccessibleErrorMessage('Notes are required');
+  });
+});
+
+describe('Drawer', () => {
+  it('provides dialog semantics and closes with Escape', () => {
+    const onClose = vi.fn();
+    render(<Drawer title="Create flight" onClose={onClose}><Input label="Flight ID" /></Drawer>);
+    const dialog = screen.getByRole('dialog', { name: 'Create flight' });
+    expect(dialog).toHaveAttribute('aria-modal', 'true');
+    fireEvent.keyDown(dialog, { key: 'Escape' });
+    expect(onClose).toHaveBeenCalledOnce();
+  });
+
+  it('does not close when interacting inside the drawer', () => {
+    const onClose = vi.fn();
+    render(<Drawer title="Create flight" onClose={onClose}><button type="button">Save</button></Drawer>);
+    fireEvent.mouseDown(screen.getByRole('button', { name: 'Save' }));
+    expect(onClose).not.toHaveBeenCalled();
+  });
+});
+
+describe('SuccessState', () => {
+  it('renders confirmation copy and action', () => {
+    render(<SuccessState title="Flight created" description="Ready for acquisition" action={<button type="button">Done</button>} />);
+    expect(screen.getByRole('heading', { name: 'Flight created' })).toBeInTheDocument();
+    expect(screen.getByText('Ready for acquisition')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Done' })).toBeInTheDocument();
   });
 });
 

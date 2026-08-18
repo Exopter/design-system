@@ -56,7 +56,7 @@ describe('generated contracts', () => {
     const bundle = await read('_ds_bundle.js');
     const firstLine = bundle.split('\n', 1)[0];
     const metadata = JSON.parse(firstLine.match(/\{.*\}/)[0]);
-    expect(metadata.components).toHaveLength(13);
+    expect(metadata.components).toHaveLength(16);
     expect(Object.keys(metadata.sourceHashes).every((path) => path.startsWith('components/'))).toBe(true);
 
     const dom = new JSDOM('<!doctype html><html><head></head><body></body></html>');

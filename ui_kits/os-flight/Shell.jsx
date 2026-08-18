@@ -73,32 +73,6 @@
     );
   }
 
-  function useDialogFocus(onClose, stateKey = 'open') {
-    const dialogRef = React.useRef(null);
-    const openerRef = React.useRef(document.activeElement);
-    const closeRef = React.useRef(onClose);
-    closeRef.current = onClose;
-    React.useEffect(() => {
-      const dialog = dialogRef.current;
-      if (!dialog) return undefined;
-      const focusable = () => [...dialog.querySelectorAll('button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])')];
-      const frame = requestAnimationFrame(() => focusable()[0]?.focus());
-      const handleKey = (event) => {
-        if (event.key === 'Escape') { event.preventDefault(); closeRef.current(); return; }
-        if (event.key !== 'Tab') return;
-        const items = focusable();
-        if (!items.length) { event.preventDefault(); return; }
-        const first = items[0], last = items[items.length - 1];
-        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
-      };
-      dialog.addEventListener('keydown', handleKey);
-      return () => { cancelAnimationFrame(frame); dialog.removeEventListener('keydown', handleKey); };
-    }, [stateKey]);
-    React.useEffect(() => () => openerRef.current?.focus?.(), []);
-    return dialogRef;
-  }
-
   function Shell({ room, onRoom, title, crumb, children }) {
     return (
       <div style={{ display: 'flex', height: '100%', minHeight: 0, background: 'var(--surface-app)' }}>
@@ -111,5 +85,5 @@
     );
   }
 
-  window.OSShell = { Shell, ROOMS, useDialogFocus };
+  window.OSShell = { Shell, ROOMS };
 })();

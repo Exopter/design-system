@@ -128,57 +128,17 @@
         fontWeight: 600
       } }, "AR")));
     }
-    function useDialogFocus(onClose, stateKey = "open") {
-      const dialogRef = React.useRef(null);
-      const openerRef = React.useRef(document.activeElement);
-      const closeRef = React.useRef(onClose);
-      closeRef.current = onClose;
-      React.useEffect(() => {
-        const dialog = dialogRef.current;
-        if (!dialog) return void 0;
-        const focusable = () => [...dialog.querySelectorAll('button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])')];
-        const frame = requestAnimationFrame(() => focusable()[0]?.focus());
-        const handleKey = (event) => {
-          if (event.key === "Escape") {
-            event.preventDefault();
-            closeRef.current();
-            return;
-          }
-          if (event.key !== "Tab") return;
-          const items = focusable();
-          if (!items.length) {
-            event.preventDefault();
-            return;
-          }
-          const first = items[0], last = items[items.length - 1];
-          if (event.shiftKey && document.activeElement === first) {
-            event.preventDefault();
-            last.focus();
-          } else if (!event.shiftKey && document.activeElement === last) {
-            event.preventDefault();
-            first.focus();
-          }
-        };
-        dialog.addEventListener("keydown", handleKey);
-        return () => {
-          cancelAnimationFrame(frame);
-          dialog.removeEventListener("keydown", handleKey);
-        };
-      }, [stateKey]);
-      React.useEffect(() => () => openerRef.current?.focus?.(), []);
-      return dialogRef;
-    }
     function Shell2({ room, onRoom, title, crumb, children }) {
       return /* @__PURE__ */ React.createElement("div", { style: { display: "flex", height: "100%", minHeight: 0, background: "var(--surface-app)" } }, /* @__PURE__ */ React.createElement(Rail, { room, onRoom }), /* @__PURE__ */ React.createElement("div", { style: { flex: 1, minWidth: 0, display: "flex", flexDirection: "column" } }, /* @__PURE__ */ React.createElement(Header, { title, crumb, onRoom }), /* @__PURE__ */ React.createElement("main", { style: { flex: 1, minHeight: 0, overflow: "auto" } }, children)));
     }
-    window.OSShell = { Shell: Shell2, ROOMS, useDialogFocus };
+    window.OSShell = { Shell: Shell2, ROOMS };
   })();
 
   // ui_kits/os-flight/Logbook.jsx
   (function() {
     const { Icon } = window.OSIcons;
     const DS = window.ExopterDesignSystem_4c9fc9;
-    const { Button, Input, Badge, StatusDot } = DS;
+    const { Badge, Button, Drawer, Input, Select, StatusDot, SuccessState } = DS;
     const INITIAL_FLIGHTS2 = [
       { id: "FLT-2026-020", aircraft: "EXO-001", location: "Tournon", date: "28 Jul · 18:00", duration: "—", source: "No data yet", status: "preparation", state: "unknown", label: "Preparation" },
       { id: "FLT-2026-019", aircraft: "F-GOCC", location: "Millau", date: "29 Jul · 08:30", duration: "—", source: "No data yet", status: "preparation", state: "unknown", label: "Preparation" },
@@ -195,21 +155,14 @@
     .flights-code{font:700 12px/1.2 var(--font-data);color:var(--text-strong)}
     .flights-source{display:flex;align-items:center;gap:7px;color:var(--text-muted)}
     .flights-prep-row{background:rgba(239,244,242,.44)}
-    .flight-backdrop{position:fixed;z-index:70;inset:0;background:rgba(7,11,13,.48);display:flex;justify-content:flex-end}
-    .flight-drawer{width:min(500px,calc(100vw - 36px));height:100%;background:var(--surface-card);box-shadow:-18px 0 48px rgba(7,11,13,.24);display:flex;flex-direction:column}
-    .flight-drawer-head{display:flex;align-items:flex-start;gap:12px;padding:18px 20px;border-bottom:1px solid var(--border-rule)}.flight-drawer-head h2{margin:4px 0 4px;font-size:21px;color:var(--text-strong)}
-    .flight-drawer-body{padding:18px 20px;overflow:auto;display:grid;gap:15px}
-    .flight-drawer-foot{margin-top:auto;display:flex;justify-content:flex-end;gap:9px;padding:14px 20px;border-top:1px solid var(--border-rule)}
-    .flight-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.flight-field{display:grid;gap:6px}.flight-field.full{grid-column:1/-1}.flight-field label{font:600 10px/1 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--text-muted)}.flight-field input,.flight-field select,.flight-field textarea{width:100%;box-sizing:border-box;border:1px solid var(--border-rule);border-radius:6px;background:var(--surface-card);color:var(--text-body);padding:10px 11px;font:500 13px var(--font-ui);outline:none}.flight-field input:focus-visible,.flight-field select:focus-visible,.flight-field textarea:focus-visible{border-color:var(--focus-ring);outline:2px solid var(--focus-ring);outline-offset:1px}
-    .flight-source-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.flight-source-card{padding:14px;border:1px solid var(--border-rule);border-radius:7px;background:var(--surface-card);text-align:left;cursor:pointer;color:var(--text-body)}.flight-source-card[data-active=true]{border-color:var(--ex-aqua-500);background:var(--surface-hover)}.flight-source-card:focus-visible,.flight-icon-button:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}.flight-source-card strong{display:block;margin:9px 0 4px;color:var(--text-strong)}.flight-source-card span{font-size:12px;line-height:1.4;color:var(--text-muted)}
+    .flight-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.flight-form-grid>.full{grid-column:1/-1}
+    .flight-source-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.flight-source-card{padding:14px;border:1px solid var(--border-rule);border-radius:7px;background:var(--surface-card);text-align:left;cursor:pointer;color:var(--text-body)}.flight-source-card[data-active=true]{border-color:var(--ex-aqua-500);background:var(--surface-hover)}.flight-source-card:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}.flight-source-card strong{display:block;margin:9px 0 4px;color:var(--text-strong)}.flight-source-card span{font-size:12px;line-height:1.4;color:var(--text-muted)}
     .flight-drop{padding:16px;border:1px dashed var(--ex-graphite-400);border-radius:7px;background:var(--surface-panel);text-align:center}.flight-drop strong{display:block;margin-top:7px;color:var(--text-strong)}.flight-drop span{display:block;margin-top:4px;font-size:12px;color:var(--text-muted)}
     .flight-help{padding:11px 12px;border-radius:6px;background:var(--surface-panel);font-size:12px;line-height:1.5;color:var(--text-muted)}
     .flight-detection{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px;border:1px solid var(--ex-field-500);border-radius:7px;background:var(--ex-state-ready-bg)}.flight-detection strong{display:block;margin-top:4px;font:600 13px var(--font-data);color:var(--text-strong)}
     .flight-detail-card{padding:14px;border:1px solid var(--border-rule);border-radius:7px;background:var(--surface-panel)}.flight-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.flight-detail-grid strong{display:block;margin-top:5px;font:600 13px var(--font-data);color:var(--text-strong)}
     .flight-empty-data{padding:18px;border:1px dashed var(--ex-graphite-400);border-radius:7px;text-align:center}.flight-empty-data strong{display:block;margin:8px 0 5px;color:var(--text-strong)}.flight-empty-data p{margin:0;font-size:12px;line-height:1.45;color:var(--text-muted)}
-    .flight-success{flex:1;display:grid;place-items:center;padding:32px}.flight-success>div{text-align:center;max-width:330px}.flight-success-icon{width:48px;height:48px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:var(--ex-state-ready-bg);color:var(--ex-field-500)}.flight-success h2{margin:0 0 7px}.flight-success p{margin:0 0 18px;color:var(--text-muted);line-height:1.5}
-    .flight-icon-button{width:34px;height:34px;border:1px solid var(--border-rule);border-radius:6px;background:var(--surface-card);color:var(--text-muted);display:grid;place-items:center;cursor:pointer}
-    @media(max-width:900px){.flights-table-wrap{overflow:auto}.flights-table{min-width:920px}.flight-source-grid,.flight-form-grid,.flight-detection{grid-template-columns:1fr}.flight-field.full{grid-column:auto}}
+    @media(max-width:900px){.flights-table-wrap{overflow:auto}.flights-table{min-width:920px}.flight-source-grid,.flight-form-grid,.flight-detection{grid-template-columns:1fr}.flight-form-grid>.full{grid-column:auto}}
   `;
     if (!document.getElementById("flights-screen-css")) {
       const s = document.createElement("style");
@@ -274,18 +227,15 @@
       const [location, setLocation] = React.useState(flight?.location || "Tournon");
       const [date, setDate] = React.useState("30 Jul 2026 · 09:00");
       const [source, setSource] = React.useState("ExoFDR");
-      const dialogRef = window.OSShell.useDialogFocus(onClose, saved ? "saved" : "form");
       const title = mode === "create" ? "Create flight" : mode === "import" ? "Import flight data" : `${flight.id} · Preparation`;
       const eyebrow = mode === "create" ? "Flight planning" : mode === "import" ? "SD card import" : "Prepared flight";
-      if (saved) return /* @__PURE__ */ React.createElement("div", { className: "flight-backdrop" }, /* @__PURE__ */ React.createElement("aside", { ref: dialogRef, className: "flight-drawer", role: "dialog", "aria-modal": "true", "aria-label": "Flight saved" }, /* @__PURE__ */ React.createElement("div", { className: "flight-success" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { className: "flight-success-icon" }, /* @__PURE__ */ React.createElement(Icon, { name: "check", size: 24 })), /* @__PURE__ */ React.createElement("h2", null, mode === "create" ? "Flight ready for preparation" : "Import started"), /* @__PURE__ */ React.createElement("p", null, mode === "create" ? "The flight is now available for data import or a linked Signal session." : "The source files are attached and the flight has moved to Processing."), /* @__PURE__ */ React.createElement(Button, { autoFocus: true, onClick: onClose }, "Done")))));
+      if (saved) return /* @__PURE__ */ React.createElement(Drawer, { ariaLabel: "Flight saved", onClose }, /* @__PURE__ */ React.createElement(SuccessState, { title: mode === "create" ? "Flight ready for preparation" : "Import started", description: mode === "create" ? "The flight is now available for data import or a linked Signal session." : "The source files are attached and the flight has moved to Processing.", action: /* @__PURE__ */ React.createElement(Button, { autoFocus: true, onClick: onClose }, "Done") }));
       const commit = () => {
         if (mode === "create") onCreate({ aircraft, location, date });
         else onImport({ aircraft, source });
         setSaved(true);
       };
-      return /* @__PURE__ */ React.createElement("div", { className: "flight-backdrop", onMouseDown: (e) => {
-        if (e.target === e.currentTarget) onClose();
-      } }, /* @__PURE__ */ React.createElement("aside", { ref: dialogRef, className: "flight-drawer", role: "dialog", "aria-modal": "true", "aria-label": title }, /* @__PURE__ */ React.createElement("div", { className: "flight-drawer-head" }, /* @__PURE__ */ React.createElement("div", { style: { flex: 1 } }, /* @__PURE__ */ React.createElement("span", { style: EYEBROW }, eyebrow), /* @__PURE__ */ React.createElement("h2", null, title), /* @__PURE__ */ React.createElement("p", { style: LEAD }, mode === "create" ? "Associate an aircraft before acquisition." : mode === "import" ? "Import FlySight or ExoFDR files from removable media." : "No telemetry has been attached yet.")), /* @__PURE__ */ React.createElement("button", { className: "flight-icon-button", "aria-label": "Close", onClick: onClose }, /* @__PURE__ */ React.createElement(Icon, { name: "x", size: 17 }))), /* @__PURE__ */ React.createElement("div", { className: "flight-drawer-body" }, mode === "detail" ? /* @__PURE__ */ React.createElement(PreparationDetail, { flight }) : mode === "create" ? /* @__PURE__ */ React.createElement("div", { className: "flight-form-grid" }, /* @__PURE__ */ React.createElement(SelectField, { label: "Aircraft", value: aircraft, onChange: setAircraft, options: ["EXO-001", "F-GOCC", "WS-TEST-02"] }), /* @__PURE__ */ React.createElement(Field, { label: "Location", value: location, onChange: setLocation }), /* @__PURE__ */ React.createElement(Field, { full: true, label: "Planned date and time", value: date, onChange: setDate }), /* @__PURE__ */ React.createElement("div", { className: "flight-help", style: { gridColumn: "1/-1" } }, "The flight starts in Preparation. Data can arrive later from Signal, FlySight, or an ExoFDR SD card.")) : /* @__PURE__ */ React.createElement(ImportForm, { flight, aircraft, source, onAircraft: setAircraft, onSource: setSource })), /* @__PURE__ */ React.createElement("div", { className: "flight-drawer-foot" }, mode === "detail" ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Button, { variant: "secondary", iconLeft: /* @__PURE__ */ React.createElement(Icon, { name: "upload", size: 16 }), onClick: onOpenImport }, "Import data"), /* @__PURE__ */ React.createElement(Button, { iconLeft: /* @__PURE__ */ React.createElement(Icon, { name: "radio", size: 16 }), onClick: onOpenSignal }, "Start Signal session")) : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Button, { variant: "secondary", onClick: onClose }, "Cancel"), /* @__PURE__ */ React.createElement(Button, { onClick: commit }, mode === "create" ? "Create in Preparation" : "Start import")))));
+      return /* @__PURE__ */ React.createElement(Drawer, { title, eyebrow, description: mode === "create" ? "Associate an aircraft before acquisition." : mode === "import" ? "Import FlySight or ExoFDR files from removable media." : "No telemetry has been attached yet.", onClose, footer: mode === "detail" ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Button, { variant: "secondary", iconLeft: /* @__PURE__ */ React.createElement(Icon, { name: "upload", size: 16 }), onClick: onOpenImport }, "Import data"), /* @__PURE__ */ React.createElement(Button, { iconLeft: /* @__PURE__ */ React.createElement(Icon, { name: "radio", size: 16 }), onClick: onOpenSignal }, "Start Signal session")) : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Button, { variant: "secondary", onClick: onClose }, "Cancel"), /* @__PURE__ */ React.createElement(Button, { onClick: commit }, mode === "create" ? "Create in Preparation" : "Start import")) }, mode === "detail" ? /* @__PURE__ */ React.createElement(PreparationDetail, { flight }) : mode === "create" ? /* @__PURE__ */ React.createElement("div", { className: "flight-form-grid" }, /* @__PURE__ */ React.createElement(SelectField, { label: "Aircraft", value: aircraft, onChange: setAircraft, options: ["EXO-001", "F-GOCC", "WS-TEST-02"] }), /* @__PURE__ */ React.createElement(Field, { label: "Location", value: location, onChange: setLocation }), /* @__PURE__ */ React.createElement(Field, { full: true, label: "Planned date and time", value: date, onChange: setDate }), /* @__PURE__ */ React.createElement("div", { className: "flight-help", style: { gridColumn: "1/-1" } }, "The flight starts in Preparation. Data can arrive later from Signal, FlySight, or an ExoFDR SD card.")) : /* @__PURE__ */ React.createElement(ImportForm, { flight, aircraft, source, onAircraft: setAircraft, onSource: setSource }));
     }
     function PreparationDetail({ flight }) {
       return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "flight-detail-card" }, /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8, marginBottom: 14 } }, /* @__PURE__ */ React.createElement(StatusDot, { state: "unknown", label: "Preparation" }), /* @__PURE__ */ React.createElement("div", { style: { flex: 1 } }), /* @__PURE__ */ React.createElement(Badge, { tone: "neutral" }, "No source attached")), /* @__PURE__ */ React.createElement("div", { className: "flight-detail-grid" }, /* @__PURE__ */ React.createElement(Mini, { label: "Aircraft", value: flight.aircraft }), /* @__PURE__ */ React.createElement(Mini, { label: "Location", value: flight.location }), /* @__PURE__ */ React.createElement(Mini, { label: "Planned", value: flight.date }), /* @__PURE__ */ React.createElement(Mini, { label: "Flight ID", value: flight.id }))), /* @__PURE__ */ React.createElement("div", { className: "flight-empty-data" }, /* @__PURE__ */ React.createElement(Icon, { name: "radio", size: 22 }), /* @__PURE__ */ React.createElement("strong", null, "Ready for acquisition"), /* @__PURE__ */ React.createElement("p", null, "Start Signal to attach live telemetry automatically, or import FlySight / ExoFDR files from an SD card.")), /* @__PURE__ */ React.createElement("div", { className: "flight-help" }, "Signal will inherit this Flight ID and aircraft. The local recorder remains authoritative during the session."));
@@ -297,12 +247,10 @@
       return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { style: EYEBROW }, label), /* @__PURE__ */ React.createElement("strong", null, value));
     }
     function Field({ label, value, onChange, full }) {
-      const id = React.useId();
-      return /* @__PURE__ */ React.createElement("div", { className: `flight-field ${full ? "full" : ""}` }, /* @__PURE__ */ React.createElement("label", { htmlFor: id }, label), /* @__PURE__ */ React.createElement("input", { id, value, onChange: (e) => onChange(e.target.value) }));
+      return /* @__PURE__ */ React.createElement(Input, { className: full ? "full" : "", label, value, onChange: (e) => onChange(e.target.value) });
     }
     function SelectField({ label, value, onChange, options }) {
-      const id = React.useId();
-      return /* @__PURE__ */ React.createElement("div", { className: "flight-field" }, /* @__PURE__ */ React.createElement("label", { htmlFor: id }, label), /* @__PURE__ */ React.createElement("select", { id, value, onChange: (e) => onChange(e.target.value) }, options.map((o) => /* @__PURE__ */ React.createElement("option", { key: o }, o))));
+      return /* @__PURE__ */ React.createElement(Select, { label, value, onChange: (e) => onChange(e.target.value), options: options.map((option) => ({ value: option, label: option })) });
     }
     window.OSLogbook = { Logbook: Logbook2, INITIAL_FLIGHTS: INITIAL_FLIGHTS2 };
   })();
@@ -503,7 +451,7 @@
   (function() {
     const { Icon } = window.OSIcons;
     const DS = window.ExopterDesignSystem_4c9fc9;
-    const { Badge, Button, StatusDot } = DS;
+    const { Badge, Button, Drawer, Input, Select, StatusDot, SuccessState, Textarea } = DS;
     const SECTIONS = [
       { id: "fleet", label: "Fleet" },
       { id: "assemblies", label: "Assemblies" },
@@ -636,16 +584,11 @@
     .hangar-detail-foot{display:grid;grid-template-columns:1fr 1fr;gap:0}.hangar-detail-foot>div{padding:13px 14px}.hangar-detail-foot>div+div{border-left:1px solid var(--border-rule)}
     .hangar-table{width:100%;border-collapse:collapse}.hangar-table th{text-align:left;padding:12px 13px 9px;font:600 9px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}.hangar-table td{padding:11px 13px;border-top:1px solid var(--border-rule);font-size:12px;color:var(--text-body);vertical-align:middle}.hangar-table tbody tr{cursor:pointer}
     .hangar-code{font:700 12px/1.2 var(--font-data);color:var(--text-strong)}
-    .hangar-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:12px}.hangar-search,.hangar-select{height:38px;border:1px solid var(--border-rule);border-radius:6px;background:var(--surface-card);color:var(--text-body);padding:0 11px;font:500 13px var(--font-ui);outline:none}.hangar-search{width:250px}.hangar-search:focus-visible,.hangar-select:focus-visible,.hangar-field input:focus-visible,.hangar-field select:focus-visible,.hangar-field textarea:focus-visible{border-color:var(--focus-ring);outline:2px solid var(--focus-ring);outline-offset:1px}
+    .hangar-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:12px}.hangar-search,.hangar-select{height:38px;border:1px solid var(--border-rule);border-radius:6px;background:var(--surface-card);color:var(--text-body);padding:0 11px;font:500 13px var(--font-ui);outline:none}.hangar-search{width:250px}.hangar-search:focus-visible,.hangar-select:focus-visible{border-color:var(--focus-ring);outline:2px solid var(--focus-ring);outline-offset:1px}
     .hangar-function-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.hangar-function-card{padding:14px;background:var(--surface-card);border:1px solid var(--border-rule);border-radius:8px;box-shadow:var(--shadow-sm)}.hangar-function-card h3{margin:5px 0 5px;font-size:15px;color:var(--text-strong)}.hangar-function-card p{margin:0;min-height:38px;font-size:12px;line-height:1.45;color:var(--text-muted)}.hangar-function-foot{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--border-rule)}
     .hangar-qualification{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.hangar-qual-note{padding:13px 14px;border-top:1px solid var(--border-rule);background:var(--surface-panel);font-size:12px;line-height:1.5;color:var(--text-muted)}
-    .hangar-backdrop{position:fixed;z-index:60;inset:0;background:rgba(7,11,13,.46);display:flex;justify-content:flex-end}
-    .hangar-drawer{width:min(470px,calc(100vw - 40px));height:100%;background:var(--surface-card);box-shadow:-18px 0 48px rgba(7,11,13,.22);display:flex;flex-direction:column}
-    .hangar-drawer-head{display:flex;align-items:flex-start;gap:12px;padding:18px 20px;border-bottom:1px solid var(--border-rule)}.hangar-drawer-head h2{margin:4px 0 3px;font-size:21px;color:var(--text-strong)}
-    .hangar-drawer-body{padding:18px 20px;overflow:auto;display:grid;gap:15px}.hangar-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.hangar-field{display:grid;gap:6px}.hangar-field.full{grid-column:1/-1}.hangar-field label{font:600 10px/1 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--text-muted)}.hangar-field input,.hangar-field select,.hangar-field textarea{width:100%;box-sizing:border-box;border:1px solid var(--border-rule);border-radius:6px;background:var(--surface-card);color:var(--text-body);padding:10px 11px;font:500 13px var(--font-ui);outline:none}.hangar-field textarea{min-height:78px;resize:vertical}
+    .hangar-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.hangar-form-grid>.full{grid-column:1/-1}
     .hangar-help{padding:11px 12px;border-radius:6px;background:var(--surface-panel);font-size:12px;line-height:1.5;color:var(--text-muted)}
-    .hangar-drawer-foot{margin-top:auto;display:flex;justify-content:flex-end;gap:9px;padding:14px 20px;border-top:1px solid var(--border-rule)}
-    .hangar-success{flex:1;display:grid;place-items:center;padding:32px}.hangar-success>div{text-align:center;max-width:310px}.hangar-success-icon{width:48px;height:48px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:var(--ex-state-ready-bg);color:var(--ex-field-500)}.hangar-success h2{margin:0 0 7px;color:var(--text-strong)}.hangar-success p{margin:0 0 18px;color:var(--text-muted);line-height:1.5}
     @media(max-width:900px){.hangar-layout,.hangar-qualification{grid-template-columns:1fr}.hangar-summary{grid-template-columns:1fr 1fr}.hangar-function-grid{grid-template-columns:1fr 1fr}.hangar-tree-row{grid-template-columns:minmax(0,1fr) 105px}.hangar-tree-row>.hangar-kind{display:none}.hangar-tabs{max-width:100%;overflow:auto}}
   `;
     if (!document.getElementById("hangar-screen-css")) {
@@ -708,13 +651,8 @@
     function CreateDrawer({ type, onClose, onCreated }) {
       const config = DRAWERS[type];
       const [saved, setSaved] = React.useState(false);
-      const dialogRef = window.OSShell.useDialogFocus(onClose, saved ? "saved" : "form");
-      if (saved) return /* @__PURE__ */ React.createElement("div", { className: "hangar-backdrop", onMouseDown: (e) => {
-        if (e.target === e.currentTarget) onClose();
-      } }, /* @__PURE__ */ React.createElement("aside", { ref: dialogRef, className: "hangar-drawer", role: "dialog", "aria-modal": "true", "aria-label": config.success }, /* @__PURE__ */ React.createElement("div", { className: "hangar-success" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { className: "hangar-success-icon" }, /* @__PURE__ */ React.createElement(Icon, { name: "check", size: 24 })), /* @__PURE__ */ React.createElement("h2", null, config.success), /* @__PURE__ */ React.createElement("p", null, config.message), /* @__PURE__ */ React.createElement(Button, { autoFocus: true, onClick: () => onCreated(config.success) }, "Done")))));
-      return /* @__PURE__ */ React.createElement("div", { className: "hangar-backdrop", onMouseDown: (e) => {
-        if (e.target === e.currentTarget) onClose();
-      } }, /* @__PURE__ */ React.createElement("aside", { ref: dialogRef, className: "hangar-drawer", role: "dialog", "aria-modal": "true", "aria-label": config.title }, /* @__PURE__ */ React.createElement("div", { className: "hangar-drawer-head" }, /* @__PURE__ */ React.createElement("div", { style: { flex: 1 } }, /* @__PURE__ */ React.createElement("span", { style: EYEBROW }, config.eyebrow), /* @__PURE__ */ React.createElement("h2", null, config.title), /* @__PURE__ */ React.createElement("p", { style: LEAD }, config.description)), /* @__PURE__ */ React.createElement("button", { type: "button", "aria-label": "Close", onClick: onClose, style: ICON_BUTTON }, /* @__PURE__ */ React.createElement(Icon, { name: "x", size: 18 }))), /* @__PURE__ */ React.createElement("div", { className: "hangar-drawer-body" }, /* @__PURE__ */ React.createElement(DrawerFields, { type })), /* @__PURE__ */ React.createElement("div", { className: "hangar-drawer-foot" }, /* @__PURE__ */ React.createElement(Button, { variant: "secondary", onClick: onClose }, "Cancel"), /* @__PURE__ */ React.createElement(Button, { onClick: () => setSaved(true) }, type === "test" ? "Record test run" : "Save"))));
+      if (saved) return /* @__PURE__ */ React.createElement(Drawer, { ariaLabel: config.success, onClose }, /* @__PURE__ */ React.createElement(SuccessState, { title: config.success, description: config.message, action: /* @__PURE__ */ React.createElement(Button, { autoFocus: true, onClick: () => onCreated(config.success) }, "Done") }));
+      return /* @__PURE__ */ React.createElement(Drawer, { title: config.title, eyebrow: config.eyebrow, description: config.description, onClose, footer: /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Button, { variant: "secondary", onClick: onClose }, "Cancel"), /* @__PURE__ */ React.createElement(Button, { onClick: () => setSaved(true) }, type === "test" ? "Record test run" : "Save")) }, /* @__PURE__ */ React.createElement(DrawerFields, { type }));
     }
     function DrawerFields({ type }) {
       if (type === "aircraft") return /* @__PURE__ */ React.createElement("div", { className: "hangar-form-grid" }, /* @__PURE__ */ React.createElement(Field, { label: "Aircraft ID", value: "F-HNEW" }), /* @__PURE__ */ React.createElement(Field, { label: "Type", value: "Pilatus PC-6" }), /* @__PURE__ */ React.createElement(Field, { label: "Role", value: "Flight-test aircraft" }), /* @__PURE__ */ React.createElement(SelectField, { label: "Initial state", options: ["Ready", "Unavailable", "In maintenance"] }), /* @__PURE__ */ React.createElement(Field, { full: true, label: "Notes", textarea: true, value: "Aircraft registered for FDR validation flights." }), /* @__PURE__ */ React.createElement(Help, null, "Register the aircraft first. Assemblies and equipment are attached afterward through dated installations."));
@@ -727,13 +665,12 @@
     }
     function Field({ label, value, textarea, full }) {
       const [v, setV] = React.useState(value);
-      const id = React.useId();
-      return /* @__PURE__ */ React.createElement("div", { className: `hangar-field ${full ? "full" : ""}` }, /* @__PURE__ */ React.createElement("label", { htmlFor: id }, label), textarea ? /* @__PURE__ */ React.createElement("textarea", { id, value: v, onChange: (e) => setV(e.target.value) }) : /* @__PURE__ */ React.createElement("input", { id, value: v, onChange: (e) => setV(e.target.value) }));
+      const FieldComponent = textarea ? Textarea : Input;
+      return /* @__PURE__ */ React.createElement(FieldComponent, { className: full ? "full" : "", label, value: v, onChange: (e) => setV(e.target.value) });
     }
     function SelectField({ label, options, full }) {
       const [v, setV] = React.useState(options[0]);
-      const id = React.useId();
-      return /* @__PURE__ */ React.createElement("div", { className: `hangar-field ${full ? "full" : ""}` }, /* @__PURE__ */ React.createElement("label", { htmlFor: id }, label), /* @__PURE__ */ React.createElement("select", { id, value: v, onChange: (e) => setV(e.target.value) }, options.map((o) => /* @__PURE__ */ React.createElement("option", { key: o }, o))));
+      return /* @__PURE__ */ React.createElement(Select, { className: full ? "full" : "", label, value: v, onChange: (e) => setV(e.target.value), options: options.map((option) => ({ value: option, label: option })) });
     }
     function Help({ children }) {
       return /* @__PURE__ */ React.createElement("div", { className: "hangar-help", style: { gridColumn: "1/-1" } }, children);
@@ -757,7 +694,6 @@
     const EYEBROW = { fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 600, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--text-muted)" };
     const H1 = { margin: "4px 0 0", fontSize: 24, fontWeight: 700, color: "var(--text-strong)" };
     const LEAD = { margin: "4px 0 0", fontSize: 13, color: "var(--text-muted)" };
-    const ICON_BUTTON = { width: 34, height: 34, border: "1px solid var(--border-rule)", borderRadius: 6, background: "var(--surface-card)", color: "var(--text-muted)", display: "grid", placeItems: "center", cursor: "pointer" };
     window.OSHangar = { Hangar: Hangar2 };
   })();
 
@@ -765,7 +701,7 @@
   (function() {
     const { Icon } = window.OSIcons;
     const DS = window.ExopterDesignSystem_4c9fc9;
-    const { Badge, Button, StatusDot } = DS;
+    const { Badge, Button, Drawer, Select, StatusDot } = DS;
     const CSS = `
     .signal-root{min-height:100%;background:var(--ex-carbon-950);color:var(--ex-vapor-50)}
     .signal-status{display:grid;grid-template-columns:minmax(155px,1fr) minmax(140px,.9fr) 92px minmax(175px,.95fr) auto;min-height:58px;border-bottom:1px solid var(--ex-carbon-700);background:var(--ex-carbon-900)}
@@ -796,7 +732,7 @@
     .signal-live-shell{height:100%;min-height:640px;display:flex;flex-direction:column;overflow:hidden}
     .signal-tool-button{height:32px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:0 10px;border:1px solid var(--ex-carbon-700);border-radius:5px;background:var(--ex-carbon-900);color:var(--ex-vapor-50);font:600 10px/1 var(--font-mono);letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
     .signal-tool-button:hover,.signal-tool-button[aria-pressed=true]{border-color:var(--ex-aqua-500);color:var(--ex-aqua-500);background:rgba(47,214,198,.08)}
-    .signal-tool-button:focus-visible,.signal-widget-mode:focus-visible,.signal-drag-handle:focus-visible,.signal-close:focus-visible,.signal-choice button:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}
+    .signal-tool-button:focus-visible,.signal-widget-mode:focus-visible,.signal-drag-handle:focus-visible,.signal-choice button:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}
     .signal-tool-button.icon-only{width:34px;padding:0}
     .signal-dashboard{position:relative;flex:1;min-height:0;overflow:hidden;background:var(--ex-carbon-950)}
     .signal-workspace-panel{position:absolute;box-sizing:border-box;min-width:0;min-height:0;display:flex;flex-direction:column;background:var(--ex-carbon-900);border:1px solid var(--ex-carbon-700);border-radius:var(--radius);overflow:hidden;box-shadow:none;transition:border-color .18s,width .18s,height .18s,left .18s,top .18s}
@@ -836,10 +772,8 @@
     .signal-launch-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.signal-launch-card{background:var(--ex-carbon-900);border:1px solid var(--ex-carbon-700);border-radius:8px;overflow:hidden}.signal-launch-body{padding:18px}.signal-launch-body h2{margin:6px 0 6px;color:var(--ex-vapor-50);font-size:20px}.signal-launch-body p{margin:0;color:var(--ex-graphite-400);font-size:13px;line-height:1.55}
     .signal-prep-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--ex-carbon-700)}.signal-prep-row strong{display:block;font:600 12px var(--font-data);color:var(--ex-vapor-50)}.signal-prep-row span{display:block;margin-top:3px;font-size:11px;color:var(--ex-graphite-400)}
     .signal-rule{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--ex-carbon-700)}.signal-rule:last-child{border-bottom:0}.signal-rule-icon{width:28px;height:28px;flex:none;border-radius:6px;display:grid;place-items:center;background:var(--ex-carbon-800);color:var(--ex-aqua-500)}.signal-rule strong{display:block;color:var(--ex-vapor-50);font-size:12px}.signal-rule span{display:block;margin-top:4px;color:var(--ex-graphite-400);font-size:11px;line-height:1.45}
-    .signal-backdrop{position:fixed;z-index:80;inset:0;background:rgba(7,11,13,.62);display:flex;justify-content:flex-end}.signal-drawer{width:min(500px,calc(100vw - 36px));height:100%;background:var(--surface-card);color:var(--text-body);box-shadow:-18px 0 48px rgba(7,11,13,.32);display:flex;flex-direction:column}.signal-drawer-head{display:flex;align-items:flex-start;gap:12px;padding:18px 20px;border-bottom:1px solid var(--border-rule)}.signal-drawer-head h2{margin:4px 0;font-size:21px;color:var(--text-strong)}.signal-drawer-body{padding:18px 20px;overflow:auto;display:grid;gap:15px}.signal-drawer-foot{margin-top:auto;display:flex;justify-content:flex-end;gap:9px;padding:14px 20px;border-top:1px solid var(--border-rule)}
     .signal-choice{display:grid;grid-template-columns:1fr 1fr;gap:10px}.signal-choice button{padding:14px;border:1px solid var(--border-rule);border-radius:7px;background:var(--surface-card);text-align:left;cursor:pointer;color:var(--text-body)}.signal-choice button[data-active=true]{border-color:var(--ex-aqua-500);background:var(--surface-hover)}.signal-choice strong{display:block;margin:8px 0 4px;color:var(--text-strong)}.signal-choice span{font-size:12px;line-height:1.4;color:var(--text-muted)}
-    .signal-form-field{display:grid;gap:6px}.signal-form-field label{font:600 10px/1 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--text-muted)}.signal-form-field select{width:100%;box-sizing:border-box;border:1px solid var(--border-rule);border-radius:6px;background:var(--surface-card);color:var(--text-body);padding:10px 11px;font:500 13px var(--font-ui)}.signal-form-field select:focus-visible{outline:2px solid var(--focus-ring);outline-offset:1px}
-    .signal-detect{display:grid;gap:10px;padding:12px;border:1px solid var(--ex-field-500);border-radius:7px;background:var(--ex-state-ready-bg)}.signal-detect strong{display:block;margin-top:5px;font:600 13px var(--font-data);color:var(--text-strong)}.signal-help{padding:11px 12px;border-radius:6px;background:var(--surface-panel);font-size:12px;line-height:1.5;color:var(--text-muted)}.signal-close{width:34px;height:34px;border:1px solid var(--border-rule);border-radius:6px;background:var(--surface-card);color:var(--text-muted);display:grid;place-items:center;cursor:pointer}
+    .signal-detect{display:grid;gap:10px;padding:12px;border:1px solid var(--ex-field-500);border-radius:7px;background:var(--ex-state-ready-bg)}.signal-detect strong{display:block;margin-top:5px;font:600 13px var(--font-data);color:var(--text-strong)}.signal-help{padding:11px 12px;border-radius:6px;background:var(--surface-panel);font-size:12px;line-height:1.5;color:var(--text-muted)}
     @media(max-width:1100px){.signal-status{grid-template-columns:minmax(130px,1fr) minmax(120px,.9fr) 76px minmax(145px,.9fr) auto}.signal-status-cell,.signal-link-stack{padding-left:8px;padding-right:8px}.signal-session-actions{gap:5px;padding-left:7px;padding-right:7px}.signal-session-actions .signal-action-label--optional{display:none}.signal-tool-button{padding:0 8px}.signal-telemetry-item{padding-left:8px;padding-right:8px}}
     @media(max-width:950px){.signal-status-cell:nth-child(2){display:none}.signal-status{grid-template-columns:minmax(145px,1.1fr) 86px minmax(155px,1fr) auto}}
     @media(max-width:700px){.signal-status{grid-template-columns:minmax(145px,1fr) 86px auto;grid-template-rows:46px 40px}.signal-status-cell:first-child{grid-column:1;grid-row:1}.signal-status-cell:nth-child(3){grid-column:2;grid-row:1}.signal-link-stack{grid-column:1/3;grid-row:2;display:flex;align-items:center;gap:9px;border-top:1px solid var(--ex-carbon-700);border-right:1px solid var(--ex-carbon-700)}.signal-link-row{min-width:0;grid-template-columns:auto;gap:2px}.signal-link-row b{font-size:8px}.signal-session-actions{grid-column:3;grid-row:1/3}.signal-tool-button{padding:0 7px}}
@@ -878,11 +812,7 @@
     function SignalStartDrawer({ preparations, onClose, onStart }) {
       const [mode, setMode] = React.useState(preparations.length ? "existing" : "automatic");
       const [flightId, setFlightId] = React.useState(preparations[0]?.id || "");
-      const flightSelectId = React.useId();
-      const dialogRef = window.OSShell.useDialogFocus(onClose);
-      return /* @__PURE__ */ React.createElement("div", { className: "signal-backdrop", onMouseDown: (e) => {
-        if (e.target === e.currentTarget) onClose();
-      } }, /* @__PURE__ */ React.createElement("aside", { ref: dialogRef, className: "signal-drawer", role: "dialog", "aria-modal": "true", "aria-label": "Start live session" }, /* @__PURE__ */ React.createElement("div", { className: "signal-drawer-head" }, /* @__PURE__ */ React.createElement("div", { style: { flex: 1 } }, /* @__PURE__ */ React.createElement("span", { style: { fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 600, letterSpacing: ".09em", textTransform: "uppercase", color: "var(--text-muted)" } }, "Signal acquisition"), /* @__PURE__ */ React.createElement("h2", null, "Start live session"), /* @__PURE__ */ React.createElement("p", { style: { margin: "4px 0 0", fontSize: 13, color: "var(--text-muted)" } }, "Choose how this session should be attached to a Flight.")), /* @__PURE__ */ React.createElement("button", { type: "button", className: "signal-close", "aria-label": "Close", onClick: onClose }, /* @__PURE__ */ React.createElement(Icon, { name: "x", size: 17 }))), /* @__PURE__ */ React.createElement("div", { className: "signal-drawer-body" }, /* @__PURE__ */ React.createElement("div", { className: "signal-choice" }, /* @__PURE__ */ React.createElement("button", { type: "button", "data-active": mode === "existing", "aria-pressed": mode === "existing", onClick: () => setMode("existing") }, /* @__PURE__ */ React.createElement(Icon, { name: "clipboard-check", size: 19 }), /* @__PURE__ */ React.createElement("strong", null, "Use prepared Flight"), /* @__PURE__ */ React.createElement("span", null, "Attach Signal to a Flight already in Preparation.")), /* @__PURE__ */ React.createElement("button", { type: "button", "data-active": mode === "automatic", "aria-pressed": mode === "automatic", onClick: () => setMode("automatic") }, /* @__PURE__ */ React.createElement(Icon, { name: "plus", size: 19 }), /* @__PURE__ */ React.createElement("strong", null, "Create automatically"), /* @__PURE__ */ React.createElement("span", null, "Create a Flight as soon as acquisition starts."))), mode === "existing" ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "signal-form-field" }, /* @__PURE__ */ React.createElement("label", { htmlFor: flightSelectId }, "Prepared Flight"), /* @__PURE__ */ React.createElement("select", { id: flightSelectId, value: flightId, onChange: (e) => setFlightId(e.target.value) }, preparations.map((f) => /* @__PURE__ */ React.createElement("option", { key: f.id, value: f.id }, f.id, " · ", f.aircraft)))), /* @__PURE__ */ React.createElement("div", { className: "signal-help" }, "The selected Flight moves from Preparation to Live and receives this Signal session automatically.")) : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "signal-detect" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { style: { fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 600, letterSpacing: ".07em", textTransform: "uppercase", color: "var(--text-muted)" } }, "Aircraft detected"), /* @__PURE__ */ React.createElement("strong", null, "EXO-001"))), /* @__PURE__ */ React.createElement("div", { className: "signal-help" }, "Signal creates a Flight with default values. The detected aircraft is filled now; an unresolved aircraft is stored as To complete without blocking capture."))), /* @__PURE__ */ React.createElement("div", { className: "signal-drawer-foot" }, /* @__PURE__ */ React.createElement(Button, { variant: "secondary", onClick: onClose }, "Cancel"), /* @__PURE__ */ React.createElement(Button, { iconLeft: /* @__PURE__ */ React.createElement(Icon, { name: "radio", size: 16 }), onClick: () => onStart({ mode, flightId, aircraft: "EXO-001" }) }, "Start acquisition"))));
+      return /* @__PURE__ */ React.createElement(Drawer, { title: "Start live session", eyebrow: "Signal acquisition", description: "Choose how this session should be attached to a Flight.", onClose, footer: /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Button, { variant: "secondary", onClick: onClose }, "Cancel"), /* @__PURE__ */ React.createElement(Button, { iconLeft: /* @__PURE__ */ React.createElement(Icon, { name: "radio", size: 16 }), onClick: () => onStart({ mode, flightId, aircraft: "EXO-001" }) }, "Start acquisition")) }, /* @__PURE__ */ React.createElement("div", { className: "signal-choice" }, /* @__PURE__ */ React.createElement("button", { type: "button", "data-active": mode === "existing", "aria-pressed": mode === "existing", onClick: () => setMode("existing") }, /* @__PURE__ */ React.createElement(Icon, { name: "clipboard-check", size: 19 }), /* @__PURE__ */ React.createElement("strong", null, "Use prepared Flight"), /* @__PURE__ */ React.createElement("span", null, "Attach Signal to a Flight already in Preparation.")), /* @__PURE__ */ React.createElement("button", { type: "button", "data-active": mode === "automatic", "aria-pressed": mode === "automatic", onClick: () => setMode("automatic") }, /* @__PURE__ */ React.createElement(Icon, { name: "plus", size: 19 }), /* @__PURE__ */ React.createElement("strong", null, "Create automatically"), /* @__PURE__ */ React.createElement("span", null, "Create a Flight as soon as acquisition starts."))), mode === "existing" ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Select, { label: "Prepared Flight", value: flightId, onChange: (e) => setFlightId(e.target.value), options: preparations.map((flight) => ({ value: flight.id, label: `${flight.id} · ${flight.aircraft}` })) }), /* @__PURE__ */ React.createElement("div", { className: "signal-help" }, "The selected Flight moves from Preparation to Live and receives this Signal session automatically.")) : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "signal-detect" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { style: { fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 600, letterSpacing: ".07em", textTransform: "uppercase", color: "var(--text-muted)" } }, "Aircraft detected"), /* @__PURE__ */ React.createElement("strong", null, "EXO-001"))), /* @__PURE__ */ React.createElement("div", { className: "signal-help" }, "Signal creates a Flight with default values. The detected aircraft is filled now; an unresolved aircraft is stored as To complete without blocking capture.")));
     }
     function Rule({ icon, title, copy }) {
       return /* @__PURE__ */ React.createElement("div", { className: "signal-rule" }, /* @__PURE__ */ React.createElement("span", { className: "signal-rule-icon" }, /* @__PURE__ */ React.createElement(Icon, { name: icon, size: 15 })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("strong", null, title), /* @__PURE__ */ React.createElement("span", null, copy)));

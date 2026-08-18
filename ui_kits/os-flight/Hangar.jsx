@@ -2,7 +2,7 @@
 (function () {
   const { Icon } = window.OSIcons;
   const DS = window.ExopterDesignSystem_4c9fc9;
-  const { Badge, Button, StatusDot } = DS;
+  const { Badge, Button, Drawer, Input, Select, StatusDot, SuccessState, Textarea } = DS;
 
   const SECTIONS = [
     { id: 'fleet', label: 'Fleet' },
@@ -125,16 +125,11 @@
     .hangar-detail-foot{display:grid;grid-template-columns:1fr 1fr;gap:0}.hangar-detail-foot>div{padding:13px 14px}.hangar-detail-foot>div+div{border-left:1px solid var(--border-rule)}
     .hangar-table{width:100%;border-collapse:collapse}.hangar-table th{text-align:left;padding:12px 13px 9px;font:600 9px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}.hangar-table td{padding:11px 13px;border-top:1px solid var(--border-rule);font-size:12px;color:var(--text-body);vertical-align:middle}.hangar-table tbody tr{cursor:pointer}
     .hangar-code{font:700 12px/1.2 var(--font-data);color:var(--text-strong)}
-    .hangar-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:12px}.hangar-search,.hangar-select{height:38px;border:1px solid var(--border-rule);border-radius:6px;background:var(--surface-card);color:var(--text-body);padding:0 11px;font:500 13px var(--font-ui);outline:none}.hangar-search{width:250px}.hangar-search:focus-visible,.hangar-select:focus-visible,.hangar-field input:focus-visible,.hangar-field select:focus-visible,.hangar-field textarea:focus-visible{border-color:var(--focus-ring);outline:2px solid var(--focus-ring);outline-offset:1px}
+    .hangar-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:12px}.hangar-search,.hangar-select{height:38px;border:1px solid var(--border-rule);border-radius:6px;background:var(--surface-card);color:var(--text-body);padding:0 11px;font:500 13px var(--font-ui);outline:none}.hangar-search{width:250px}.hangar-search:focus-visible,.hangar-select:focus-visible{border-color:var(--focus-ring);outline:2px solid var(--focus-ring);outline-offset:1px}
     .hangar-function-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.hangar-function-card{padding:14px;background:var(--surface-card);border:1px solid var(--border-rule);border-radius:8px;box-shadow:var(--shadow-sm)}.hangar-function-card h3{margin:5px 0 5px;font-size:15px;color:var(--text-strong)}.hangar-function-card p{margin:0;min-height:38px;font-size:12px;line-height:1.45;color:var(--text-muted)}.hangar-function-foot{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--border-rule)}
     .hangar-qualification{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.hangar-qual-note{padding:13px 14px;border-top:1px solid var(--border-rule);background:var(--surface-panel);font-size:12px;line-height:1.5;color:var(--text-muted)}
-    .hangar-backdrop{position:fixed;z-index:60;inset:0;background:rgba(7,11,13,.46);display:flex;justify-content:flex-end}
-    .hangar-drawer{width:min(470px,calc(100vw - 40px));height:100%;background:var(--surface-card);box-shadow:-18px 0 48px rgba(7,11,13,.22);display:flex;flex-direction:column}
-    .hangar-drawer-head{display:flex;align-items:flex-start;gap:12px;padding:18px 20px;border-bottom:1px solid var(--border-rule)}.hangar-drawer-head h2{margin:4px 0 3px;font-size:21px;color:var(--text-strong)}
-    .hangar-drawer-body{padding:18px 20px;overflow:auto;display:grid;gap:15px}.hangar-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.hangar-field{display:grid;gap:6px}.hangar-field.full{grid-column:1/-1}.hangar-field label{font:600 10px/1 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--text-muted)}.hangar-field input,.hangar-field select,.hangar-field textarea{width:100%;box-sizing:border-box;border:1px solid var(--border-rule);border-radius:6px;background:var(--surface-card);color:var(--text-body);padding:10px 11px;font:500 13px var(--font-ui);outline:none}.hangar-field textarea{min-height:78px;resize:vertical}
+    .hangar-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.hangar-form-grid>.full{grid-column:1/-1}
     .hangar-help{padding:11px 12px;border-radius:6px;background:var(--surface-panel);font-size:12px;line-height:1.5;color:var(--text-muted)}
-    .hangar-drawer-foot{margin-top:auto;display:flex;justify-content:flex-end;gap:9px;padding:14px 20px;border-top:1px solid var(--border-rule)}
-    .hangar-success{flex:1;display:grid;place-items:center;padding:32px}.hangar-success>div{text-align:center;max-width:310px}.hangar-success-icon{width:48px;height:48px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:var(--ex-state-ready-bg);color:var(--ex-field-500)}.hangar-success h2{margin:0 0 7px;color:var(--text-strong)}.hangar-success p{margin:0 0 18px;color:var(--text-muted);line-height:1.5}
     @media(max-width:900px){.hangar-layout,.hangar-qualification{grid-template-columns:1fr}.hangar-summary{grid-template-columns:1fr 1fr}.hangar-function-grid{grid-template-columns:1fr 1fr}.hangar-tree-row{grid-template-columns:minmax(0,1fr) 105px}.hangar-tree-row>.hangar-kind{display:none}.hangar-tabs{max-width:100%;overflow:auto}}
   `;
   if (!document.getElementById('hangar-screen-css')) { const s=document.createElement('style');s.id='hangar-screen-css';s.textContent=CSS;document.head.appendChild(s); }
@@ -211,9 +206,8 @@
 
   function CreateDrawer({ type, onClose, onCreated }) {
     const config=DRAWERS[type]; const [saved,setSaved]=React.useState(false);
-    const dialogRef=window.OSShell.useDialogFocus(onClose, saved ? 'saved' : 'form');
-    if(saved) return <div className="hangar-backdrop" onMouseDown={(e)=>{if(e.target===e.currentTarget)onClose();}}><aside ref={dialogRef} className="hangar-drawer" role="dialog" aria-modal="true" aria-label={config.success}><div className="hangar-success"><div><span className="hangar-success-icon"><Icon name="check" size={24}/></span><h2>{config.success}</h2><p>{config.message}</p><Button autoFocus onClick={()=>onCreated(config.success)}>Done</Button></div></div></aside></div>;
-    return <div className="hangar-backdrop" onMouseDown={(e)=>{if(e.target===e.currentTarget)onClose();}}><aside ref={dialogRef} className="hangar-drawer" role="dialog" aria-modal="true" aria-label={config.title}><div className="hangar-drawer-head"><div style={{flex:1}}><span style={EYEBROW}>{config.eyebrow}</span><h2>{config.title}</h2><p style={LEAD}>{config.description}</p></div><button type="button" aria-label="Close" onClick={onClose} style={ICON_BUTTON}><Icon name="x" size={18}/></button></div><div className="hangar-drawer-body"><DrawerFields type={type}/></div><div className="hangar-drawer-foot"><Button variant="secondary" onClick={onClose}>Cancel</Button><Button onClick={()=>setSaved(true)}>{type==='test'?'Record test run':'Save'}</Button></div></aside></div>;
+    if(saved) return <Drawer ariaLabel={config.success} onClose={onClose}><SuccessState title={config.success} description={config.message} action={<Button autoFocus onClick={()=>onCreated(config.success)}>Done</Button>}/></Drawer>;
+    return <Drawer title={config.title} eyebrow={config.eyebrow} description={config.description} onClose={onClose} footer={<><Button variant="secondary" onClick={onClose}>Cancel</Button><Button onClick={()=>setSaved(true)}>{type==='test'?'Record test run':'Save'}</Button></>}><DrawerFields type={type}/></Drawer>;
   }
 
   function DrawerFields({ type }) {
@@ -226,8 +220,8 @@
     return <div className="hangar-form-grid"><SelectField label="Build" options={['FDR-DEV-042 · FDR-0012','FDR-DEV-041 · FDR-0012','FDR-EXO-009 · FDR-0014']}/><SelectField label="Target" options={['Whole build','PIT-0006 · Matek ASPD-AUAV','RAD-0003 · SiK 433 MHz']}/><Field label="Recipe ID" value="air-data-zero"/><Field label="Recipe version" value="3"/><Field label="Ran at" value="28 Jul 2026 · 16:15"/><SelectField label="Outcome" options={['Passed','Failed','Blocked']}/><Field full label="Notes" textarea value="Zero drift remains outside the acceptance band."/><Help>The first Test Run locks the Build. A Part target must exist in the stored Build snapshot.</Help></div>;
   }
 
-  function Field({label,value,textarea,full}) { const [v,setV]=React.useState(value); const id=React.useId(); return <div className={`hangar-field ${full?'full':''}`}><label htmlFor={id}>{label}</label>{textarea?<textarea id={id} value={v} onChange={(e)=>setV(e.target.value)}/>:<input id={id} value={v} onChange={(e)=>setV(e.target.value)}/>}</div>; }
-  function SelectField({label,options,full}) { const [v,setV]=React.useState(options[0]); const id=React.useId(); return <div className={`hangar-field ${full?'full':''}`}><label htmlFor={id}>{label}</label><select id={id} value={v} onChange={(e)=>setV(e.target.value)}>{options.map((o)=><option key={o}>{o}</option>)}</select></div>; }
+  function Field({label,value,textarea,full}) { const [v,setV]=React.useState(value); const FieldComponent=textarea?Textarea:Input; return <FieldComponent className={full?'full':''} label={label} value={v} onChange={(e)=>setV(e.target.value)}/>; }
+  function SelectField({label,options,full}) { const [v,setV]=React.useState(options[0]); return <Select className={full?'full':''} label={label} value={v} onChange={(e)=>setV(e.target.value)} options={options.map((option)=>({value:option,label:option}))}/>; }
   function Help({children}) { return <div className="hangar-help" style={{gridColumn:'1/-1'}}>{children}</div>; }
   function Configuration({item}) { return <><HierarchyRow item={item} level={0}/>{(item.children||[]).map((child)=><HierarchyRow key={child.id} item={child} level={1}/>)}</>; }
   function HierarchyRow({item,level}) { const icon=item.kind==='Assembly'||item.kind==='Subassembly'?'layers':item.kind==='Equipment'?'gauge':'settings';return <div className="hangar-tree-row" data-level={level}><div className="hangar-tree-primary"><span className="hangar-tree-icon"><Icon name={icon} size={16}/></span><span className="hangar-tree-copy"><strong>{item.id} · {item.name}</strong><span>{item.meta}</span></span></div><span className="hangar-kind">{item.kind}</span><StatusDot state={item.state} label={item.label}/></div>; }
@@ -237,6 +231,5 @@
   const EYEBROW={fontFamily:'var(--font-mono)',fontSize:10,fontWeight:600,letterSpacing:'.1em',textTransform:'uppercase',color:'var(--text-muted)'};
   const H1={margin:'4px 0 0',fontSize:24,fontWeight:700,color:'var(--text-strong)'};
   const LEAD={margin:'4px 0 0',fontSize:13,color:'var(--text-muted)'};
-  const ICON_BUTTON={width:34,height:34,border:'1px solid var(--border-rule)',borderRadius:6,background:'var(--surface-card)',color:'var(--text-muted)',display:'grid',placeItems:'center',cursor:'pointer'};
   window.OSHangar={Hangar};
 })();

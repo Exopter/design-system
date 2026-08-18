@@ -26,6 +26,10 @@
       "sourcePath": "dist/index.js"
     },
     {
+      "name": "SuccessState",
+      "sourcePath": "dist/index.js"
+    },
+    {
       "name": "Toast",
       "sourcePath": "dist/index.js"
     },
@@ -51,6 +55,14 @@
     },
     {
       "name": "Switch",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "Textarea",
+      "sourcePath": "dist/index.js"
+    },
+    {
+      "name": "Drawer",
       "sourcePath": "dist/index.js"
     }
   ],
@@ -1201,6 +1213,9 @@
       "StatusDot": {
         "replaces": []
       },
+      "SuccessState": {
+        "replaces": []
+      },
       "Toast": {
         "replaces": []
       },
@@ -1220,6 +1235,12 @@
         "replaces": []
       },
       "Switch": {
+        "replaces": []
+      },
+      "Textarea": {
+        "replaces": []
+      },
+      "Drawer": {
         "replaces": []
       }
     },

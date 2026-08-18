@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"ExopterDesignSystem_4c9fc9","components":[{"name":"Card","sourcePath":"components/data/Card.jsx"},{"name":"ChecklistRow","sourcePath":"components/data/ChecklistRow.jsx"},{"name":"MetricTile","sourcePath":"components/data/MetricTile.jsx"},{"name":"ReadinessStrip","sourcePath":"components/data/ReadinessStrip.jsx"},{"name":"Badge","sourcePath":"components/feedback/Badge.jsx"},{"name":"StatusDot","sourcePath":"components/feedback/StatusDot.jsx"},{"name":"Toast","sourcePath":"components/feedback/Toast.jsx"},{"name":"Button","sourcePath":"components/forms/Button.jsx"},{"name":"IconButton","sourcePath":"components/forms/IconButton.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"SegmentedControl","sourcePath":"components/forms/SegmentedControl.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"}],"sourceHashes":{"components/data/Card.jsx":"21112a3b822e","components/data/ChecklistRow.jsx":"a65f225302a3","components/data/MetricTile.jsx":"16d8ec01dca3","components/data/ReadinessStrip.jsx":"a74b1a2d7c7a","components/feedback/Badge.jsx":"ed3d5fa3967f","components/feedback/StatusDot.jsx":"65531de7b02b","components/feedback/Toast.jsx":"c15cef79286f","components/forms/Button.jsx":"98a334076f79","components/forms/IconButton.jsx":"2e9573c836cf","components/forms/Input.jsx":"e1cb1267b6a6","components/forms/SegmentedControl.jsx":"bf501203fe11","components/forms/Select.jsx":"b13d4b1c8bb8","components/forms/Switch.jsx":"6bd93ac53e0e"},"inlinedExternals":[]} */
+/* @ds-bundle: {"format":4,"namespace":"ExopterDesignSystem_4c9fc9","components":[{"name":"Card","sourcePath":"components/data/Card.jsx"},{"name":"ChecklistRow","sourcePath":"components/data/ChecklistRow.jsx"},{"name":"MetricTile","sourcePath":"components/data/MetricTile.jsx"},{"name":"ReadinessStrip","sourcePath":"components/data/ReadinessStrip.jsx"},{"name":"Badge","sourcePath":"components/feedback/Badge.jsx"},{"name":"StatusDot","sourcePath":"components/feedback/StatusDot.jsx"},{"name":"SuccessState","sourcePath":"components/feedback/SuccessState.jsx"},{"name":"Toast","sourcePath":"components/feedback/Toast.jsx"},{"name":"Button","sourcePath":"components/forms/Button.jsx"},{"name":"IconButton","sourcePath":"components/forms/IconButton.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"SegmentedControl","sourcePath":"components/forms/SegmentedControl.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"Textarea","sourcePath":"components/forms/Textarea.jsx"},{"name":"Drawer","sourcePath":"components/overlays/Drawer.jsx"}],"sourceHashes":{"components/data/Card.jsx":"21112a3b822e","components/data/ChecklistRow.jsx":"a65f225302a3","components/data/MetricTile.jsx":"16d8ec01dca3","components/data/ReadinessStrip.jsx":"a74b1a2d7c7a","components/feedback/Badge.jsx":"ed3d5fa3967f","components/feedback/StatusDot.jsx":"65531de7b02b","components/feedback/SuccessState.jsx":"6ad80e03133d","components/feedback/Toast.jsx":"c15cef79286f","components/forms/Button.jsx":"98a334076f79","components/forms/IconButton.jsx":"2e9573c836cf","components/forms/Input.jsx":"e1cb1267b6a6","components/forms/SegmentedControl.jsx":"bf501203fe11","components/forms/Select.jsx":"b13d4b1c8bb8","components/forms/Switch.jsx":"6bd93ac53e0e","components/forms/Textarea.jsx":"06f743232c44","components/overlays/Drawer.jsx":"912e76da5a2b"},"inlinedExternals":[]} */
 var ExopterDesignSystem_4c9fc9 = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -25,6 +25,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
     Button: () => Button,
     Card: () => Card,
     ChecklistRow: () => ChecklistRow,
+    Drawer: () => Drawer,
     IconButton: () => IconButton,
     Input: () => Input,
     MetricTile: () => MetricTile,
@@ -32,7 +33,9 @@ var ExopterDesignSystem_4c9fc9 = (() => {
     SegmentedControl: () => SegmentedControl,
     Select: () => Select,
     StatusDot: () => StatusDot,
+    SuccessState: () => SuccessState,
     Switch: () => Switch,
+    Textarea: () => Textarea,
     Toast: () => Toast
   });
 
@@ -244,8 +247,25 @@ var ExopterDesignSystem_4c9fc9 = (() => {
     return /* @__PURE__ */ react_default.createElement("span", { className: ["exds-statusdot", `exds-statusdot--${state}`, pulse ? "exds-statusdot--pulse" : "", className].filter(Boolean).join(" ") }, /* @__PURE__ */ react_default.createElement("span", { className: ["exds-statusdot__dot", hollow ? "exds-statusdot__dot--hollow" : ""].filter(Boolean).join(" ") }), /* @__PURE__ */ react_default.createElement("span", { className: "exds-statusdot__label" }, text));
   }
 
-  // components/feedback/Toast.jsx
+  // components/feedback/SuccessState.jsx
   var CSS7 = `
+.exds-success-state{flex:1;display:grid;place-items:center;min-height:260px;padding:32px;text-align:center}
+.exds-success-state__inner{max-width:330px}.exds-success-state__icon{width:48px;height:48px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:var(--ex-state-ready-bg);color:var(--ex-field-500)}
+.exds-success-state__icon svg{width:24px;height:24px}.exds-success-state__title{margin:0 0 7px;color:var(--text-strong)}.exds-success-state__description{margin:0 0 18px;color:var(--text-muted);line-height:1.5}
+`;
+  if (typeof document !== "undefined" && !document.getElementById("exds-success-state-css")) {
+    const style = document.createElement("style");
+    style.id = "exds-success-state-css";
+    style.textContent = CSS7;
+    document.head.appendChild(style);
+  }
+  var CheckIcon = () => /* @__PURE__ */ react_default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" }, /* @__PURE__ */ react_default.createElement("path", { d: "m5 12 4 4L19 6" }));
+  function SuccessState({ title, description, action = null, icon = /* @__PURE__ */ react_default.createElement(CheckIcon, null) }) {
+    return /* @__PURE__ */ react_default.createElement("div", { className: "exds-success-state" }, /* @__PURE__ */ react_default.createElement("div", { className: "exds-success-state__inner" }, /* @__PURE__ */ react_default.createElement("span", { className: "exds-success-state__icon" }, icon), /* @__PURE__ */ react_default.createElement("h2", { className: "exds-success-state__title" }, title), description && /* @__PURE__ */ react_default.createElement("p", { className: "exds-success-state__description" }, description), action));
+  }
+
+  // components/feedback/Toast.jsx
+  var CSS8 = `
 .exds-toast{display:flex;align-items:flex-start;gap:12px;font-family:var(--font-ui);
   background:var(--surface-card);border:1px solid var(--border-rule);border-left-width:3px;
   border-radius:var(--radius);box-shadow:var(--shadow-md);padding:12px 14px;min-width:300px;max-width:420px}
@@ -266,7 +286,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   if (typeof document !== "undefined" && !document.getElementById("exds-toast-css")) {
     const s = document.createElement("style");
     s.id = "exds-toast-css";
-    s.textContent = CSS7;
+    s.textContent = CSS8;
     document.head.appendChild(s);
   }
   var X = () => /* @__PURE__ */ react_default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }, /* @__PURE__ */ react_default.createElement("path", { d: "M18 6 6 18M6 6l12 12" }));
@@ -275,7 +295,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   }
 
   // components/forms/Button.jsx
-  var CSS8 = `
+  var CSS9 = `
 .exds-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   font-family:var(--font-ui);font-weight:600;font-size:var(--fs-body);
@@ -314,7 +334,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   if (typeof document !== "undefined" && !document.getElementById("exds-btn-css")) {
     const s = document.createElement("style");
     s.id = "exds-btn-css";
-    s.textContent = CSS8;
+    s.textContent = CSS9;
     document.head.appendChild(s);
   }
   function Button({
@@ -339,7 +359,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   }
 
   // components/forms/IconButton.jsx
-  var CSS9 = `
+  var CSS10 = `
 .exds-iconbtn{
   display:inline-flex;align-items:center;justify-content:center;
   border-radius:var(--radius);border:1px solid transparent;cursor:pointer;
@@ -366,7 +386,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   if (typeof document !== "undefined" && !document.getElementById("exds-iconbtn-css")) {
     const s = document.createElement("style");
     s.id = "exds-iconbtn-css";
-    s.textContent = CSS9;
+    s.textContent = CSS10;
     document.head.appendChild(s);
   }
   function IconButton({
@@ -393,7 +413,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   }
 
   // components/forms/Input.jsx
-  var CSS10 = `
+  var CSS11 = `
 .exds-field{display:flex;flex-direction:column;gap:6px;font-family:var(--font-ui)}
 .exds-field__label{font-family:var(--font-mono);font-size:var(--fs-xs);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--text-muted)}
 .exds-field__req{color:var(--ex-red-600);margin-left:4px}
@@ -416,7 +436,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   if (typeof document !== "undefined" && !document.getElementById("exds-input-css")) {
     const s = document.createElement("style");
     s.id = "exds-input-css";
-    s.textContent = CSS10;
+    s.textContent = CSS11;
     document.head.appendChild(s);
   }
   function Input({
@@ -460,7 +480,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   }
 
   // components/forms/SegmentedControl.jsx
-  var CSS11 = `
+  var CSS12 = `
 .exds-seg{display:inline-flex;align-items:center;gap:2px;padding:3px;
   background:var(--surface-panel);border:1px solid var(--border-rule);border-radius:var(--radius);}
 .exds-seg__btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
@@ -478,7 +498,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   if (typeof document !== "undefined" && !document.getElementById("exds-seg-css")) {
     const s = document.createElement("style");
     s.id = "exds-seg-css";
-    s.textContent = CSS11;
+    s.textContent = CSS12;
     document.head.appendChild(s);
   }
   function SegmentedControl({ options = [], value, defaultValue, onChange, size = "md", ariaLabel = "Mode", className = "" }) {
@@ -553,7 +573,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   }
 
   // components/forms/Select.jsx
-  var CSS12 = `
+  var CSS13 = `
 .exds-select-field{display:flex;flex-direction:column;gap:6px;font-family:var(--font-ui)}
 .exds-select-field__label{font-family:var(--font-mono);font-size:var(--fs-xs);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--text-muted)}
 .exds-select-wrap{position:relative;display:flex;align-items:center;background:var(--surface-card);
@@ -570,7 +590,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   if (typeof document !== "undefined" && !document.getElementById("exds-select-css")) {
     const s = document.createElement("style");
     s.id = "exds-select-css";
-    s.textContent = CSS12;
+    s.textContent = CSS13;
     document.head.appendChild(s);
   }
   var Chevron = () => /* @__PURE__ */ react_default.createElement("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ react_default.createElement("polyline", { points: "6 9 12 15 18 9" }));
@@ -581,7 +601,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   }
 
   // components/forms/Switch.jsx
-  var CSS13 = `
+  var CSS14 = `
 .exds-switch{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-family:var(--font-ui);user-select:none}
 .exds-switch[data-disabled="true"]{cursor:not-allowed;opacity:.45}
 .exds-switch__track{position:relative;width:40px;height:22px;border-radius:var(--radius-round);
@@ -598,7 +618,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   if (typeof document !== "undefined" && !document.getElementById("exds-switch-css")) {
     const s = document.createElement("style");
     s.id = "exds-switch-css";
-    s.textContent = CSS13;
+    s.textContent = CSS14;
     document.head.appendChild(s);
   }
   function Switch({ checked, defaultChecked, onChange, disabled = false, label, id, className = "", ...rest }) {
@@ -612,6 +632,95 @@ var ExopterDesignSystem_4c9fc9 = (() => {
     const generatedId = react_default.useId().replaceAll(":", "");
     const sid = id || `exds-switch-${generatedId}`;
     return /* @__PURE__ */ react_default.createElement("label", { className: ["exds-switch", className].filter(Boolean).join(" "), "data-disabled": disabled ? "true" : "false", htmlFor: sid }, /* @__PURE__ */ react_default.createElement("input", { id: sid, type: "checkbox", role: "switch", checked: on, disabled, onChange: handle, ...rest }), /* @__PURE__ */ react_default.createElement("span", { className: "exds-switch__track", "data-on": on ? "true" : "false" }, /* @__PURE__ */ react_default.createElement("span", { className: "exds-switch__thumb" })), label && /* @__PURE__ */ react_default.createElement("span", { className: "exds-switch__label" }, label));
+  }
+
+  // components/forms/Textarea.jsx
+  var CSS15 = `
+.exds-textarea-field{display:flex;flex-direction:column;gap:6px;font-family:var(--font-ui)}
+.exds-textarea-field__label{font-family:var(--font-mono);font-size:var(--fs-xs);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--text-muted)}
+.exds-textarea-field__req{color:var(--ex-red-600);margin-left:4px}.exds-textarea{width:100%;min-height:88px;box-sizing:border-box;resize:vertical;border:1px solid var(--border-rule);border-radius:var(--radius);background:var(--surface-card);padding:10px 12px;outline:none;font:500 var(--fs-body)/1.45 var(--font-ui);color:var(--text-body)}
+.exds-textarea:focus-visible{border-color:var(--focus-ring);box-shadow:0 0 0 1px var(--focus-ring)}.exds-textarea[aria-invalid="true"]{border-color:var(--ex-red-600)}
+.exds-textarea-field__hint{font-size:var(--fs-xs);color:var(--text-muted)}.exds-textarea-field__hint--error{color:var(--ex-red-600);font-family:var(--font-mono)}
+`;
+  if (typeof document !== "undefined" && !document.getElementById("exds-textarea-css")) {
+    const style = document.createElement("style");
+    style.id = "exds-textarea-css";
+    style.textContent = CSS15;
+    document.head.appendChild(style);
+  }
+  function Textarea({ label, required = false, hint = "", error = "", id, className = "", "aria-describedby": ariaDescribedBy, ...rest }) {
+    const generatedId = react_default.useId().replaceAll(":", "");
+    const fieldId = id || `exds-textarea-${generatedId}`;
+    const messageId = error || hint ? `${fieldId}-message` : void 0;
+    const describedBy = [ariaDescribedBy, messageId].filter(Boolean).join(" ") || void 0;
+    return /* @__PURE__ */ react_default.createElement("div", { className: ["exds-textarea-field", className].filter(Boolean).join(" ") }, label && /* @__PURE__ */ react_default.createElement("label", { className: "exds-textarea-field__label", htmlFor: fieldId }, label, required && /* @__PURE__ */ react_default.createElement("span", { className: "exds-textarea-field__req", "aria-hidden": "true" }, "*")), /* @__PURE__ */ react_default.createElement("textarea", { ...rest, id: fieldId, required, className: "exds-textarea", "aria-invalid": error ? "true" : rest["aria-invalid"], "aria-describedby": describedBy, "aria-errormessage": error ? messageId : rest["aria-errormessage"] }), error ? /* @__PURE__ */ react_default.createElement("span", { id: messageId, className: "exds-textarea-field__hint exds-textarea-field__hint--error" }, error) : hint && /* @__PURE__ */ react_default.createElement("span", { id: messageId, className: "exds-textarea-field__hint" }, hint));
+  }
+
+  // components/overlays/Drawer.jsx
+  var CSS16 = `
+.exds-drawer-backdrop{position:fixed;z-index:80;inset:0;background:rgba(7,11,13,.55);display:flex;justify-content:flex-end}
+.exds-drawer{width:min(500px,calc(100vw - 36px));height:100%;background:var(--surface-card);color:var(--text-body);box-shadow:-18px 0 48px rgba(7,11,13,.28);display:flex;flex-direction:column}
+.exds-drawer:focus{outline:none}.exds-drawer__head{display:flex;align-items:flex-start;gap:12px;padding:18px 20px;border-bottom:1px solid var(--border-rule)}
+.exds-drawer__heading{flex:1;min-width:0}.exds-drawer__eyebrow{display:block;font:600 10px/1 var(--font-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)}
+.exds-drawer__title{margin:4px 0;font-size:21px;color:var(--text-strong)}.exds-drawer__description{margin:4px 0 0;font-size:13px;line-height:1.45;color:var(--text-muted)}
+.exds-drawer__close{width:34px;height:34px;flex:none;border:1px solid var(--border-rule);border-radius:6px;background:var(--surface-card);color:var(--text-muted);display:grid;place-items:center;cursor:pointer}
+.exds-drawer__close:hover{background:var(--surface-hover);color:var(--text-strong)}.exds-drawer__close:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}
+.exds-drawer__body{padding:18px 20px;overflow:auto;display:grid;gap:15px}.exds-drawer__foot{margin-top:auto;display:flex;justify-content:flex-end;gap:9px;padding:14px 20px;border-top:1px solid var(--border-rule)}
+@media(max-width:640px){.exds-drawer{width:100vw}.exds-drawer__body{padding:16px}.exds-drawer__head,.exds-drawer__foot{padding:14px 16px}}
+`;
+  if (typeof document !== "undefined" && !document.getElementById("exds-drawer-css")) {
+    const style = document.createElement("style");
+    style.id = "exds-drawer-css";
+    style.textContent = CSS16;
+    document.head.appendChild(style);
+  }
+  var FOCUSABLE = 'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])';
+  function Drawer({ open = true, title, eyebrow = "", description = "", onClose, children, footer = null, ariaLabel, className = "" }) {
+    const dialogRef = react_default.useRef(null);
+    const openerRef = react_default.useRef(null);
+    const closeRef = react_default.useRef(onClose);
+    closeRef.current = onClose;
+    react_default.useEffect(() => {
+      if (!open) return void 0;
+      openerRef.current = document.activeElement;
+      const dialog = dialogRef.current;
+      if (!dialog) return void 0;
+      const focusable = () => [...dialog.querySelectorAll(FOCUSABLE)];
+      const frame = requestAnimationFrame(() => (focusable()[0] || dialog).focus());
+      const handleKey = (event) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeRef.current?.();
+          return;
+        }
+        if (event.key !== "Tab") return;
+        const items = focusable();
+        if (!items.length) {
+          event.preventDefault();
+          dialog.focus();
+          return;
+        }
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      };
+      dialog.addEventListener("keydown", handleKey);
+      return () => {
+        cancelAnimationFrame(frame);
+        dialog.removeEventListener("keydown", handleKey);
+        openerRef.current?.focus?.();
+      };
+    }, [open]);
+    if (!open) return null;
+    return /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer-backdrop", onMouseDown: (event) => {
+      if (event.target === event.currentTarget) onClose?.();
+    } }, /* @__PURE__ */ react_default.createElement("aside", { ref: dialogRef, className: ["exds-drawer", className].filter(Boolean).join(" "), role: "dialog", "aria-modal": "true", "aria-label": ariaLabel || title, tabIndex: -1 }, (title || eyebrow || description || onClose) && /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer__head" }, /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer__heading" }, eyebrow && /* @__PURE__ */ react_default.createElement("span", { className: "exds-drawer__eyebrow" }, eyebrow), title && /* @__PURE__ */ react_default.createElement("h2", { className: "exds-drawer__title" }, title), description && /* @__PURE__ */ react_default.createElement("p", { className: "exds-drawer__description" }, description)), onClose && /* @__PURE__ */ react_default.createElement("button", { type: "button", className: "exds-drawer__close", "aria-label": "Close", onClick: onClose }, "×")), /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer__body" }, children), footer && /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer__foot" }, footer)));
   }
   return __toCommonJS(index_exports);
 })();
