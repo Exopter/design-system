@@ -1,0 +1,3 @@
+.exds-success-state{flex:1;display:grid;place-items:center;min-height:260px;padding:32px;text-align:center}
+.exds-success-state__inner{max-width:330px}.exds-success-state__icon{width:48px;height:48px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:var(--ex-state-ready-bg);color:var(--ex-field-500)}
+.exds-success-state__icon svg{width:24px;height:24px}.exds-success-state__title{margin:0 0 7px;color:var(--text-strong)}.exds-success-state__description{margin:0 0 18px;color:var(--text-muted);line-height:1.5}

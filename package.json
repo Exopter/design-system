@@ -5,9 +5,7 @@
   "type": "module",
   "sideEffects": [
     "**/*.css",
-    "dist/index.js",
     "_ds_bundle.js",
-    "components/**/*.jsx",
     "ui_kits/**/*.jsx"
   ],
   "files": [
@@ -21,7 +19,8 @@
     "README.md",
     "styles.css",
     "THIRD_PARTY_NOTICES.md",
-    "tokens/"
+    "tokens/",
+    "components/**/*.css"
   ],
   "exports": {
     ".": {

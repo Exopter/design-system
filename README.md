@@ -26,6 +26,11 @@ npm run check
 - `_ds_manifest.json`: generated catalogue and component/token adherence metadata.
 - `_adherence.oxlintrc.json`: generated, runnable Oxlint consumer-import guardrail.
 
+Import `@exopter/design-system/styles.css` once in every consumer, including
+server-rendered applications. It includes tokens, fonts, and component styles.
+JavaScript imports do not inject styles or access the DOM; unused components can
+be removed by a bundler. Static specimens already link the same CSS entrypoint.
+
 The canonical Sillage token source is `tokens/exopter-tokens.css`. A consumer can verify or update an exported copy without adding a second transformation:
 
 ```sh

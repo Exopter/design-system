@@ -49,7 +49,8 @@ describe('generated contracts', () => {
     for (const reference of new Set(publishedReferences)) {
       expect(isPackaged(reference, packageJson.files), `${reference} must be included in package files`).toBe(true);
     }
-    expect(packageJson.sideEffects).toEqual(expect.arrayContaining(['**/*.css', 'dist/index.js']));
+    expect(packageJson.sideEffects).toContain('**/*.css');
+    expect(packageJson.sideEffects).not.toContain('dist/index.js');
   });
 
   it('contains only component sources in the browser bundle', async () => {
@@ -66,6 +67,7 @@ describe('generated contracts', () => {
       expect(dom.window.ExopterDesignSystem_4c9fc9).toHaveProperty(component.name);
     }
     expect(dom.window.ExopterDesignSystem_4c9fc9).not.toHaveProperty('__errors');
+    expect(dom.window.document.head.childElementCount).toBe(0);
   });
 
   it('classifies semantic token kinds correctly', async () => {

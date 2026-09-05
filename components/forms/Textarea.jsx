@@ -1,17 +1,5 @@
 import React from 'react';
 
-const CSS = `
-.exds-textarea-field{display:flex;flex-direction:column;gap:6px;font-family:var(--font-ui)}
-.exds-textarea-field__label{font-family:var(--font-mono);font-size:var(--fs-xs);font-weight:500;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--text-muted)}
-.exds-textarea-field__req{color:var(--ex-red-600);margin-left:4px}.exds-textarea{width:100%;min-height:88px;box-sizing:border-box;resize:vertical;border:1px solid var(--border-rule);border-radius:var(--radius);background:var(--surface-card);padding:10px 12px;outline:none;font:500 var(--fs-body)/1.45 var(--font-ui);color:var(--text-body)}
-.exds-textarea:focus-visible{border-color:var(--focus-ring);box-shadow:0 0 0 1px var(--focus-ring)}.exds-textarea[aria-invalid="true"]{border-color:var(--ex-red-600)}
-.exds-textarea-field__hint{font-size:var(--fs-xs);color:var(--text-muted)}.exds-textarea-field__hint--error{color:var(--ex-red-600);font-family:var(--font-mono)}
-`;
-if (typeof document !== 'undefined' && !document.getElementById('exds-textarea-css')) {
-  const style = document.createElement('style'); style.id = 'exds-textarea-css'; style.textContent = CSS;
-  document.head.appendChild(style);
-}
-
 /** Labelled multiline field with shared hint and error semantics. */
 export function Textarea({ label, required = false, hint = '', error = '', id, className = '', 'aria-describedby': ariaDescribedBy, ...rest }) {
   const generatedId = React.useId().replaceAll(':', '');

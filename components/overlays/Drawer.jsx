@@ -1,21 +1,5 @@
 import React from 'react';
 
-const CSS = `
-.exds-drawer-backdrop{position:fixed;z-index:80;inset:0;background:rgba(7,11,13,.55);display:flex;justify-content:flex-end}
-.exds-drawer{width:min(500px,calc(100vw - 36px));height:100%;background:var(--surface-card);color:var(--text-body);box-shadow:-18px 0 48px rgba(7,11,13,.28);display:flex;flex-direction:column}
-.exds-drawer:focus{outline:none}.exds-drawer__head{display:flex;align-items:flex-start;gap:12px;padding:18px 20px;border-bottom:1px solid var(--border-rule)}
-.exds-drawer__heading{flex:1;min-width:0}.exds-drawer__eyebrow{display:block;font:600 10px/1 var(--font-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted)}
-.exds-drawer__title{margin:4px 0;font-size:21px;color:var(--text-strong)}.exds-drawer__description{margin:4px 0 0;font-size:13px;line-height:1.45;color:var(--text-muted)}
-.exds-drawer__close{width:34px;height:34px;flex:none;border:1px solid var(--border-rule);border-radius:6px;background:var(--surface-card);color:var(--text-muted);display:grid;place-items:center;cursor:pointer}
-.exds-drawer__close:hover{background:var(--surface-hover);color:var(--text-strong)}.exds-drawer__close:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}
-.exds-drawer__body{padding:18px 20px;overflow:auto;display:grid;gap:15px}.exds-drawer__foot{margin-top:auto;display:flex;justify-content:flex-end;gap:9px;padding:14px 20px;border-top:1px solid var(--border-rule)}
-@media(max-width:640px){.exds-drawer{width:100vw}.exds-drawer__body{padding:16px}.exds-drawer__head,.exds-drawer__foot{padding:14px 16px}}
-`;
-if (typeof document !== 'undefined' && !document.getElementById('exds-drawer-css')) {
-  const style = document.createElement('style'); style.id = 'exds-drawer-css'; style.textContent = CSS;
-  document.head.appendChild(style);
-}
-
 const FOCUSABLE = 'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])';
 
 /** Right-side modal drawer with focus trapping, Escape handling, and focus restoration. */
