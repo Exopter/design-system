@@ -40,7 +40,7 @@ npm run check:sillage -- /path/to/exopter_design_system.css
 npm run export:sillage -- /path/to/exopter_design_system.css
 ```
 
-The export is byte-for-byte identical to the canonical source. Consumer repositories should run the check in CI.
+The export is byte-for-byte identical to the canonical source. Consumer repositories should run this check during local validation.
 
 ## Repository structure
 
@@ -49,7 +49,6 @@ The export is byte-for-byte identical to the canonical source. Consumer reposito
 - `components/`: React implementations, declarations, prompts, and specimens.
 - `guidelines/`: visual specimens for implemented foundations.
 - `ui_kits/`: precompiled interactive implementation specimens.
-- `templates/`: platform template runtime and entrypoints.
 - `scripts/`: deterministic generation and export tooling.
 - `tests/`: component accessibility and generated-contract tests.
 

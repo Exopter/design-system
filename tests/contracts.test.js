@@ -117,7 +117,6 @@ describe('static specimens', () => {
       'components/forms/forms.card.html',
       'ui_kits/exopter-brand/index.html',
       'ui_kits/os-flight/index.html',
-      'templates/os-screen/OSScreen.dc.html',
     ];
     for (const path of htmlFiles) {
       const html = await read(path);
