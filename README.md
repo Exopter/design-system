@@ -9,6 +9,8 @@ This repository is the canonical executable source for Exopter design tokens and
 
 ## Install and validate
 
+Run validation locally before committing. GitHub Actions is disabled.
+
 ```sh
 npm ci
 npm run check
