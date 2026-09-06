@@ -1,3 +1,4 @@
+"use strict";
 (() => {
   // ui_kits/exopter-brand/Brand.jsx
   (function() {

@@ -5,6 +5,7 @@ import React from 'react';
  * Mode label is always visible; selection is never color-only.
  * options: [{ value, label, icon?, disabled? }]
  */
+/** @param {import("./SegmentedControl").SegmentedControlProps} props */
 export function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'md', ariaLabel = 'Mode', className = '' }) {
   const isControlled = value !== undefined;
   const initialValue = options.find((option) => option.value === defaultValue && !option.disabled)?.value
@@ -13,8 +14,10 @@ export function SegmentedControl({ options = [], value, defaultValue, onChange, 
   const current = isControlled ? value : internal;
   const selectedIndex = options.findIndex((option) => option.value === current && !option.disabled);
   const tabbableIndex = selectedIndex >= 0 ? selectedIndex : options.findIndex((option) => !option.disabled);
-  const buttonRefs = React.useRef([]);
+  const buttonRefs = React.useRef(/** @type {Array<HTMLButtonElement | null>} */ ([]));
+  /** @param {string} v */
   const pick = (v) => { if (!isControlled) setInternal(v); if (onChange) onChange(v); };
+  /** @param {number} fromIndex @param {number} direction */
   const move = (fromIndex, direction) => {
     if (!options.length) return;
     let nextIndex = fromIndex;
@@ -27,6 +30,7 @@ export function SegmentedControl({ options = [], value, defaultValue, onChange, 
       }
     }
   };
+  /** @param {React.KeyboardEvent<HTMLButtonElement>} event @param {number} index */
   const onKeyDown = (event, index) => {
     if (['ArrowRight', 'ArrowDown'].includes(event.key)) {
       event.preventDefault();

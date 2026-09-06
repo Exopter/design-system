@@ -4,6 +4,7 @@ import React from 'react';
  * Exopter IconButton — compact single-icon control.
  * variant: ghost | outline | solid | danger ; size: sm | md | lg ; round for physical controls.
  */
+/** @param {import("./IconButton").IconButtonProps} props */
 export function IconButton({
   icon,
   variant = 'ghost',

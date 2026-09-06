@@ -46,16 +46,20 @@
     "lint": "oxlint --config _adherence.oxlintrc.json index.js components ui_kits scripts tests",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check": "npm run build:check && npm run lint && npm test && npm pack --dry-run"
+    "check": "npm run build:check && npm run typecheck && npm run lint && npm test && npm pack --dry-run",
+    "typecheck": "tsc --project tsconfig.json"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.2",
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
     "esbuild": "0.28.2",
     "jsdom": "29.1.1",
     "oxlint": "1.78.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "typescript": "7.0.2",
     "vitest": "4.1.10"
   },
   "engines": {

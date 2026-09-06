@@ -8,6 +8,7 @@ const Chevron = () => (
  * Exopter Select — native select with instrument-style chrome.
  * options: [{ value, label, disabled? }] (or pass children <option>s).
  */
+/** @param {import("./Select").SelectProps} props */
 export function Select({ label, options, id, className = '', children, ...rest }) {
   const generatedId = React.useId().replaceAll(':', '');
   const sid = id || `exds-select-${generatedId}`;

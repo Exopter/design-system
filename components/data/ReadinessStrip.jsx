@@ -5,6 +5,7 @@ import React from 'react';
  * battery, FDR, comms…). Each item carries an explicit value, never color-only.
  * mode: optional leading mode token. items: [{ label, value, state }]
  */
+/** @param {import("./ReadinessStrip").ReadinessStripProps} props */
 export function ReadinessStrip({ mode, items = [], className = '', ...rest }) {
   return (
     <div className={['exds-strip', className].filter(Boolean).join(' ')} {...rest}>

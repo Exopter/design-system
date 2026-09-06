@@ -1,3 +1,4 @@
+"use strict";
 (() => {
   // ui_kits/os-flight/icons.jsx
   (function() {

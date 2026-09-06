@@ -1,4 +1,5 @@
-/* @ds-bundle: {"format":4,"namespace":"ExopterDesignSystem_4c9fc9","components":[{"name":"Card","sourcePath":"components/data/Card.jsx"},{"name":"ChecklistRow","sourcePath":"components/data/ChecklistRow.jsx"},{"name":"MetricTile","sourcePath":"components/data/MetricTile.jsx"},{"name":"ReadinessStrip","sourcePath":"components/data/ReadinessStrip.jsx"},{"name":"Badge","sourcePath":"components/feedback/Badge.jsx"},{"name":"StatusDot","sourcePath":"components/feedback/StatusDot.jsx"},{"name":"SuccessState","sourcePath":"components/feedback/SuccessState.jsx"},{"name":"Toast","sourcePath":"components/feedback/Toast.jsx"},{"name":"Button","sourcePath":"components/forms/Button.jsx"},{"name":"IconButton","sourcePath":"components/forms/IconButton.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"SegmentedControl","sourcePath":"components/forms/SegmentedControl.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"Textarea","sourcePath":"components/forms/Textarea.jsx"},{"name":"Drawer","sourcePath":"components/overlays/Drawer.jsx"}],"sourceHashes":{"components/data/Card.jsx":"f037ec235d63","components/data/ChecklistRow.jsx":"b4b13a78ac8d","components/data/MetricTile.jsx":"08df39813ef3","components/data/ReadinessStrip.jsx":"3cdaf85d86e9","components/feedback/Badge.jsx":"8da50ca5218a","components/feedback/StatusDot.jsx":"079b4bc5aad6","components/feedback/SuccessState.jsx":"8f6254a45338","components/feedback/Toast.jsx":"7198deb09e7a","components/forms/Button.jsx":"a5b0243c37de","components/forms/IconButton.jsx":"c7e155f3cf30","components/forms/Input.jsx":"ef1806e031a6","components/forms/SegmentedControl.jsx":"a07a0264671e","components/forms/Select.jsx":"2734ce499cb1","components/forms/Switch.jsx":"7f5722f939e4","components/forms/Textarea.jsx":"f7a0676e0bcf","components/overlays/Drawer.jsx":"aef1f44496a2"},"inlinedExternals":[]} */
+/* @ds-bundle: {"format":4,"namespace":"ExopterDesignSystem_4c9fc9","components":[{"name":"Card","sourcePath":"components/data/Card.jsx"},{"name":"ChecklistRow","sourcePath":"components/data/ChecklistRow.jsx"},{"name":"MetricTile","sourcePath":"components/data/MetricTile.jsx"},{"name":"ReadinessStrip","sourcePath":"components/data/ReadinessStrip.jsx"},{"name":"Badge","sourcePath":"components/feedback/Badge.jsx"},{"name":"StatusDot","sourcePath":"components/feedback/StatusDot.jsx"},{"name":"SuccessState","sourcePath":"components/feedback/SuccessState.jsx"},{"name":"Toast","sourcePath":"components/feedback/Toast.jsx"},{"name":"Button","sourcePath":"components/forms/Button.jsx"},{"name":"IconButton","sourcePath":"components/forms/IconButton.jsx"},{"name":"Input","sourcePath":"components/forms/Input.jsx"},{"name":"SegmentedControl","sourcePath":"components/forms/SegmentedControl.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"Textarea","sourcePath":"components/forms/Textarea.jsx"},{"name":"Drawer","sourcePath":"components/overlays/Drawer.jsx"}],"sourceHashes":{"components/data/Card.jsx":"9609d1795bed","components/data/ChecklistRow.jsx":"bb416c7c00f3","components/data/MetricTile.jsx":"06f4e1887627","components/data/ReadinessStrip.jsx":"c1e7321cbcbe","components/feedback/Badge.jsx":"0dda7e1acd19","components/feedback/StatusDot.jsx":"eca56ff65486","components/feedback/SuccessState.jsx":"79a6bb18c444","components/feedback/Toast.jsx":"edc8bd678bc6","components/forms/Button.jsx":"9a8677c7a146","components/forms/IconButton.jsx":"28ec4828d119","components/forms/Input.jsx":"f0b84370e169","components/forms/SegmentedControl.jsx":"a69203adbadb","components/forms/Select.jsx":"270dac2259c1","components/forms/Switch.jsx":"0a4861d69349","components/forms/Textarea.jsx":"289e99a3c64e","components/overlays/Drawer.jsx":"31f8d633fd55"},"inlinedExternals":[]} */
+"use strict";
 var ExopterDesignSystem_4c9fc9 = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -213,7 +214,10 @@ var ExopterDesignSystem_4c9fc9 = (() => {
     const current = isControlled ? value : internal;
     const selectedIndex = options.findIndex((option) => option.value === current && !option.disabled);
     const tabbableIndex = selectedIndex >= 0 ? selectedIndex : options.findIndex((option) => !option.disabled);
-    const buttonRefs = react_default.useRef([]);
+    const buttonRefs = react_default.useRef(
+      /** @type {Array<HTMLButtonElement | null>} */
+      []
+    );
     const pick = (v) => {
       if (!isControlled) setInternal(v);
       if (onChange) onChange(v);
@@ -311,16 +315,23 @@ var ExopterDesignSystem_4c9fc9 = (() => {
   // components/overlays/Drawer.jsx
   var FOCUSABLE = 'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])';
   function Drawer({ open = true, title, eyebrow = "", description = "", onClose, children, footer = null, ariaLabel, className = "" }) {
-    const dialogRef = react_default.useRef(null);
-    const openerRef = react_default.useRef(null);
+    const dialogRef = react_default.useRef(
+      /** @type {HTMLElement | null} */
+      null
+    );
+    const openerRef = react_default.useRef(
+      /** @type {HTMLElement | null} */
+      null
+    );
+    const titleId = react_default.useId();
     const closeRef = react_default.useRef(onClose);
     closeRef.current = onClose;
     react_default.useEffect(() => {
       if (!open) return void 0;
-      openerRef.current = document.activeElement;
+      openerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       const dialog = dialogRef.current;
       if (!dialog) return void 0;
-      const focusable = () => [...dialog.querySelectorAll(FOCUSABLE)];
+      const focusable = () => [...dialog.querySelectorAll(FOCUSABLE)].filter((element) => element instanceof HTMLElement);
       const frame = requestAnimationFrame(() => (focusable()[0] || dialog).focus());
       const handleKey = (event) => {
         if (event.key === "Escape") {
@@ -355,7 +366,7 @@ var ExopterDesignSystem_4c9fc9 = (() => {
     if (!open) return null;
     return /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer-backdrop", onMouseDown: (event) => {
       if (event.target === event.currentTarget) onClose?.();
-    } }, /* @__PURE__ */ react_default.createElement("aside", { ref: dialogRef, className: ["exds-drawer", className].filter(Boolean).join(" "), role: "dialog", "aria-modal": "true", "aria-label": ariaLabel || title, tabIndex: -1 }, (title || eyebrow || description || onClose) && /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer__head" }, /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer__heading" }, eyebrow && /* @__PURE__ */ react_default.createElement("span", { className: "exds-drawer__eyebrow" }, eyebrow), title && /* @__PURE__ */ react_default.createElement("h2", { className: "exds-drawer__title" }, title), description && /* @__PURE__ */ react_default.createElement("p", { className: "exds-drawer__description" }, description)), onClose && /* @__PURE__ */ react_default.createElement("button", { type: "button", className: "exds-drawer__close", "aria-label": "Close", onClick: onClose }, "×")), /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer__body" }, children), footer && /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer__foot" }, footer)));
+    } }, /* @__PURE__ */ react_default.createElement("aside", { ref: dialogRef, className: ["exds-drawer", className].filter(Boolean).join(" "), role: "dialog", "aria-modal": "true", "aria-label": ariaLabel || (title ? void 0 : "Dialog"), "aria-labelledby": !ariaLabel && title ? titleId : void 0, tabIndex: -1 }, (title || eyebrow || description || onClose) && /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer__head" }, /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer__heading" }, eyebrow && /* @__PURE__ */ react_default.createElement("span", { className: "exds-drawer__eyebrow" }, eyebrow), title && /* @__PURE__ */ react_default.createElement("h2", { id: titleId, className: "exds-drawer__title" }, title), description && /* @__PURE__ */ react_default.createElement("p", { className: "exds-drawer__description" }, description)), onClose && /* @__PURE__ */ react_default.createElement("button", { type: "button", className: "exds-drawer__close", "aria-label": "Close", onClick: onClose }, "×")), /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer__body" }, children), footer && /* @__PURE__ */ react_default.createElement("div", { className: "exds-drawer__foot" }, footer)));
   }
   return __toCommonJS(index_exports);
 })();

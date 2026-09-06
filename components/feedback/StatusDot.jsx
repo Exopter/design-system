@@ -4,6 +4,7 @@ import React from 'react';
  * Exopter StatusDot — inline state indicator with uppercase label.
  * state: ready | live | pending | caution | fault | unknown
  */
+/** @param {import("./StatusDot").StatusDotProps} props */
 export function StatusDot({ state = 'unknown', label, pulse = false, className = '' }) {
   const hollow = state === 'pending';
   const text = label ?? state.toUpperCase();

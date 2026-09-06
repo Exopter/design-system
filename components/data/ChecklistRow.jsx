@@ -7,6 +7,7 @@ const Link = () => (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
  * Exopter ChecklistRow — flight-prep / maintenance / test / acceptance item.
  * state: done | active | pending | blocked. Shows owner, blocker, and evidence link.
  */
+/** @param {import("./ChecklistRow").ChecklistRowProps} props */
 export function ChecklistRow({ title, state = 'pending', owner, blocker, evidence, evidenceLabel = 'Evidence', className = '', ...rest }) {
   return (
     <div className={['exds-check', `exds-check--${state}`, className].filter(Boolean).join(' ')} {...rest}>

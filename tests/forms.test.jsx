@@ -37,6 +37,13 @@ describe('Textarea', () => {
 });
 
 describe('Drawer', () => {
+  it('uses rendered title content as its name and supports an explicit override', () => {
+    const { rerender } = render(<Drawer title={<span>Create <strong>flight</strong></span>} />);
+    expect(screen.getByRole('dialog', { name: 'Create flight' })).toBeInTheDocument();
+    rerender(<Drawer title={<span>Create flight</span>} ariaLabel="Flight editor" />);
+    expect(screen.getByRole('dialog', { name: 'Flight editor' })).toBeInTheDocument();
+  });
+
   it('provides dialog semantics and closes with Escape', () => {
     const onClose = vi.fn();
     render(<Drawer title="Create flight" onClose={onClose}><Input label="Flight ID" /></Drawer>);

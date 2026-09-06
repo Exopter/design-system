@@ -6,6 +6,7 @@ const X = () => (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stro
  * Exopter Toast — transient operational notification.
  * tone: info | ready | caution | fault
  */
+/** @param {import("./Toast").ToastProps} props */
 export function Toast({ tone = 'info', icon = null, title, children, onClose, className = '' }) {
   return (
     <div role="status" className={['exds-toast', `exds-toast--${tone}`, className].filter(Boolean).join(' ')}>

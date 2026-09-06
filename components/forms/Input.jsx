@@ -4,6 +4,7 @@ import React from 'react';
  * Exopter Input — labelled text/number field with optional prefix, unit suffix,
  * hint, and error state. Use `data` for right-aligned tabular numeric entry.
  */
+/** @param {import("./Input").InputProps} props */
 export function Input({
   label,
   required = false,

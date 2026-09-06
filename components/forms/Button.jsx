@@ -5,6 +5,7 @@ import React from 'react';
  * variant: primary | secondary | ghost | danger
  * size: sm | md | lg
  */
+/** @param {import("./Button").ButtonProps} props */
 export function Button({
   variant = 'primary',
   size = 'md',

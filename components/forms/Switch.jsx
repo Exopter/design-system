@@ -4,10 +4,12 @@ import React from 'react';
  * Exopter Switch — physical-style on/off toggle. Field green when on.
  * Controlled via `checked` + `onChange`, or uncontrolled via `defaultChecked`.
  */
+/** @param {import("./Switch").SwitchProps} props */
 export function Switch({ checked, defaultChecked, onChange, disabled = false, label, id, className = '', ...rest }) {
   const isControlled = checked !== undefined;
   const [internal, setInternal] = React.useState(!!defaultChecked);
   const on = isControlled ? checked : internal;
+  /** @param {React.ChangeEvent<HTMLInputElement>} e */
   const handle = (e) => { if (!isControlled) setInternal(e.target.checked); if (onChange) onChange(e); };
   const generatedId = React.useId().replaceAll(':', '');
   const sid = id || `exds-switch-${generatedId}`;

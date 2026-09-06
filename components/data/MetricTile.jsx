@@ -4,6 +4,7 @@ import React from 'react';
  * Exopter MetricTile — instrument readout with tabular numerals, unit, and optional delta.
  * state: default | ready | caution | fault | live ; trend: up | down | flat
  */
+/** @param {import("./MetricTile").MetricTileProps} props */
 export function MetricTile({
   label, icon = null, value, unit, delta, trend = 'flat',
   state = 'default', sunken = false, className = '',

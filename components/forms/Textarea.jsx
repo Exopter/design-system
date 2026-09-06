@@ -1,6 +1,7 @@
 import React from 'react';
 
 /** Labelled multiline field with shared hint and error semantics. */
+/** @param {import("./Textarea").TextareaProps} props */
 export function Textarea({ label, required = false, hint = '', error = '', id, className = '', 'aria-describedby': ariaDescribedBy, ...rest }) {
   const generatedId = React.useId().replaceAll(':', '');
   const fieldId = id || `exds-textarea-${generatedId}`;

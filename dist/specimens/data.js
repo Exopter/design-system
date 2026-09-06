@@ -1,3 +1,4 @@
+"use strict";
 (() => {
   // components/data/data.card.jsx
   var { Card, MetricTile, ReadinessStrip, ChecklistRow } = window.ExopterDesignSystem_4c9fc9;

@@ -180,7 +180,10 @@ function SegmentedControl({ options = [], value, defaultValue, onChange, size = 
   const current = isControlled ? value : internal;
   const selectedIndex = options.findIndex((option) => option.value === current && !option.disabled);
   const tabbableIndex = selectedIndex >= 0 ? selectedIndex : options.findIndex((option) => !option.disabled);
-  const buttonRefs = React12.useRef([]);
+  const buttonRefs = React12.useRef(
+    /** @type {Array<HTMLButtonElement | null>} */
+    []
+  );
   const pick = (v) => {
     if (!isControlled) setInternal(v);
     if (onChange) onChange(v);
@@ -282,16 +285,23 @@ function Textarea({ label, required = false, hint = "", error = "", id, classNam
 import React16 from "react";
 var FOCUSABLE = 'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])';
 function Drawer({ open = true, title, eyebrow = "", description = "", onClose, children, footer = null, ariaLabel, className = "" }) {
-  const dialogRef = React16.useRef(null);
-  const openerRef = React16.useRef(null);
+  const dialogRef = React16.useRef(
+    /** @type {HTMLElement | null} */
+    null
+  );
+  const openerRef = React16.useRef(
+    /** @type {HTMLElement | null} */
+    null
+  );
+  const titleId = React16.useId();
   const closeRef = React16.useRef(onClose);
   closeRef.current = onClose;
   React16.useEffect(() => {
     if (!open) return void 0;
-    openerRef.current = document.activeElement;
+    openerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     const dialog = dialogRef.current;
     if (!dialog) return void 0;
-    const focusable = () => [...dialog.querySelectorAll(FOCUSABLE)];
+    const focusable = () => [...dialog.querySelectorAll(FOCUSABLE)].filter((element) => element instanceof HTMLElement);
     const frame = requestAnimationFrame(() => (focusable()[0] || dialog).focus());
     const handleKey = (event) => {
       if (event.key === "Escape") {
@@ -326,7 +336,7 @@ function Drawer({ open = true, title, eyebrow = "", description = "", onClose, c
   if (!open) return null;
   return /* @__PURE__ */ React16.createElement("div", { className: "exds-drawer-backdrop", onMouseDown: (event) => {
     if (event.target === event.currentTarget) onClose?.();
-  } }, /* @__PURE__ */ React16.createElement("aside", { ref: dialogRef, className: ["exds-drawer", className].filter(Boolean).join(" "), role: "dialog", "aria-modal": "true", "aria-label": ariaLabel || title, tabIndex: -1 }, (title || eyebrow || description || onClose) && /* @__PURE__ */ React16.createElement("div", { className: "exds-drawer__head" }, /* @__PURE__ */ React16.createElement("div", { className: "exds-drawer__heading" }, eyebrow && /* @__PURE__ */ React16.createElement("span", { className: "exds-drawer__eyebrow" }, eyebrow), title && /* @__PURE__ */ React16.createElement("h2", { className: "exds-drawer__title" }, title), description && /* @__PURE__ */ React16.createElement("p", { className: "exds-drawer__description" }, description)), onClose && /* @__PURE__ */ React16.createElement("button", { type: "button", className: "exds-drawer__close", "aria-label": "Close", onClick: onClose }, "×")), /* @__PURE__ */ React16.createElement("div", { className: "exds-drawer__body" }, children), footer && /* @__PURE__ */ React16.createElement("div", { className: "exds-drawer__foot" }, footer)));
+  } }, /* @__PURE__ */ React16.createElement("aside", { ref: dialogRef, className: ["exds-drawer", className].filter(Boolean).join(" "), role: "dialog", "aria-modal": "true", "aria-label": ariaLabel || (title ? void 0 : "Dialog"), "aria-labelledby": !ariaLabel && title ? titleId : void 0, tabIndex: -1 }, (title || eyebrow || description || onClose) && /* @__PURE__ */ React16.createElement("div", { className: "exds-drawer__head" }, /* @__PURE__ */ React16.createElement("div", { className: "exds-drawer__heading" }, eyebrow && /* @__PURE__ */ React16.createElement("span", { className: "exds-drawer__eyebrow" }, eyebrow), title && /* @__PURE__ */ React16.createElement("h2", { id: titleId, className: "exds-drawer__title" }, title), description && /* @__PURE__ */ React16.createElement("p", { className: "exds-drawer__description" }, description)), onClose && /* @__PURE__ */ React16.createElement("button", { type: "button", className: "exds-drawer__close", "aria-label": "Close", onClick: onClose }, "×")), /* @__PURE__ */ React16.createElement("div", { className: "exds-drawer__body" }, children), footer && /* @__PURE__ */ React16.createElement("div", { className: "exds-drawer__foot" }, footer)));
 }
 export {
   Badge,

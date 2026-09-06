@@ -1,3 +1,4 @@
+"use strict";
 (() => {
   // components/feedback/feedback.card.jsx
   var { Badge, Button, StatusDot, SuccessState, Toast } = window.ExopterDesignSystem_4c9fc9;

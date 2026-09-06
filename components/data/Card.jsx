@@ -5,6 +5,7 @@ import React from 'react';
  * Never nest a Card inside a Card. Use `surface="carbon"` for instrument panels.
  * elevation: flat | sm | raised
  */
+/** @param {import("./Card").CardProps} props */
 export function Card({
   eyebrow, title, actions, surface = 'light', elevation = 'sm', flush = false,
   children, className = '', ...rest
