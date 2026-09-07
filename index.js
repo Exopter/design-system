@@ -2,6 +2,7 @@ export { Card } from './components/data/Card.jsx';
 export { ChecklistRow } from './components/data/ChecklistRow.jsx';
 export { MetricTile } from './components/data/MetricTile.jsx';
 export { ReadinessStrip } from './components/data/ReadinessStrip.jsx';
+export { SelectionToolbar } from './components/data/SelectionToolbar.jsx';
 export { Badge } from './components/feedback/Badge.jsx';
 export { StatusDot } from './components/feedback/StatusDot.jsx';
 export { SuccessState } from './components/feedback/SuccessState.jsx';

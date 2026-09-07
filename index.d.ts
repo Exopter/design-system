@@ -2,6 +2,7 @@ export * from './components/data/Card';
 export * from './components/data/ChecklistRow';
 export * from './components/data/MetricTile';
 export * from './components/data/ReadinessStrip';
+export * from './components/data/SelectionToolbar';
 export * from './components/feedback/Badge';
 export * from './components/feedback/StatusDot';
 export * from './components/feedback/SuccessState';

@@ -16,7 +16,7 @@ npm ci
 npm run check
 ```
 
-`npm run check` verifies that generated artifacts are current, checks all 16 component implementations and typed consumer examples against their public declarations in strict mode, runs the component and contract tests, and checks the publishable package contents. Use `npm run build` after changing components, tokens, metadata annotations, or specimen sources.
+`npm run check` verifies that generated artifacts are current, checks all component implementations and typed consumer examples against their public declarations in strict mode, runs the component and contract tests, and checks the publishable package contents. Use `npm run build` after changing components, tokens, metadata annotations, or specimen sources.
 
 ## Public package contract
 

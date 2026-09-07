@@ -18,6 +18,10 @@
       "sourcePath": "dist/index.js"
     },
     {
+      "name": "SelectionToolbar",
+      "sourcePath": "dist/index.js"
+    },
+    {
       "name": "Badge",
       "sourcePath": "dist/index.js"
     },
@@ -1205,6 +1209,9 @@
         "replaces": []
       },
       "ReadinessStrip": {
+        "replaces": []
+      },
+      "SelectionToolbar": {
         "replaces": []
       },
       "Badge": {
