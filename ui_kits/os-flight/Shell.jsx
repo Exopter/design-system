@@ -17,8 +17,8 @@
         display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '14px 0', gap: 6,
         borderRight: '1px solid var(--ex-carbon-700)',
       }}>
-        <a className="shell-home-link" href="../../index.html" title="Design system" style={{ marginBottom: 10, display: 'flex', borderRadius: 8 }}>
-          <img src="../../assets/app-icon.svg" alt="Exopter" style={{ width: 30, height: 30, borderRadius: 7 }} />
+        <a className="shell-home-link" href="../../index.html" title="Design system" aria-label="Exopter" style={{ marginBottom: 10, display: 'flex', color: 'inherit', borderRadius: 8 }}>
+          <img src="../../assets/logo-shell.svg" width={30} height={30} alt="" />
         </a>
         {ROOMS.map((r) => {
           const active = r.id === room;
