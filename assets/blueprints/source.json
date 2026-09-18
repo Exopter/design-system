@@ -1,0 +1,109 @@
+{
+  "source_file": "COM_GOO_exowing V115 3dprint 25cm 9 parts_V1_010426.3mf",
+  "source_sha256": "a5ddb9669ca903bf6cd51f6a9dd9cdcf88342df80f572ee39fcf1b096e5fbe1f",
+  "assembly_bounds_source_units": [
+    [
+      -94.17353248811035,
+      -249.99999809265137,
+      1.4013672000601218e-08
+    ],
+    [
+      94.17353436479493,
+      249.99999809265137,
+      99.49019621401368
+    ]
+  ],
+  "parts": [
+    "left-wing",
+    "right-wing",
+    "right-fin",
+    "left-fin",
+    "center-wing"
+  ],
+  "projection": "orthographic",
+  "source_modified": false,
+  "source_axes": {
+    "forward": "-X",
+    "right": "+Y",
+    "up": "+Z"
+  },
+  "cameras": {
+    "axonometric": {
+      "screen_right": [
+        0.2873478855663454,
+        -0.9578262852211513,
+        0.0
+      ],
+      "screen_up": [
+        0.4569963504119731,
+        0.13709890512359194,
+        0.8788391354076406
+      ],
+      "camera_direction": [
+        -0.8417752243744687,
+        -0.25253256731234064,
+        0.47711819717544895
+      ],
+      "visible_pixels": 555018
+    },
+    "plan": {
+      "screen_right": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "screen_up": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "camera_direction": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "visible_pixels": 1072227
+    },
+    "front": {
+      "screen_right": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "screen_up": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "camera_direction": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "visible_pixels": 118793
+    },
+    "profile": {
+      "screen_right": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "screen_up": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "camera_direction": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "visible_pixels": 231267
+    }
+  },
+  "visibility": "Per-sample depth test against all original mesh triangles at 2x output resolution.",
+  "geometry": "Original exterior meshes with assembly transforms; concealed print joiners omitted.",
+  "contours": "Depth-tested silhouettes, open boundaries and sharp surface edges.",
+  "surface_curves": "Original mesh sections at 40 and 48 source-unit intervals. Hidden tube, bore and back-surface segments are removed by the assembly depth test.",
+  "use": "Landing illustration; not a manufacturing drawing or full-scale dimension reference."
+}

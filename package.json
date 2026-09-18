@@ -9,6 +9,7 @@
     "ui_kits/**/*.jsx"
   ],
   "files": [
+    "assets/blueprints/",
     "_adherence.oxlintrc.json",
     "_ds_bundle.js",
     "_ds_manifest.json",
@@ -23,6 +24,7 @@
     "components/**/*.css"
   ],
   "exports": {
+    "./assets/blueprints/*": "./assets/blueprints/*",
     ".": {
       "types": "./index.d.ts",
       "import": "./dist/index.js"
