@@ -353,6 +353,13 @@
       "annotation": "spacing"
     },
     {
+      "name": "--ex-analysis-scene-expanded-height",
+      "value": "clamp(360px, 55vh, 680px)",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "spacing"
+    },
+    {
       "name": "--font-family-ui",
       "value": "var(--ex-font-sans)",
       "kind": "font",
@@ -1268,6 +1275,7 @@
       "--ease-out",
       "--ex-amber-100",
       "--ex-amber-500",
+      "--ex-analysis-scene-expanded-height",
       "--ex-aqua-100",
       "--ex-aqua-500",
       "--ex-carbon-700",
@@ -1401,6 +1409,7 @@
       "--ease-out": "other",
       "--ex-amber-100": "color",
       "--ex-amber-500": "color",
+      "--ex-analysis-scene-expanded-height": "spacing",
       "--ex-aqua-100": "color",
       "--ex-aqua-500": "color",
       "--ex-carbon-700": "color",

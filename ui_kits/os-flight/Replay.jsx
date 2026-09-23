@@ -2,7 +2,7 @@
 (function () {
   const { Icon } = window.OSIcons;
   const DS = window.ExopterDesignSystem_4c9fc9;
-  const { IconButton, Button, MetricTile, Badge, StatusDot } = DS;
+  const { IconButton, Button, MetricTile, StatusDot } = DS;
 
   // --- Synthetic flight samples (N points over the recording) ---
   const N = 120;
@@ -77,7 +77,6 @@
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 20px', borderBottom: '1px solid var(--ex-carbon-700)' }}>
           <IconButton icon={<Icon name="chevron-right" size={18} style={{ transform: 'rotate(180deg)' }} />} variant="ghost" label="Back to logbook" onClick={onBack} />
           <span style={{ fontFamily: 'var(--font-data)', fontVariantNumeric: 'tabular-nums', fontSize: 17, fontWeight: 600 }}>{f.id}</span>
-          <Badge tone="neutral">Replay</Badge>
           <div style={{ flex: 1 }} />
           <Button variant="secondary" iconLeft={<Icon name="activity" size={18} />}>Compare</Button>
           <Button variant="secondary" iconLeft={<Icon name="download" size={18} />}>Export FDR</Button>
