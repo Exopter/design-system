@@ -10,6 +10,8 @@
   ],
   "files": [
     "assets/blueprints/",
+    "assets/logo-*.svg",
+    "assets/app-icon.svg",
     "_adherence.oxlintrc.json",
     "_ds_bundle.js",
     "_ds_manifest.json",
@@ -35,7 +37,8 @@
     "./adherence.json": "./_adherence.oxlintrc.json",
     "./tokens/exopter-tokens.css": "./tokens/exopter-tokens.css",
     "./tokens/aliases.css": "./tokens/aliases.css",
-    "./tokens/fonts.css": "./tokens/fonts.css"
+    "./tokens/fonts.css": "./tokens/fonts.css",
+    "./assets/*": "./assets/*"
   },
   "peerDependencies": {
     "react": ">=18.3 <20"
