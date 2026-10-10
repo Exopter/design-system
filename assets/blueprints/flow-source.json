@@ -1,0 +1,28 @@
+{
+  "model": "Inviscid reduced presentation model; not validated CFD",
+  "grid_spacing": 0.09,
+  "grid_shape": [
+    101,
+    65,
+    158
+  ],
+  "angle_of_attack_deg": 5,
+  "circulation": 0.65,
+  "source_wing_sha256": "cfded70bc7a02f3174b5cbd9f168bcd269551f3ccc06ad1862aeadfa77df7240",
+  "seat_sha256": "50e47c0bfa49d3482cdb4b716d7ecef8d0aaf6bf696661b8d09f839cbf48a966",
+  "pilot_sha256": "38fdb246e784b5828b127c460b5161f4f5a16597e6432ca039ccbf59174dcf15",
+  "pressure_iterations": 309,
+  "pressure_update_residual": 1.989305019378662e-06,
+  "divergence_rms": 0.000423284072894603,
+  "divergence_max": 0.0014495849609375,
+  "retained_paths": 209,
+  "exact_surface_segments_checked": 28843,
+  "intersecting_paths_rejected": 0,
+  "no_solid_crossings": "Every retained RK2 midpoint and endpoint clears the conservatively dilated occupancy grid by 0.055 scene units",
+  "limitations": [
+    "Prescribed circulation, not solved lift or Kutta condition",
+    "Coarse voxel boundary; no boundary layer, separation or turbulence model",
+    "Archived CAD wing and seat; posed mannequin and illustrative rig fit are not qualified",
+    "No measured speeds, pressures or performance implied"
+  ]
+}

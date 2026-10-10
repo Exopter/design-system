@@ -208,6 +208,116 @@
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
+      "name": "--ex-flight-violet",
+      "value": "#9256e8",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-flight-orchid",
+      "value": "#c19aff",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-flight-magenta",
+      "value": "#dc4b9a",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-flight-amber",
+      "value": "#efab62",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-flight-shadow",
+      "value": "#15101f",
+      "kind": "shadow",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-flight-night",
+      "value": "#0a080e",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-flight-depth",
+      "value": "#100c18",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-flight-panel",
+      "value": "#15111b",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-flight-haze",
+      "value": "#281a36",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-flight-border",
+      "value": "#272030",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-flight-border-strong",
+      "value": "#3a2e44",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-flight-backdrop",
+      "value": "radial-gradient(ellipse at 78% 38%, var(--ex-flight-haze), var(--ex-flight-depth) 50%, var(--ex-flight-night) 78%)",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-flight-spectrum",
+      "value": "linear-gradient(115deg, var(--ex-flight-orchid), var(--ex-flight-magenta) 70%, var(--ex-flight-amber))",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-scene-surface",
+      "value": "#19171e",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-scene-edge",
+      "value": "var(--ex-flight-orchid)",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-scene-light",
+      "value": "var(--ex-vapor-100)",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-motion-reveal-duration",
+      "value": "800ms",
+      "kind": "other",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "other"
+    },
+    {
+      "name": "--ex-motion-reveal-ease",
+      "value": "cubic-bezier(.2, .7, .2, 1)",
+      "kind": "other",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "other"
+    },
+    {
       "name": "--ex-state-ready-bg",
       "value": "rgba(140, 255, 77, 0.18)",
       "kind": "color",
@@ -1284,6 +1394,19 @@
       "--ex-carbon-950",
       "--ex-field-100",
       "--ex-field-500",
+      "--ex-flight-amber",
+      "--ex-flight-backdrop",
+      "--ex-flight-border",
+      "--ex-flight-border-strong",
+      "--ex-flight-depth",
+      "--ex-flight-haze",
+      "--ex-flight-magenta",
+      "--ex-flight-night",
+      "--ex-flight-orchid",
+      "--ex-flight-panel",
+      "--ex-flight-shadow",
+      "--ex-flight-spectrum",
+      "--ex-flight-violet",
       "--ex-font-mono",
       "--ex-font-sans",
       "--ex-graphite-400",
@@ -1292,11 +1415,16 @@
       "--ex-hud-green",
       "--ex-line-200",
       "--ex-line-300",
+      "--ex-motion-reveal-duration",
+      "--ex-motion-reveal-ease",
       "--ex-page-width",
       "--ex-radius-instrument",
       "--ex-radius-surface",
       "--ex-red-100",
       "--ex-red-600",
+      "--ex-scene-edge",
+      "--ex-scene-light",
+      "--ex-scene-surface",
       "--ex-shadow-panel",
       "--ex-shadow-raised",
       "--ex-sky-100",
@@ -1418,6 +1546,19 @@
       "--ex-carbon-950": "color",
       "--ex-field-100": "color",
       "--ex-field-500": "color",
+      "--ex-flight-amber": "color",
+      "--ex-flight-backdrop": "color",
+      "--ex-flight-border": "color",
+      "--ex-flight-border-strong": "color",
+      "--ex-flight-depth": "color",
+      "--ex-flight-haze": "color",
+      "--ex-flight-magenta": "color",
+      "--ex-flight-night": "color",
+      "--ex-flight-orchid": "color",
+      "--ex-flight-panel": "color",
+      "--ex-flight-shadow": "shadow",
+      "--ex-flight-spectrum": "color",
+      "--ex-flight-violet": "color",
       "--ex-font-mono": "font",
       "--ex-font-sans": "font",
       "--ex-graphite-400": "color",
@@ -1426,11 +1567,16 @@
       "--ex-hud-green": "color",
       "--ex-line-200": "color",
       "--ex-line-300": "color",
+      "--ex-motion-reveal-duration": "other",
+      "--ex-motion-reveal-ease": "other",
       "--ex-page-width": "spacing",
       "--ex-radius-instrument": "radius",
       "--ex-radius-surface": "radius",
       "--ex-red-100": "color",
       "--ex-red-600": "color",
+      "--ex-scene-edge": "color",
+      "--ex-scene-light": "color",
+      "--ex-scene-surface": "color",
       "--ex-shadow-panel": "shadow",
       "--ex-shadow-raised": "shadow",
       "--ex-sky-100": "color",

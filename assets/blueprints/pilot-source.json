@@ -1,0 +1,40 @@
+{
+  "source_file": "LIBRARY/EXOPTER MEDIA/INSPIRATION/DESIGN CAD/CAD/wingsuit-pilot-1/wingsuit-pilot.stl",
+  "source_sha256": "9bc0c2441b68161ac9bb883a2926fae82d25dba9345203a2f97b41a850a3fb6a",
+  "source_modified": false,
+  "geometry": "Archived CAD mannequin, fabric wings omitted, limbs posed for rigid-wing flight; original helmet components retained",
+  "orientation": "Prone, visor and chest toward -Y, back and closed dorsal pack toward +Y",
+  "cad_translation_mm": [
+    -920,
+    0,
+    -205
+  ],
+  "pose_reference": "LIBRARY/EXOPTER MEDIA/GLIDER V115/pic_v115/pic_v115_simulation/04.jpeg",
+  "seat_reference": "April 2026 wing assembly, seat instance 132 and mounting plate 58",
+  "parachute": "Original low-profile rig with contoured textile shell, overlapping main and reserve flaps, pin covers, riser covers, webbing and ring hardware",
+  "parachute_dimensions_mm": {
+    "width": 306,
+    "length": 515,
+    "front_thickness": [
+      83,
+      95
+    ],
+    "rear_thickness": [
+      195,
+      211
+    ]
+  },
+  "harness_fit": "Full-width straps conform to posed torso and thigh meshes with a 2.5 mm base clearance; buckles follow the same body surface",
+  "parachute_references": [
+    "ENGINEERING/DEVELOPMENT/EXOWING(GLIDER)/DEV 25 Pilot Equipment and Parachutes/DEV 2520 MAIN PARACHUTE/PARACHUTE BASE/wing top view.jpeg",
+    "ENGINEERING/DEVELOPMENT/EXOWING(GLIDER)/DEV 25 Pilot Equipment and Parachutes/DEV 2520 MAIN PARACHUTE/PARACHUTE BASE/bag location side view.jpeg",
+    "ENGINEERING/DEVELOPMENT/EXOWING(GLIDER)/DEV 25 Pilot Equipment and Parachutes/DEV 2520 MAIN PARACHUTE/PARACHUTE BASE/reserve&strap layout.JPG",
+    "https://uptvector.com/fitment/"
+  ],
+  "limitations": [
+    "Mannequin articulation and equipment fit are visual approximations",
+    "The rig is an original presentation model, not manufacturer CAD or a selected parachute configuration",
+    "Simulation images inform posture; no CFD field or qualification is inferred"
+  ],
+  "sha256": "38fdb246e784b5828b127c460b5161f4f5a16597e6432ca039ccbf59174dcf15"
+}
