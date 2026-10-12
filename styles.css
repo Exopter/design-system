@@ -17,6 +17,7 @@
 @import "components/feedback/StatusDot.css";
 @import "components/feedback/SuccessState.css";
 @import "components/feedback/Toast.css";
+@import "components/feedback/FeedbackPopover.css";
 @import "components/forms/Button.css";
 @import "components/forms/IconButton.css";
 @import "components/forms/Input.css";

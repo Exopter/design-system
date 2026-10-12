@@ -34,7 +34,8 @@ describe('package consumers', () => {
   it('ships every component stylesheet through the existing global entrypoint', async () => {
     const css = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
     const references = [...css.matchAll(/@import "(components\/[^"?]+\.css)"/g)].map((match) => match[1]);
-    expect(references).toHaveLength(19);
+    expect(references).toHaveLength(20);
+    expect(references).toContain('components/feedback/FeedbackPopover.css');
     for (const reference of references) {
       const rules = await readFile(new URL(`../${reference}`, import.meta.url), 'utf8');
       expect(rules).toMatch(/\.exds-/);
