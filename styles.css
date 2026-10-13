@@ -13,6 +13,7 @@
 @import "components/data/MetricTile.css";
 @import "components/data/ReadinessStrip.css";
 @import "components/data/SelectionToolbar.css";
+@import "components/data/ColumnBrowser.css";
 @import "components/feedback/Badge.css";
 @import "components/feedback/StatusDot.css";
 @import "components/feedback/SuccessState.css";

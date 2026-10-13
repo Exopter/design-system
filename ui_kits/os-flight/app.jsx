@@ -3,7 +3,6 @@ import './Shell.jsx';
 import './Logbook.jsx';
 import './Replay.jsx';
 import './FlightPrep.jsx';
-import './Hud.jsx';
 import './Hangar.jsx';
 import './Signal.jsx';
 
@@ -11,14 +10,12 @@ const { Shell } = window.OSShell;
 const { Logbook, INITIAL_FLIGHTS } = window.OSLogbook;
 const { Replay } = window.OSReplay;
 const { FlightPrep } = window.OSFlightPrep;
-const { Hud } = window.OSHud;
 const { Hangar } = window.OSHangar;
 const { Signal } = window.OSSignal;
 
 const SUBTABS = [
   { id: 'logbook', label: 'Flights' },
   { id: 'prep', label: 'Flight prep' },
-  { id: 'hud', label: 'HUD' },
 ];
 
 function App() {
@@ -72,7 +69,6 @@ function App() {
   if (room === 'flight') {
     if (sub === 'prep') { title = 'Flight prep'; crumb = 'Pre-flight'; }
     if (sub === 'replay') { title = flight ? flight.id : 'Replay'; crumb = 'Replay & analysis'; }
-    if (sub === 'hud') { title = 'HUD preview'; crumb = 'Pilot display'; }
   } else if (room === 'hangar') {
     title = 'Fleet configuration'; crumb = 'Hangar';
   } else if (room === 'signal') {
@@ -96,7 +92,6 @@ function App() {
         </div>
         {sub === 'logbook' && <Logbook flights={flights} onFlightsChange={setFlights} onOpen={openFlight} onOpenSignal={openSignalForFlight} />}
         {sub === 'prep' && <FlightPrep />}
-        {sub === 'hud' && <Hud />}
       </div>
     );
   }
