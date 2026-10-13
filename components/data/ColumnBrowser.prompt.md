@@ -15,6 +15,11 @@ swatch buttons show the selected colour with a checkmark and visible focus.
 Clicking applies and saves immediately, without a dialog, name field or Save
 button. Preserve navigation and selection; restore the previous colour and show
 an inline error if saving fails. Escape and outside click dismiss the palette.
+During folder creation, show the same six colours as native radio swatches in an
+`exds-browser-color-field` fieldset labelled Color, with Slate selected by default.
+Use `exds-browser-color-radio` labels with 44px targets, a selection checkmark and
+visible keyboard focus. Submit the chosen colour with Create folder and preserve
+it when another field fails validation.
 
 Use real links for progressive navigation, native named checkboxes for bulk
 selection, and a labelled move form as the keyboard/touch alternative to drag
