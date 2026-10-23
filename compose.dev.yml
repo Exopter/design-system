@@ -1,0 +1,109 @@
+name: exopter-design-system-dev
+services:
+  app:
+    image: exopter-design-system-dev:local
+    build: &id001
+      context: .
+      dockerfile: Dockerfile.dev
+    init: true
+    environment: &id002
+      EMAIL_ENABLED: 'false'
+      BACKUPS_ENABLED: 'false'
+      MONITORING_ENABLED: 'false'
+      PORT: '3103'
+    stop_grace_period: 10s
+    command: &id003
+    - node
+    - --watch
+    - scripts/dev-server.mjs
+    ports:
+    - 127.0.0.1:3103:3103
+    volumes:
+    - storage:/app/storage
+    - app_tmp:/app/tmp
+    - app_log:/app/log
+    healthcheck:
+      test:
+      - CMD
+      - node
+      - -e
+      - fetch('http://127.0.0.1:3103/up').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))
+      interval: 5s
+      timeout: 10s
+      start_period: 45s
+      retries: 24
+    develop:
+      watch:
+      - action: sync
+        path: .
+        target: /app
+        initial_sync: true
+        ignore:
+        - .git/
+        - .env*
+        - .kamal/
+        - .bundle/
+        - node_modules/
+        - vendor/bundle/
+        - .venv/
+        - tmp/
+        - log/
+        - storage/
+        - coverage/
+        - Dockerfile*
+        - compose*.yml
+        - script/dev.ps1
+        - package.json
+        - package-lock.json
+      - action: rebuild
+        path: package.json
+      - action: rebuild
+        path: package-lock.json
+  workspace:
+    image: exopter-design-system-dev:local
+    build: *id001
+    init: true
+    environment: *id002
+    stop_grace_period: 10s
+    command: *id003
+    profiles: &id004
+    - tools
+    volumes: &id005
+    - ./.:/app
+    - storage:/app/storage
+    - /app/tmp
+    - /app/log
+    - /app/node_modules
+  prepare:
+    image: exopter-design-system-dev:local
+    build: *id001
+    init: true
+    environment: *id002
+    stop_grace_period: 10s
+    command:
+    - sh
+    - -c
+    - 'true'
+    profiles: *id004
+    volumes: *id005
+  check:
+    image: exopter-design-system-dev:local
+    build: *id001
+    init: true
+    environment:
+      EMAIL_ENABLED: 'false'
+      BACKUPS_ENABLED: 'false'
+      MONITORING_ENABLED: 'false'
+      PORT: '3103'
+      CI: 'true'
+    stop_grace_period: 10s
+    command:
+    - sh
+    - -c
+    - npm run check
+    profiles:
+    - tools
+volumes:
+  storage: {}
+  app_tmp: {}
+  app_log: {}

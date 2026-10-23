@@ -53,3 +53,25 @@ The export is byte-for-byte identical to the canonical source. Consumer reposito
 - `tests/`: component accessibility and generated-contract tests.
 
 Open `index.html` through a local static server to browse the catalogue. Product screens must reuse shared tokens and components; record new product or design decisions in Notion before extending the executable implementation.
+
+
+## Windows Compose Watch
+
+The [workspace Windows development workflow](../../guidelines/windows-development.md) keeps this checkout in
+Windows and runs compatible development tools in Linux. Start from this project root:
+
+```powershell
+.\script\dev.ps1 up
+.\script\dev.ps1 status
+.\script\dev.ps1 run npm run build
+.\script\dev.ps1 ci
+.\script\dev.ps1 down
+```
+
+Open http://localhost:3103/. Generated source, schemas, lockfiles and exported
+artifacts written through `run` land directly in this Windows checkout. Use `npm`
+(or `pnpm`) for dependency-aware tool commands. Local data uses dedicated Docker
+volumes, retained by `down`; existing native data is not imported automatically.
+
+Run `.\script\dev.ps1 npm run build` to regenerate committed package exports in
+Windows; Watch then synchronizes those files to the preview server.

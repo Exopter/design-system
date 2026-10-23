@@ -1,5 +1,5 @@
 /* ============================================================
-   Exopter — canonical low-level design tokens.
+   Exopter canonical low-level design tokens.
    This file is the source of truth exported verbatim to product repositories.
    Change it here, regenerate this package, then synchronize consumers.
    ============================================================ */
@@ -28,6 +28,13 @@
   --ex-amber-500: #f2a23a;
   --ex-red-600: #e63b35;
   --ex-violet-500: #6658c7;
+
+  --ex-instrument-sky: #102936;
+  --ex-instrument-ground: #151f20;
+  --ex-instrument-line: #53676d;
+  --ex-instrument-muted: #95a6aa;
+  --ex-telemetry-live: var(--ex-aqua-500);
+  --ex-telemetry-no-data: var(--ex-amber-500);
 
   --ex-flight-violet: #9256e8;
   --ex-flight-orchid: #c19aff;

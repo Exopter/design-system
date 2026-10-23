@@ -34,7 +34,11 @@ describe('package consumers', () => {
   it('ships every component stylesheet through the existing global entrypoint', async () => {
     const css = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
     const references = [...css.matchAll(/@import "(components\/[^"?]+\.css)"/g)].map((match) => match[1]);
-    expect(references).toHaveLength(23);
+    expect(references).toHaveLength(27);
+    expect(references).toContain('components/forms/IconButtonEdge.css');
+    expect(references).toContain('components/illustration/CalibrationGuide.css');
+    expect(references).toContain('components/data/SignalStrength.css');
+    expect(references).toContain('components/data/RecorderWorkspace.css');
     expect(references).toContain('components/data/CommentThread.css');
     expect(references).toContain('components/data/SessionHistory.css');
     expect(references).toContain('components/data/ColumnBrowser.css');
