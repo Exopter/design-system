@@ -34,7 +34,17 @@ describe('package consumers', () => {
   it('ships every component stylesheet through the existing global entrypoint', async () => {
     const css = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
     const references = [...css.matchAll(/@import "(components\/[^"?]+\.css)"/g)].map((match) => match[1]);
-    expect(references).toHaveLength(20);
+    expect(references).toHaveLength(29);
+    expect(references).toContain('components/data/HierarchyBrowser.css');
+    expect(references).toContain('components/data/Kanban.css');
+    expect(references).toContain('components/forms/IconButtonEdge.css');
+    expect(references).toContain('components/illustration/CalibrationGuide.css');
+    expect(references).toContain('components/data/SignalStrength.css');
+    expect(references).toContain('components/data/RecorderWorkspace.css');
+    expect(references).toContain('components/data/CommentThread.css');
+    expect(references).toContain('components/data/SessionHistory.css');
+    expect(references).toContain('components/data/ColumnBrowser.css');
+    expect(references).toContain('components/feedback/FeedbackPopover.css');
     for (const reference of references) {
       const rules = await readFile(new URL(`../${reference}`, import.meta.url), 'utf8');
       expect(rules).toMatch(/\.exds-/);

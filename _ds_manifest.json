@@ -208,6 +208,42 @@
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
+      "name": "--ex-instrument-sky",
+      "value": "#102936",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-instrument-ground",
+      "value": "#151f20",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-instrument-line",
+      "value": "#53676d",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-instrument-muted",
+      "value": "#95a6aa",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-telemetry-live",
+      "value": "var(--ex-aqua-500)",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-telemetry-no-data",
+      "value": "var(--ex-amber-500)",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
       "name": "--ex-flight-violet",
       "value": "#9256e8",
       "kind": "color",
@@ -1413,6 +1449,10 @@
       "--ex-graphite-500",
       "--ex-graphite-600",
       "--ex-hud-green",
+      "--ex-instrument-ground",
+      "--ex-instrument-line",
+      "--ex-instrument-muted",
+      "--ex-instrument-sky",
       "--ex-line-200",
       "--ex-line-300",
       "--ex-motion-reveal-duration",
@@ -1448,6 +1488,8 @@
       "--ex-state-pending-text",
       "--ex-state-ready-bg",
       "--ex-state-ready-text",
+      "--ex-telemetry-live",
+      "--ex-telemetry-no-data",
       "--ex-vapor-100",
       "--ex-vapor-150",
       "--ex-vapor-200",
@@ -1565,6 +1607,10 @@
       "--ex-graphite-500": "color",
       "--ex-graphite-600": "color",
       "--ex-hud-green": "color",
+      "--ex-instrument-ground": "color",
+      "--ex-instrument-line": "color",
+      "--ex-instrument-muted": "color",
+      "--ex-instrument-sky": "color",
       "--ex-line-200": "color",
       "--ex-line-300": "color",
       "--ex-motion-reveal-duration": "other",
@@ -1600,6 +1646,8 @@
       "--ex-state-pending-text": "color",
       "--ex-state-ready-bg": "color",
       "--ex-state-ready-text": "color",
+      "--ex-telemetry-live": "color",
+      "--ex-telemetry-no-data": "color",
       "--ex-vapor-100": "color",
       "--ex-vapor-150": "color",
       "--ex-vapor-200": "color",
