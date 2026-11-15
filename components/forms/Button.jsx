@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * Exopter Button — primary operational control.
- * variant: primary | secondary | ghost | danger
+ * variant: primary | secondary | ghost | danger | danger-solid
  * size: sm | md | lg
  */
 /** @param {import("./Button").ButtonProps} props */
