@@ -7,26 +7,35 @@ const addDownload = (filename, source) => {
   link.download = filename;
   link.href = source;
   link.textContent = `Download ${filename}`;
+  const preview = document.createElement('img');
+  preview.src = source;
+  preview.alt = filename;
+  preview.width = 560;
+  document.querySelector('#downloads').append(preview);
   document.querySelector('#downloads').append(link);
 };
 
 try {
   await document.fonts.ready;
-  const card = await createMembershipCard(document.querySelector('#scene'), {
-    name: '', memberNumber: 1, tier: 'pioneer', since: '', personal: false,
-    surface: '#070b0d',
-    assets: {
-      wordmark: '../../assets/logo-wordmark.svg',
-      monogram: '../../assets/exopter-ex-flight-trails/exopter-ex-flight-trails.svg',
-      wing: '../../assets/blueprints/exowing-axonometric.svg',
-    },
-  });
   for (const tier of Object.keys(RANKS)) {
+    const card = await createMembershipCard(document.querySelector('#scene'), {
+      name: '', memberNumber: 1, tier, since: '', personal: false,
+      // A light studio backing reveals the crystal instead of absorbing its color.
+      surface: '#f5f4f0',
+      assets: {
+        wordmark: '../../assets/logo-wordmark.svg',
+        monogram: '../../assets/exopter-ex-flight-trails/exopter-ex-flight-trails.svg',
+        wing: '../../assets/blueprints/exowing-axonometric.svg',
+      },
+    });
+    // Let the rank's physical materials and transmission pass initialize.
+    await new Promise(requestAnimationFrame);
+    await new Promise(requestAnimationFrame);
     const source = card.snapshot({ tier, background: '#070b0d', type: 'image/jpeg', quality: .94 });
     if (!source) throw new Error(`Card did not render: ${tier}`);
     addDownload(`card-${tier}.jpg`, source);
+    card.dispose();
   }
-  card.dispose();
   const logo = new Image();
   logo.src = '../../assets/logo-wordmark.svg';
   await logo.decode();
