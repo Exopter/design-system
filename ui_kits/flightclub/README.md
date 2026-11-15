@@ -1,6 +1,6 @@
 # Flight Club membership specimen
 
-Standalone Three.js design study. Uses the canonical Aptos fonts, Exopter wordmark and Flight palette. No backend, email delivery, membership permissions, billing or flight recording is connected. All member data is a mock fixture.
+Standalone Three.js design study. Uses the canonical Aptos fonts, Exopter wordmark, EX flight-trails monogram and Exowing axonometric blueprint. No backend, email delivery, membership permissions, billing or flight recording is connected. All member data is a mock fixture.
 
 From the repository root:
 
@@ -12,6 +12,8 @@ python3 -m http.server 3117 --bind 127.0.0.1
 Open `http://127.0.0.1:3117/ui_kits/flightclub/`. Stop the preview with Ctrl+C.
 
 The card has beveled geometry, a machined rank insignia, physical materials, environment lighting, pointer tilt, drag rotation, a reverse face and a replayable welcome. The account dialog demonstrates persistent Pioneer identity. Future rank buttons preview Explorer (20K), Pathfinder (50K) and Trailblazer (100K) without changing the account's Pioneer status. Threshold units and eligibility rules are intentionally undefined in this visual study.
+
+The carbon substrate carries the existing Exowing illustration as a low-contrast engraving. Wordmark, EX monogram, Flight Club lettering and the enlarged rank label use separate metallic inlays with brushed bump textures and angle-driven reflection bands. Pioneer combines violet titanium, a spatially varying interference film and etched shield contours. Future finishes are brushed copper (Explorer), champagne gold (Pathfinder) and platinum titanium (Trailblazer). These are material previews, not membership eligibility changes. The account thumbnail is captured from the same Pioneer scene.
 
 Reduced motion suppresses idle float, pointer tilt and the reveal spin. The scene pauses in hidden tabs and provides a static fallback if WebGL initialization fails. Core card actions have keyboard-accessible buttons and announcements.
 

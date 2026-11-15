@@ -4,10 +4,10 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 const host = document.querySelector('#card-scene');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const ranks = {
-  pioneer: { label: 'Pioneer', color: '#c4a0f0', edge: '#91809f', stripes: 1, numeral: 'Ⅰ' },
-  explorer: { label: 'Explorer', color: '#9acddd', edge: '#6e9fba', stripes: 2, numeral: 'Ⅱ' },
-  pathfinder: { label: 'Pathfinder', color: '#dfc18d', edge: '#b5a072', stripes: 3, numeral: 'Ⅲ' },
-  trailblazer: { label: 'Trailblazer', color: '#e5ad9f', edge: '#c08d8b', stripes: 4, numeral: 'Ⅳ' },
+  pioneer: { label: 'Pioneer', finish: 'Iridescent titanium', color: '#c1a7df', edge: '#9274ba', metal: '#d0b3ee', stripes: 1, numeral: 'Ⅰ' },
+  explorer: { label: 'Explorer', finish: 'Brushed copper', color: '#d6a48a', edge: '#b77a58', metal: '#d8a080', stripes: 2, numeral: 'Ⅱ' },
+  pathfinder: { label: 'Pathfinder', finish: 'Champagne gold', color: '#d4c396', edge: '#ae9866', metal: '#e2cc90', stripes: 3, numeral: 'Ⅲ' },
+  trailblazer: { label: 'Trailblazer', finish: 'Platinum titanium', color: '#cbd1d8', edge: '#8f9aa8', metal: '#e2e7ef', stripes: 4, numeral: 'Ⅳ' },
 };
 let activeRank = 'pioneer';
 let flipped = false;
@@ -57,7 +57,15 @@ document.querySelectorAll('[data-rank]').forEach((button) => button.addEventList
 let frontMaterial;
 let insignia;
 let card;
+let letteringMaterial;
+let rankMaterial;
+let surfaceGrain;
+let foilGrain;
+let interferenceMap;
+const foilSweep = { value: 0 };
+const rankTint = { value: new THREE.Color(ranks.pioneer.color) };
 const frontMaps = new Map();
+const rankMaps = new Map();
 const disposable = [];
 
 function setRank(key) {
@@ -70,10 +78,18 @@ function setRank(key) {
   document.querySelectorAll('[data-rank]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.rank === key)));
   // Future rank previews never change the mock member's actual Pioneer status.
   host.setAttribute('aria-label', `${rank.label} membership card design preview. Julien Blancher, member 0001. ${key === 'pioneer' ? 'Current founding edition.' : 'Future concept only.'}`);
-  document.querySelector('.object-caption .muted').textContent = key === 'pioneer' ? 'IRIDESCENT INSIGNIA / FIRST EDITION' : 'IRIDESCENT INSIGNIA / FUTURE CONCEPT';
+  document.querySelector('.object-caption > .micro').textContent = rank.finish.toUpperCase();
+  document.querySelector('.object-caption .muted').textContent = key === 'pioneer' ? 'CARBON WEAVE / FOUNDING EDITION' : 'CARBON WEAVE / FUTURE CONCEPT';
   if (sceneReady) {
     frontMaterial.map = frontMaps.get(key);
     frontMaterial.needsUpdate = true;
+    rankMaterial.map = rankMaps.get(key);
+    rankMaterial.emissiveMap = rankMaps.get(key);
+    rankMaterial.color.set(rank.metal);
+    rankMaterial.emissive.set(rank.color);
+    rankTint.value.set(rank.color);
+    rankMaterial.iridescence = key === 'pioneer' ? .8 : 0;
+    rankMaterial.needsUpdate = true;
     buildInsignia(rank);
   }
   announce(`${rank.label} ${key === 'pioneer' ? 'founding edition' : 'future concept'} preview selected.`);
@@ -117,9 +133,12 @@ function buildInsignia(rank) {
   }
   insignia = new THREE.Group();
   insignia.position.set(2.16, .24, .12);
-  const rimMaterial = new THREE.MeshPhysicalMaterial({ color: rank.color, metalness: .97, roughness: .22, iridescence: 1, iridescenceIOR: 1.45, iridescenceThicknessMinimum: 180, iridescenceThicknessMaximum: 480, clearcoat: 1 });
-  const innerMaterial = new THREE.MeshPhysicalMaterial({ color: '#232028', metalness: .8, roughness: .36, clearcoat: 1 });
-  const metalMaterial = new THREE.MeshPhysicalMaterial({ color: '#eee8f6', metalness: 1, roughness: .21, iridescence: .55, iridescenceThicknessMinimum: 150, iridescenceThicknessMaximum: 380 });
+  const isPioneer = rank === ranks.pioneer;
+  const rimMaterial = new THREE.MeshPhysicalMaterial({ color: rank.metal, metalness: 1, roughness: .23, bumpMap: foilGrain, bumpScale: .018, anisotropy: .75, iridescence: isPioneer ? 1 : 0, iridescenceIOR: 1.38, iridescenceThicknessMap: interferenceMap, iridescenceThicknessMinimum: 180, iridescenceThicknessMaximum: 620, clearcoat: 1, envMapIntensity: 1.6 });
+  const innerMaterial = new THREE.MeshPhysicalMaterial({ color: isPioneer ? '#35233e' : '#17181a', metalness: .8, roughness: .39, bumpMap: surfaceGrain, bumpScale: .018, clearcoat: .65, iridescence: isPioneer ? .23 : 0, iridescenceThicknessMap: interferenceMap, iridescenceThicknessMinimum: 300, iridescenceThicknessMaximum: 470, envMapIntensity: .75 });
+  const metalMaterial = rimMaterial.clone();
+  metalMaterial.color.set(isPioneer ? '#ded0ee' : rank.metal);
+  metalMaterial.roughness = .24;
   const shieldPoints = [[0, 1.38], [1.05, .94], [.91, -.65], [0, -1.32], [-.91, -.65], [-1.05, .94]];
   const extrusion = { depth: .035, bevelEnabled: true, bevelThickness: .024, bevelSize: .025, bevelSegments: 3, steps: 1 };
   const shield = new THREE.Mesh(new THREE.ExtrudeGeometry(polygon(shieldPoints), extrusion), rimMaterial);
@@ -127,6 +146,14 @@ function buildInsignia(rank) {
   const inner = new THREE.Mesh(new THREE.ExtrudeGeometry(polygon(shieldPoints.map(([x, y]) => [x * .943, y * .943])), extrusion), innerMaterial);
   inner.position.z = .043;
   insignia.add(inner);
+  // Fine concentric machining catches the light around the rank device.
+  for (let index = 0; index < 7; index++) {
+    const scale = .88 - index * .046;
+    const points = shieldPoints.map(([x, y]) => new THREE.Vector3(x * scale, y * scale, .101));
+    points.push(points[0].clone());
+    const outline = new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), new THREE.LineBasicMaterial({ color: rank.edge, transparent: true, opacity: .16 - index * .012 }));
+    insignia.add(outline);
+  }
   // Each rank adds a machined chevron to the same shield silhouette.
   const stripeCount = rank.stripes;
   for (let index = 0; index < stripeCount; index++) {
@@ -159,17 +186,118 @@ function text(ctx, content, x, y, size, color = '#ede9f2', family = 'Aptos', wei
   ctx.letterSpacing = '0px';
 }
 
-function makeTexture(rank, reverse, logo) {
+function canvasTexture(canvas, color = true) {
+  const texture = new THREE.CanvasTexture(canvas);
+  if (color) texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 8;
+  disposable.push(texture);
+  return texture;
+}
+
+function makeGrain(interference = false) {
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = 512;
+  const ctx = canvas.getContext('2d');
+  const pixels = ctx.createImageData(512, 512);
+  for (let y = 0; y < 512; y++) for (let x = 0; x < 512; x++) {
+    const noise = ((x * 73 + y * 179 + x * y * 3) % 101) / 100;
+    const wave = Math.sin(x * .019 + y * .012 + Math.sin(y * .016) * 2.4);
+    const value = interference ? 128 + wave * 48 + noise * 18 : 125 + Math.sin(y * 1.7) * 19 + noise * 16;
+    const index = (y * 512 + x) * 4;
+    pixels.data[index] = pixels.data[index + 1] = pixels.data[index + 2] = value;
+    pixels.data[index + 3] = 255;
+  }
+  ctx.putImageData(pixels, 0, 0);
+  const texture = canvasTexture(canvas, false);
+  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  if (!interference) texture.repeat.set(3, 3);
+  return texture;
+}
+
+function makeFoil(logo, monogram, rank) {
+  const canvas = document.createElement('canvas');
+  canvas.width = 2048;canvas.height = 1292;
+  const ctx = canvas.getContext('2d');
+  if (rank) {
+    text(ctx, rank.label.toUpperCase(), 128, 824, 55, '#ffffff', 'Aptos Mono', 400, 7);
+  } else {
+    ctx.drawImage(logo, 125, 115, 370, 37);
+    ctx.drawImage(monogram, 1710, 101, 210, 73);
+    text(ctx, 'FLIGHT', 116, 490, 192, '#ffffff', 'Aptos Display', 400, -7);
+    text(ctx, 'CLUB.', 116, 674, 192, '#ffffff', 'Aptos Display', 400, -7);
+  }
+  // Printed tonal bands support the real environment reflections at the resting angle.
+  ctx.globalCompositeOperation = 'source-in';
+  const foil = ctx.createLinearGradient(0, 180, 1200, 920);
+  [[0, '#f4f5f7'], [.22, '#c0c6d0'], [.38, '#79828f'], [.49, '#eef5ff'], [.52, '#ffffff'], [.6, '#9ba7b7'], [.75, '#e5e8eb'], [1, '#949dab']].forEach(([offset, color]) => foil.addColorStop(offset, color));
+  ctx.fillStyle = foil;ctx.fillRect(0, 0, 2048, 1292);
+  ctx.globalCompositeOperation = 'source-atop';
+  for (let y = 0; y < 1292; y += 2) {
+    ctx.fillStyle = y % 6 === 0 ? '#ffffff16' : '#11182710';ctx.fillRect(0, y, 2048, 1);
+  }
+  return canvasTexture(canvas);
+}
+
+function addFoilHighlights(material, tint) {
+  material.onBeforeCompile = (shader) => {
+    shader.uniforms.uFoilSweep = foilSweep;
+    shader.uniforms.uFoilTint = tint;
+    shader.fragmentShader = `uniform float uFoilSweep;\nuniform vec3 uFoilTint;\n${shader.fragmentShader}`;
+    shader.fragmentShader = shader.fragmentShader.replace('#include <emissivemap_fragment>', `
+      #include <emissivemap_fragment>
+      float foilPosition = vMapUv.y * 10.0 + vMapUv.x * 3.0 + uFoilSweep;
+      float foilHighlight = pow(0.5 + 0.5 * sin(foilPosition), 12.0);
+      float foilBrush = sin(vMapUv.y * 3400.0) * 0.012;
+      totalEmissiveRadiance += uFoilTint * (0.11 + foilHighlight * 0.55 + foilBrush);
+    `);
+  };
+  material.customProgramCacheKey = () => 'flightclub-brushed-foil';
+}
+
+function drawEngraving(ctx, wing, reverse, rank) {
+  ctx.save();
+  ctx.beginPath();ctx.rect(65, 200, 1918, reverse ? 360 : 735);ctx.clip();
+  ctx.globalAlpha = reverse ? .24 : .52;
+  ctx.drawImage(wing, reverse ? 1010 : 520, reverse ? 135 : 205, reverse ? 930 : 1510, reverse ? 542 : 881);
+  ctx.globalAlpha = .13;
+  ctx.strokeStyle = rank.color;
+  ctx.lineWidth = 1;
+  ctx.setLineDash([3, 12]);
+  ctx.beginPath();ctx.moveTo(1110, 215);ctx.lineTo(1110, 927);ctx.moveTo(690, 535);ctx.lineTo(1940, 535);ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.globalAlpha = .65;
+  text(ctx, 'EXOWING / AXONOMETRIC STUDY', 1070, reverse ? 560 : 936, 15, '#a899ba', 'Aptos Mono', 400, 3);
+  ctx.restore();
+}
+
+function makeTexture(rank, reverse, logo, wing) {
   const canvas = document.createElement('canvas');
   canvas.width = 2048;
   canvas.height = 1292;
   const ctx = canvas.getContext('2d');
   const gradient = ctx.createLinearGradient(0, 0, 2048, 1292);
-  gradient.addColorStop(0, '#24212a');
-  gradient.addColorStop(.4, '#141118');
-  gradient.addColorStop(1, '#0c0b10');
+  gradient.addColorStop(0, '#17181c');
+  gradient.addColorStop(.48, '#0b0d11');
+  gradient.addColorStop(1, '#17121c');
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, 2048, 1292);
+  // Twilled carbon bundles are a subtle substrate, not a flat colored fill.
+  ctx.save();ctx.translate(1024, 646);ctx.rotate(-Math.PI / 4);
+  for (let y = -1600; y < 1600; y += 24) for (let x = -1600; x < 1600; x += 24) {
+    const horizontal = (Math.floor(x / 24) + Math.floor(y / 24)) % 4 < 2;
+    const weave = ctx.createLinearGradient(x, y, horizontal ? x : x + 24, horizontal ? y + 24 : y);
+    weave.addColorStop(0, '#88839003');weave.addColorStop(.48, '#b9b3c514');weave.addColorStop(1, '#03040812');
+    ctx.fillStyle = weave;ctx.fillRect(x + 1, y + 1, 22, 22);
+    ctx.strokeStyle = '#c7c0d008';ctx.lineWidth = .7;
+    for (let fiber = 4; fiber < 23; fiber += 4) {
+      ctx.beginPath();ctx.moveTo(x + (horizontal ? 1 : fiber), y + (horizontal ? fiber : 1));
+      ctx.lineTo(x + (horizontal ? 23 : fiber), y + (horizontal ? fiber : 23));ctx.stroke();
+    }
+  }
+  ctx.restore();
+  const haze = ctx.createRadialGradient(1580, 610, 0, 1580, 610, 980);
+  haze.addColorStop(0, `${rank.edge}27`);haze.addColorStop(1, `${rank.edge}00`);
+  ctx.fillStyle = haze;ctx.fillRect(0, 0, 2048, 1292);
   // Deterministic micrograin keeps the printed finish stable across redraws.
   for (let row = 0; row < 1292; row += 3) {
     ctx.fillStyle = `rgba(235,221,255,${.008 + (row * 17 % 11) / 1200})`;
@@ -178,6 +306,8 @@ function makeTexture(rank, reverse, logo) {
   ctx.strokeStyle = '#8b819329';
   ctx.lineWidth = 1.3;
   ctx.strokeRect(45, 45, 1958, 1202);
+  ctx.strokeStyle = '#ffffff08';ctx.strokeRect(58, 58, 1932, 1176);
+  drawEngraving(ctx, wing, reverse, rank);
   if (reverse) {
     ctx.save();ctx.globalAlpha = .8;ctx.drawImage(logo, 124, 112, 330, 33);ctx.restore();
     text(ctx, 'THE SKY IS ONLY', 124, 345, 90, '#e6dfed', 'Aptos Display');
@@ -194,8 +324,7 @@ function makeTexture(rank, reverse, logo) {
     text(ctx, 'FC 0001 / PIONEER / NOV 2026', 128, 1150, 23, '#9d90ac', 'Aptos Mono', 400, 2);
     text(ctx, 'DESIGN PREVIEW', 1630, 1150, 18, '#9d90ac', 'Aptos Mono', 400, 2);
   } else {
-    ctx.save();ctx.globalAlpha = .9;ctx.drawImage(logo, 125, 115, 370, 37);ctx.restore();
-    text(ctx, 'MEMBER OF THE FIRST CHAPTER', 1190, 145, 20, '#b0a3bc', 'Aptos Mono', 400, 3);
+    text(ctx, 'THE FIRST CHAPTER / 001', 1060, 145, 19, '#b0a3bc', 'Aptos Mono', 400, 3);
     // Fine concentric engravings echo altitude rings and the insignia's trajectory.
     ctx.save();ctx.beginPath();ctx.rect(1040, 210, 900, 740);ctx.clip();
     for (let index = 0; index < 12; index++) {
@@ -203,9 +332,7 @@ function makeTexture(rank, reverse, logo) {
       ctx.strokeStyle = index % 3 === 0 ? '#b49bc71b' : '#b49bc70d';ctx.stroke();
     }
     ctx.restore();
-    text(ctx, 'FLIGHT', 116, 490, 192, '#f4eefb', 'Aptos Display', 400, -7);
-    text(ctx, 'CLUB.', 116, 674, 192, '#f4eefb', 'Aptos Display', 400, -7);
-    text(ctx, rank.label.toUpperCase(), 128, 801, 26, rank.color, 'Aptos Mono', 400, 10);
+    text(ctx, rank.finish.toUpperCase(), 130, 887, 17, '#a79aad', 'Aptos Mono', 400, 4);
     ctx.fillStyle = '#9a89ab55';ctx.fillRect(127, 965, 1794, 1);
     text(ctx, 'JULIEN BLANCHER', 128, 1067, 43, '#f0eaf6', 'Aptos', 400, 1);
     text(ctx, 'FOUNDING MEMBER', 128, 1138, 20, '#a79aad', 'Aptos Mono', 400, 4);
@@ -213,21 +340,28 @@ function makeTexture(rank, reverse, logo) {
     text(ctx, '0001', 1707, 1138, 48, '#e8deef', 'Aptos Mono', 400, 2);
     text(ctx, 'EST. 2026', 1302, 893, 17, '#a79aad', 'Aptos Mono', 400, 5);
   }
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.colorSpace = THREE.SRGBColorSpace;
-  texture.anisotropy = 8;
-  disposable.push(texture);
-  return texture;
+  return canvasTexture(canvas);
 }
 
 async function init() {
   await Promise.all([document.fonts.load('400 32px Aptos'), document.fonts.load('400 32px "Aptos Display"'), document.fonts.load('400 32px "Aptos Mono"')]);
-  const logo = new Image();
-  // Reuse the canonical wordmark, recolored only for printing on a dark surface.
-  const logoSource = await (await fetch('../../assets/logo-wordmark.svg')).text();
-  const logoUrl = URL.createObjectURL(new Blob([logoSource.replaceAll('#000000', '#eee6f7')], { type: 'image/svg+xml' }));
-  logo.src = logoUrl;
-  await logo.decode();
+  const loadVector = async (path, recolor) => {
+    const response = await fetch(path);
+    if (!response.ok) throw new Error(`Could not load illustration: ${path}`);
+    const source = recolor(await response.text());
+    const url = URL.createObjectURL(new Blob([source], { type: 'image/svg+xml' }));
+    try {
+      const image = new Image();image.src = url;await image.decode();return image;
+    } finally { URL.revokeObjectURL(url); }
+  };
+  const [logo, monogram, wing] = await Promise.all([
+    loadVector('../../assets/logo-wordmark.svg', (source) => source.replaceAll('#000000', '#ffffff')),
+    loadVector('../../assets/exopter-ex-flight-trails/exopter-ex-flight-trails.svg', (source) => source.replaceAll('#141414', '#ffffff')),
+    loadVector('../../assets/blueprints/exowing-axonometric.svg', (source) => source.replaceAll('#10181a', 'none').replaceAll('#2fd6c6', '#b6a6c9').replaceAll('stroke-width="1.6"', 'stroke-width="2.2"')),
+  ]);
+  surfaceGrain = makeGrain();
+  foilGrain = makeGrain();
+  interferenceMap = makeGrain(true);
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setClearColor(0x000000, 0);
@@ -239,13 +373,18 @@ async function init() {
   camera.position.set(0, 0, 13.4);
   const pmrem = new THREE.PMREMGenerator(renderer);
   const room = new RoomEnvironment();
+  // Long studio softboxes produce broad, moving highlights on the metal inlays.
+  for (const [x, y, z, w, h, intensity] of [[-5, 4, 5, 2, 9, 4], [4, 2, 6, 1.2, 8, 3], [1, -5, 4, 7, .6, 2]]) {
+    const softbox = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(intensity, intensity, intensity) }));
+    softbox.position.set(x, y, z);softbox.lookAt(0, 0, 0);room.add(softbox);
+  }
   const environment = pmrem.fromScene(room, .04);
   scene.environment = environment.texture;
   room.dispose();
   pmrem.dispose();
   const key = new THREE.DirectionalLight('#f3eaff', 3.8);
   key.position.set(-4, 5, 8);scene.add(key);
-  const edge = new THREE.DirectionalLight('#a48bff', 3);
+  const edge = new THREE.DirectionalLight('#d2ddff', 2.4);
   edge.position.set(5, 2, 4);scene.add(edge);
   const warmth = new THREE.DirectionalLight('#ffcf9f', 1.8);
   warmth.position.set(-3, -3, 1);scene.add(warmth);
@@ -255,13 +394,28 @@ async function init() {
   const shell = new THREE.Mesh(new THREE.ExtrudeGeometry(roundedShape(8.56, 5.4, .28), { depth: .065, bevelEnabled: true, bevelThickness: .025, bevelSize: .025, bevelSegments: 4, curveSegments: 24, steps: 1 }), new THREE.MeshPhysicalMaterial({ color: '#afa0bc', metalness: 1, roughness: .27, iridescence: .6, clearcoat: 1 }));
   shell.position.z = -.033;
   card.add(shell);
-  for (const [keyName, rank] of Object.entries(ranks)) frontMaps.set(keyName, makeTexture(rank, false, logo));
-  frontMaterial = new THREE.MeshPhysicalMaterial({ map: frontMaps.get('pioneer'), metalness: .48, roughness: .38, clearcoat: .85, clearcoatRoughness: .25, envMapIntensity: .65 });
+  for (const [keyName, rank] of Object.entries(ranks)) {
+    frontMaps.set(keyName, makeTexture(rank, false, logo, wing));
+    rankMaps.set(keyName, makeFoil(logo, monogram, rank));
+  }
+  frontMaterial = new THREE.MeshPhysicalMaterial({ map: frontMaps.get('pioneer'), color: '#7a7b82', metalness: .35, roughness: .48, bumpMap: surfaceGrain, bumpScale: .007, clearcoat: .18, clearcoatRoughness: .45, envMapIntensity: .25 });
   const front = new THREE.Mesh(faceGeometry(), frontMaterial);
   front.position.z = .06;card.add(front);
-  const back = new THREE.Mesh(faceGeometry(), new THREE.MeshPhysicalMaterial({ map: makeTexture(ranks.pioneer, true, logo), metalness: .4, roughness: .4, clearcoat: .7, envMapIntensity: .7 }));
+  const letteringMap = makeFoil(logo, monogram);
+  letteringMaterial = new THREE.MeshPhysicalMaterial({ map: letteringMap, color: '#e1e7f0', metalness: 1, roughness: .23, anisotropy: .8, anisotropyRotation: .3, bumpMap: foilGrain, bumpScale: .012, transparent: true, alphaTest: .08, depthWrite: false, clearcoat: .7, envMapIntensity: 1.8, emissive: '#aeb8c6', emissiveMap: letteringMap, emissiveIntensity: .23 });
+  addFoilHighlights(letteringMaterial, { value: new THREE.Color('#e7edf6') });
+  const lettering = new THREE.Mesh(faceGeometry(), letteringMaterial);
+  lettering.position.z = .067;card.add(lettering);
+  rankMaterial = letteringMaterial.clone();
+  rankMaterial.map = rankMaps.get('pioneer');rankMaterial.color.set(ranks.pioneer.metal);
+  rankMaterial.emissiveMap = rankMaterial.map;rankMaterial.emissive.set(ranks.pioneer.color);rankMaterial.emissiveIntensity = .55;
+  rankMaterial.iridescence = .8;rankMaterial.iridescenceThicknessMap = interferenceMap;
+  rankMaterial.iridescenceThicknessMinimum = 180;rankMaterial.iridescenceThicknessMaximum = 620;
+  addFoilHighlights(rankMaterial, rankTint);
+  const rankLabel = new THREE.Mesh(faceGeometry(), rankMaterial);
+  rankLabel.position.z = .069;card.add(rankLabel);
+  const back = new THREE.Mesh(faceGeometry(), new THREE.MeshPhysicalMaterial({ map: makeTexture(ranks.pioneer, true, logo, wing), metalness: .4, roughness: .4, bumpMap: surfaceGrain, bumpScale: .009, clearcoat: .7, envMapIntensity: .7 }));
   back.rotation.y = Math.PI;back.position.z = -.066;card.add(back);
-  URL.revokeObjectURL(logoUrl);
   buildInsignia(ranks.pioneer);
   // A soft contact shadow grounds the floating object without an expensive shadow pass.
   const shadowCanvas = document.createElement('canvas');shadowCanvas.width = 256;shadowCanvas.height = 256;
@@ -302,6 +456,12 @@ async function init() {
   accountCard.replaceChildren(accountImage);
   accountCard.classList.add('rendered-card');
   frontMaterial.map = frontMaps.get(activeRank);
+  rankMaterial.map = rankMaps.get(activeRank);
+  rankMaterial.emissiveMap = rankMaterial.map;
+  rankMaterial.color.set(ranks[activeRank].metal);
+  rankMaterial.emissive.set(ranks[activeRank].color);
+  rankTint.value.set(ranks[activeRank].color);
+  rankMaterial.iridescence = activeRank === 'pioneer' ? .8 : 0;
   buildInsignia(ranks[activeRank]);
   host.addEventListener('pointermove', (event) => {
     const bounds = host.getBoundingClientRect();
@@ -325,6 +485,7 @@ async function init() {
     card.rotation.y += (targetY - card.rotation.y) * (reducedMotion.matches ? 1 : ease);
     card.rotation.x += ((reducedMotion.matches ? 0 : .13 + pointerY * .15) - card.rotation.x) * ease;
     card.rotation.z += ((reducedMotion.matches ? 0 : -.055 - pointerX * .025) - card.rotation.z) * ease;
+    foilSweep.value = card.rotation.y * 4.5 + card.rotation.x * 3.5;
     card.position.y = reducedMotion.matches ? 0 : .08 + Math.sin(time * .7) * .065;
     if (revealProgress < 1 && !reducedMotion.matches) {
       card.rotation.y = targetY + revealSpin;
