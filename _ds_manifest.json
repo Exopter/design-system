@@ -469,13 +469,13 @@
     },
     {
       "name": "--ex-radius-instrument",
-      "value": "4px",
+      "value": "2px",
       "kind": "radius",
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
       "name": "--ex-radius-surface",
-      "value": "8px",
+      "value": "4px",
       "kind": "radius",
       "definedIn": "tokens/exopter-tokens.css"
     },
@@ -776,7 +776,7 @@
     },
     {
       "name": "--radius-lg",
-      "value": "12px",
+      "value": "var(--ex-radius-surface)",
       "kind": "radius",
       "definedIn": "tokens/aliases.css"
     },
@@ -861,7 +861,7 @@
     },
     {
       "name": "--control-h",
-      "value": "42px",
+      "value": "44px",
       "kind": "spacing",
       "definedIn": "tokens/aliases.css"
     },
@@ -873,7 +873,7 @@
     },
     {
       "name": "--control-h-lg",
-      "value": "44px",
+      "value": "48px",
       "kind": "spacing",
       "definedIn": "tokens/aliases.css"
     },
@@ -987,7 +987,25 @@
     },
     {
       "name": "--focus-ring",
-      "value": "var(--ex-sky-500)",
+      "value": "#087f91",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--control-danger",
+      "value": "#b42318",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--control-danger-hover",
+      "value": "#941c14",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--control-error",
+      "value": "#b42318",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
@@ -1125,6 +1143,20 @@
     {
       "name": "--state-ready",
       "value": "var(--ex-hud-green)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--focus-ring",
+      "value": "var(--ex-aqua-500)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--control-error",
+      "value": "#ff8b83",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
@@ -1411,6 +1443,9 @@
       "--border-strong",
       "--bw-rule",
       "--bw-strong",
+      "--control-danger",
+      "--control-danger-hover",
+      "--control-error",
       "--control-h",
       "--control-h-lg",
       "--control-h-sm",
@@ -1569,6 +1604,9 @@
       "--border-strong": "color",
       "--bw-rule": "spacing",
       "--bw-strong": "spacing",
+      "--control-danger": "color",
+      "--control-danger-hover": "color",
+      "--control-error": "color",
       "--control-h": "spacing",
       "--control-h-lg": "spacing",
       "--control-h-sm": "spacing",

@@ -52,7 +52,11 @@ The export is byte-for-byte identical to the canonical source. Consumer reposito
 - `scripts/`: deterministic generation and export tooling.
 - `tests/`: component accessibility and generated-contract tests.
 
-Open `index.html` through a local static server to browse the catalogue. Product screens must reuse shared tokens and components; record new product or design decisions in Notion before extending the executable implementation.
+Open `index.html` through a local static server to browse the catalogue.
+The interactive controls proposal is at `components/forms/forms.card.html`.
+It exercises the shared buttons and inputs in light and dark surfaces, including
+keyboard focus, disabled states and local form validation. This branch is a local
+proposal; consumer exports and the selected Notion design baseline are unchanged. Product screens must reuse shared tokens and components; record new product or design decisions in Notion before extending the executable implementation.
 
 
 ## Windows Compose Watch

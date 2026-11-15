@@ -1,5 +1,5 @@
 /* ============================================================
-   Exopter — semantic aliases & convenience tokens.
+   Exopter - semantic aliases & convenience tokens.
    A thin layer over exopter-tokens.css so components can use role names.
    Real --ex-* tokens are canonical; everything here maps onto them.
    ============================================================ */
@@ -16,7 +16,7 @@
 
   --num-tabular: "tnum" 1, "lnum" 1; /* @kind other */
 
-  /* --- Type scale (rem) — compact UI; large reserved for brand pages --- */
+  /* --- Type scale (rem) - compact UI; large reserved for brand pages --- */
   --fs-display: 3.5rem;
   --fs-h1:      2.25rem;
   --fs-h2:      1.75rem;
@@ -58,7 +58,7 @@
   /* --- Radius --- */
   --radius-compact: var(--ex-radius-instrument);
   --radius:         var(--ex-radius-surface);
-  --radius-lg:      12px;
+  --radius-lg:      var(--ex-radius-surface);
   --radius-round:   999px;
 
   /* --- Borders --- */
@@ -79,9 +79,9 @@
   --dur-slow: 280ms;  /* @kind other */
 
   /* --- Control sizing --- */
-  --control-h:    42px; /* matches app .primary/.secondary button min-height */
+  --control-h:    44px; /* matches app .primary/.secondary button min-height */
   --control-h-sm: 32px;
-  --control-h-lg: 44px;
+  --control-h-lg: 48px;
 
   /* --- Supplementary palette (UI tints not in the canonical file) --- */
   --ex-graphite-400: #97a1a0;
@@ -93,7 +93,7 @@
   --ex-red-100:   var(--ex-state-fault-bg);
 
   /* ============================================================
-     Semantic aliases — LIGHT (vapor) workbench, the default
+     Semantic aliases - LIGHT (vapor) workbench, the default
      ============================================================ */
   --surface-app:    var(--ex-vapor-50);
   --surface-card:   var(--ex-white);
@@ -109,7 +109,10 @@
   --border-rule:   var(--ex-line-200);
   --border-strong: var(--ex-line-300);
 
-  --focus-ring: var(--ex-sky-500);
+  --focus-ring: #087f91;
+  --control-danger: #b42318;
+  --control-danger-hover: #941c14;
+  --control-error: #b42318;
   --link:       var(--ex-sky-500);
 
   --state-ready:   var(--ex-field-500);
@@ -124,7 +127,7 @@
 }
 
 /* ============================================================
-   Dark instrument scope — cockpit / replay / HUD bands.
+   Dark instrument scope - cockpit / replay / HUD bands.
    class="ex-dark" or data-surface="carbon".
    ============================================================ */
 .ex-dark,
@@ -144,6 +147,8 @@
   --border-strong: var(--ex-graphite-600);
 
   --state-ready: var(--ex-hud-green);
+  --focus-ring: var(--ex-aqua-500);
+  --control-error: #ff8b83;
 
   --accent:          var(--ex-aqua-500);
   --accent-contrast: var(--ex-carbon-950);
