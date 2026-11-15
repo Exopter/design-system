@@ -360,7 +360,6 @@ function makeTexture(rank, reverse, logo, wing) {
       ctx.strokeStyle = index % 3 === 0 ? '#bcbcbc20' : '#bcbcbc10';ctx.stroke();
     }
     ctx.restore();
-    text(ctx, rank.finish.toUpperCase(), 130, 887, 21, '#c4c4c4', 'Aptos Mono', 400, 3);
     ctx.fillStyle = '#a0a0a066';ctx.fillRect(127, 965, 1794, 1);
     text(ctx, 'JULIEN BLANCHER', 128, 1067, 48, '#ffffff', 'Aptos', 400, 1);
     text(ctx, 'FOUNDING MEMBER', 128, 1138, 23, '#bcbcbc', 'Aptos Mono', 400, 4);
