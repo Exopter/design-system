@@ -51,7 +51,7 @@ document.querySelector('#flip-button').addEventListener('click', () => {
   dragAngle = 0;
   lastAngle = 0;
   document.querySelector('#flip-button').innerHTML = `${flipped ? 'Show front' : 'Turn card'} <span aria-hidden="true">↔</span>`;
-  announce(flipped ? 'Reverse: Flight and Signal included. Automatic flight recording enabled. Mock membership.' : `${ranks[activeRank].label} membership card, front.`);
+  announce(flipped ? 'Reverse: The story is ours to write. Member identity and Exowing engraving. Design preview.' : `${ranks[activeRank].label} membership card, front.`);
 });
 document.querySelectorAll('[data-rank]').forEach((button) => button.addEventListener('click', () => setRank(button.dataset.rank)));
 
@@ -321,16 +321,8 @@ function makeTexture(rank, reverse, logo, wing) {
   drawEngraving(ctx, wing, reverse, rank);
   if (reverse) {
     ctx.save();ctx.globalAlpha = .8;ctx.drawImage(logo, 124, 112, 330, 33);ctx.restore();
-    text(ctx, 'THE SKY IS ONLY', 124, 345, 90, '#f0f0f0', 'Aptos Display');
-    text(ctx, 'THE BEGINNING.', 124, 446, 90, '#f0f0f0', 'Aptos Display');
-    text(ctx, 'YOUR FLIGHT CLUB MEMBERSHIP', 128, 589, 24, '#bcbcbc', 'Aptos Mono', 400, 4);
-    [['01', 'Flight + Signal', 'FULL ACCESS'], ['02', 'Automatic flight recording', 'ENABLED']].forEach(([number, label, status], index) => {
-      const y = 715 + index * 145;
-      ctx.fillStyle = '#dddddd40';ctx.fillRect(125, y - 55, 1795, 1);
-      text(ctx, number, 128, y + 12, 25, '#b8b8b8', 'Aptos Mono');
-      text(ctx, label, 225, y + 12, 43, '#f5f5f5');
-      text(ctx, status, 1570, y + 10, 23, '#d0d0d0', 'Aptos Mono', 400, 2);
-    });
+    text(ctx, 'THE STORY IS', 124, 345, 90, '#f0f0f0', 'Aptos Display');
+    text(ctx, 'OURS TO WRITE.', 124, 446, 90, '#f0f0f0', 'Aptos Display');
     text(ctx, 'JULIEN BLANCHER', 128, 1090, 28, '#ebebeb', 'Aptos Mono', 400, 3);
     text(ctx, `FC 0001 / ${rank.label.toUpperCase()} / NOV 2026`, 128, 1150, 23, '#b8b8b8', 'Aptos Mono', 400, 2);
     text(ctx, 'DESIGN PREVIEW', 1630, 1150, 18, '#b8b8b8', 'Aptos Mono', 400, 2);
