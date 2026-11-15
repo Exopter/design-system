@@ -24,6 +24,8 @@ npm run check
 - `@exopter/design-system/styles.css`: the single global CSS entrypoint.
 - `@exopter/design-system/tokens/exopter-tokens.css`: canonical low-level Exopter tokens.
 - `@exopter/design-system/tokens/aliases.css`: semantic component aliases.
+- `templates/rails/stylesheets.json`: complete shared stylesheet export contract for Rails consumers.
+- `templates/rails/`: shared workbench, flight, equipment, telemetry, brand and font compositions. Historical class names are compatibility hooks, not a separate product theme.
 - `_ds_bundle.js`: generated browser-global component bundle for static specimens.
 - `_ds_manifest.json`: generated catalogue and component/token adherence metadata.
 - `_adherence.oxlintrc.json`: generated, runnable Oxlint consumer-import guardrail.
@@ -90,3 +92,13 @@ volumes, retained by `down`; existing native data is not imported automatically.
 
 Run `.\script\dev.ps1 npm run build` to regenerate committed package exports in
 Windows; Watch then synchronizes those files to the preview server.
+
+## Rails consumers
+
+Rails consumers use native server-rendered markup with the same public CSS primitives.
+Every stylesheet is declared in `templates/rails/stylesheets.json` and exported
+verbatim. Change the shared source before synchronizing a consumer. Consumer
+validation rejects modified exports and unregistered stylesheets. Button appearance
+belongs to Button and IconButton; NativeControls applies the shared Input and
+Select dimensions and roles to native form compositions. Retained screen selectors
+provide layout, instrument composition and compatibility with existing behaviour.

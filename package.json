@@ -23,7 +23,8 @@
     "styles.css",
     "THIRD_PARTY_NOTICES.md",
     "tokens/",
-    "components/**/*.css"
+    "components/**/*.css",
+    "templates/"
   ],
   "exports": {
     "./assets/blueprints/*": "./assets/blueprints/*",
@@ -38,7 +39,8 @@
     "./tokens/exopter-tokens.css": "./tokens/exopter-tokens.css",
     "./tokens/aliases.css": "./tokens/aliases.css",
     "./tokens/fonts.css": "./tokens/fonts.css",
-    "./assets/*": "./assets/*"
+    "./assets/*": "./assets/*",
+    "./templates/*": "./templates/*"
   },
   "peerDependencies": {
     "react": ">=18.3 <20"

@@ -18,6 +18,10 @@
       "sourcePath": "dist/index.js"
     },
     {
+      "name": "SignalStrength",
+      "sourcePath": "dist/index.js"
+    },
+    {
       "name": "SelectionToolbar",
       "sourcePath": "dist/index.js"
     },
@@ -492,6 +496,41 @@
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
+      "name": "--ex-control-height",
+      "value": "38px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--ex-panel-padding",
+      "value": "20px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--ex-section-gap",
+      "value": "20px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--ex-list-row-height",
+      "value": "84px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--ex-shell-header-height",
+      "value": "48px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "spacing"
+    },
+    {
       "name": "--ex-radius-instrument",
       "value": "2px",
       "kind": "radius",
@@ -885,7 +924,7 @@
     },
     {
       "name": "--control-h",
-      "value": "44px",
+      "value": "var(--ex-control-height)",
       "kind": "spacing",
       "definedIn": "tokens/aliases.css"
     },
@@ -1328,21 +1367,21 @@
     },
     {
       "name": "--control-primary",
-      "value": "var(--ex-vapor-100)",
+      "value": "var(--ex-carbon-700)",
       "kind": "other",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
     },
     {
       "name": "--control-primary-hover",
-      "value": "var(--ex-white)",
+      "value": "var(--ex-graphite-600)",
       "kind": "other",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
     },
     {
       "name": "--control-primary-text",
-      "value": "var(--ex-carbon-950)",
+      "value": "var(--ex-vapor-50)",
       "kind": "other",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
@@ -1367,6 +1406,12 @@
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--control-h",
+      "value": "44px",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
     }
   ],
   "themes": [
@@ -1589,6 +1634,9 @@
       "ReadinessStrip": {
         "replaces": []
       },
+      "SignalStrength": {
+        "replaces": []
+      },
       "SelectionToolbar": {
         "replaces": []
       },
@@ -1660,6 +1708,7 @@
       "--ex-carbon-800",
       "--ex-carbon-900",
       "--ex-carbon-950",
+      "--ex-control-height",
       "--ex-field-100",
       "--ex-field-500",
       "--ex-flight-amber",
@@ -1691,9 +1740,11 @@
       "--ex-khaki-700",
       "--ex-line-200",
       "--ex-line-300",
+      "--ex-list-row-height",
       "--ex-motion-reveal-duration",
       "--ex-motion-reveal-ease",
       "--ex-page-width",
+      "--ex-panel-padding",
       "--ex-radius-instrument",
       "--ex-radius-surface",
       "--ex-red-100",
@@ -1701,8 +1752,10 @@
       "--ex-scene-edge",
       "--ex-scene-light",
       "--ex-scene-surface",
+      "--ex-section-gap",
       "--ex-shadow-panel",
       "--ex-shadow-raised",
+      "--ex-shell-header-height",
       "--ex-sky-100",
       "--ex-sky-500",
       "--ex-space-1",
@@ -1836,6 +1889,7 @@
       "--ex-carbon-800": "color",
       "--ex-carbon-900": "color",
       "--ex-carbon-950": "color",
+      "--ex-control-height": "spacing",
       "--ex-field-100": "color",
       "--ex-field-500": "color",
       "--ex-flight-amber": "color",
@@ -1867,9 +1921,11 @@
       "--ex-khaki-700": "color",
       "--ex-line-200": "color",
       "--ex-line-300": "color",
+      "--ex-list-row-height": "spacing",
       "--ex-motion-reveal-duration": "other",
       "--ex-motion-reveal-ease": "other",
       "--ex-page-width": "spacing",
+      "--ex-panel-padding": "spacing",
       "--ex-radius-instrument": "radius",
       "--ex-radius-surface": "radius",
       "--ex-red-100": "color",
@@ -1877,8 +1933,10 @@
       "--ex-scene-edge": "color",
       "--ex-scene-light": "color",
       "--ex-scene-surface": "color",
+      "--ex-section-gap": "spacing",
       "--ex-shadow-panel": "shadow",
       "--ex-shadow-raised": "shadow",
+      "--ex-shell-header-height": "spacing",
       "--ex-sky-100": "color",
       "--ex-sky-500": "color",
       "--ex-space-1": "spacing",

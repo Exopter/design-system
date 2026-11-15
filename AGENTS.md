@@ -9,8 +9,10 @@
   the Exopter Design System space in Notion Engineering.
 - Keep this repository focused on executable tokens, components, assets,
   specimens, UI kits, implementation contracts, and concise technical READMEs.
-- Evolve shared tokens or components before adding a visual pattern to a
-  product screen, and record the design decision in Notion.
+- Own all Exopter interface appearance in this design system. Consumers must
+  use shared tokens, primitives and compositions without independent themes
+  or visual overrides. Evolve the shared source before adding a pattern, and
+  record the design decision in Notion.
 - Run validation locally with `npm run check`. Do not add or
   enable hosted CI unless explicitly requested by the user.
 

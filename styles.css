@@ -29,6 +29,7 @@
 @import "components/forms/Input.css";
 @import "components/forms/SegmentedControl.css?v=5";
 @import "components/forms/Select.css";
+@import "components/forms/IconSelect.css";
 @import "components/forms/Switch.css";
 @import "components/forms/Textarea.css";
 @import "components/overlays/Drawer.css";
@@ -42,3 +43,5 @@
 @import "components/data/Kanban.css";
 
 @import "components/data/HierarchyBrowser.css";
+
+@import "components/forms/NativeControls.css";

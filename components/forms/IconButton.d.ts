@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type IconButtonVariant = 'ghost' | 'outline' | 'solid' | 'danger';
+export type IconButtonVariant = 'ghost' | 'outline' | 'solid' | 'danger' | 'edge';
 export type IconButtonSize = 'sm' | 'md' | 'lg';
 
 export interface IconButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'aria-label' | 'title'> {

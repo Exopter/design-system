@@ -3,7 +3,7 @@
   box-sizing:border-box;min-width:0;max-width:100%;
   font:600 var(--fs-body)/1.2 var(--font-ui);letter-spacing:.01em;
   cursor:pointer;border:1px solid transparent;border-radius:var(--radius-compact);
-  min-height:var(--control-h);padding:10px 18px;
+  min-height:var(--control-h);padding:4px 14px;
   transition:background var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out),box-shadow var(--dur-fast) var(--ease-out);
 }
 .exds-btn:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}

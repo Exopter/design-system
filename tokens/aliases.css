@@ -79,7 +79,7 @@
   --dur-slow: 280ms;  /* @kind other */
 
   /* --- Control sizing --- */
-  --control-h:    44px; /* matches app .primary/.secondary button min-height */
+  --control-h:    var(--ex-control-height);
   --control-h-sm: 32px;
   --control-h-lg: 48px;
 
@@ -172,9 +172,9 @@
   --focus-ring: var(--ex-khaki-300);
   --control-error: #ff8b83;
 
-  --control-primary: var(--ex-vapor-100);
-  --control-primary-hover: var(--ex-white);
-  --control-primary-text: var(--ex-carbon-950);
+  --control-primary: var(--ex-carbon-700);
+  --control-primary-hover: var(--ex-graphite-600);
+  --control-primary-text: var(--ex-vapor-50);
 
   --accent:          var(--ex-khaki-300);
   --accent-hover:    var(--ex-khaki-200);
@@ -182,4 +182,8 @@
 
   color: var(--text-body);
   background: var(--surface-app);
+}
+
+@media (pointer: coarse) {
+  :root { --control-h: 44px; }
 }
