@@ -15,13 +15,6 @@ let flipped = false;
 let revealAt = -100;
 let pointerX = 0;
 let pointerY = 0;
-let dragging = false;
-let dragPointerId = null;
-let manuallyRotated = false;
-const dragRotation = new THREE.Quaternion();
-const dragStep = new THREE.Quaternion();
-const dragEuler = new THREE.Euler();
-const lastPointer = new THREE.Vector2();
 let sceneReady = false;
 const announce = (message) => { document.querySelector('#announcement').textContent = message; };
 
@@ -49,36 +42,14 @@ document.querySelector('#reveal-button').addEventListener('click', () => {
 });
 document.querySelector('#flip-button').addEventListener('click', () => {
   flipped = !flipped;
-  resetRotation();
+  resetPointerTilt();
   document.querySelector('#flip-button').innerHTML = `${flipped ? 'Show front' : 'Turn card'} <span aria-hidden="true">↔</span>`;
   announce(flipped ? 'Reverse: The story is ours to write. Member identity and Exowing engraving. Design preview.' : `${ranks[activeRank].label} membership card, front.`);
 });
 document.querySelectorAll('[data-rank]').forEach((button) => button.addEventListener('click', () => setRank(button.dataset.rank)));
-document.querySelector('#reset-button').addEventListener('click', resetView);
-
-function resetRotation() {
-  if (dragPointerId !== null && host.hasPointerCapture(dragPointerId)) host.releasePointerCapture(dragPointerId);
-  dragPointerId = null;
-  dragging = false;
-  manuallyRotated = false;
-  dragRotation.identity();
+function resetPointerTilt() {
   pointerX = pointerY = 0;
   revealAt = -100;
-}
-
-function resetView() {
-  flipped = false;
-  resetRotation();
-  document.querySelector('#flip-button').innerHTML = 'Turn card <span aria-hidden="true">↔</span>';
-  announce('Card returned to its default, slightly upward orientation.');
-}
-
-function rotateCard(deltaX, deltaY) {
-  // Compose screen-space rotations without Euler limits or polar singularities.
-  dragEuler.set(deltaY * .01, deltaX * .01, 0);
-  dragStep.setFromEuler(dragEuler);
-  dragRotation.premultiply(dragStep).normalize();
-  manuallyRotated = true;
 }
 
 let frontMaterial;
@@ -101,12 +72,12 @@ const disposable = [];
 function setRank(key) {
   activeRank = key;
   flipped = false;
-  resetRotation();
+  resetPointerTilt();
   document.querySelector('#flip-button').innerHTML = 'Turn card <span aria-hidden="true">↔</span>';
   const rank = ranks[key];
   document.querySelectorAll('[data-rank]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.rank === key)));
   // Future rank previews never change the mock member's actual Pioneer status.
-  host.setAttribute('aria-label', `${rank.label} membership card design preview. Julien Blancher, member 0001. ${key === 'pioneer' ? 'Current founding edition.' : 'Future concept only.'} Drag in any direction for unlimited 360-degree rotation. Arrow keys rotate; Home or Reset view restores the default angle.`);
+  host.setAttribute('aria-label', `${rank.label} membership card design preview. Julien Blancher, member 0001. ${key === 'pioneer' ? 'Current founding edition.' : 'Future concept only.'} Move the pointer to catch the light; use Turn card to inspect the reverse.`);
   document.querySelector('.object-caption > .micro').textContent = rank.finish.toUpperCase();
   document.querySelector('.object-caption .muted').textContent = key === 'pioneer' ? 'CARBON WEAVE / FOUNDING EDITION' : 'CARBON WEAVE / FUTURE CONCEPT';
   if (sceneReady) {
@@ -512,39 +483,12 @@ async function init() {
   rankMaterial.iridescence = activeRank === 'pioneer' ? .8 : 0;
   buildInsignia(ranks[activeRank]);
   host.addEventListener('pointermove', (event) => {
+    if (event.pointerType === 'touch') return;
     const bounds = host.getBoundingClientRect();
     pointerX = (event.clientX - bounds.left) / bounds.width * 2 - 1;
     pointerY = (event.clientY - bounds.top) / bounds.height * 2 - 1;
-    if (dragging && event.pointerId === dragPointerId) {
-      rotateCard(event.clientX - lastPointer.x, event.clientY - lastPointer.y);
-      lastPointer.set(event.clientX, event.clientY);
-    }
   });
   host.addEventListener('pointerleave', () => { pointerX = 0;pointerY = 0; });
-  host.addEventListener('pointerdown', (event) => {
-    if (event.button !== 0 || dragPointerId !== null) return;
-    dragging = true;dragPointerId = event.pointerId;revealAt = -100;
-    lastPointer.set(event.clientX, event.clientY);
-    host.setPointerCapture(event.pointerId);
-    event.preventDefault();
-  });
-  const endDrag = (event) => {
-    if (event.pointerId !== dragPointerId) return;
-    dragging = false;dragPointerId = null;
-    if (host.hasPointerCapture(event.pointerId)) host.releasePointerCapture(event.pointerId);
-  };
-  host.addEventListener('pointerup', endDrag);
-  host.addEventListener('pointercancel', endDrag);
-  host.addEventListener('lostpointercapture', endDrag);
-  host.addEventListener('dblclick', resetView);
-  host.addEventListener('keydown', (event) => {
-    const steps = { ArrowLeft: [-20, 0], ArrowRight: [20, 0], ArrowUp: [0, -20], ArrowDown: [0, 20] };
-    if (event.key === 'Home') { event.preventDefault();resetView(); }
-    else if (steps[event.key]) {
-      event.preventDefault();revealAt = -100;
-      rotateCard(...steps[event.key]);
-    }
-  });
   const restEuler = new THREE.Euler();
   const restRotation = new THREE.Quaternion();
   const hoverEuler = new THREE.Euler();
@@ -560,20 +504,20 @@ async function init() {
     const elapsed = Math.min((now - previousTime) / 1000, .05);previousTime = now;
     const ease = 1 - Math.exp(-7 * elapsed);
     const revealProgress = Math.min(1, Math.max(0, (time - revealAt) / 2.2));
-    const revealSpin = !reducedMotion.matches && revealProgress < 1 ? (1 - Math.pow(1 - revealProgress, 3)) * Math.PI * 2 - Math.PI * 2 : 0;
+    const revealTilt = !reducedMotion.matches && revealProgress < 1 ? -.18 * Math.pow(1 - revealProgress, 3) : 0;
     restEuler.set(defaultTilt, flipped ? Math.PI : -.12, -.055);
     restRotation.setFromEuler(restEuler);
-    targetRotation.copy(restRotation).premultiply(dragRotation);
-    if (!manuallyRotated && !dragging && !reducedMotion.matches) {
+    targetRotation.copy(restRotation);
+    if (!reducedMotion.matches) {
       hoverEuler.set(pointerY * .15, pointerX * .23, -pointerX * .025);
       hoverRotation.setFromEuler(hoverEuler);
       targetRotation.premultiply(hoverRotation);
     }
     if (revealProgress < 1 && !reducedMotion.matches) {
-      revealRotation.setFromAxisAngle(upAxis, revealSpin);
+      revealRotation.setFromAxisAngle(upAxis, revealTilt);
       targetRotation.premultiply(revealRotation);
     }
-    card.quaternion.slerp(targetRotation, dragging || reducedMotion.matches ? 1 : ease);
+    card.quaternion.slerp(targetRotation, reducedMotion.matches ? 1 : ease);
     faceNormal.set(0, 0, 1).applyQuaternion(card.quaternion);
     foilSweep.value = faceNormal.x * 4.5 - faceNormal.y * 3.5;
     card.position.y = reducedMotion.matches ? 0 : .08 + Math.sin(time * .7) * .065;
