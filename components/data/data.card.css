@@ -12,3 +12,5 @@
 .instrument-section{scroll-margin-top:24px}.specimen-checklist{display:grid;gap:8px}.exds-strip{flex-wrap:wrap}.exds-strip__item{min-width:110px}.exds-strip__mode{min-height:56px}
 @media(max-width:800px){.instrument-grid{grid-template-columns:1fr 1fr}.panel-grid{grid-template-columns:1fr}.navigation-demo{grid-template-columns:1fr}.header-actions>a{font-size:12px}.header-actions{flex-wrap:wrap;justify-content:flex-end}.table-toolbar{align-items:stretch;flex-direction:column}.table-toolbar .exds-field{max-width:none}.masthead .shell{padding-top:12px;padding-bottom:12px}}
 @media(max-width:480px){.instrument-grid{gap:8px}.exds-metric{padding:16px;min-width:0}.exds-metric__value{font-size:26px}.wordmark img{display:none}}
+
+.colour-roles{padding:24px 0;border-top:1px solid var(--border-rule);margin-bottom:24px}.colour-roles__samples{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:16px}

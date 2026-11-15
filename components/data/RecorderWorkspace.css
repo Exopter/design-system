@@ -34,7 +34,7 @@
 .exds-recorder-manager > .signal-fdr-overview { padding: 0; background: transparent; border: 0; }
 .exds-recorder-manager .signal-fdr-recorder-alert, .exds-recorder-manager .signal-fdr-onboarding { margin-bottom: var(--ex-space-4); }
 .exds-recorder-connections { margin-bottom: var(--ex-space-5); }
-.exds-recorder-connections > summary { cursor: pointer; font-size: 14px; padding: var(--ex-space-3) 0; color: var(--ex-state-live-text); }
+.exds-recorder-connections > summary { cursor: pointer; font-size: 14px; padding: var(--ex-space-3) 0; color: var(--link); }
 .exds-recorder-connections .signal-fdr-transports { border: 1px solid var(--border-rule); border-radius: var(--ex-radius-surface); background: var(--surface-card); }
 .exds-recorder-progress:empty, .exds-recording-notice:empty { display: none; }
 .exds-recorder-progress { margin-bottom: var(--ex-space-4); font-size: 13px; color: var(--text-muted); }
@@ -43,12 +43,12 @@
 .exds-recording-toolbar { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: var(--ex-space-3); margin: var(--ex-space-5) 0 var(--ex-space-4); }
 .exds-recording-filters { display: flex; flex-wrap: wrap; gap: var(--ex-space-2); }
 .exds-recording-filters button { min-height: 38px; padding: var(--ex-space-2) var(--ex-space-4); border: 1px solid var(--border-rule); border-radius: var(--ex-radius-instrument); background: var(--surface-card); color: var(--text-body); font: inherit; font-size: 13px; cursor: pointer; }
-.exds-recording-filters button[aria-pressed="true"] { background: var(--ex-state-live-bg); color: var(--ex-state-live-text); }
+.exds-recording-filters button[aria-pressed="true"] { background: var(--surface-selected); color: var(--selection-marker); }
 .exds-recording-search { display: flex; align-items: center; gap: var(--ex-space-2); padding: 0 var(--ex-space-3); background: var(--surface-card); border: 1px solid var(--border-rule); border-radius: var(--ex-radius-instrument); color: var(--text-muted); }
 .exds-recording-search input { width: 230px; max-width: 100%; min-height: 38px; padding: 0; border: 0; background: transparent; color: var(--text-body); font: inherit; font-size: 14px; }
 .exds-recording-search:focus-within { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 .exds-recording-search input:focus { outline: 0; }
-.exds-recording-selection { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ex-space-3); padding: var(--ex-space-3) var(--ex-space-4); margin-bottom: var(--ex-space-3); background: var(--ex-state-live-bg); border-radius: var(--ex-radius-instrument); font-size: 14px; }
+.exds-recording-selection { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ex-space-3); padding: var(--ex-space-3) var(--ex-space-4); margin-bottom: var(--ex-space-3); background: var(--surface-selected); border-radius: var(--ex-radius-instrument); font-size: 14px; }
 .exds-recording-selection[hidden] { display: none; }
 .exds-recording-selection > strong { margin-right: auto; }
 .exds-recording-table-wrap { overflow-x: auto; border: 1px solid var(--border-rule); border-radius: var(--ex-radius-instrument); background: var(--surface-card); }
@@ -60,7 +60,7 @@
 .exds-recording-table input:disabled { cursor: default; }
 .exds-recording-table td:nth-child(3), .exds-recording-table td:nth-child(4) { white-space: nowrap; }
 .exds-recording-table td:last-child { width: 44px; padding-left: 0; }
-.exds-recording-table tr[data-selected="true"] { background: var(--ex-state-live-bg); }
+.exds-recording-table tr[data-selected="true"] { background: var(--surface-selected); }
 .exds-recording-table .exds-recording-group th { background: var(--surface-app); border-top: 1px solid var(--border-rule); padding: var(--ex-space-3) var(--ex-space-5); color: var(--text-body); font: 600 13px var(--ex-font-sans); text-transform: none; letter-spacing: 0; }
 .exds-recording-group small { margin-left: var(--ex-space-4); color: var(--text-muted); font-size: 12px; font-weight: 400; }
 .exds-recording-name { display: block; color: var(--text-muted); font: 12px var(--ex-font-mono); margin-top: var(--ex-space-2); }

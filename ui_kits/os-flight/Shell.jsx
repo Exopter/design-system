@@ -29,7 +29,7 @@
                 width: 44, height: 44, borderRadius: 8, border: 'none', cursor: 'pointer',
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2,
                 background: active ? 'var(--ex-carbon-800)' : 'transparent',
-                color: active ? 'var(--ex-aqua-500)' : 'var(--ex-graphite-400)',
+                color: active ? 'var(--ex-copper-300)' : 'var(--ex-graphite-400)',
                 transition: 'background .18s, color .18s',
               }}>
                 <Icon name={r.icon} size={18} />

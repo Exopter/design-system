@@ -148,7 +148,7 @@
           <IconButton icon={<Icon name="rotate-ccw" size={18} />} variant="ghost" label="Restart" onClick={() => { setIdx(0); setPlaying(false); }} />
           <span style={{ fontFamily: 'var(--font-data)', fontVariantNumeric: 'tabular-nums', fontSize: 13, color: 'var(--ex-hud-green)', width: 52 }}>{fmtT(tNow)}</span>
           <input type="range" min="0" max={N - 1} step="1" value={i} onChange={(e) => { setPlaying(false); setIdx(Number(e.target.value)); }}
-            style={{ flex: 1, accentColor: 'var(--ex-aqua-500)', height: 4 }} />
+            style={{ flex: 1, accentColor: 'var(--accent)', height: 4 }} />
           <span style={{ fontFamily: 'var(--font-data)', fontVariantNumeric: 'tabular-nums', fontSize: 13, color: 'var(--ex-graphite-400)', width: 52, textAlign: 'right' }}>{fmtT(T_TOTAL)}</span>
         </div>
       </div>

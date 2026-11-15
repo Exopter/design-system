@@ -59,6 +59,10 @@ disclosure menus, sortable/filterable tables and inspection drawers. `Table.css`
 and `Menu.css` provide semantic HTML primitives through the global stylesheet.
 Disclosure menus use native `details`/`summary` with normal Tab navigation; the
 workbench closes them on Escape, focus exit and action selection.
+Interaction styles use `--accent`, `--focus-ring`, `--link`,
+`--selection-marker` and `--surface-selected`. Status colours remain independent:
+green for readiness, aqua for live telemetry, blue for information, amber for
+caution and red for faults. Charts retain their distinct data-series colours.
 Both workbenches exercise shared components in light and dark surfaces, including
 keyboard focus, disabled states and local form validation. This branch is a local
 proposal; consumer exports and the selected Notion design baseline are unchanged. Product screens must reuse shared tokens and components; record new product or design decisions in Notion before extending the executable implementation.

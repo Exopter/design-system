@@ -5,7 +5,7 @@
   const WING = '../../assets/exopter-wing-reference.jpeg';
 
   const Eyebrow = ({ children, accent }) => (
-    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 500, letterSpacing: '.18em', textTransform: 'uppercase', color: accent ? 'var(--ex-aqua-500)' : 'var(--ex-graphite-400)' }}>{children}</span>
+    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 500, letterSpacing: '.18em', textTransform: 'uppercase', color: accent ? 'var(--ex-copper-300)' : 'var(--ex-graphite-400)' }}>{children}</span>
   );
 
   const Reveal = ({ children, style }) => (
@@ -115,7 +115,7 @@
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 16 }}>
           {mods.map((m) => (
             <div key={m.k} className="evi" style={{ background: 'var(--ex-carbon-950)', border: '1px solid var(--ex-carbon-700)', borderRadius: 8, padding: '24px 22px', transition: 'border-color .2s' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ex-aqua-500)' }}>{m.k}</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--ex-copper-300)' }}>{m.k}</div>
               <p style={{ margin: '12px 0 0', fontSize: 15, lineHeight: 1.5, color: 'var(--ex-vapor-100)' }}>{m.d}</p>
             </div>
           ))}

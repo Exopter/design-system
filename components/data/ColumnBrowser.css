@@ -6,14 +6,14 @@
 .exds-browser-search { width: min(40%, 560px); }
 .exds-browser-search .search-control { min-width: 0; width: 100%; }
 .exds-browser-icon-button { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; min-height: 40px; padding: 8px; border: 1px solid var(--border-rule); border-radius: var(--ex-radius-instrument); background: var(--surface-card); color: var(--text-muted); cursor: pointer; }
-.exds-browser-icon-button[aria-current="page"] { background: var(--ex-state-live-bg); color: var(--ex-state-live-text); border-color: var(--ex-aqua-500); }
+.exds-browser-icon-button[aria-current="page"] { background: var(--surface-selected); color: var(--selection-marker); border-color: var(--selection-marker); }
 .exds-browser-icon-button:disabled { opacity: .4; cursor: default; }
 .exds-browser-icon-button.is-quiet { min-width: 32px; min-height: 32px; padding: 6px; border-color: transparent; background: transparent; }
 .exds-browser-icon-button.is-quiet:hover { background: var(--surface-panel); color: var(--text-body); }
 .exds-browser-icon-button.is-danger:hover { color: var(--ex-state-fault-text); background: var(--ex-state-fault-bg); }
 .exds-browser-folder-actions { display: flex; align-items: center; gap: 2px; flex-shrink: 0; }
 .exds-browser-folder-actions form { margin: 0; }
-.exds-browser-sidebar .exds-browser-folder-actions { padding: 0 24px 10px 62px; background: var(--ex-state-live-bg); }
+.exds-browser-sidebar .exds-browser-folder-actions { padding: 0 24px 10px 62px; background: var(--surface-selected); }
 .exds-browser-folder { min-width: 0; }
 .exds-browser-folder-access { display: block; margin-top: 3px; font-size: 11px; font-weight: 400; }
 .exds-browser-explanation { margin: 0; padding: 0 24px 16px; color: var(--text-muted); font-size: 13px; line-height: 1.5; }
@@ -22,9 +22,9 @@
 .exds-browser-nav { display: flex; align-items: center; gap: 14px; min-height: 54px; padding: 10px 24px; color: var(--text-body); border-left: 3px solid transparent; font-size: 15px; }
 .exds-browser-nav span { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .exds-browser-nav small { color: var(--text-muted); font-variant-numeric: tabular-nums; }
-.exds-browser-nav[aria-current="page"] { background: var(--ex-state-live-bg); border-left-color: var(--ex-aqua-500); font-weight: 650; }
+.exds-browser-nav[aria-current="page"] { background: var(--surface-selected); border-left-color: var(--selection-marker); font-weight: 650; }
 .exds-browser-nav:hover, .exds-browser-entry:hover { background: var(--surface-panel); }
-.exds-browser-nav[data-drop-active] { outline: 2px dashed var(--ex-aqua-500); outline-offset: -4px; background: var(--ex-state-live-bg); }
+.exds-browser-nav[data-drop-active] { outline: 2px dashed var(--selection-marker); outline-offset: -4px; background: var(--surface-selected); }
 .exds-browser-folder-icon { --exds-folder-color: inherit; color: var(--exds-folder-color, var(--ex-graphite-500)); fill: currentColor; stroke-width: 1px; flex-shrink: 0; }
 .exds-browser-color-popover { position: fixed; inset: auto; margin: 0; padding: 8px; width: max-content; max-width: calc(100vw - 16px); border: 1px solid var(--border-rule); border-radius: var(--ex-radius-surface); background: var(--surface-card); color: var(--text-body); box-shadow: var(--ex-shadow-raised); }
 .exds-browser-color-options { display: grid; grid-template-columns: repeat(6, 36px); gap: 2px; }
@@ -44,7 +44,7 @@
 .exds-browser-color-radio:hover .exds-browser-color-swatch { background: var(--surface-panel); }
 .exds-browser-color-radio input:checked + .exds-browser-color-swatch { border-color: var(--text-body); }
 .exds-browser-color-radio input:checked + .exds-browser-color-swatch svg { visibility: visible; }
-.exds-browser-color-radio input:focus-visible + .exds-browser-color-swatch { outline: 2px solid var(--ex-aqua-500); outline-offset: 2px; }
+.exds-browser-color-radio input:focus-visible + .exds-browser-color-swatch { outline: 2px solid var(--selection-marker); outline-offset: 2px; }
 .exds-browser-section-label { display: flex; align-items: center; justify-content: space-between; margin: 20px 24px 8px; padding-top: 20px; border-top: 1px solid var(--border-rule); color: var(--text-muted); font: 11px var(--ex-font-mono); text-transform: uppercase; letter-spacing: .08em; }
 .exds-browser-section-label a { text-transform: none; letter-spacing: 0; }
 .exds-browser-collection { display: flex; flex-direction: column; min-width: 0; min-height: 0; background: var(--surface-card); border-right: 1px solid var(--border-rule); }
@@ -54,10 +54,10 @@
 .exds-browser-selection { display: flex; flex-direction: column; flex: 1; min-width: 0; min-height: 0; margin: 0; }
 .exds-browser-entries { flex: 1; min-height: 0; overflow-y: auto; }
 .exds-browser-entry { position: relative; display: flex; align-items: center; border-left: 3px solid transparent; border-bottom: 1px solid var(--surface-panel); }
-.exds-browser-entry[aria-current="true"] { background: var(--ex-state-live-bg); border-left-color: var(--ex-aqua-500); }
-.exds-browser-entry[data-selected] { box-shadow: inset 0 0 0 1px var(--ex-aqua-500); }
+.exds-browser-entry[aria-current="true"] { background: var(--surface-selected); border-left-color: var(--selection-marker); }
+.exds-browser-entry[data-selected] { box-shadow: inset 0 0 0 1px var(--selection-marker); }
 .exds-browser-entry > label { padding: 8px 0 8px 12px; }
-.exds-browser-entry input { accent-color: var(--ex-state-live-text); width: 15px; height: 15px; }
+.exds-browser-entry input { accent-color: var(--selection-marker); width: 15px; height: 15px; }
 .exds-browser-entry-link { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; min-height: 78px; padding: 10px 16px 10px 12px; color: var(--text-body); }
 .exds-browser-entry-copy { flex: 1; min-width: 0; }
 .exds-browser-entry-copy strong { display: block; font-size: 16px; line-height: 1.35; overflow-wrap: anywhere; }
@@ -117,7 +117,7 @@
 .exds-browser-member-results { max-height: 220px; overflow-y: auto; margin-top: 6px; border: 1px solid var(--border-rule); border-radius: var(--ex-radius-instrument); background: var(--surface-card); }
 .exds-browser-member-results[hidden] { display: none; }
 .exds-browser-member-option { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 48px; padding: 10px; border: 0; background: transparent; color: var(--text-body); font: 14px var(--ex-font-sans); text-align: left; cursor: pointer; }
-.exds-browser-member-option:hover, .exds-browser-member-option[aria-selected="true"] { background: var(--ex-state-live-bg); }
+.exds-browser-member-option:hover, .exds-browser-member-option[aria-selected="true"] { background: var(--surface-selected); }
 .exds-browser-member-list { list-style: none; padding: 0; margin: 12px 0; max-height: 240px; overflow-y: auto; }
 .exds-browser-member-list:empty { display: none; }
 .exds-browser-member { display: flex; align-items: center; gap: 10px; padding: 10px 0; }
@@ -127,7 +127,7 @@
 .exds-browser-member .exds-browser-icon-button { flex-shrink: 0; }
 .exds-browser-dialog h2 { margin: 0 0 20px; font-size: 22px; }
 .exds-browser-dialog-actions { display: flex; justify-content: flex-end; gap: 12px; }
-.exds-browser :is(a, button, input, select, summary):focus-visible { outline: 2px solid var(--ex-sky-500); outline-offset: 2px; }
+.exds-browser :is(a, button, input, select, summary):focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 .exds-browser-mobile-back { display: none; }
 @media (max-width: 1100px) {
   .exds-browser-body { grid-template-columns: 200px minmax(270px, 1fr) minmax(300px, 1fr); }
