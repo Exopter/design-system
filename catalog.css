@@ -99,7 +99,7 @@ a:focus-visible {
 }
 
 .catalog-action {
-  background: var(--ex-vapor-50);
+  background: var(--ex-vapor-100);
   color: var(--ex-carbon-950);
 }
 
@@ -158,7 +158,7 @@ a:focus-visible {
 
 .catalog-nav nav a:hover {
   background: var(--ex-carbon-800);
-  border-left-color: var(--ex-aqua-500);
+  border-left-color: var(--ex-khaki-300);
 }
 
 .catalog-nav-note {
@@ -168,7 +168,7 @@ a:focus-visible {
 }
 
 .catalog-nav-note strong {
-  color: var(--ex-aqua-500);
+  color: var(--ex-khaki-300);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
@@ -201,7 +201,7 @@ a:focus-visible {
 }
 
 .catalog-eyebrow {
-  color: var(--ex-aqua-500);
+  color: var(--ex-khaki-300);
   margin: 0 0 16px;
 }
 
@@ -554,7 +554,7 @@ a:focus-visible {
   }
 
   .catalog-nav nav a:hover {
-    border-bottom-color: var(--ex-aqua-500);
+    border-bottom-color: var(--ex-khaki-300);
     border-left-color: transparent;
   }
 

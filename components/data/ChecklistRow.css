@@ -16,6 +16,6 @@
 .exds-check__right{display:flex;align-items:center;gap:12px;flex:none}
 .exds-check__owner{font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--text-muted)}
 .exds-check__evi{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:var(--fs-xs);font-weight:600;
-  letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--ex-sky-500);text-decoration:none}
+  letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--link);text-decoration:none}
 .exds-check__evi:hover{text-decoration:underline}
 .exds-check__evi svg{width:13px;height:13px}

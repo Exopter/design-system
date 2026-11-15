@@ -104,7 +104,7 @@
     .hangar-panel-head{display:flex;align-items:center;gap:12px;padding:13px 14px;border-bottom:1px solid var(--border-rule)}
     .hangar-section-head{display:flex;align-items:flex-end;gap:16px;margin-bottom:12px}.hangar-section-head>div:first-child{flex:1}.hangar-section-head h2{margin:0;font-size:20px;line-height:1.15;color:var(--text-strong)}
     .hangar-fleet-item{width:100%;padding:13px 14px;border:0;border-bottom:1px solid var(--border-rule);background:transparent;text-align:left;cursor:pointer}
-    .hangar-fleet-item[data-active=true]{background:var(--surface-hover);box-shadow:inset 3px 0 0 var(--ex-aqua-500)}
+    .hangar-fleet-item[data-active=true]{background:var(--surface-hover);box-shadow:inset 3px 0 0 var(--accent)}
     .hangar-fleet-item:hover,.hangar-table tbody tr:hover{background:var(--surface-hover)}
     .hangar-fleet-name{display:flex;align-items:center;justify-content:space-between;gap:10px}
     .hangar-fleet-name strong{font:700 15px/1.2 var(--font-data);color:var(--text-strong)}
@@ -165,7 +165,7 @@
       <div className="hangar-layout">
         <aside className="hangar-panel"><div className="hangar-panel-head"><span style={EYEBROW}>Fleet aircraft</span><div style={{flex:1}}/><Badge tone="neutral">3</Badge></div>{FLEET.map((item,index)=><button key={item.id} type="button" className="hangar-fleet-item" data-active={selected===index} aria-pressed={selected===index} onClick={()=>setSelected(index)}><div className="hangar-fleet-name"><strong>{item.id}</strong><Icon name="chevron-right" size={16} style={{color:'var(--text-muted)'}}/></div><div className="hangar-fleet-meta">{item.type}<br/>{item.role}</div><div className="hangar-fleet-foot"><StatusDot state={item.state} label={item.label}/><span>{item.summary}</span></div></button>)}</aside>
         <section className="hangar-panel">
-          <div className="hangar-asset-head"><div className="hangar-tree-icon" style={{width:36,height:36,color:'var(--ex-aqua-500)'}}><Icon name="plane" size={20}/></div><div style={{flex:1}}><span style={EYEBROW}>Aircraft</span><h2>{aircraft.id} · {aircraft.type}</h2><p style={LEAD}>{aircraft.role}</p></div><Button size="sm" variant="secondary" onClick={onInstall}>Change configuration</Button><Badge tone={aircraft.state==='caution'?'caution':'ready'}>{aircraft.state==='caution'?'Conditional':'Ready'}</Badge></div>
+          <div className="hangar-asset-head"><div className="hangar-tree-icon" style={{width:36,height:36,color:'var(--accent)'}}><Icon name="plane" size={20}/></div><div style={{flex:1}}><span style={EYEBROW}>Aircraft</span><h2>{aircraft.id} · {aircraft.type}</h2><p style={LEAD}>{aircraft.role}</p></div><Button size="sm" variant="secondary" onClick={onInstall}>Change configuration</Button><Badge tone={aircraft.state==='caution'?'caution':'ready'}>{aircraft.state==='caution'?'Conditional':'Ready'}</Badge></div>
           <div className="hangar-asset-meta"><Mini label="Current configuration" value={aircraft.updated}/><Mini label="Usage" value={aircraft.cycles}/><Mini label="Installed content" value={aircraft.summary}/></div>
           <div className="hangar-config-head"><span style={EYEBROW}>Installed configuration</span><span style={{...EYEBROW,letterSpacing:'.04em'}}>Installation → assembly / equipment → part</span></div>
           <div>{aircraft.installations.map((item)=><Configuration key={item.id} item={item}/>)}</div>

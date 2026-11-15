@@ -18,6 +18,10 @@
       "sourcePath": "dist/index.js"
     },
     {
+      "name": "SignalStrength",
+      "sourcePath": "dist/index.js"
+    },
+    {
       "name": "SelectionToolbar",
       "sourcePath": "dist/index.js"
     },
@@ -162,6 +166,30 @@
     {
       "name": "--ex-white",
       "value": "#ffffff",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-khaki-600",
+      "value": "#62664a",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-khaki-700",
+      "value": "#50543b",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-khaki-300",
+      "value": "#b5b99a",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-khaki-200",
+      "value": "#c8ccb0",
       "kind": "color",
       "definedIn": "tokens/exopter-tokens.css"
     },
@@ -468,26 +496,61 @@
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
+      "name": "--ex-control-height",
+      "value": "38px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--ex-panel-padding",
+      "value": "20px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--ex-section-gap",
+      "value": "20px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--ex-list-row-height",
+      "value": "84px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "spacing"
+    },
+    {
+      "name": "--ex-shell-header-height",
+      "value": "48px",
+      "kind": "spacing",
+      "definedIn": "tokens/exopter-tokens.css",
+      "annotation": "spacing"
+    },
+    {
       "name": "--ex-radius-instrument",
-      "value": "4px",
+      "value": "2px",
       "kind": "radius",
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
       "name": "--ex-radius-surface",
-      "value": "8px",
+      "value": "4px",
       "kind": "radius",
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
       "name": "--ex-shadow-raised",
-      "value": "0 18px 42px rgba(16, 24, 26, 0.12)",
+      "value": "0 6px 18px rgba(7, 11, 13, 0.14)",
       "kind": "shadow",
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
       "name": "--ex-shadow-panel",
-      "value": "0 10px 28px rgba(16, 24, 26, 0.08)",
+      "value": "0 1px 2px rgba(7, 11, 13, 0.06)",
       "kind": "shadow",
       "definedIn": "tokens/exopter-tokens.css"
     },
@@ -776,7 +839,7 @@
     },
     {
       "name": "--radius-lg",
-      "value": "12px",
+      "value": "var(--ex-radius-surface)",
       "kind": "radius",
       "definedIn": "tokens/aliases.css"
     },
@@ -861,7 +924,7 @@
     },
     {
       "name": "--control-h",
-      "value": "42px",
+      "value": "var(--ex-control-height)",
       "kind": "spacing",
       "definedIn": "tokens/aliases.css"
     },
@@ -873,7 +936,7 @@
     },
     {
       "name": "--control-h-lg",
-      "value": "44px",
+      "value": "48px",
       "kind": "spacing",
       "definedIn": "tokens/aliases.css"
     },
@@ -987,15 +1050,81 @@
     },
     {
       "name": "--focus-ring",
-      "value": "var(--ex-sky-500)",
+      "value": "var(--ex-khaki-600)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--control-danger",
+      "value": "#b42318",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--control-danger-hover",
+      "value": "#941c14",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--control-error",
+      "value": "#b42318",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
     {
       "name": "--link",
-      "value": "var(--ex-sky-500)",
+      "value": "var(--ex-khaki-600)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--status-ready-text",
+      "value": "var(--ex-state-ready-text)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
+      "name": "--status-live-text",
+      "value": "var(--ex-state-live-text)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
+      "name": "--status-caution-text",
+      "value": "var(--ex-state-caution-text)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
+      "name": "--status-fault-text",
+      "value": "var(--ex-state-fault-text)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
+      "name": "--status-info-text",
+      "value": "#1668a8",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
+      "name": "--surface-selected",
+      "value": "rgba(98, 102, 74, 0.08)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--selection-marker",
+      "value": "var(--ex-khaki-600)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
     },
     {
       "name": "--state-ready",
@@ -1034,14 +1163,38 @@
       "definedIn": "tokens/aliases.css"
     },
     {
-      "name": "--accent",
+      "name": "--control-primary",
       "value": "var(--ex-carbon-900)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--control-primary-hover",
+      "value": "var(--ex-carbon-700)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--control-primary-text",
+      "value": "var(--ex-white)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--accent",
+      "value": "var(--ex-khaki-600)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--accent-hover",
+      "value": "var(--ex-khaki-700)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
     {
       "name": "--accent-contrast",
-      "value": "var(--ex-vapor-50)",
+      "value": "var(--ex-white)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
@@ -1123,6 +1276,68 @@
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
     },
     {
+      "name": "--status-ready-text",
+      "value": "var(--ex-hud-green)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]",
+      "annotation": "color"
+    },
+    {
+      "name": "--status-live-text",
+      "value": "var(--ex-aqua-500)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]",
+      "annotation": "color"
+    },
+    {
+      "name": "--status-caution-text",
+      "value": "var(--ex-amber-500)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]",
+      "annotation": "color"
+    },
+    {
+      "name": "--status-fault-text",
+      "value": "#ff8b83",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]",
+      "annotation": "color"
+    },
+    {
+      "name": "--status-info-text",
+      "value": "#91cfff",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]",
+      "annotation": "color"
+    },
+    {
+      "name": "--ex-sky-100",
+      "value": "#102936",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--surface-selected",
+      "value": "rgba(181, 185, 154, 0.10)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--selection-marker",
+      "value": "var(--ex-khaki-300)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]",
+      "annotation": "color"
+    },
+    {
       "name": "--state-ready",
       "value": "var(--ex-hud-green)",
       "kind": "color",
@@ -1130,8 +1345,57 @@
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
     },
     {
+      "name": "--link",
+      "value": "var(--ex-khaki-300)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--focus-ring",
+      "value": "var(--ex-khaki-300)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--control-error",
+      "value": "#ff8b83",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--control-primary",
+      "value": "var(--ex-carbon-700)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--control-primary-hover",
+      "value": "var(--ex-graphite-600)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--control-primary-text",
+      "value": "var(--ex-vapor-50)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
       "name": "--accent",
-      "value": "var(--ex-aqua-500)",
+      "value": "var(--ex-khaki-300)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--accent-hover",
+      "value": "var(--ex-khaki-200)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
@@ -1142,6 +1406,12 @@
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--control-h",
+      "value": "44px",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
     }
   ],
   "themes": [
@@ -1364,6 +1634,9 @@
       "ReadinessStrip": {
         "replaces": []
       },
+      "SignalStrength": {
+        "replaces": []
+      },
       "SelectionToolbar": {
         "replaces": []
       },
@@ -1407,13 +1680,20 @@
     "tokens": [
       "--accent",
       "--accent-contrast",
+      "--accent-hover",
       "--border-rule",
       "--border-strong",
       "--bw-rule",
       "--bw-strong",
+      "--control-danger",
+      "--control-danger-hover",
+      "--control-error",
       "--control-h",
       "--control-h-lg",
       "--control-h-sm",
+      "--control-primary",
+      "--control-primary-hover",
+      "--control-primary-text",
       "--dur",
       "--dur-fast",
       "--dur-slow",
@@ -1428,6 +1708,7 @@
       "--ex-carbon-800",
       "--ex-carbon-900",
       "--ex-carbon-950",
+      "--ex-control-height",
       "--ex-field-100",
       "--ex-field-500",
       "--ex-flight-amber",
@@ -1453,11 +1734,17 @@
       "--ex-instrument-line",
       "--ex-instrument-muted",
       "--ex-instrument-sky",
+      "--ex-khaki-200",
+      "--ex-khaki-300",
+      "--ex-khaki-600",
+      "--ex-khaki-700",
       "--ex-line-200",
       "--ex-line-300",
+      "--ex-list-row-height",
       "--ex-motion-reveal-duration",
       "--ex-motion-reveal-ease",
       "--ex-page-width",
+      "--ex-panel-padding",
       "--ex-radius-instrument",
       "--ex-radius-surface",
       "--ex-red-100",
@@ -1465,8 +1752,10 @@
       "--ex-scene-edge",
       "--ex-scene-light",
       "--ex-scene-surface",
+      "--ex-section-gap",
       "--ex-shadow-panel",
       "--ex-shadow-raised",
+      "--ex-shell-header-height",
       "--ex-sky-100",
       "--ex-sky-500",
       "--ex-space-1",
@@ -1530,6 +1819,7 @@
       "--radius-compact",
       "--radius-lg",
       "--radius-round",
+      "--selection-marker",
       "--shadow",
       "--shadow-inset",
       "--shadow-md",
@@ -1552,10 +1842,16 @@
       "--state-pending",
       "--state-ready",
       "--state-unknown",
+      "--status-caution-text",
+      "--status-fault-text",
+      "--status-info-text",
+      "--status-live-text",
+      "--status-ready-text",
       "--surface-app",
       "--surface-card",
       "--surface-hover",
       "--surface-panel",
+      "--surface-selected",
       "--surface-sunken",
       "--text-body",
       "--text-inverse",
@@ -1565,13 +1861,20 @@
     "tokenKinds": {
       "--accent": "color",
       "--accent-contrast": "color",
+      "--accent-hover": "color",
       "--border-rule": "color",
       "--border-strong": "color",
       "--bw-rule": "spacing",
       "--bw-strong": "spacing",
+      "--control-danger": "color",
+      "--control-danger-hover": "color",
+      "--control-error": "color",
       "--control-h": "spacing",
       "--control-h-lg": "spacing",
       "--control-h-sm": "spacing",
+      "--control-primary": "other",
+      "--control-primary-hover": "other",
+      "--control-primary-text": "other",
       "--dur": "other",
       "--dur-fast": "other",
       "--dur-slow": "other",
@@ -1586,6 +1889,7 @@
       "--ex-carbon-800": "color",
       "--ex-carbon-900": "color",
       "--ex-carbon-950": "color",
+      "--ex-control-height": "spacing",
       "--ex-field-100": "color",
       "--ex-field-500": "color",
       "--ex-flight-amber": "color",
@@ -1611,11 +1915,17 @@
       "--ex-instrument-line": "color",
       "--ex-instrument-muted": "color",
       "--ex-instrument-sky": "color",
+      "--ex-khaki-200": "color",
+      "--ex-khaki-300": "color",
+      "--ex-khaki-600": "color",
+      "--ex-khaki-700": "color",
       "--ex-line-200": "color",
       "--ex-line-300": "color",
+      "--ex-list-row-height": "spacing",
       "--ex-motion-reveal-duration": "other",
       "--ex-motion-reveal-ease": "other",
       "--ex-page-width": "spacing",
+      "--ex-panel-padding": "spacing",
       "--ex-radius-instrument": "radius",
       "--ex-radius-surface": "radius",
       "--ex-red-100": "color",
@@ -1623,8 +1933,10 @@
       "--ex-scene-edge": "color",
       "--ex-scene-light": "color",
       "--ex-scene-surface": "color",
+      "--ex-section-gap": "spacing",
       "--ex-shadow-panel": "shadow",
       "--ex-shadow-raised": "shadow",
+      "--ex-shell-header-height": "spacing",
       "--ex-sky-100": "color",
       "--ex-sky-500": "color",
       "--ex-space-1": "spacing",
@@ -1688,6 +2000,7 @@
       "--radius-compact": "radius",
       "--radius-lg": "radius",
       "--radius-round": "radius",
+      "--selection-marker": "color",
       "--shadow": "shadow",
       "--shadow-inset": "shadow",
       "--shadow-md": "shadow",
@@ -1710,10 +2023,16 @@
       "--state-pending": "color",
       "--state-ready": "color",
       "--state-unknown": "color",
+      "--status-caution-text": "color",
+      "--status-fault-text": "color",
+      "--status-info-text": "color",
+      "--status-live-text": "color",
+      "--status-ready-text": "color",
       "--surface-app": "color",
       "--surface-card": "color",
       "--surface-hover": "color",
       "--surface-panel": "color",
+      "--surface-selected": "color",
       "--surface-sunken": "color",
       "--text-body": "color",
       "--text-inverse": "color",

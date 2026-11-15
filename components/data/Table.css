@@ -1,0 +1,17 @@
+/* Semantic HTML table primitives. Keep numeric columns explicitly marked. */
+.exds-table-region{overflow:auto;border:1px solid var(--border-rule);border-radius:var(--radius);background:var(--surface-card);color:var(--text-body)}
+.exds-table-region:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}
+.exds-table{width:100%;border-collapse:collapse;text-align:left;font:400 var(--fs-sm)/1.5 var(--font-ui)}
+.exds-table caption{text-align:left;padding:16px 20px;font-weight:600;color:var(--text-strong)}
+.exds-table th{background:var(--surface-app);font:500 var(--fs-xs)/1.5 var(--font-mono);text-transform:uppercase;letter-spacing:var(--ls-label);color:var(--text-muted);white-space:nowrap}
+.exds-table :is(th,td){padding:12px 16px;border-bottom:1px solid var(--border-rule)}
+.exds-table tbody tr:last-child td{border-bottom:0}
+.exds-table tbody tr:hover{background:var(--surface-hover)}
+.exds-table tbody tr[data-selected="true"]{background:var(--surface-selected);box-shadow:inset 3px 0 var(--selection-marker)}
+.exds-table .exds-table__number{text-align:right;font-family:var(--font-data);font-variant-numeric:tabular-nums;white-space:nowrap}
+.exds-table__sort{display:inline-flex;align-items:center;gap:8px;padding:4px 0;border:0;background:transparent;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;min-height:32px}
+.exds-table__sort:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
+.exds-table input[type="checkbox"]{accent-color:var(--selection-marker);width:16px;height:16px;cursor:pointer}
+.exds-table input:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
+.exds-table__empty{text-align:center;padding:40px!important;color:var(--text-muted)}
+.exds-table--compact :is(th,td){padding:8px 12px}

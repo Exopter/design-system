@@ -1,43 +1,44 @@
-const { Card, MetricTile, ReadinessStrip, ChecklistRow } = window.ExopterDesignSystem_4c9fc9;
-
-const icon = (markup) => (
-  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: markup }} />
-);
-const gauge = icon('<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>');
-
+const { Card, MetricTile, ReadinessStrip, ChecklistRow, Badge, Button, Input, Drawer } = window.ExopterDesignSystem_4c9fc9;
+const flights = [
+  {id:'EX-0248',name:'Morning flight',date:'15 NOV / 09:42',duration:186,altitude:4200,state:'ready',status:'Verified'},
+  {id:'EX-0247',name:'Glide evaluation',date:'14 NOV / 14:18',duration:212,altitude:3800,state:'caution',status:'Review'},
+  {id:'EX-0246',name:'Training session',date:'14 NOV / 10:06',duration:164,altitude:4100,state:'ready',status:'Verified'},
+  {id:'EX-0245',name:'Sensor check',date:'13 NOV / 11:30',duration:98,altitude:2500,state:'fault',status:'Incomplete'},
+];
 function Demo() {
-  return (
-    <div>
-      <div className="group"><span className="gl">ReadinessStrip</span>
-        <ReadinessStrip mode="GLD" items={[
-          { label: 'Pilot', value: 'A. Renaud', state: 'ready' },
-          { label: 'Weather', value: 'CAVOK · 6 kt', state: 'ready' },
-          { label: 'Battery', value: '74%', state: 'caution' },
-          { label: 'FDR', value: 'Armed', state: 'live' },
-          { label: 'Parachute', value: 'Pending', state: 'pending' },
-        ]} />
-      </div>
-      <div className="group"><span className="gl">MetricTile</span>
-        <div className="row">
-          <MetricTile label="Airspeed" icon={gauge} value="214" unit="km/h" state="live" />
-          <MetricTile label="Altitude" value="1 480" unit="m" delta="120" trend="down" />
-          <MetricTile label="Glide" value="12.4" unit="L/D" delta="0.3" trend="up" state="ready" />
-          <MetricTile label="Battery" value="74" unit="%" state="caution" />
-          <MetricTile label="Pitot" value="—" state="fault" />
-        </div>
-      </div>
-      <div className="group"><span className="gl">Card + ChecklistRow</span>
-        <Card eyebrow="Flight prep" title="GLD readiness" flush>
-          <div style={{ padding: '4px' }}>
-            <ChecklistRow state="done" title="Harness & hooks inspected" owner="PILOT" evidence="#" />
-            <ChecklistRow state="active" title="Parachute pack verified" owner="ENG-2" />
-            <ChecklistRow state="blocked" title="Airspeed cross-check" blocker="Pitot fault — replace probe" owner="ENG-1" />
-            <ChecklistRow state="pending" title="Weather window confirmed" owner="OPS" />
-          </div>
-        </Card>
-      </div>
-    </div>
-  );
+  const [dark,setDark] = React.useState(false);
+  const [query,setQuery] = React.useState('');
+  const [selected,setSelected] = React.useState([]);
+  const [sort,setSort] = React.useState({key:'id',direction:-1});
+  const [compact,setCompact] = React.useState(false);
+  const [detail,setDetail] = React.useState(null);
+  const [active,setActive] = React.useState('cards');
+  const menu = React.useRef(null);
+  const visible = flights.filter(flight => `${flight.name} ${flight.id} ${flight.status}`.toLowerCase().includes(query.toLowerCase())).sort((a,b) => (a[sort.key] > b[sort.key] ? 1 : a[sort.key] < b[sort.key] ? -1 : 0) * sort.direction);
+  const toggle = id => setSelected(items => items.includes(id) ? items.filter(item => item !== id) : [...items,id]);
+  const sortBy = key => setSort(current => ({key,direction:current.key === key ? -current.direction : 1}));
+  const closeMenu = () => { if(menu.current){menu.current.open=false;menu.current.querySelector('summary').focus();} };
+  const sortHeading = (label,key,numeric=false) => <th scope="col" className={numeric ? 'exds-table__number' : ''} aria-sort={sort.key === key ? (sort.direction === 1 ? 'ascending' : 'descending') : 'none'}><button className="exds-table__sort" onClick={() => sortBy(key)}>{label}{sort.key === key && <span aria-hidden="true">{sort.direction === 1 ? '↑' : '↓'}</span>}</button></th>;
+  return <div className={`workbench ${dark ? 'ex-dark' : ''}`}>
+    <header className="masthead"><div className="shell"><div className="wordmark"><img src={dark ? '../../assets/logo-mark-white.svg' : '../../assets/logo-mark.svg'} alt="" />EXOPTER</div><div className="header-actions"><a href="../forms/forms.card.html">Buttons & inputs</a><span className="edition">Design system / proposal</span><Button variant="secondary" size="sm" aria-pressed={dark} onClick={() => setDark(!dark)}>{dark ? 'Light surface' : 'Dark surface'}</Button></div></div></header>
+    <main className="shell">
+      <section className="intro"><div><span className="eyebrow">02 / Instrument foundations</span><h1>Structure for the mission.</h1><p>Sharp frames. Clear hierarchy. Data you can scan, compare and act on.</p></div><div className="principles"><strong>One consistent control language.</strong>Flat panels, precise boundaries.<br />Selection has a visible edge.<br />Numbers stay aligned.</div></section>
+      <div className="token-strip">{[['Panel radius','4 px'],['Menu radius','2 px'],['Dividers','1 px'],['Data figures','Tabular']].map(([label,value]) => <div className="token" key={label}><span className="token-label">{label}</span><b>{value}</b></div>)}</div>
+      <section className="instrument-section" id="cards"><div className="section-head"><span className="section-index">01</span><h2>Cards as instrument panels</h2><p>Flat surfaces. Quiet headers. Purposeful status.</p></div>
+        <div className="instrument-grid"><MetricTile label="Airspeed" value="214" unit="km/h" state="live" /><MetricTile label="Altitude" value="4 200" unit="m" /><MetricTile label="Glide ratio" value="2.8" unit="L/D" /><MetricTile label="Battery" value="74" unit="%" state="caution" /></div>
+        <div className="panel-grid"><Card eyebrow="Recorder / FDR-0084" title="Session overview" actions={<Badge tone="ready">Verified</Badge>}><dl className="instrument-summary"><div><dt>Session</dt><dd>EX-0248</dd></div><div><dt>Recording profile</dt><dd>100 Hz</dd></div><div><dt>Duration</dt><dd>03:06</dd></div><div><dt>Data integrity</dt><dd>100.0%</dd></div></dl></Card><Card eyebrow="Flight prep / demo" title="Readiness checklist" actions={<Badge tone="caution">1 pending</Badge>}><div className="specimen-checklist"><ChecklistRow state="done" title="Recorder storage checked" owner="FDR" /><ChecklistRow state="done" title="Sensors calibrated" owner="ENG" /><ChecklistRow state="pending" title="Weather window confirmed" owner="OPS" /></div></Card></div>
+      </section>
+      <section className="instrument-section" id="navigation"><div className="section-head"><span className="section-index">02</span><h2>Navigation with a clear bearing</h2><p>Active edges, rectangular targets, keyboard focus.</p></div><div className="navigation-demo"><nav className="exds-nav" aria-label="Workbench sections">{[['cards','Instrument panels','01'],['navigation','Navigation','02'],['recordings','Flight recordings','03']].map(([id,label,index]) => <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined} onClick={() => setActive(id)}>{label}<span className="exds-nav__meta">{index}</span></a>)}</nav><div><h3>A fixed edge. A clear position.</h3><p>The active item is identified by its edge, background and weight. Actions use the same sharp geometry, with a compact disclosure menu above the recordings table.</p></div></div></section>
+      <section className="instrument-section" id="recordings"><div className="section-head"><span className="section-index">03</span><h2>Tables built for comparison</h2><p>Sort, filter and select. No hidden row actions.</p></div>
+        <div className="table-toolbar"><Input label="Find a recording" placeholder="Search by name, ID or status" value={query} onChange={event => setQuery(event.target.value)} /><div className="table-toolbar__actions"><Button variant="secondary" disabled={selected.length !== 1} onClick={() => setDetail(flights.find(flight => flight.id === selected[0]))}>Inspect selected</Button><details className="exds-menu" ref={menu} onKeyDown={event => {if(event.key === 'Escape'){event.preventDefault();closeMenu();}}} onBlur={event => {if(!event.currentTarget.contains(event.relatedTarget))event.currentTarget.open=false;}}><summary className="exds-btn exds-btn--secondary">Table options</summary><div className="exds-menu__panel"><span className="exds-menu__label">Display & selection</span><button className="exds-menu__item" onClick={() => {setCompact(!compact);closeMenu();}}>{compact ? 'Comfortable rows' : 'Compact rows'}</button><button className="exds-menu__item" onClick={() => {setSort({key:'id',direction:-1});setQuery('');closeMenu();}}>Reset view</button><hr /><button className="exds-menu__item" disabled={!selected.length} onClick={() => {setSelected([]);closeMenu();}}>Clear selection</button></div></details></div></div>
+        <div className="exds-table-region" role="region" aria-label="Flight recordings table" tabIndex={0}><table className={`exds-table ${compact ? 'exds-table--compact' : ''}`}><caption>Flight recordings / local sample data</caption><thead><tr><th scope="col"><input type="checkbox" aria-label="Select all visible recordings" checked={visible.length > 0 && visible.every(flight => selected.includes(flight.id))} disabled={!visible.length} ref={element => {if(element)element.indeterminate=visible.some(flight => selected.includes(flight.id)) && !visible.every(flight => selected.includes(flight.id));}} onChange={event => setSelected(items => event.target.checked ? [...new Set([...items,...visible.map(flight => flight.id)])] : items.filter(id => !visible.some(flight => flight.id === id)))} /></th>{sortHeading('Recording','id')}{sortHeading('Duration / s','duration',true)}{sortHeading('Exit / m','altitude',true)}<th scope="col">Integrity</th><th scope="col">Details</th></tr></thead><tbody>{visible.map(flight => <tr key={flight.id} data-selected={selected.includes(flight.id)}><td><input type="checkbox" aria-label={`Select ${flight.id}`} checked={selected.includes(flight.id)} onChange={() => toggle(flight.id)} /></td><td><span className="exds-table__name">{flight.name}</span><span className="exds-table__sub">{flight.id} / {flight.date}</span></td><td className="exds-table__number">{flight.duration}</td><td className="exds-table__number">{flight.altitude.toLocaleString('en-US')}</td><td><Badge tone={flight.state}>{flight.status}</Badge></td><td><Button size="sm" variant="ghost" aria-label={`Inspect ${flight.id}`} onClick={() => setDetail(flight)}>Inspect</Button></td></tr>)}{!visible.length && <tr><td colSpan={6} className="exds-table__empty">No recordings match this search.</td></tr>}</tbody></table></div>
+        <p className="table-status" role="status">{visible.length} recordings shown / {selected.length} selected / {compact ? 'Compact' : 'Comfortable'} density</p>
+      </section>
+      <section aria-label="Colour roles" className="colour-roles"><span className="eyebrow">Neutral actions. Mineral khaki for focus and selection.</span><div className="colour-roles__samples"><Button size="sm" onClick={() => document.getElementById('recordings').scrollIntoView({behavior:'instant'})}>Explore recordings</Button><Badge tone="ready">Ready</Badge><Badge tone="live">Live telemetry</Badge><Badge tone="info">Information</Badge><Badge tone="caution">Caution</Badge><Badge tone="fault">Fault</Badge></div></section>
+      <ReadinessStrip mode="DEMO" items={[{label:'Source',value:'Local samples',state:'ready'},{label:'Hardware',value:'Not connected',state:'unknown'},{label:'Design',value:'Proposal',state:'pending'}]} />
+      <footer className="page-footer" style={{paddingTop:24}}><span>EXOPTER / INSTRUMENT LANGUAGE</span><a href="../../index.html">Component catalogue</a><span>LOCAL PROPOSAL / NOV 2026</span></footer>
+    </main>
+    <Drawer open={Boolean(detail)} onClose={() => setDetail(null)} title={detail?.name || 'Recording'} eyebrow={detail?.id} description="Local sample data. No device connected.">{detail && <dl className="instrument-summary"><div><dt>Duration</dt><dd>{detail.duration} s</dd></div><div><dt>Exit altitude</dt><dd>{detail.altitude} m</dd></div><div><dt>Integrity</dt><dd>{detail.status}</dd></div></dl>}</Drawer>
+  </div>;
 }
-
 ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);

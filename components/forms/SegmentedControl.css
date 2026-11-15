@@ -6,7 +6,7 @@
   height:26px;padding:0 12px;border-radius:var(--radius-compact);
   transition:background var(--dur) var(--ease-out),color var(--dur) var(--ease-out);}
 .exds-seg__btn:hover:not([disabled]):not([data-active="true"]){color:var(--text-body)}
-.exds-seg__btn[data-active="true"]{background:var(--accent);color:var(--accent-contrast)}
+.exds-seg__btn[data-active="true"]{background:var(--surface-card);color:var(--text-strong);box-shadow:inset 0 -2px var(--selection-marker)}
 .exds-seg__btn[disabled]{opacity:.4;cursor:not-allowed}
 .exds-seg__btn:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}
 .exds-seg__btn svg{width:14px;height:14px}

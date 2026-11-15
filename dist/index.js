@@ -53,42 +53,48 @@ function ReadinessStrip({ mode, items = [], className = "", ...rest }) {
   return /* @__PURE__ */ React4.createElement("div", { className: ["exds-strip", className].filter(Boolean).join(" "), ...rest }, mode && /* @__PURE__ */ React4.createElement("div", { className: "exds-strip__mode" }, mode), items.map((it, i) => /* @__PURE__ */ React4.createElement("div", { key: i, className: `exds-strip__item is-${it.state || "unknown"}` }, /* @__PURE__ */ React4.createElement("span", { className: "exds-strip__k" }, it.label), /* @__PURE__ */ React4.createElement("span", { className: "exds-strip__v" }, /* @__PURE__ */ React4.createElement("span", { className: ["exds-strip__dot", it.state === "pending" ? "exds-strip__dot--hollow" : ""].filter(Boolean).join(" ") }), /* @__PURE__ */ React4.createElement("span", { className: "exds-strip__vlabel" }, it.value)))));
 }
 
-// components/data/SelectionToolbar.jsx
+// components/data/SignalStrength.jsx
 import React5 from "react";
+function SignalStrength({ label, quality = "Unavailable", level = 0, value = "---", className = "", ...rest }) {
+  return /* @__PURE__ */ React5.createElement("div", { className: ["exds-signal-strength", className].filter(Boolean).join(" "), "data-level": level, ...rest }, /* @__PURE__ */ React5.createElement("div", { className: "exds-signal-strength__heading" }, /* @__PURE__ */ React5.createElement("svg", { viewBox: "0 0 24 20", width: "24", height: "20", "aria-hidden": "true" }, /* @__PURE__ */ React5.createElement("rect", { x: "1", y: "14", width: "4", height: "5", rx: "1" }), /* @__PURE__ */ React5.createElement("rect", { x: "7", y: "10", width: "4", height: "9", rx: "1" }), /* @__PURE__ */ React5.createElement("rect", { x: "13", y: "5", width: "4", height: "14", rx: "1" }), /* @__PURE__ */ React5.createElement("rect", { x: "19", y: "1", width: "4", height: "18", rx: "1" })), /* @__PURE__ */ React5.createElement("span", { className: "exds-signal-strength__label" }, label), /* @__PURE__ */ React5.createElement("strong", { className: "exds-signal-strength__quality" }, quality)), /* @__PURE__ */ React5.createElement("small", { className: "exds-signal-strength__value" }, value));
+}
+
+// components/data/SelectionToolbar.jsx
+import React6 from "react";
 function SelectionToolbar({ count, children, className = "", ...rest }) {
-  return /* @__PURE__ */ React5.createElement("div", { role: "group", "aria-label": "Selection actions", className: ["exds-selection-toolbar", className].filter(Boolean).join(" "), ...rest }, /* @__PURE__ */ React5.createElement("span", { role: "status", "aria-live": "polite" }, count, " selected"), children);
+  return /* @__PURE__ */ React6.createElement("div", { role: "group", "aria-label": "Selection actions", className: ["exds-selection-toolbar", className].filter(Boolean).join(" "), ...rest }, /* @__PURE__ */ React6.createElement("span", { role: "status", "aria-live": "polite" }, count, " selected"), children);
 }
 
 // components/feedback/Badge.jsx
-import React6 from "react";
+import React7 from "react";
 function Badge({ tone = "neutral", icon = null, children, className = "" }) {
-  return /* @__PURE__ */ React6.createElement("span", { className: ["exds-badge", `exds-badge--${tone}`, className].filter(Boolean).join(" ") }, icon, children);
+  return /* @__PURE__ */ React7.createElement("span", { className: ["exds-badge", `exds-badge--${tone}`, className].filter(Boolean).join(" ") }, icon, children);
 }
 
 // components/feedback/StatusDot.jsx
-import React7 from "react";
+import React8 from "react";
 function StatusDot({ state = "unknown", label, pulse = false, className = "" }) {
   const hollow = state === "pending";
   const text = label ?? state.toUpperCase();
-  return /* @__PURE__ */ React7.createElement("span", { className: ["exds-statusdot", `exds-statusdot--${state}`, pulse ? "exds-statusdot--pulse" : "", className].filter(Boolean).join(" ") }, /* @__PURE__ */ React7.createElement("span", { className: ["exds-statusdot__dot", hollow ? "exds-statusdot__dot--hollow" : ""].filter(Boolean).join(" ") }), /* @__PURE__ */ React7.createElement("span", { className: "exds-statusdot__label" }, text));
+  return /* @__PURE__ */ React8.createElement("span", { className: ["exds-statusdot", `exds-statusdot--${state}`, pulse ? "exds-statusdot--pulse" : "", className].filter(Boolean).join(" ") }, /* @__PURE__ */ React8.createElement("span", { className: ["exds-statusdot__dot", hollow ? "exds-statusdot__dot--hollow" : ""].filter(Boolean).join(" ") }), /* @__PURE__ */ React8.createElement("span", { className: "exds-statusdot__label" }, text));
 }
 
 // components/feedback/SuccessState.jsx
-import React8 from "react";
-var CheckIcon = () => /* @__PURE__ */ React8.createElement("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" }, /* @__PURE__ */ React8.createElement("path", { d: "m5 12 4 4L19 6" }));
-function SuccessState({ title, description, action = null, icon = /* @__PURE__ */ React8.createElement(CheckIcon, null) }) {
-  return /* @__PURE__ */ React8.createElement("div", { className: "exds-success-state" }, /* @__PURE__ */ React8.createElement("div", { className: "exds-success-state__inner" }, /* @__PURE__ */ React8.createElement("span", { className: "exds-success-state__icon" }, icon), /* @__PURE__ */ React8.createElement("h2", { className: "exds-success-state__title" }, title), description && /* @__PURE__ */ React8.createElement("p", { className: "exds-success-state__description" }, description), action));
+import React9 from "react";
+var CheckIcon = () => /* @__PURE__ */ React9.createElement("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" }, /* @__PURE__ */ React9.createElement("path", { d: "m5 12 4 4L19 6" }));
+function SuccessState({ title, description, action = null, icon = /* @__PURE__ */ React9.createElement(CheckIcon, null) }) {
+  return /* @__PURE__ */ React9.createElement("div", { className: "exds-success-state" }, /* @__PURE__ */ React9.createElement("div", { className: "exds-success-state__inner" }, /* @__PURE__ */ React9.createElement("span", { className: "exds-success-state__icon" }, icon), /* @__PURE__ */ React9.createElement("h2", { className: "exds-success-state__title" }, title), description && /* @__PURE__ */ React9.createElement("p", { className: "exds-success-state__description" }, description), action));
 }
 
 // components/feedback/Toast.jsx
-import React9 from "react";
-var X = () => /* @__PURE__ */ React9.createElement("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }, /* @__PURE__ */ React9.createElement("path", { d: "M18 6 6 18M6 6l12 12" }));
+import React10 from "react";
+var X = () => /* @__PURE__ */ React10.createElement("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round" }, /* @__PURE__ */ React10.createElement("path", { d: "M18 6 6 18M6 6l12 12" }));
 function Toast({ tone = "info", icon = null, title, children, onClose, className = "" }) {
-  return /* @__PURE__ */ React9.createElement("div", { role: "status", className: ["exds-toast", `exds-toast--${tone}`, className].filter(Boolean).join(" ") }, icon && /* @__PURE__ */ React9.createElement("span", { className: "exds-toast__icon" }, icon), /* @__PURE__ */ React9.createElement("div", { className: "exds-toast__body" }, title && /* @__PURE__ */ React9.createElement("div", { className: "exds-toast__title" }, title), children && /* @__PURE__ */ React9.createElement("div", { className: "exds-toast__msg" }, children)), onClose && /* @__PURE__ */ React9.createElement("button", { type: "button", className: "exds-toast__close", "aria-label": "Dismiss", onClick: onClose }, /* @__PURE__ */ React9.createElement(X, null)));
+  return /* @__PURE__ */ React10.createElement("div", { role: "status", className: ["exds-toast", `exds-toast--${tone}`, className].filter(Boolean).join(" ") }, icon && /* @__PURE__ */ React10.createElement("span", { className: "exds-toast__icon" }, icon), /* @__PURE__ */ React10.createElement("div", { className: "exds-toast__body" }, title && /* @__PURE__ */ React10.createElement("div", { className: "exds-toast__title" }, title), children && /* @__PURE__ */ React10.createElement("div", { className: "exds-toast__msg" }, children)), onClose && /* @__PURE__ */ React10.createElement("button", { type: "button", className: "exds-toast__close", "aria-label": "Dismiss", onClick: onClose }, /* @__PURE__ */ React10.createElement(X, null)));
 }
 
 // components/forms/Button.jsx
-import React10 from "react";
+import React11 from "react";
 function Button({
   variant = "primary",
   size = "md",
@@ -107,11 +113,11 @@ function Button({
     block ? "exds-btn--block" : "",
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ React10.createElement("button", { type, className: cls, ...rest }, iconLeft, children != null && /* @__PURE__ */ React10.createElement("span", null, children), iconRight);
+  return /* @__PURE__ */ React11.createElement("button", { type, className: cls, ...rest }, iconLeft, children != null && /* @__PURE__ */ React11.createElement("span", null, children), iconRight);
 }
 
 // components/forms/IconButton.jsx
-import React11 from "react";
+import React12 from "react";
 function IconButton({
   icon,
   variant = "ghost",
@@ -132,11 +138,11 @@ function IconButton({
     round ? "exds-iconbtn--round" : "",
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ React11.createElement("button", { type: "button", className: cls, ...rest, "aria-label": accessibleLabel, title: accessibleLabel }, icon);
+  return /* @__PURE__ */ React12.createElement("button", { type: "button", className: cls, ...rest, "aria-label": accessibleLabel, title: accessibleLabel }, icon);
 }
 
 // components/forms/Input.jsx
-import React12 from "react";
+import React13 from "react";
 function Input({
   label,
   required = false,
@@ -150,18 +156,18 @@ function Input({
   "aria-describedby": ariaDescribedBy,
   ...rest
 }) {
-  const generatedId = React12.useId().replaceAll(":", "");
+  const generatedId = React13.useId().replaceAll(":", "");
   const fieldId = id || `exds-input-${generatedId}`;
   const messageId = error || hint ? `${fieldId}-message` : void 0;
   const describedBy = [ariaDescribedBy, messageId].filter(Boolean).join(" ") || void 0;
-  return /* @__PURE__ */ React12.createElement("div", { className: ["exds-field", className].filter(Boolean).join(" ") }, label && /* @__PURE__ */ React12.createElement("label", { className: "exds-field__label", htmlFor: fieldId }, label, required && /* @__PURE__ */ React12.createElement("span", { className: "exds-field__req", "aria-hidden": "true" }, "*")), /* @__PURE__ */ React12.createElement(
+  return /* @__PURE__ */ React13.createElement("div", { className: ["exds-field", className].filter(Boolean).join(" ") }, label && /* @__PURE__ */ React13.createElement("label", { className: "exds-field__label", htmlFor: fieldId }, label, required && /* @__PURE__ */ React13.createElement("span", { className: "exds-field__req", "aria-hidden": "true" }, "*")), /* @__PURE__ */ React13.createElement(
     "div",
     {
       className: ["exds-input-wrap", error ? "exds-input-wrap--error" : ""].filter(Boolean).join(" "),
       "data-disabled": rest.disabled ? "true" : "false"
     },
-    prefix && /* @__PURE__ */ React12.createElement("span", { className: "exds-input__affix" }, prefix),
-    /* @__PURE__ */ React12.createElement(
+    prefix && /* @__PURE__ */ React13.createElement("span", { className: "exds-input__affix" }, prefix),
+    /* @__PURE__ */ React13.createElement(
       "input",
       {
         ...rest,
@@ -173,20 +179,20 @@ function Input({
         "aria-errormessage": error ? messageId : rest["aria-errormessage"]
       }
     ),
-    suffix && /* @__PURE__ */ React12.createElement("span", { className: "exds-input__affix" }, suffix)
-  ), error ? /* @__PURE__ */ React12.createElement("span", { id: messageId, className: "exds-field__hint exds-field__hint--error" }, error) : hint && /* @__PURE__ */ React12.createElement("span", { id: messageId, className: "exds-field__hint" }, hint));
+    suffix && /* @__PURE__ */ React13.createElement("span", { className: "exds-input__affix" }, suffix)
+  ), error ? /* @__PURE__ */ React13.createElement("span", { id: messageId, className: "exds-field__hint exds-field__hint--error" }, error) : hint && /* @__PURE__ */ React13.createElement("span", { id: messageId, className: "exds-field__hint" }, hint));
 }
 
 // components/forms/SegmentedControl.jsx
-import React13 from "react";
+import React14 from "react";
 function SegmentedControl({ options = [], value, defaultValue, onChange, size = "md", ariaLabel = "Mode", className = "" }) {
   const isControlled = value !== void 0;
   const initialValue = options.find((option) => option.value === defaultValue && !option.disabled)?.value ?? options.find((option) => !option.disabled)?.value;
-  const [internal, setInternal] = React13.useState(initialValue);
+  const [internal, setInternal] = React14.useState(initialValue);
   const current = isControlled ? value : internal;
   const selectedIndex = options.findIndex((option) => option.value === current && !option.disabled);
   const tabbableIndex = selectedIndex >= 0 ? selectedIndex : options.findIndex((option) => !option.disabled);
-  const buttonRefs = React13.useRef(
+  const buttonRefs = React14.useRef(
     /** @type {Array<HTMLButtonElement | null>} */
     []
   );
@@ -223,14 +229,14 @@ function SegmentedControl({ options = [], value, defaultValue, onChange, size = 
       }
     }
   };
-  return /* @__PURE__ */ React13.createElement(
+  return /* @__PURE__ */ React14.createElement(
     "div",
     {
       className: ["exds-seg", size === "lg" ? "exds-seg--lg" : "", className].filter(Boolean).join(" "),
       role: "radiogroup",
       "aria-label": ariaLabel
     },
-    options.map((o, index) => /* @__PURE__ */ React13.createElement(
+    options.map((o, index) => /* @__PURE__ */ React14.createElement(
       "button",
       {
         key: o.value,
@@ -254,55 +260,55 @@ function SegmentedControl({ options = [], value, defaultValue, onChange, size = 
 }
 
 // components/forms/Select.jsx
-import React14 from "react";
-var Chevron = () => /* @__PURE__ */ React14.createElement("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ React14.createElement("polyline", { points: "6 9 12 15 18 9" }));
+import React15 from "react";
+var Chevron = () => /* @__PURE__ */ React15.createElement("svg", { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ React15.createElement("polyline", { points: "6 9 12 15 18 9" }));
 function Select({ label, options, id, className = "", children, ...rest }) {
-  const generatedId = React14.useId().replaceAll(":", "");
+  const generatedId = React15.useId().replaceAll(":", "");
   const sid = id || `exds-select-${generatedId}`;
-  return /* @__PURE__ */ React14.createElement("div", { className: ["exds-select-field", className].filter(Boolean).join(" ") }, label && /* @__PURE__ */ React14.createElement("label", { className: "exds-select-field__label", htmlFor: sid }, label), /* @__PURE__ */ React14.createElement("div", { className: "exds-select-wrap" }, /* @__PURE__ */ React14.createElement("select", { id: sid, className: "exds-select", ...rest }, options ? options.map((o) => /* @__PURE__ */ React14.createElement("option", { key: o.value, value: o.value, disabled: o.disabled }, o.label)) : children), /* @__PURE__ */ React14.createElement("span", { className: "exds-select-wrap__chev" }, /* @__PURE__ */ React14.createElement(Chevron, null))));
+  return /* @__PURE__ */ React15.createElement("div", { className: ["exds-select-field", className].filter(Boolean).join(" ") }, label && /* @__PURE__ */ React15.createElement("label", { className: "exds-select-field__label", htmlFor: sid }, label), /* @__PURE__ */ React15.createElement("div", { className: "exds-select-wrap" }, /* @__PURE__ */ React15.createElement("select", { id: sid, className: "exds-select", ...rest }, options ? options.map((o) => /* @__PURE__ */ React15.createElement("option", { key: o.value, value: o.value, disabled: o.disabled }, o.label)) : children), /* @__PURE__ */ React15.createElement("span", { className: "exds-select-wrap__chev" }, /* @__PURE__ */ React15.createElement(Chevron, null))));
 }
 
 // components/forms/Switch.jsx
-import React15 from "react";
+import React16 from "react";
 function Switch({ checked, defaultChecked, onChange, disabled = false, label, id, className = "", ...rest }) {
   const isControlled = checked !== void 0;
-  const [internal, setInternal] = React15.useState(!!defaultChecked);
+  const [internal, setInternal] = React16.useState(!!defaultChecked);
   const on = isControlled ? checked : internal;
   const handle = (e) => {
     if (!isControlled) setInternal(e.target.checked);
     if (onChange) onChange(e);
   };
-  const generatedId = React15.useId().replaceAll(":", "");
+  const generatedId = React16.useId().replaceAll(":", "");
   const sid = id || `exds-switch-${generatedId}`;
-  return /* @__PURE__ */ React15.createElement("label", { className: ["exds-switch", className].filter(Boolean).join(" "), "data-disabled": disabled ? "true" : "false", htmlFor: sid }, /* @__PURE__ */ React15.createElement("input", { id: sid, type: "checkbox", role: "switch", checked: on, disabled, onChange: handle, ...rest }), /* @__PURE__ */ React15.createElement("span", { className: "exds-switch__track", "data-on": on ? "true" : "false" }, /* @__PURE__ */ React15.createElement("span", { className: "exds-switch__thumb" })), label && /* @__PURE__ */ React15.createElement("span", { className: "exds-switch__label" }, label));
+  return /* @__PURE__ */ React16.createElement("label", { className: ["exds-switch", className].filter(Boolean).join(" "), "data-disabled": disabled ? "true" : "false", htmlFor: sid }, /* @__PURE__ */ React16.createElement("input", { id: sid, type: "checkbox", role: "switch", checked: on, disabled, onChange: handle, ...rest }), /* @__PURE__ */ React16.createElement("span", { className: "exds-switch__track", "data-on": on ? "true" : "false" }, /* @__PURE__ */ React16.createElement("span", { className: "exds-switch__thumb" })), label && /* @__PURE__ */ React16.createElement("span", { className: "exds-switch__label" }, label));
 }
 
 // components/forms/Textarea.jsx
-import React16 from "react";
+import React17 from "react";
 function Textarea({ label, required = false, hint = "", error = "", id, className = "", "aria-describedby": ariaDescribedBy, ...rest }) {
-  const generatedId = React16.useId().replaceAll(":", "");
+  const generatedId = React17.useId().replaceAll(":", "");
   const fieldId = id || `exds-textarea-${generatedId}`;
   const messageId = error || hint ? `${fieldId}-message` : void 0;
   const describedBy = [ariaDescribedBy, messageId].filter(Boolean).join(" ") || void 0;
-  return /* @__PURE__ */ React16.createElement("div", { className: ["exds-textarea-field", className].filter(Boolean).join(" ") }, label && /* @__PURE__ */ React16.createElement("label", { className: "exds-textarea-field__label", htmlFor: fieldId }, label, required && /* @__PURE__ */ React16.createElement("span", { className: "exds-textarea-field__req", "aria-hidden": "true" }, "*")), /* @__PURE__ */ React16.createElement("textarea", { ...rest, id: fieldId, required, className: "exds-textarea", "aria-invalid": error ? "true" : rest["aria-invalid"], "aria-describedby": describedBy, "aria-errormessage": error ? messageId : rest["aria-errormessage"] }), error ? /* @__PURE__ */ React16.createElement("span", { id: messageId, className: "exds-textarea-field__hint exds-textarea-field__hint--error" }, error) : hint && /* @__PURE__ */ React16.createElement("span", { id: messageId, className: "exds-textarea-field__hint" }, hint));
+  return /* @__PURE__ */ React17.createElement("div", { className: ["exds-textarea-field", className].filter(Boolean).join(" ") }, label && /* @__PURE__ */ React17.createElement("label", { className: "exds-textarea-field__label", htmlFor: fieldId }, label, required && /* @__PURE__ */ React17.createElement("span", { className: "exds-textarea-field__req", "aria-hidden": "true" }, "*")), /* @__PURE__ */ React17.createElement("textarea", { ...rest, id: fieldId, required, className: "exds-textarea", "aria-invalid": error ? "true" : rest["aria-invalid"], "aria-describedby": describedBy, "aria-errormessage": error ? messageId : rest["aria-errormessage"] }), error ? /* @__PURE__ */ React17.createElement("span", { id: messageId, className: "exds-textarea-field__hint exds-textarea-field__hint--error" }, error) : hint && /* @__PURE__ */ React17.createElement("span", { id: messageId, className: "exds-textarea-field__hint" }, hint));
 }
 
 // components/overlays/Drawer.jsx
-import React17 from "react";
+import React18 from "react";
 var FOCUSABLE = 'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])';
 function Drawer({ open = true, title, eyebrow = "", description = "", onClose, children, footer = null, ariaLabel, className = "" }) {
-  const dialogRef = React17.useRef(
+  const dialogRef = React18.useRef(
     /** @type {HTMLElement | null} */
     null
   );
-  const openerRef = React17.useRef(
+  const openerRef = React18.useRef(
     /** @type {HTMLElement | null} */
     null
   );
-  const titleId = React17.useId();
-  const closeRef = React17.useRef(onClose);
+  const titleId = React18.useId();
+  const closeRef = React18.useRef(onClose);
   closeRef.current = onClose;
-  React17.useEffect(() => {
+  React18.useEffect(() => {
     if (!open) return void 0;
     openerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     const dialog = dialogRef.current;
@@ -340,9 +346,9 @@ function Drawer({ open = true, title, eyebrow = "", description = "", onClose, c
     };
   }, [open]);
   if (!open) return null;
-  return /* @__PURE__ */ React17.createElement("div", { className: "exds-drawer-backdrop", onMouseDown: (event) => {
+  return /* @__PURE__ */ React18.createElement("div", { className: "exds-drawer-backdrop", onMouseDown: (event) => {
     if (event.target === event.currentTarget) onClose?.();
-  } }, /* @__PURE__ */ React17.createElement("aside", { ref: dialogRef, className: ["exds-drawer", className].filter(Boolean).join(" "), role: "dialog", "aria-modal": "true", "aria-label": ariaLabel || (title ? void 0 : "Dialog"), "aria-labelledby": !ariaLabel && title ? titleId : void 0, tabIndex: -1 }, (title || eyebrow || description || onClose) && /* @__PURE__ */ React17.createElement("div", { className: "exds-drawer__head" }, /* @__PURE__ */ React17.createElement("div", { className: "exds-drawer__heading" }, eyebrow && /* @__PURE__ */ React17.createElement("span", { className: "exds-drawer__eyebrow" }, eyebrow), title && /* @__PURE__ */ React17.createElement("h2", { id: titleId, className: "exds-drawer__title" }, title), description && /* @__PURE__ */ React17.createElement("p", { className: "exds-drawer__description" }, description)), onClose && /* @__PURE__ */ React17.createElement("button", { type: "button", className: "exds-drawer__close", "aria-label": "Close", onClick: onClose }, "×")), /* @__PURE__ */ React17.createElement("div", { className: "exds-drawer__body" }, children), footer && /* @__PURE__ */ React17.createElement("div", { className: "exds-drawer__foot" }, footer)));
+  } }, /* @__PURE__ */ React18.createElement("aside", { ref: dialogRef, className: ["exds-drawer", className].filter(Boolean).join(" "), role: "dialog", "aria-modal": "true", "aria-label": ariaLabel || (title ? void 0 : "Dialog"), "aria-labelledby": !ariaLabel && title ? titleId : void 0, tabIndex: -1 }, (title || eyebrow || description || onClose) && /* @__PURE__ */ React18.createElement("div", { className: "exds-drawer__head" }, /* @__PURE__ */ React18.createElement("div", { className: "exds-drawer__heading" }, eyebrow && /* @__PURE__ */ React18.createElement("span", { className: "exds-drawer__eyebrow" }, eyebrow), title && /* @__PURE__ */ React18.createElement("h2", { id: titleId, className: "exds-drawer__title" }, title), description && /* @__PURE__ */ React18.createElement("p", { className: "exds-drawer__description" }, description)), onClose && /* @__PURE__ */ React18.createElement("button", { type: "button", className: "exds-drawer__close", "aria-label": "Close", onClick: onClose }, "×")), /* @__PURE__ */ React18.createElement("div", { className: "exds-drawer__body" }, children), footer && /* @__PURE__ */ React18.createElement("div", { className: "exds-drawer__foot" }, footer)));
 }
 export {
   Badge,
@@ -357,6 +363,7 @@ export {
   SegmentedControl,
   Select,
   SelectionToolbar,
+  SignalStrength,
   StatusDot,
   SuccessState,
   Switch,

@@ -24,6 +24,8 @@ npm run check
 - `@exopter/design-system/styles.css`: the single global CSS entrypoint.
 - `@exopter/design-system/tokens/exopter-tokens.css`: canonical low-level Exopter tokens.
 - `@exopter/design-system/tokens/aliases.css`: semantic component aliases.
+- `templates/rails/stylesheets.json`: complete shared stylesheet export contract for Rails consumers.
+- `templates/rails/`: shared workbench, flight, equipment, telemetry, brand and font compositions. Historical class names are compatibility hooks, not a separate product theme.
 - `_ds_bundle.js`: generated browser-global component bundle for static specimens.
 - `_ds_manifest.json`: generated catalogue and component/token adherence metadata.
 - `_adherence.oxlintrc.json`: generated, runnable Oxlint consumer-import guardrail.
@@ -52,7 +54,22 @@ The export is byte-for-byte identical to the canonical source. Consumer reposito
 - `scripts/`: deterministic generation and export tooling.
 - `tests/`: component accessibility and generated-contract tests.
 
-Open `index.html` through a local static server to browse the catalogue. Product screens must reuse shared tokens and components; record new product or design decisions in Notion before extending the executable implementation.
+Open `index.html` through a local static server to browse the catalogue.
+The interactive controls proposal is at `components/forms/forms.card.html`.
+The instrument workbench at `components/data/data.card.html` covers cards, navigation,
+disclosure menus, sortable/filterable tables and inspection drawers. `Table.css`
+and `Menu.css` provide semantic HTML primitives through the global stylesheet.
+Disclosure menus use native `details`/`summary` with normal Tab navigation; the
+workbench closes them on Escape, focus exit and action selection.
+Primary buttons use the neutral `--control-primary` roles. Mineral khaki is
+reserved for focus, selection and small navigation accents.
+Interaction styles use `--accent`, `--focus-ring`, `--link`,
+`--selection-marker` and `--surface-selected`. Status colours remain independent:
+green for readiness, aqua for live telemetry, blue for information, amber for
+caution and red for faults. Charts retain their distinct data-series colours.
+Both workbenches exercise shared components in light and dark surfaces, including
+keyboard focus, disabled states and local form validation. This branch is a local
+proposal; consumer exports and the selected Notion design baseline are unchanged. Product screens must reuse shared tokens and components; record new product or design decisions in Notion before extending the executable implementation.
 
 The [Flight Club membership specimen](ui_kits/flightclub/README.md) is an isolated Three.js design study with mock member data, a physical card and a replayable welcome. It does not change the shared design-system baseline.
 
@@ -77,3 +94,13 @@ volumes, retained by `down`; existing native data is not imported automatically.
 
 Run `.\script\dev.ps1 npm run build` to regenerate committed package exports in
 Windows; Watch then synchronizes those files to the preview server.
+
+## Rails consumers
+
+Rails consumers use native server-rendered markup with the same public CSS primitives.
+Every stylesheet is declared in `templates/rails/stylesheets.json` and exported
+verbatim. Change the shared source before synchronizing a consumer. Consumer
+validation rejects modified exports and unregistered stylesheets. Button appearance
+belongs to Button and IconButton; NativeControls applies the shared Input and
+Select dimensions and roles to native form compositions. Retained screen selectors
+provide layout, instrument composition and compatibility with existing behaviour.
