@@ -22,11 +22,11 @@ function setRank(key) {
   const rank = RANKS[key];
   document.querySelectorAll('[data-rank]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.rank === key)));
   // Future rank previews never change the mock member's actual Pioneer status.
-  host.setAttribute('aria-label', `${rank.label} membership card design preview. Julien Blancher, member 0001. ${key === 'pioneer' ? 'Current founding edition.' : 'Future concept only.'} Move the pointer to catch the light; drag, click or use Turn card to inspect the reverse.`);
+  host.setAttribute('aria-label', `${rank.label} membership card design preview. Julien Blancher, member 0001. ${key === 'pioneer' ? 'Current founding edition.' : key === 'core_team' ? 'Exopter team edition.' : 'Future concept only.'} Move the pointer to catch the light; drag, click or use Turn card to inspect the reverse.`);
   document.querySelector('.object-caption > .micro').textContent = rank.finish.toUpperCase();
-  document.querySelector('.object-caption .muted').textContent = key === 'pioneer' ? 'CARBON WEAVE / FOUNDING EDITION' : 'CARBON WEAVE / FUTURE CONCEPT';
+  document.querySelector('.object-caption .muted').textContent = key === 'pioneer' ? 'CARBON WEAVE / FOUNDING EDITION' : key === 'core_team' ? 'FACETED CRYSTAL / EXOPTER TEAM' : 'CARBON WEAVE / FUTURE CONCEPT';
   card?.setRank(key);
-  announce(`${rank.label} ${key === 'pioneer' ? 'founding edition' : 'future concept'} preview selected.`);
+  announce(`${rank.label} ${key === 'pioneer' ? 'founding edition' : key === 'core_team' ? 'team edition' : 'future concept'} preview selected.`);
 }
 
 // Dialogs leave with a short fade; the next step starts once they are gone.
