@@ -3,6 +3,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const host = document.querySelector('#card-scene');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const defaultTilt = -.04;
 const ranks = {
   pioneer: { label: 'Pioneer', finish: 'Iridescent titanium', color: '#c1a7df', edge: '#9274ba', metal: '#d0b3ee', stripes: 1, numeral: 'Ⅰ' },
   explorer: { label: 'Explorer', finish: 'Brushed copper', color: '#d6a48a', edge: '#b77a58', metal: '#d8a080', stripes: 2, numeral: 'Ⅱ' },
@@ -446,7 +447,7 @@ async function init() {
   };
   const observer = new ResizeObserver(resize);observer.observe(host);resize();
   // The account retains the very same rendered Pioneer object, including its insignia.
-  card.rotation.set(.13, -.12, -.055);
+  card.rotation.set(defaultTilt, -.12, -.055);
   renderer.render(scene, camera);
   const bounds = new THREE.Box3().setFromObject(card);
   const corners = [];
@@ -497,7 +498,7 @@ async function init() {
     const revealSpin = !reducedMotion.matches && revealProgress < 1 ? (1 - Math.pow(1 - revealProgress, 3)) * Math.PI * 2 - Math.PI * 2 : 0;
     const targetY = (flipped ? Math.PI : -.12) + dragAngle + (reducedMotion.matches ? 0 : pointerX * .23);
     card.rotation.y += (targetY - card.rotation.y) * (reducedMotion.matches ? 1 : ease);
-    card.rotation.x += ((reducedMotion.matches ? 0 : .13 + pointerY * .15) - card.rotation.x) * ease;
+    card.rotation.x += (defaultTilt + (reducedMotion.matches ? 0 : pointerY * .15) - card.rotation.x) * ease;
     card.rotation.z += ((reducedMotion.matches ? 0 : -.055 - pointerX * .025) - card.rotation.z) * ease;
     foilSweep.value = card.rotation.y * 4.5 + card.rotation.x * 3.5;
     card.position.y = reducedMotion.matches ? 0 : .08 + Math.sin(time * .7) * .065;
