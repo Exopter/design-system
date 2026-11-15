@@ -194,6 +194,18 @@
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
+      "name": "--ex-flight-club-accent",
+      "value": "#d9b98a",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-flight-club-accent-hover",
+      "value": "#e4caaa",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
       "name": "--ex-sky-500",
       "value": "#2ea8ff",
       "kind": "color",
@@ -1715,6 +1727,8 @@
       "--ex-flight-backdrop",
       "--ex-flight-border",
       "--ex-flight-border-strong",
+      "--ex-flight-club-accent",
+      "--ex-flight-club-accent-hover",
       "--ex-flight-depth",
       "--ex-flight-haze",
       "--ex-flight-magenta",
@@ -1896,6 +1910,8 @@
       "--ex-flight-backdrop": "color",
       "--ex-flight-border": "color",
       "--ex-flight-border-strong": "color",
+      "--ex-flight-club-accent": "color",
+      "--ex-flight-club-accent-hover": "color",
       "--ex-flight-depth": "color",
       "--ex-flight-haze": "color",
       "--ex-flight-magenta": "color",
