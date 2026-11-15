@@ -681,6 +681,36 @@
       "definedIn": "tokens/aliases.css"
     },
     {
+      "name": "--fs-page",
+      "value": "1.5rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fs-section",
+      "value": "1.25rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fs-card",
+      "value": "1rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fs-text",
+      "value": "0.875rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--fs-caption",
+      "value": "0.75rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
       "name": "--fs-metric",
       "value": "2rem",
       "kind": "spacing",
@@ -1379,21 +1409,21 @@
     },
     {
       "name": "--control-primary",
-      "value": "var(--ex-carbon-700)",
+      "value": "var(--ex-vapor-50)",
       "kind": "other",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
     },
     {
       "name": "--control-primary-hover",
-      "value": "var(--ex-graphite-600)",
+      "value": "var(--ex-vapor-100)",
       "kind": "other",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
     },
     {
       "name": "--control-primary-text",
-      "value": "var(--ex-vapor-50)",
+      "value": "var(--ex-carbon-950)",
       "kind": "other",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
@@ -1808,6 +1838,8 @@
       "--font-mono",
       "--font-ui",
       "--fs-body",
+      "--fs-caption",
+      "--fs-card",
       "--fs-display",
       "--fs-h1",
       "--fs-h2",
@@ -1815,7 +1847,10 @@
       "--fs-h4",
       "--fs-metric",
       "--fs-metric-lg",
+      "--fs-page",
+      "--fs-section",
       "--fs-sm",
+      "--fs-text",
       "--fs-xs",
       "--fw-bold",
       "--fw-medium",
@@ -1991,6 +2026,8 @@
       "--font-mono": "font",
       "--font-ui": "font",
       "--fs-body": "spacing",
+      "--fs-caption": "spacing",
+      "--fs-card": "spacing",
       "--fs-display": "spacing",
       "--fs-h1": "spacing",
       "--fs-h2": "spacing",
@@ -1998,7 +2035,10 @@
       "--fs-h4": "spacing",
       "--fs-metric": "spacing",
       "--fs-metric-lg": "spacing",
+      "--fs-page": "spacing",
+      "--fs-section": "spacing",
       "--fs-sm": "spacing",
+      "--fs-text": "spacing",
       "--fs-xs": "spacing",
       "--fw-bold": "font",
       "--fw-medium": "font",

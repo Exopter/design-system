@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'danger-solid';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /** Visual role. `danger` for destructive/abort actions only. @default 'primary' */
+  /** Visual role. `danger` (quiet) for destructive/abort actions, `danger-solid` only for the confirming action. @default 'primary' */
   variant?: ButtonVariant;
   /** @default 'md' */
   size?: ButtonSize;
