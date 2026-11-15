@@ -5,7 +5,7 @@ const host = document.querySelector('#card-scene');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const defaultTilt = -.04;
 const ranks = {
-  pioneer: { label: 'Pioneer', finish: 'Iridescent titanium', color: '#c1a7df', edge: '#9274ba', metal: '#d0b3ee', stripes: 1, numeral: 'Ⅰ' },
+  pioneer: { label: 'Pioneer', finish: 'Iridescent titanium', color: '#c798ff', edge: '#8838ed', metal: '#b785ed', stripes: 1, numeral: 'Ⅰ' },
   explorer: { label: 'Explorer', finish: 'Brushed copper', color: '#d6a48a', edge: '#b77a58', metal: '#d8a080', stripes: 2, numeral: 'Ⅱ' },
   pathfinder: { label: 'Pathfinder', finish: 'Brushed silver', color: '#cbd1d8', edge: '#8f9aa8', metal: '#e2e7ef', stripes: 3, numeral: 'Ⅲ' },
   trailblazer: { label: 'Trailblazer', finish: 'Champagne gold', color: '#d4c396', edge: '#ae9866', metal: '#e2cc90', stripes: 4, numeral: 'Ⅳ' },
@@ -16,9 +16,12 @@ let revealAt = -100;
 let pointerX = 0;
 let pointerY = 0;
 let dragging = false;
-let dragStart = 0;
-let dragAngle = 0;
-let lastAngle = 0;
+let dragPointerId = null;
+let manuallyRotated = false;
+const dragRotation = new THREE.Quaternion();
+const dragStep = new THREE.Quaternion();
+const dragEuler = new THREE.Euler();
+const lastPointer = new THREE.Vector2();
 let sceneReady = false;
 const announce = (message) => { document.querySelector('#announcement').textContent = message; };
 
@@ -37,8 +40,6 @@ document.querySelector('#reveal-button').addEventListener('click', () => {
   welcome.close();
   setRank('pioneer');
   flipped = false;
-  dragAngle = 0;
-  lastAngle = 0;
   document.querySelector('#flip-button').innerHTML = 'Turn card <span aria-hidden="true">↔</span>';
   revealAt = performance.now() / 1000;
   document.body.classList.remove('revealing');
@@ -48,12 +49,37 @@ document.querySelector('#reveal-button').addEventListener('click', () => {
 });
 document.querySelector('#flip-button').addEventListener('click', () => {
   flipped = !flipped;
-  dragAngle = 0;
-  lastAngle = 0;
+  resetRotation();
   document.querySelector('#flip-button').innerHTML = `${flipped ? 'Show front' : 'Turn card'} <span aria-hidden="true">↔</span>`;
   announce(flipped ? 'Reverse: The story is ours to write. Member identity and Exowing engraving. Design preview.' : `${ranks[activeRank].label} membership card, front.`);
 });
 document.querySelectorAll('[data-rank]').forEach((button) => button.addEventListener('click', () => setRank(button.dataset.rank)));
+document.querySelector('#reset-button').addEventListener('click', resetView);
+
+function resetRotation() {
+  if (dragPointerId !== null && host.hasPointerCapture(dragPointerId)) host.releasePointerCapture(dragPointerId);
+  dragPointerId = null;
+  dragging = false;
+  manuallyRotated = false;
+  dragRotation.identity();
+  pointerX = pointerY = 0;
+  revealAt = -100;
+}
+
+function resetView() {
+  flipped = false;
+  resetRotation();
+  document.querySelector('#flip-button').innerHTML = 'Turn card <span aria-hidden="true">↔</span>';
+  announce('Card returned to its default, slightly upward orientation.');
+}
+
+function rotateCard(deltaX, deltaY) {
+  // Compose screen-space rotations without Euler limits or polar singularities.
+  dragEuler.set(deltaY * .01, deltaX * .01, 0);
+  dragStep.setFromEuler(dragEuler);
+  dragRotation.premultiply(dragStep).normalize();
+  manuallyRotated = true;
+}
 
 let frontMaterial;
 let backMaterial;
@@ -75,20 +101,19 @@ const disposable = [];
 function setRank(key) {
   activeRank = key;
   flipped = false;
-  dragAngle = 0;
-  lastAngle = 0;
+  resetRotation();
   document.querySelector('#flip-button').innerHTML = 'Turn card <span aria-hidden="true">↔</span>';
   const rank = ranks[key];
   document.querySelectorAll('[data-rank]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.rank === key)));
   // Future rank previews never change the mock member's actual Pioneer status.
-  host.setAttribute('aria-label', `${rank.label} membership card design preview. Julien Blancher, member 0001. ${key === 'pioneer' ? 'Current founding edition.' : 'Future concept only.'}`);
+  host.setAttribute('aria-label', `${rank.label} membership card design preview. Julien Blancher, member 0001. ${key === 'pioneer' ? 'Current founding edition.' : 'Future concept only.'} Drag in any direction for unlimited 360-degree rotation. Arrow keys rotate; Home or Reset view restores the default angle.`);
   document.querySelector('.object-caption > .micro').textContent = rank.finish.toUpperCase();
   document.querySelector('.object-caption .muted').textContent = key === 'pioneer' ? 'CARBON WEAVE / FOUNDING EDITION' : 'CARBON WEAVE / FUTURE CONCEPT';
   if (sceneReady) {
     frontMaterial.map = frontMaps.get(key);
     frontMaterial.needsUpdate = true;
     backMaterial.map = backMaps.get(key);
-    shellMaterial.color.set(key === 'pioneer' ? '#ada2be' : '#a6a9ad');
+    shellMaterial.color.set(key === 'pioneer' ? '#9876bc' : '#a6a9ad');
     shellMaterial.iridescence = key === 'pioneer' ? .6 : 0;
     rankMaterial.map = rankMaps.get(key);
     rankMaterial.emissiveMap = rankMaps.get(key);
@@ -142,9 +167,9 @@ function buildInsignia(rank) {
   insignia.position.set(2.16, .24, .12);
   const isPioneer = rank === ranks.pioneer;
   const rimMaterial = new THREE.MeshPhysicalMaterial({ color: rank.metal, metalness: 1, roughness: .32, bumpMap: foilGrain, bumpScale: .018, anisotropy: .55, iridescence: isPioneer ? 1 : 0, iridescenceIOR: 1.38, iridescenceThicknessMap: interferenceMap, iridescenceThicknessMinimum: 180, iridescenceThicknessMaximum: 620, clearcoat: .32, clearcoatRoughness: .3, envMapIntensity: .9 });
-  const innerMaterial = new THREE.MeshPhysicalMaterial({ color: isPioneer ? '#291635' : '#101112', metalness: .95, roughness: .5, bumpMap: surfaceGrain, bumpScale: .018, clearcoat: .06, clearcoatRoughness: .5, iridescence: isPioneer ? .23 : 0, iridescenceThicknessMap: interferenceMap, iridescenceThicknessMinimum: 300, iridescenceThicknessMaximum: 470, envMapIntensity: .18 });
+  const innerMaterial = new THREE.MeshPhysicalMaterial({ color: isPioneer ? '#310057' : '#101112', metalness: .95, roughness: .5, bumpMap: surfaceGrain, bumpScale: .018, clearcoat: .06, clearcoatRoughness: .5, iridescence: isPioneer ? .2 : 0, iridescenceThicknessMap: interferenceMap, iridescenceThicknessMinimum: 365, iridescenceThicknessMaximum: 410, envMapIntensity: .18, emissive: isPioneer ? '#51008c' : '#000000', emissiveIntensity: .12 });
   const metalMaterial = rimMaterial.clone();
-  metalMaterial.color.set(isPioneer ? '#ded0ee' : rank.metal);
+  metalMaterial.color.set(isPioneer ? '#eee8ff' : rank.metal);
   metalMaterial.roughness = .34;
   metalMaterial.envMapIntensity = .85;
   metalMaterial.clearcoat = .2;
@@ -285,9 +310,9 @@ function makeTexture(rank, reverse, logo, wing) {
   canvas.height = 1292;
   const ctx = canvas.getContext('2d');
   const gradient = ctx.createLinearGradient(0, 0, 2048, 1292);
-  gradient.addColorStop(0, '#0d0d0d');
-  gradient.addColorStop(.48, '#050505');
-  gradient.addColorStop(1, '#0a0a0a');
+  gradient.addColorStop(0, '#080808');
+  gradient.addColorStop(.48, '#020202');
+  gradient.addColorStop(1, '#040404');
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, 2048, 1292);
   // Twilled carbon bundles are a subtle substrate, not a flat colored fill.
@@ -295,9 +320,9 @@ function makeTexture(rank, reverse, logo, wing) {
   for (let y = -1600; y < 1600; y += 24) for (let x = -1600; x < 1600; x += 24) {
     const horizontal = (Math.floor(x / 24) + Math.floor(y / 24)) % 4 < 2;
     const weave = ctx.createLinearGradient(x, y, horizontal ? x : x + 24, horizontal ? y + 24 : y);
-    weave.addColorStop(0, '#88888802');weave.addColorStop(.48, '#bbbbbb0c');weave.addColorStop(1, '#03030312');
+    weave.addColorStop(0, '#88888802');weave.addColorStop(.48, '#bbbbbb08');weave.addColorStop(1, '#03030312');
     ctx.fillStyle = weave;ctx.fillRect(x + 1, y + 1, 22, 22);
-    ctx.strokeStyle = '#cccccc05';ctx.lineWidth = .7;
+    ctx.strokeStyle = '#cccccc03';ctx.lineWidth = .7;
     for (let fiber = 4; fiber < 23; fiber += 4) {
       ctx.beginPath();ctx.moveTo(x + (horizontal ? 1 : fiber), y + (horizontal ? fiber : 1));
       ctx.lineTo(x + (horizontal ? 23 : fiber), y + (horizontal ? fiber : 23));ctx.stroke();
@@ -306,7 +331,7 @@ function makeTexture(rank, reverse, logo, wing) {
   ctx.restore();
   if (rank === ranks.pioneer) {
     const haze = ctx.createRadialGradient(1580, 610, 0, 1580, 610, 980);
-    haze.addColorStop(0, '#9274ba12');haze.addColorStop(1, '#9274ba00');
+    haze.addColorStop(0, '#8838ed10');haze.addColorStop(1, '#8838ed00');
     ctx.fillStyle = haze;ctx.fillRect(0, 0, 2048, 1292);
   }
   // Deterministic micrograin keeps the printed finish stable across redraws.
@@ -395,7 +420,7 @@ async function init() {
   scene.add(new THREE.AmbientLight('#ffffff', .35));
   card = new THREE.Group();
   scene.add(card);
-  shellMaterial = new THREE.MeshPhysicalMaterial({ color: '#ada2be', metalness: 1, roughness: .27, iridescence: .6, clearcoat: 1 });
+  shellMaterial = new THREE.MeshPhysicalMaterial({ color: '#9876bc', metalness: 1, roughness: .27, iridescence: .6, clearcoat: 1 });
   const shell = new THREE.Mesh(new THREE.ExtrudeGeometry(roundedShape(8.56, 5.4, .28), { depth: .065, bevelEnabled: true, bevelThickness: .025, bevelSize: .025, bevelSegments: 4, curveSegments: 24, steps: 1 }), shellMaterial);
   shell.position.z = -.033;
   card.add(shell);
@@ -464,7 +489,7 @@ async function init() {
   accountCard.classList.add('rendered-card');
   frontMaterial.map = frontMaps.get(activeRank);
   backMaterial.map = backMaps.get(activeRank);
-  shellMaterial.color.set(activeRank === 'pioneer' ? '#ada2be' : '#a6a9ad');
+  shellMaterial.color.set(activeRank === 'pioneer' ? '#9876bc' : '#a6a9ad');
   shellMaterial.iridescence = activeRank === 'pioneer' ? .6 : 0;
   rankMaterial.map = rankMaps.get(activeRank);
   rankMaterial.emissiveMap = rankMaterial.map;
@@ -477,12 +502,44 @@ async function init() {
     const bounds = host.getBoundingClientRect();
     pointerX = (event.clientX - bounds.left) / bounds.width * 2 - 1;
     pointerY = (event.clientY - bounds.top) / bounds.height * 2 - 1;
-    if (dragging) dragAngle = lastAngle + (event.clientX - dragStart) * .008;
+    if (dragging && event.pointerId === dragPointerId) {
+      rotateCard(event.clientX - lastPointer.x, event.clientY - lastPointer.y);
+      lastPointer.set(event.clientX, event.clientY);
+    }
   });
   host.addEventListener('pointerleave', () => { pointerX = 0;pointerY = 0; });
-  host.addEventListener('pointerdown', (event) => { dragging = true;dragStart = event.clientX;host.setPointerCapture(event.pointerId); });
-  host.addEventListener('pointerup', () => { dragging = false;lastAngle = dragAngle; });
-  host.addEventListener('pointercancel', () => { dragging = false;lastAngle = dragAngle; });
+  host.addEventListener('pointerdown', (event) => {
+    if (event.button !== 0 || dragPointerId !== null) return;
+    dragging = true;dragPointerId = event.pointerId;revealAt = -100;
+    lastPointer.set(event.clientX, event.clientY);
+    host.setPointerCapture(event.pointerId);
+    event.preventDefault();
+  });
+  const endDrag = (event) => {
+    if (event.pointerId !== dragPointerId) return;
+    dragging = false;dragPointerId = null;
+    if (host.hasPointerCapture(event.pointerId)) host.releasePointerCapture(event.pointerId);
+  };
+  host.addEventListener('pointerup', endDrag);
+  host.addEventListener('pointercancel', endDrag);
+  host.addEventListener('lostpointercapture', endDrag);
+  host.addEventListener('dblclick', resetView);
+  host.addEventListener('keydown', (event) => {
+    const steps = { ArrowLeft: [-20, 0], ArrowRight: [20, 0], ArrowUp: [0, -20], ArrowDown: [0, 20] };
+    if (event.key === 'Home') { event.preventDefault();resetView(); }
+    else if (steps[event.key]) {
+      event.preventDefault();revealAt = -100;
+      rotateCard(...steps[event.key]);
+    }
+  });
+  const restEuler = new THREE.Euler();
+  const restRotation = new THREE.Quaternion();
+  const hoverEuler = new THREE.Euler();
+  const hoverRotation = new THREE.Quaternion();
+  const revealRotation = new THREE.Quaternion();
+  const targetRotation = new THREE.Quaternion();
+  const upAxis = new THREE.Vector3(0, 1, 0);
+  const faceNormal = new THREE.Vector3();
   let frameId;
   let previousTime = performance.now();
   function animate(now) {
@@ -491,14 +548,23 @@ async function init() {
     const ease = 1 - Math.exp(-7 * elapsed);
     const revealProgress = Math.min(1, Math.max(0, (time - revealAt) / 2.2));
     const revealSpin = !reducedMotion.matches && revealProgress < 1 ? (1 - Math.pow(1 - revealProgress, 3)) * Math.PI * 2 - Math.PI * 2 : 0;
-    const targetY = (flipped ? Math.PI : -.12) + dragAngle + (reducedMotion.matches ? 0 : pointerX * .23);
-    card.rotation.y += (targetY - card.rotation.y) * (reducedMotion.matches ? 1 : ease);
-    card.rotation.x += (defaultTilt + (reducedMotion.matches ? 0 : pointerY * .15) - card.rotation.x) * ease;
-    card.rotation.z += ((reducedMotion.matches ? 0 : -.055 - pointerX * .025) - card.rotation.z) * ease;
-    foilSweep.value = card.rotation.y * 4.5 + card.rotation.x * 3.5;
+    restEuler.set(defaultTilt, flipped ? Math.PI : -.12, -.055);
+    restRotation.setFromEuler(restEuler);
+    targetRotation.copy(restRotation).premultiply(dragRotation);
+    if (!manuallyRotated && !dragging && !reducedMotion.matches) {
+      hoverEuler.set(pointerY * .15, pointerX * .23, -pointerX * .025);
+      hoverRotation.setFromEuler(hoverEuler);
+      targetRotation.premultiply(hoverRotation);
+    }
+    if (revealProgress < 1 && !reducedMotion.matches) {
+      revealRotation.setFromAxisAngle(upAxis, revealSpin);
+      targetRotation.premultiply(revealRotation);
+    }
+    card.quaternion.slerp(targetRotation, dragging || reducedMotion.matches ? 1 : ease);
+    faceNormal.set(0, 0, 1).applyQuaternion(card.quaternion);
+    foilSweep.value = faceNormal.x * 4.5 - faceNormal.y * 3.5;
     card.position.y = reducedMotion.matches ? 0 : .08 + Math.sin(time * .7) * .065;
     if (revealProgress < 1 && !reducedMotion.matches) {
-      card.rotation.y = targetY + revealSpin;
       const scale = .78 + .22 * (1 - Math.pow(1 - revealProgress, 3));card.scale.setScalar(scale);
     } else card.scale.setScalar(1);
     renderer.render(scene, camera);
