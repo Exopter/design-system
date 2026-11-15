@@ -1,4 +1,4 @@
-/* Exopter Design System — global entry point.
+/* Exopter Design System - global entry point.
    Consumers link this single file. Keep this as @import lines only.
    - exopter-tokens.css is canonical and is exported verbatim to product repositories.
    - aliases.css adds role/convenience names mapped onto those tokens. */
@@ -9,6 +9,8 @@
 
 /* Shared component styles, loaded before JavaScript and during SSR. */
 @import "components/data/Card.css";
+@import "components/data/Table.css";
+@import "components/overlays/Menu.css";
 @import "components/data/ChecklistRow.css";
 @import "components/data/MetricTile.css";
 @import "components/data/ReadinessStrip.css";

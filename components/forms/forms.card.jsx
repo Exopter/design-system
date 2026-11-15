@@ -15,7 +15,7 @@ function Demo() {
   return <div className={`workbench ${dark ? 'ex-dark' : ''}`}>
     <header className="masthead"><div className="shell">
       <div className="wordmark"><img src={dark ? '../../assets/logo-mark-white.svg' : '../../assets/logo-mark.svg'} alt="" />EXOPTER</div>
-      <div className="header-actions"><span className="edition">Design system / proposal</span><Button variant="secondary" size="sm" aria-pressed={dark} onClick={() => setDark(!dark)}>{dark ? 'Light surface' : 'Dark surface'}</Button></div>
+      <div className="header-actions"><a href="../data/data.card.html">Cards, menus & tables</a><span className="edition">Design system / proposal</span><Button variant="secondary" size="sm" aria-pressed={dark} onClick={() => setDark(!dark)}>{dark ? 'Light surface' : 'Dark surface'}</Button></div>
     </div></header>
     <main className="shell">
       <section className="intro"><div><span className="eyebrow">01 / Interaction foundations</span><h1>Precision at your fingertips.</h1><p>A sharper control language for Exopter. Quiet surfaces, deliberate actions and legible flight data.</p></div><div className="principles"><strong>Built like an instrument.</strong>Less rounding. More definition.<br />Colour communicates intent.<br />Every interaction has a clear state.</div></section>

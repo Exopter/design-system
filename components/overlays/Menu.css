@@ -1,0 +1,19 @@
+/* Native disclosure menus use details/summary and normal tab navigation. */
+.exds-menu{position:relative;display:inline-block;font-family:var(--font-ui)}
+.exds-menu>summary{list-style:none;cursor:pointer}
+.exds-menu>summary::-webkit-details-marker{display:none}
+.exds-menu[open]>summary{border-color:var(--selection-marker)}
+.exds-menu__panel{position:absolute;right:0;top:calc(100% + 6px);z-index:20;min-width:220px;max-width:calc(100vw - 32px);padding:4px;border:1px solid var(--border-strong);border-radius:var(--radius-compact);background:var(--surface-card);box-shadow:var(--shadow-md);color:var(--text-body)}
+.exds-menu__label{display:block;padding:10px 12px;font:500 var(--fs-xs)/1.5 var(--font-mono);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--text-muted)}
+.exds-menu__item{display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;min-height:40px;padding:10px 12px;border:0;border-left:2px solid transparent;border-radius:0;background:transparent;color:var(--text-body);font:400 var(--fs-sm)/1.4 var(--font-ui);text-align:left;text-decoration:none;cursor:pointer}
+.exds-menu__item:hover:not(:disabled),.exds-menu__item:focus-visible{background:var(--surface-hover);border-left-color:var(--selection-marker)}
+.exds-menu__item:focus-visible{outline:2px solid var(--focus-ring);outline-offset:-2px}
+.exds-menu__item:disabled{opacity:.4;cursor:not-allowed}
+.exds-menu__item--danger{color:var(--status-fault-text)}
+.exds-menu__panel hr{margin:4px 0;border:0;border-top:1px solid var(--border-rule)}
+.exds-nav{display:grid;gap:2px;font-family:var(--font-ui)}
+.exds-nav a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:44px;padding:10px 14px;border-left:2px solid transparent;color:var(--text-muted);font-size:var(--fs-sm);text-decoration:none}
+.exds-nav a:hover{background:var(--surface-hover);color:var(--text-body)}
+.exds-nav a[aria-current]{border-left-color:var(--selection-marker);background:var(--surface-selected);color:var(--text-strong);font-weight:600}
+.exds-nav a:focus-visible{outline:2px solid var(--focus-ring);outline-offset:-2px}
+.exds-nav__meta{font:400 var(--fs-xs)/1.5 var(--font-mono);color:var(--text-muted)}

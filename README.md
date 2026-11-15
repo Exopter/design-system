@@ -54,7 +54,12 @@ The export is byte-for-byte identical to the canonical source. Consumer reposito
 
 Open `index.html` through a local static server to browse the catalogue.
 The interactive controls proposal is at `components/forms/forms.card.html`.
-It exercises the shared buttons and inputs in light and dark surfaces, including
+The instrument workbench at `components/data/data.card.html` covers cards, navigation,
+disclosure menus, sortable/filterable tables and inspection drawers. `Table.css`
+and `Menu.css` provide semantic HTML primitives through the global stylesheet.
+Disclosure menus use native `details`/`summary` with normal Tab navigation; the
+workbench closes them on Escape, focus exit and action selection.
+Both workbenches exercise shared components in light and dark surfaces, including
 keyboard focus, disabled states and local form validation. This branch is a local
 proposal; consumer exports and the selected Notion design baseline are unchanged. Product screens must reuse shared tokens and components; record new product or design decisions in Notion before extending the executable implementation.
 
