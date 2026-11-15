@@ -2862,13 +2862,13 @@ body.flight-analysis-theme,
     border-left: 0;
   }
 
-  .flight-overview-strip > div:nth-last-child(-n + 2) {
-    border-bottom: 0;
+  .flight-analysis-workspace .flight-overview-strip > div {
+    border-bottom-color: var(--ex-line-200);
   }
 
   .flight-overview-strip > div:last-child {
     grid-column: 1 / -1;
-    border-top: 0;
+    border-bottom: 0;
   }
 
   .flight-metric-controls {
@@ -2887,6 +2887,11 @@ body.flight-analysis-theme,
 }
 
 @media (max-width: 620px) {
+  /* The avatar carries the pilot name as its label; a clipped name adds nothing. */
+  .flight-replay-header .flight-pilot-name {
+    display: none;
+  }
+
   .flight-replay-header .mode-badge {
     display: none;
   }
@@ -3045,6 +3050,7 @@ button.aircraft-connection-pill:disabled { cursor: default; opacity: .55; }
   gap: var(--sp-6);
   margin-bottom: var(--sp-6);
   overflow-x: auto;
+  overflow-y: hidden;
   border-bottom: 1px solid var(--border-rule);
 }
 
@@ -3056,7 +3062,6 @@ button.aircraft-connection-pill:disabled { cursor: default; opacity: .55; }
 
 .exds-tab {
   flex: 0 0 auto;
-  margin-bottom: -1px;
   padding: 10px 0;
   border-bottom: 2px solid transparent;
   color: var(--text-muted);
