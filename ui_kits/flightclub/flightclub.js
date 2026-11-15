@@ -55,6 +55,8 @@ document.querySelector('#flip-button').addEventListener('click', () => {
 document.querySelectorAll('[data-rank]').forEach((button) => button.addEventListener('click', () => setRank(button.dataset.rank)));
 
 let frontMaterial;
+let backMaterial;
+let shellMaterial;
 let insignia;
 let card;
 let letteringMaterial;
@@ -65,6 +67,7 @@ let interferenceMap;
 const foilSweep = { value: 0 };
 const rankTint = { value: new THREE.Color(ranks.pioneer.color) };
 const frontMaps = new Map();
+const backMaps = new Map();
 const rankMaps = new Map();
 const disposable = [];
 
@@ -83,6 +86,9 @@ function setRank(key) {
   if (sceneReady) {
     frontMaterial.map = frontMaps.get(key);
     frontMaterial.needsUpdate = true;
+    backMaterial.map = backMaps.get(key);
+    shellMaterial.color.set(key === 'pioneer' ? '#ada2be' : '#a6a9ad');
+    shellMaterial.iridescence = key === 'pioneer' ? .6 : 0;
     rankMaterial.map = rankMaps.get(key);
     rankMaterial.emissiveMap = rankMaps.get(key);
     rankMaterial.color.set(rank.metal);
@@ -178,7 +184,7 @@ function buildInsignia(rank) {
   card.add(insignia);
 }
 
-function text(ctx, content, x, y, size, color = '#ede9f2', family = 'Aptos', weight = 400, tracking = 0) {
+function text(ctx, content, x, y, size, color = '#f5f5f5', family = 'Aptos', weight = 400, tracking = 0) {
   ctx.font = `${weight} ${size}px "${family}"`;
   ctx.fillStyle = color;
   ctx.letterSpacing = `${tracking}px`;
@@ -219,17 +225,17 @@ function makeFoil(logo, monogram, rank) {
   canvas.width = 2048;canvas.height = 1292;
   const ctx = canvas.getContext('2d');
   if (rank) {
-    text(ctx, rank.label.toUpperCase(), 128, 824, 55, '#ffffff', 'Aptos Mono', 400, 7);
+    text(ctx, rank.label.toUpperCase(), 128, 824, 62, '#ffffff', 'Aptos Mono', 400, 5);
   } else {
-    ctx.drawImage(logo, 125, 115, 370, 37);
-    ctx.drawImage(monogram, 1710, 101, 210, 73);
+    ctx.drawImage(logo, 125, 112, 440, 44);
+    ctx.drawImage(monogram, 1680, 96, 240, 83);
     text(ctx, 'FLIGHT', 116, 490, 192, '#ffffff', 'Aptos Display', 400, -7);
     text(ctx, 'CLUB.', 116, 674, 192, '#ffffff', 'Aptos Display', 400, -7);
   }
   // Printed tonal bands support the real environment reflections at the resting angle.
   ctx.globalCompositeOperation = 'source-in';
   const foil = ctx.createLinearGradient(0, 180, 1200, 920);
-  [[0, '#f4f5f7'], [.22, '#c0c6d0'], [.38, '#79828f'], [.49, '#eef5ff'], [.52, '#ffffff'], [.6, '#9ba7b7'], [.75, '#e5e8eb'], [1, '#949dab']].forEach(([offset, color]) => foil.addColorStop(offset, color));
+  [[0, '#ffffff'], [.22, '#e0e3e7'], [.38, '#9ba3af'], [.49, '#f4f7ff'], [.52, '#ffffff'], [.6, '#bec8d4'], [.75, '#f3f4f6'], [1, '#b3bcc7']].forEach(([offset, color]) => foil.addColorStop(offset, color));
   ctx.fillStyle = foil;ctx.fillRect(0, 0, 2048, 1292);
   ctx.globalCompositeOperation = 'source-atop';
   for (let y = 0; y < 1292; y += 2) {
@@ -248,7 +254,7 @@ function addFoilHighlights(material, tint) {
       float foilPosition = vMapUv.y * 10.0 + vMapUv.x * 3.0 + uFoilSweep;
       float foilHighlight = pow(0.5 + 0.5 * sin(foilPosition), 12.0);
       float foilBrush = sin(vMapUv.y * 3400.0) * 0.012;
-      totalEmissiveRadiance += uFoilTint * (0.11 + foilHighlight * 0.55 + foilBrush);
+      totalEmissiveRadiance += uFoilTint * (0.2 + foilHighlight * 0.65 + foilBrush);
     `);
   };
   material.customProgramCacheKey = () => 'flightclub-brushed-foil';
@@ -257,7 +263,7 @@ function addFoilHighlights(material, tint) {
 function drawEngraving(ctx, wing, reverse, rank) {
   ctx.save();
   ctx.beginPath();ctx.rect(65, 200, 1918, reverse ? 360 : 735);ctx.clip();
-  ctx.globalAlpha = reverse ? .24 : .52;
+  ctx.globalAlpha = reverse ? .4 : .7;
   ctx.drawImage(wing, reverse ? 1010 : 520, reverse ? 135 : 205, reverse ? 930 : 1510, reverse ? 542 : 881);
   ctx.globalAlpha = .13;
   ctx.strokeStyle = rank.color;
@@ -266,7 +272,7 @@ function drawEngraving(ctx, wing, reverse, rank) {
   ctx.beginPath();ctx.moveTo(1110, 215);ctx.lineTo(1110, 927);ctx.moveTo(690, 535);ctx.lineTo(1940, 535);ctx.stroke();
   ctx.setLineDash([]);
   ctx.globalAlpha = .65;
-  text(ctx, 'EXOWING / AXONOMETRIC STUDY', 1070, reverse ? 560 : 936, 15, '#a899ba', 'Aptos Mono', 400, 3);
+  text(ctx, 'EXOWING / AXONOMETRIC STUDY', 1070, reverse ? 560 : 936, 18, '#b8b8b8', 'Aptos Mono', 400, 3);
   ctx.restore();
 }
 
@@ -276,9 +282,9 @@ function makeTexture(rank, reverse, logo, wing) {
   canvas.height = 1292;
   const ctx = canvas.getContext('2d');
   const gradient = ctx.createLinearGradient(0, 0, 2048, 1292);
-  gradient.addColorStop(0, '#17181c');
-  gradient.addColorStop(.48, '#0b0d11');
-  gradient.addColorStop(1, '#17121c');
+  gradient.addColorStop(0, '#0d0d0d');
+  gradient.addColorStop(.48, '#050505');
+  gradient.addColorStop(1, '#0a0a0a');
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, 2048, 1292);
   // Twilled carbon bundles are a subtle substrate, not a flat colored fill.
@@ -286,59 +292,61 @@ function makeTexture(rank, reverse, logo, wing) {
   for (let y = -1600; y < 1600; y += 24) for (let x = -1600; x < 1600; x += 24) {
     const horizontal = (Math.floor(x / 24) + Math.floor(y / 24)) % 4 < 2;
     const weave = ctx.createLinearGradient(x, y, horizontal ? x : x + 24, horizontal ? y + 24 : y);
-    weave.addColorStop(0, '#88839003');weave.addColorStop(.48, '#b9b3c514');weave.addColorStop(1, '#03040812');
+    weave.addColorStop(0, '#88888802');weave.addColorStop(.48, '#bbbbbb0c');weave.addColorStop(1, '#03030312');
     ctx.fillStyle = weave;ctx.fillRect(x + 1, y + 1, 22, 22);
-    ctx.strokeStyle = '#c7c0d008';ctx.lineWidth = .7;
+    ctx.strokeStyle = '#cccccc05';ctx.lineWidth = .7;
     for (let fiber = 4; fiber < 23; fiber += 4) {
       ctx.beginPath();ctx.moveTo(x + (horizontal ? 1 : fiber), y + (horizontal ? fiber : 1));
       ctx.lineTo(x + (horizontal ? 23 : fiber), y + (horizontal ? fiber : 23));ctx.stroke();
     }
   }
   ctx.restore();
-  const haze = ctx.createRadialGradient(1580, 610, 0, 1580, 610, 980);
-  haze.addColorStop(0, `${rank.edge}27`);haze.addColorStop(1, `${rank.edge}00`);
-  ctx.fillStyle = haze;ctx.fillRect(0, 0, 2048, 1292);
+  if (rank === ranks.pioneer) {
+    const haze = ctx.createRadialGradient(1580, 610, 0, 1580, 610, 980);
+    haze.addColorStop(0, '#9274ba12');haze.addColorStop(1, '#9274ba00');
+    ctx.fillStyle = haze;ctx.fillRect(0, 0, 2048, 1292);
+  }
   // Deterministic micrograin keeps the printed finish stable across redraws.
   for (let row = 0; row < 1292; row += 3) {
-    ctx.fillStyle = `rgba(235,221,255,${.008 + (row * 17 % 11) / 1200})`;
+    ctx.fillStyle = `rgba(255,255,255,${.004 + (row * 17 % 11) / 1800})`;
     ctx.fillRect(0, row, 2048, 1);
   }
-  ctx.strokeStyle = '#8b819329';
+  ctx.strokeStyle = '#a0a0a055';
   ctx.lineWidth = 1.3;
   ctx.strokeRect(45, 45, 1958, 1202);
   ctx.strokeStyle = '#ffffff08';ctx.strokeRect(58, 58, 1932, 1176);
   drawEngraving(ctx, wing, reverse, rank);
   if (reverse) {
     ctx.save();ctx.globalAlpha = .8;ctx.drawImage(logo, 124, 112, 330, 33);ctx.restore();
-    text(ctx, 'THE SKY IS ONLY', 124, 345, 90, '#e6dfed', 'Aptos Display');
-    text(ctx, 'THE BEGINNING.', 124, 446, 90, '#e6dfed', 'Aptos Display');
-    text(ctx, 'YOUR FLIGHT CLUB MEMBERSHIP', 128, 589, 24, '#a094ae', 'Aptos Mono', 400, 4);
+    text(ctx, 'THE SKY IS ONLY', 124, 345, 90, '#f0f0f0', 'Aptos Display');
+    text(ctx, 'THE BEGINNING.', 124, 446, 90, '#f0f0f0', 'Aptos Display');
+    text(ctx, 'YOUR FLIGHT CLUB MEMBERSHIP', 128, 589, 24, '#bcbcbc', 'Aptos Mono', 400, 4);
     [['01', 'Flight + Signal', 'FULL ACCESS'], ['02', 'Automatic flight recording', 'ENABLED']].forEach(([number, label, status], index) => {
       const y = 715 + index * 145;
-      ctx.fillStyle = '#d6c7e82a';ctx.fillRect(125, y - 55, 1795, 1);
-      text(ctx, number, 128, y + 12, 25, '#9d90ac', 'Aptos Mono');
-      text(ctx, label, 225, y + 12, 43);
-      text(ctx, status, 1570, y + 10, 23, '#c6b3dc', 'Aptos Mono', 400, 2);
+      ctx.fillStyle = '#dddddd40';ctx.fillRect(125, y - 55, 1795, 1);
+      text(ctx, number, 128, y + 12, 25, '#b8b8b8', 'Aptos Mono');
+      text(ctx, label, 225, y + 12, 43, '#f5f5f5');
+      text(ctx, status, 1570, y + 10, 23, '#d0d0d0', 'Aptos Mono', 400, 2);
     });
-    text(ctx, 'JULIEN BLANCHER', 128, 1090, 28, '#d5cddd', 'Aptos Mono', 400, 3);
-    text(ctx, 'FC 0001 / PIONEER / NOV 2026', 128, 1150, 23, '#9d90ac', 'Aptos Mono', 400, 2);
-    text(ctx, 'DESIGN PREVIEW', 1630, 1150, 18, '#9d90ac', 'Aptos Mono', 400, 2);
+    text(ctx, 'JULIEN BLANCHER', 128, 1090, 28, '#ebebeb', 'Aptos Mono', 400, 3);
+    text(ctx, `FC 0001 / ${rank.label.toUpperCase()} / NOV 2026`, 128, 1150, 23, '#b8b8b8', 'Aptos Mono', 400, 2);
+    text(ctx, 'DESIGN PREVIEW', 1630, 1150, 18, '#b8b8b8', 'Aptos Mono', 400, 2);
   } else {
-    text(ctx, 'THE FIRST CHAPTER / 001', 1060, 145, 19, '#b0a3bc', 'Aptos Mono', 400, 3);
+    text(ctx, 'THE FIRST CHAPTER / 001', 1060, 145, 21, '#c2c2c2', 'Aptos Mono', 400, 3);
     // Fine concentric engravings echo altitude rings and the insignia's trajectory.
     ctx.save();ctx.beginPath();ctx.rect(1040, 210, 900, 740);ctx.clip();
     for (let index = 0; index < 12; index++) {
       ctx.beginPath();ctx.ellipse(1538, 620, 265 + index * 42, 265 + index * 42, -.3, 0, Math.PI * 2);
-      ctx.strokeStyle = index % 3 === 0 ? '#b49bc71b' : '#b49bc70d';ctx.stroke();
+      ctx.strokeStyle = index % 3 === 0 ? '#bcbcbc20' : '#bcbcbc10';ctx.stroke();
     }
     ctx.restore();
-    text(ctx, rank.finish.toUpperCase(), 130, 887, 17, '#a79aad', 'Aptos Mono', 400, 4);
-    ctx.fillStyle = '#9a89ab55';ctx.fillRect(127, 965, 1794, 1);
-    text(ctx, 'JULIEN BLANCHER', 128, 1067, 43, '#f0eaf6', 'Aptos', 400, 1);
-    text(ctx, 'FOUNDING MEMBER', 128, 1138, 20, '#a79aad', 'Aptos Mono', 400, 4);
+    text(ctx, rank.finish.toUpperCase(), 130, 887, 21, '#c4c4c4', 'Aptos Mono', 400, 3);
+    ctx.fillStyle = '#a0a0a066';ctx.fillRect(127, 965, 1794, 1);
+    text(ctx, 'JULIEN BLANCHER', 128, 1067, 48, '#ffffff', 'Aptos', 400, 1);
+    text(ctx, 'FOUNDING MEMBER', 128, 1138, 23, '#bcbcbc', 'Aptos Mono', 400, 4);
     text(ctx, 'FC', 1715, 1067, 22, rank.color, 'Aptos Mono', 400, 4);
-    text(ctx, '0001', 1707, 1138, 48, '#e8deef', 'Aptos Mono', 400, 2);
-    text(ctx, 'EST. 2026', 1302, 893, 17, '#a79aad', 'Aptos Mono', 400, 5);
+    text(ctx, '0001', 1707, 1138, 48, '#f0f0f0', 'Aptos Mono', 400, 2);
+    text(ctx, 'EST. 2026', 1302, 893, 20, '#bcbcbc', 'Aptos Mono', 400, 4);
   }
   return canvasTexture(canvas);
 }
@@ -357,7 +365,7 @@ async function init() {
   const [logo, monogram, wing] = await Promise.all([
     loadVector('../../assets/logo-wordmark.svg', (source) => source.replaceAll('#000000', '#ffffff')),
     loadVector('../../assets/exopter-ex-flight-trails/exopter-ex-flight-trails.svg', (source) => source.replaceAll('#141414', '#ffffff')),
-    loadVector('../../assets/blueprints/exowing-axonometric.svg', (source) => source.replaceAll('#10181a', 'none').replaceAll('#2fd6c6', '#b6a6c9').replaceAll('stroke-width="1.6"', 'stroke-width="2.2"')),
+    loadVector('../../assets/blueprints/exowing-axonometric.svg', (source) => source.replaceAll('#10181a', 'none').replaceAll('#2fd6c6', '#b8b8b8').replaceAll('stroke-width="1.6"', 'stroke-width="2.5"')),
   ]);
   surfaceGrain = makeGrain();
   foilGrain = makeGrain();
@@ -366,7 +374,7 @@ async function init() {
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setClearColor(0x000000, 0);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.4;
+  renderer.toneMappingExposure = 1.15;
   host.appendChild(renderer.domElement);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(33, 1, .1, 100);
@@ -382,46 +390,49 @@ async function init() {
   scene.environment = environment.texture;
   room.dispose();
   pmrem.dispose();
-  const key = new THREE.DirectionalLight('#f3eaff', 3.8);
+  const key = new THREE.DirectionalLight('#ffffff', 2.8);
   key.position.set(-4, 5, 8);scene.add(key);
-  const edge = new THREE.DirectionalLight('#d2ddff', 2.4);
+  const edge = new THREE.DirectionalLight('#ffffff', 2.4);
   edge.position.set(5, 2, 4);scene.add(edge);
-  const warmth = new THREE.DirectionalLight('#ffcf9f', 1.8);
+  const warmth = new THREE.DirectionalLight('#ffffff', 1.5);
   warmth.position.set(-3, -3, 1);scene.add(warmth);
-  scene.add(new THREE.AmbientLight('#dcd2ed', .7));
+  scene.add(new THREE.AmbientLight('#ffffff', .35));
   card = new THREE.Group();
   scene.add(card);
-  const shell = new THREE.Mesh(new THREE.ExtrudeGeometry(roundedShape(8.56, 5.4, .28), { depth: .065, bevelEnabled: true, bevelThickness: .025, bevelSize: .025, bevelSegments: 4, curveSegments: 24, steps: 1 }), new THREE.MeshPhysicalMaterial({ color: '#afa0bc', metalness: 1, roughness: .27, iridescence: .6, clearcoat: 1 }));
+  shellMaterial = new THREE.MeshPhysicalMaterial({ color: '#ada2be', metalness: 1, roughness: .27, iridescence: .6, clearcoat: 1 });
+  const shell = new THREE.Mesh(new THREE.ExtrudeGeometry(roundedShape(8.56, 5.4, .28), { depth: .065, bevelEnabled: true, bevelThickness: .025, bevelSize: .025, bevelSegments: 4, curveSegments: 24, steps: 1 }), shellMaterial);
   shell.position.z = -.033;
   card.add(shell);
   for (const [keyName, rank] of Object.entries(ranks)) {
     frontMaps.set(keyName, makeTexture(rank, false, logo, wing));
+    backMaps.set(keyName, makeTexture(rank, true, logo, wing));
     rankMaps.set(keyName, makeFoil(logo, monogram, rank));
   }
-  frontMaterial = new THREE.MeshPhysicalMaterial({ map: frontMaps.get('pioneer'), color: '#7a7b82', metalness: .35, roughness: .48, bumpMap: surfaceGrain, bumpScale: .007, clearcoat: .18, clearcoatRoughness: .45, envMapIntensity: .25 });
+  frontMaterial = new THREE.MeshPhysicalMaterial({ map: frontMaps.get('pioneer'), color: '#ffffff', metalness: .02, roughness: .94, bumpMap: surfaceGrain, bumpScale: .002, clearcoat: 0, envMapIntensity: .06 });
   const front = new THREE.Mesh(faceGeometry(), frontMaterial);
   front.position.z = .06;card.add(front);
   const letteringMap = makeFoil(logo, monogram);
-  letteringMaterial = new THREE.MeshPhysicalMaterial({ map: letteringMap, color: '#e1e7f0', metalness: 1, roughness: .23, anisotropy: .8, anisotropyRotation: .3, bumpMap: foilGrain, bumpScale: .012, transparent: true, alphaTest: .08, depthWrite: false, clearcoat: .7, envMapIntensity: 1.8, emissive: '#aeb8c6', emissiveMap: letteringMap, emissiveIntensity: .23 });
+  letteringMaterial = new THREE.MeshPhysicalMaterial({ map: letteringMap, color: '#f0f2f5', metalness: 1, roughness: .2, anisotropy: .8, anisotropyRotation: .3, bumpMap: foilGrain, bumpScale: .004, transparent: true, alphaTest: .08, depthWrite: false, clearcoat: .7, envMapIntensity: 1.8, emissive: '#e1e4e8', emissiveMap: letteringMap, emissiveIntensity: .45 });
   addFoilHighlights(letteringMaterial, { value: new THREE.Color('#e7edf6') });
   const lettering = new THREE.Mesh(faceGeometry(), letteringMaterial);
   lettering.position.z = .067;card.add(lettering);
   rankMaterial = letteringMaterial.clone();
   rankMaterial.map = rankMaps.get('pioneer');rankMaterial.color.set(ranks.pioneer.metal);
-  rankMaterial.emissiveMap = rankMaterial.map;rankMaterial.emissive.set(ranks.pioneer.color);rankMaterial.emissiveIntensity = .55;
+  rankMaterial.emissiveMap = rankMaterial.map;rankMaterial.emissive.set(ranks.pioneer.color);rankMaterial.emissiveIntensity = .9;
   rankMaterial.iridescence = .8;rankMaterial.iridescenceThicknessMap = interferenceMap;
   rankMaterial.iridescenceThicknessMinimum = 180;rankMaterial.iridescenceThicknessMaximum = 620;
   addFoilHighlights(rankMaterial, rankTint);
   const rankLabel = new THREE.Mesh(faceGeometry(), rankMaterial);
   rankLabel.position.z = .069;card.add(rankLabel);
-  const back = new THREE.Mesh(faceGeometry(), new THREE.MeshPhysicalMaterial({ map: makeTexture(ranks.pioneer, true, logo, wing), metalness: .4, roughness: .4, bumpMap: surfaceGrain, bumpScale: .009, clearcoat: .7, envMapIntensity: .7 }));
+  backMaterial = frontMaterial.clone();backMaterial.map = backMaps.get('pioneer');
+  const back = new THREE.Mesh(faceGeometry(), backMaterial);
   back.rotation.y = Math.PI;back.position.z = -.066;card.add(back);
   buildInsignia(ranks.pioneer);
   // A soft contact shadow grounds the floating object without an expensive shadow pass.
   const shadowCanvas = document.createElement('canvas');shadowCanvas.width = 256;shadowCanvas.height = 256;
   const sc = shadowCanvas.getContext('2d');
   const shadowGradient = sc.createRadialGradient(128, 128, 5, 128, 128, 128);
-  shadowGradient.addColorStop(0, '#1c10274d');shadowGradient.addColorStop(.5, '#1c10271c');shadowGradient.addColorStop(1, '#1c102700');
+  shadowGradient.addColorStop(0, '#0000004d');shadowGradient.addColorStop(.5, '#0000001c');shadowGradient.addColorStop(1, '#00000000');
   sc.fillStyle = shadowGradient;sc.fillRect(0, 0, 256, 256);
   const shadowMap = new THREE.CanvasTexture(shadowCanvas);
   const shadow = new THREE.Mesh(new THREE.PlaneGeometry(11, 2.2), new THREE.MeshBasicMaterial({ map: shadowMap, transparent: true, depthWrite: false }));
@@ -456,6 +467,9 @@ async function init() {
   accountCard.replaceChildren(accountImage);
   accountCard.classList.add('rendered-card');
   frontMaterial.map = frontMaps.get(activeRank);
+  backMaterial.map = backMaps.get(activeRank);
+  shellMaterial.color.set(activeRank === 'pioneer' ? '#ada2be' : '#a6a9ad');
+  shellMaterial.iridescence = activeRank === 'pioneer' ? .6 : 0;
   rankMaterial.map = rankMaps.get(activeRank);
   rankMaterial.emissiveMap = rankMaterial.map;
   rankMaterial.color.set(ranks[activeRank].metal);
