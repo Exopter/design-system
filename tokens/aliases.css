@@ -109,19 +109,19 @@
   --border-rule:   var(--ex-line-200);
   --border-strong: var(--ex-line-300);
 
-  --focus-ring: var(--ex-copper-600);
+  --focus-ring: var(--ex-iris-600);
   --control-danger: #b42318;
   --control-danger-hover: #941c14;
   --control-error: #b42318;
-  --link:       var(--ex-copper-600);
+  --link:       var(--ex-iris-600);
 
   --status-ready-text: var(--ex-state-ready-text); /* @kind color */
   --status-live-text: var(--ex-state-live-text); /* @kind color */
   --status-caution-text: var(--ex-state-caution-text); /* @kind color */
   --status-fault-text: var(--ex-state-fault-text); /* @kind color */
   --status-info-text: #1668a8; /* @kind color */
-  --surface-selected: rgba(185, 80, 45, 0.10);
-  --selection-marker: var(--ex-copper-600); /* @kind color */
+  --surface-selected: rgba(102, 88, 199, 0.10);
+  --selection-marker: var(--ex-iris-600); /* @kind color */
 
   --state-ready:   var(--ex-field-500);
   --state-live:    var(--ex-aqua-500);
@@ -130,8 +130,8 @@
   --state-fault:   var(--ex-red-600);
   --state-unknown: var(--ex-graphite-500);
 
-  --accent:          var(--ex-copper-600);
-  --accent-hover:    var(--ex-copper-700);
+  --accent:          var(--ex-iris-600);
+  --accent-hover:    var(--ex-iris-700);
   --accent-contrast: var(--ex-white);
 }
 
@@ -161,15 +161,15 @@
   --status-fault-text: #ff8b83; /* @kind color */
   --status-info-text: #91cfff; /* @kind color */
   --ex-sky-100: #102936;
-  --surface-selected: rgba(242, 140, 100, 0.13);
-  --selection-marker: var(--ex-copper-300); /* @kind color */
+  --surface-selected: rgba(179, 166, 242, 0.13);
+  --selection-marker: var(--ex-iris-300); /* @kind color */
   --state-ready: var(--ex-hud-green);
-  --link: var(--ex-copper-300);
-  --focus-ring: var(--ex-copper-300);
+  --link: var(--ex-iris-300);
+  --focus-ring: var(--ex-iris-300);
   --control-error: #ff8b83;
 
-  --accent:          var(--ex-copper-300);
-  --accent-hover:    var(--ex-copper-200);
+  --accent:          var(--ex-iris-300);
+  --accent-hover:    var(--ex-iris-200);
   --accent-contrast: var(--ex-carbon-950);
 
   color: var(--text-body);

@@ -21,10 +21,10 @@
   --ex-vapor-150: #dce8e5;
   --ex-white: #ffffff;
 
-  --ex-copper-600: #b9502d;
-  --ex-copper-700: #9c4224;
-  --ex-copper-300: #f28c64;
-  --ex-copper-200: #ffa47c;
+  --ex-iris-600: var(--ex-violet-500);
+  --ex-iris-700: #5143ad;
+  --ex-iris-300: #b3a6f2;
+  --ex-iris-200: #c6bcfa;
 
   --ex-sky-500: #2ea8ff;
   --ex-field-500: #4f7b4e;
