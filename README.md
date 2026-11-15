@@ -25,7 +25,7 @@ npm run check
 - `@exopter/design-system/tokens/exopter-tokens.css`: canonical low-level Exopter tokens.
 - `@exopter/design-system/tokens/aliases.css`: semantic component aliases.
 - `templates/rails/stylesheets.json`: complete shared stylesheet export contract for Rails consumers.
-- `templates/rails/`: shared workbench, flight, equipment, telemetry, brand and font compositions. Historical class names are compatibility hooks, not a separate product theme.
+- `templates/rails/`: shared workbench, flight, equipment, telemetry, brand, Flight Club and font compositions. Historical class names are compatibility hooks, not a separate product theme.
 - `_ds_bundle.js`: generated browser-global component bundle for static specimens.
 - `_ds_manifest.json`: generated catalogue and component/token adherence metadata.
 - `_adherence.oxlintrc.json`: generated, runnable Oxlint consumer-import guardrail.

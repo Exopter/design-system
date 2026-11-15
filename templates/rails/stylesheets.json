@@ -25,5 +25,6 @@
   "signal.css": "templates/rails/TelemetryWorkspace.css",
   "hangar_forge.css": "templates/rails/EquipmentWorkspace.css",
   "landing.css": "templates/rails/BrandLanding.css",
+  "flight_club.css": "templates/rails/FlightClub.css",
   "exopter_fonts.css": "templates/rails/Fonts.css"
 }
