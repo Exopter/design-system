@@ -711,6 +711,12 @@
       "definedIn": "tokens/aliases.css"
     },
     {
+      "name": "--fs-micro",
+      "value": "0.625rem",
+      "kind": "spacing",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
       "name": "--fs-metric",
       "value": "2rem",
       "kind": "spacing",
@@ -1847,6 +1853,7 @@
       "--fs-h4",
       "--fs-metric",
       "--fs-metric-lg",
+      "--fs-micro",
       "--fs-page",
       "--fs-section",
       "--fs-sm",
@@ -2035,6 +2042,7 @@
       "--fs-h4": "spacing",
       "--fs-metric": "spacing",
       "--fs-metric-lg": "spacing",
+      "--fs-micro": "spacing",
       "--fs-page": "spacing",
       "--fs-section": "spacing",
       "--fs-sm": "spacing",
