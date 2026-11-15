@@ -20,8 +20,6 @@ try {
   for (const tier of Object.keys(RANKS)) {
     const card = await createMembershipCard(document.querySelector('#scene'), {
       name: '', memberNumber: 1, tier, since: '', personal: false,
-      // A light studio backing reveals the crystal instead of absorbing its color.
-      surface: '#f5f4f0',
       assets: {
         wordmark: '../../assets/logo-wordmark.svg',
         monogram: '../../assets/exopter-ex-flight-trails/exopter-ex-flight-trails.svg',
