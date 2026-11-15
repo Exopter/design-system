@@ -7,8 +7,8 @@ const defaultTilt = -.04;
 const ranks = {
   pioneer: { label: 'Pioneer', finish: 'Iridescent titanium', color: '#c1a7df', edge: '#9274ba', metal: '#d0b3ee', stripes: 1, numeral: 'Ⅰ' },
   explorer: { label: 'Explorer', finish: 'Brushed copper', color: '#d6a48a', edge: '#b77a58', metal: '#d8a080', stripes: 2, numeral: 'Ⅱ' },
-  pathfinder: { label: 'Pathfinder', finish: 'Champagne gold', color: '#d4c396', edge: '#ae9866', metal: '#e2cc90', stripes: 3, numeral: 'Ⅲ' },
-  trailblazer: { label: 'Trailblazer', finish: 'Platinum titanium', color: '#cbd1d8', edge: '#8f9aa8', metal: '#e2e7ef', stripes: 4, numeral: 'Ⅳ' },
+  pathfinder: { label: 'Pathfinder', finish: 'Brushed silver', color: '#cbd1d8', edge: '#8f9aa8', metal: '#e2e7ef', stripes: 3, numeral: 'Ⅲ' },
+  trailblazer: { label: 'Trailblazer', finish: 'Champagne gold', color: '#d4c396', edge: '#ae9866', metal: '#e2cc90', stripes: 4, numeral: 'Ⅳ' },
 };
 let activeRank = 'pioneer';
 let flipped = false;
