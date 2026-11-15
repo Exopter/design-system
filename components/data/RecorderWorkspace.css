@@ -15,7 +15,7 @@
 .exds-recorder-nav { display: grid; gap: var(--ex-space-2); }
 .exds-recorder-nav a { display: flex; align-items: center; gap: var(--ex-space-4); min-height: 48px; padding: var(--ex-space-3) var(--ex-space-4); color: var(--text-body); border-radius: var(--ex-radius-instrument); border-left: 3px solid transparent; font-size: 14px; text-decoration: none; }
 .exds-recorder-nav a:hover { background: var(--surface-panel); }
-.exds-recorder-nav a[aria-current="page"] { background: var(--ex-state-live-bg); color: var(--ex-state-live-text); border-left-color: var(--ex-aqua-500); font-weight: 700; }
+.exds-recorder-nav a[aria-current="page"] { background: var(--surface-selected); color: var(--text-strong); border-left-color: var(--selection-marker); font-weight: 700; }
 .exds-recorder-nav--secondary { margin-top: auto; border-top: 1px solid var(--border-rule); padding-top: var(--ex-space-4); }
 .exds-recorder-content { min-width: 0; padding: var(--ex-space-8) var(--ex-space-10); }
 .exds-recorder-content > .fdr-connectivity { width: 100%; max-width: none; margin: 0; }
@@ -46,7 +46,7 @@
 .exds-recording-filters button[aria-pressed="true"] { background: var(--ex-state-live-bg); color: var(--ex-state-live-text); }
 .exds-recording-search { display: flex; align-items: center; gap: var(--ex-space-2); padding: 0 var(--ex-space-3); background: var(--surface-card); border: 1px solid var(--border-rule); border-radius: var(--ex-radius-instrument); color: var(--text-muted); }
 .exds-recording-search input { width: 230px; max-width: 100%; min-height: 38px; padding: 0; border: 0; background: transparent; color: var(--text-body); font: inherit; font-size: 14px; }
-.exds-recording-search:focus-within { outline: 2px solid var(--ex-aqua-500); outline-offset: 2px; }
+.exds-recording-search:focus-within { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 .exds-recording-search input:focus { outline: 0; }
 .exds-recording-selection { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ex-space-3); padding: var(--ex-space-3) var(--ex-space-4); margin-bottom: var(--ex-space-3); background: var(--ex-state-live-bg); border-radius: var(--ex-radius-instrument); font-size: 14px; }
 .exds-recording-selection[hidden] { display: none; }
@@ -56,7 +56,7 @@
 .exds-recording-table th { color: var(--text-muted); font: 600 11px var(--ex-font-mono); letter-spacing: .06em; text-transform: uppercase; padding: var(--ex-space-4) var(--ex-space-5); }
 .exds-recording-table td { padding: var(--ex-space-4) var(--ex-space-5); border-top: 1px solid var(--border-rule); vertical-align: middle; font-variant-numeric: tabular-nums; }
 .exds-recording-table th:first-child, .exds-recording-table td:first-child { width: 44px; padding-right: 0; }
-.exds-recording-table input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--ex-state-live-text); cursor: pointer; }
+.exds-recording-table input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--selection-marker); cursor: pointer; }
 .exds-recording-table input:disabled { cursor: default; }
 .exds-recording-table td:nth-child(3), .exds-recording-table td:nth-child(4) { white-space: nowrap; }
 .exds-recording-table td:last-child { width: 44px; padding-left: 0; }
@@ -82,7 +82,7 @@
 .exds-recording-notice { font-size: 13px; padding: var(--ex-space-3) 0; color: var(--ex-state-live-text); }
 .exds-recording-empty { padding: var(--ex-space-10) var(--ex-space-6); text-align: center; background: var(--surface-card); border: 1px solid var(--border-rule); border-radius: var(--ex-radius-surface); color: var(--text-muted); }
 .exds-recorder-content .workspace-panel { box-shadow: none; }
-.exds-recorder-workspace :is(button, a, summary, input):focus-visible { outline: 2px solid var(--ex-state-live-text); outline-offset: 3px; }
+.exds-recorder-workspace :is(button, a, summary, input):focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
 @media (max-width: 1100px) {
   .exds-recorder-workspace { grid-template-columns: 210px minmax(0, 1fr); }
   .exds-recorder-content { padding: var(--ex-space-6); }

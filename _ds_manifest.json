@@ -166,6 +166,30 @@
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
+      "name": "--ex-copper-600",
+      "value": "#b9502d",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-copper-700",
+      "value": "#9c4224",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-copper-300",
+      "value": "#f28c64",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-copper-200",
+      "value": "#ffa47c",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
       "name": "--ex-sky-500",
       "value": "#2ea8ff",
       "kind": "color",
@@ -987,7 +1011,7 @@
     },
     {
       "name": "--focus-ring",
-      "value": "#087f91",
+      "value": "var(--ex-copper-600)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
@@ -1011,7 +1035,7 @@
     },
     {
       "name": "--link",
-      "value": "var(--ex-sky-500)",
+      "value": "var(--ex-copper-600)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
@@ -1052,13 +1076,13 @@
     },
     {
       "name": "--surface-selected",
-      "value": "var(--ex-state-live-bg)",
+      "value": "rgba(185, 80, 45, 0.10)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
     {
       "name": "--selection-marker",
-      "value": "var(--ex-state-live-text)",
+      "value": "var(--ex-copper-600)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "annotation": "color"
@@ -1101,13 +1125,19 @@
     },
     {
       "name": "--accent",
-      "value": "var(--ex-carbon-900)",
+      "value": "var(--ex-copper-600)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--accent-hover",
+      "value": "var(--ex-copper-700)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
     {
       "name": "--accent-contrast",
-      "value": "var(--ex-vapor-50)",
+      "value": "var(--ex-white)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
@@ -1236,8 +1266,15 @@
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
     },
     {
+      "name": "--surface-selected",
+      "value": "rgba(242, 140, 100, 0.13)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
       "name": "--selection-marker",
-      "value": "var(--ex-aqua-500)",
+      "value": "var(--ex-copper-300)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]",
@@ -1251,8 +1288,15 @@
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
     },
     {
+      "name": "--link",
+      "value": "var(--ex-copper-300)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
       "name": "--focus-ring",
-      "value": "var(--ex-aqua-500)",
+      "value": "var(--ex-copper-300)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
@@ -1266,7 +1310,14 @@
     },
     {
       "name": "--accent",
-      "value": "var(--ex-aqua-500)",
+      "value": "var(--ex-copper-300)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--accent-hover",
+      "value": "var(--ex-copper-200)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
@@ -1542,6 +1593,7 @@
     "tokens": [
       "--accent",
       "--accent-contrast",
+      "--accent-hover",
       "--border-rule",
       "--border-strong",
       "--bw-rule",
@@ -1566,6 +1618,10 @@
       "--ex-carbon-800",
       "--ex-carbon-900",
       "--ex-carbon-950",
+      "--ex-copper-200",
+      "--ex-copper-300",
+      "--ex-copper-600",
+      "--ex-copper-700",
       "--ex-field-100",
       "--ex-field-500",
       "--ex-flight-amber",
@@ -1710,6 +1766,7 @@
     "tokenKinds": {
       "--accent": "color",
       "--accent-contrast": "color",
+      "--accent-hover": "color",
       "--border-rule": "color",
       "--border-strong": "color",
       "--bw-rule": "spacing",
@@ -1734,6 +1791,10 @@
       "--ex-carbon-800": "color",
       "--ex-carbon-900": "color",
       "--ex-carbon-950": "color",
+      "--ex-copper-200": "color",
+      "--ex-copper-300": "color",
+      "--ex-copper-600": "color",
+      "--ex-copper-700": "color",
       "--ex-field-100": "color",
       "--ex-field-500": "color",
       "--ex-flight-amber": "color",

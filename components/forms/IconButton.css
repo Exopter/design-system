@@ -15,7 +15,7 @@
 .exds-iconbtn--outline{border-color:var(--border-strong);background:var(--surface-card)}
 .exds-iconbtn--outline:hover:not([disabled]){background:var(--surface-hover)}
 .exds-iconbtn--solid{background:var(--accent);color:var(--accent-contrast);border-color:var(--accent)}
-.exds-iconbtn--solid:hover:not([disabled]){background:color-mix(in srgb,var(--accent),var(--accent-contrast) 12%)}
+.exds-iconbtn--solid:hover:not([disabled]){background:var(--accent-hover)}
 /* round - only when shape IS the control (play, target, reset) */
 .exds-iconbtn--round{border-radius:var(--radius-round)}
 .exds-iconbtn--danger{color:var(--control-error)}
