@@ -166,26 +166,26 @@
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
-      "name": "--ex-iris-600",
-      "value": "var(--ex-violet-500)",
+      "name": "--ex-khaki-600",
+      "value": "#62664a",
       "kind": "color",
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
-      "name": "--ex-iris-700",
-      "value": "#5143ad",
+      "name": "--ex-khaki-700",
+      "value": "#50543b",
       "kind": "color",
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
-      "name": "--ex-iris-300",
-      "value": "#b3a6f2",
+      "name": "--ex-khaki-300",
+      "value": "#b5b99a",
       "kind": "color",
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
-      "name": "--ex-iris-200",
-      "value": "#c6bcfa",
+      "name": "--ex-khaki-200",
+      "value": "#c8ccb0",
       "kind": "color",
       "definedIn": "tokens/exopter-tokens.css"
     },
@@ -1011,7 +1011,7 @@
     },
     {
       "name": "--focus-ring",
-      "value": "var(--ex-iris-600)",
+      "value": "var(--ex-khaki-600)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
@@ -1035,7 +1035,7 @@
     },
     {
       "name": "--link",
-      "value": "var(--ex-iris-600)",
+      "value": "var(--ex-khaki-600)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
@@ -1076,13 +1076,13 @@
     },
     {
       "name": "--surface-selected",
-      "value": "rgba(102, 88, 199, 0.10)",
+      "value": "rgba(98, 102, 74, 0.08)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
     {
       "name": "--selection-marker",
-      "value": "var(--ex-iris-600)",
+      "value": "var(--ex-khaki-600)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "annotation": "color"
@@ -1124,14 +1124,32 @@
       "definedIn": "tokens/aliases.css"
     },
     {
+      "name": "--control-primary",
+      "value": "var(--ex-carbon-900)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--control-primary-hover",
+      "value": "var(--ex-carbon-700)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
+      "name": "--control-primary-text",
+      "value": "var(--ex-white)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css"
+    },
+    {
       "name": "--accent",
-      "value": "var(--ex-iris-600)",
+      "value": "var(--ex-khaki-600)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
     {
       "name": "--accent-hover",
-      "value": "var(--ex-iris-700)",
+      "value": "var(--ex-khaki-700)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
@@ -1267,14 +1285,14 @@
     },
     {
       "name": "--surface-selected",
-      "value": "rgba(179, 166, 242, 0.13)",
+      "value": "rgba(181, 185, 154, 0.10)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
     },
     {
       "name": "--selection-marker",
-      "value": "var(--ex-iris-300)",
+      "value": "var(--ex-khaki-300)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]",
@@ -1289,14 +1307,14 @@
     },
     {
       "name": "--link",
-      "value": "var(--ex-iris-300)",
+      "value": "var(--ex-khaki-300)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
     },
     {
       "name": "--focus-ring",
-      "value": "var(--ex-iris-300)",
+      "value": "var(--ex-khaki-300)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
@@ -1309,15 +1327,36 @@
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
     },
     {
+      "name": "--control-primary",
+      "value": "var(--ex-vapor-100)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--control-primary-hover",
+      "value": "var(--ex-white)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--control-primary-text",
+      "value": "var(--ex-carbon-950)",
+      "kind": "other",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
       "name": "--accent",
-      "value": "var(--ex-iris-300)",
+      "value": "var(--ex-khaki-300)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
     },
     {
       "name": "--accent-hover",
-      "value": "var(--ex-iris-200)",
+      "value": "var(--ex-khaki-200)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
@@ -1604,6 +1643,9 @@
       "--control-h",
       "--control-h-lg",
       "--control-h-sm",
+      "--control-primary",
+      "--control-primary-hover",
+      "--control-primary-text",
       "--dur",
       "--dur-fast",
       "--dur-slow",
@@ -1643,10 +1685,10 @@
       "--ex-instrument-line",
       "--ex-instrument-muted",
       "--ex-instrument-sky",
-      "--ex-iris-200",
-      "--ex-iris-300",
-      "--ex-iris-600",
-      "--ex-iris-700",
+      "--ex-khaki-200",
+      "--ex-khaki-300",
+      "--ex-khaki-600",
+      "--ex-khaki-700",
       "--ex-line-200",
       "--ex-line-300",
       "--ex-motion-reveal-duration",
@@ -1777,6 +1819,9 @@
       "--control-h": "spacing",
       "--control-h-lg": "spacing",
       "--control-h-sm": "spacing",
+      "--control-primary": "other",
+      "--control-primary-hover": "other",
+      "--control-primary-text": "other",
       "--dur": "other",
       "--dur-fast": "other",
       "--dur-slow": "other",
@@ -1816,10 +1861,10 @@
       "--ex-instrument-line": "color",
       "--ex-instrument-muted": "color",
       "--ex-instrument-sky": "color",
-      "--ex-iris-200": "color",
-      "--ex-iris-300": "color",
-      "--ex-iris-600": "color",
-      "--ex-iris-700": "color",
+      "--ex-khaki-200": "color",
+      "--ex-khaki-300": "color",
+      "--ex-khaki-600": "color",
+      "--ex-khaki-700": "color",
       "--ex-line-200": "color",
       "--ex-line-300": "color",
       "--ex-motion-reveal-duration": "other",

@@ -59,6 +59,8 @@ disclosure menus, sortable/filterable tables and inspection drawers. `Table.css`
 and `Menu.css` provide semantic HTML primitives through the global stylesheet.
 Disclosure menus use native `details`/`summary` with normal Tab navigation; the
 workbench closes them on Escape, focus exit and action selection.
+Primary buttons use the neutral `--control-primary` roles. Mineral khaki is
+reserved for focus, selection and small navigation accents.
 Interaction styles use `--accent`, `--focus-ring`, `--link`,
 `--selection-marker` and `--surface-selected`. Status colours remain independent:
 green for readiness, aqua for live telemetry, blue for information, amber for

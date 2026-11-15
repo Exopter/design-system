@@ -12,8 +12,8 @@
 .exds-btn--lg{min-height:var(--control-h-lg);padding:12px 22px}
 .exds-btn--block{width:100%}
 .exds-btn svg{width:18px;height:18px;flex:none}
-.exds-btn--primary{background:var(--accent);color:var(--accent-contrast);border-color:var(--accent);box-shadow:inset 0 1px 0 #ffffff18,0 1px 1px #070b0d18}
-.exds-btn--primary:hover:not(:disabled){background:var(--accent-hover)}
+.exds-btn--primary{background:var(--control-primary);color:var(--control-primary-text);border-color:var(--control-primary);box-shadow:inset 0 1px 0 #ffffff18,0 1px 1px #070b0d18}
+.exds-btn--primary:hover:not(:disabled){background:var(--control-primary-hover)}
 .exds-btn--secondary{background:var(--surface-card);color:var(--text-body);border-color:var(--border-strong);box-shadow:0 1px 1px #070b0d08}
 .exds-btn--secondary:hover:not(:disabled){background:var(--surface-hover);border-color:var(--text-muted)}
 .exds-btn--ghost{background:transparent;color:var(--text-body)}

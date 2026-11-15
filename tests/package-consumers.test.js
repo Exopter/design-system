@@ -33,7 +33,7 @@ describe('package consumers', () => {
 
   it('ships every component stylesheet through the existing global entrypoint', async () => {
     const css = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
-    const references = [...css.matchAll(/@import "(components\/[^"?]+\.css)"/g)].map((match) => match[1]);
+    const references = [...css.matchAll(/@import "(components\/[^"?]+\.css)(?:\?[^" ]*)?"/g)].map((match) => match[1]);
     expect(references).toHaveLength(31);
     expect(references).toContain('components/data/Table.css');
     expect(references).toContain('components/overlays/Menu.css');

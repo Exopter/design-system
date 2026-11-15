@@ -13,7 +13,7 @@
 @import "components/overlays/Menu.css";
 @import "components/data/ChecklistRow.css";
 @import "components/data/MetricTile.css";
-@import "components/data/ReadinessStrip.css";
+@import "components/data/ReadinessStrip.css?v=5";
 @import "components/data/SelectionToolbar.css";
 @import "components/data/RecorderWorkspace.css";
 @import "components/data/SignalStrength.css";
@@ -22,12 +22,12 @@
 @import "components/feedback/StatusDot.css";
 @import "components/feedback/SuccessState.css";
 @import "components/feedback/Toast.css";
-@import "components/feedback/FeedbackPopover.css";
-@import "components/forms/Button.css";
-@import "components/forms/IconButton.css";
+@import "components/feedback/FeedbackPopover.css?v=5";
+@import "components/forms/Button.css?v=5";
+@import "components/forms/IconButton.css?v=5";
 @import "components/forms/IconButtonEdge.css";
 @import "components/forms/Input.css";
-@import "components/forms/SegmentedControl.css";
+@import "components/forms/SegmentedControl.css?v=5";
 @import "components/forms/Select.css";
 @import "components/forms/Switch.css";
 @import "components/forms/Textarea.css";
