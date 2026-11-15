@@ -158,6 +158,19 @@ function polygon(points) {
   return shape;
 }
 
+function mapShieldSurface(geometry) {
+  geometry.computeBoundingBox();
+  const { min, max } = geometry.boundingBox;
+  const position = geometry.attributes.position;
+  const uv = geometry.attributes.uv;
+  // One continuous film across the shield, including its bevel. Default cap UVs
+  // use signed world coordinates and repeat the film at the X/Y origin.
+  for (let index = 0; index < position.count; index++) {
+    uv.setXY(index, (position.getX(index) - min.x) / (max.x - min.x), (position.getY(index) - min.y) / (max.y - min.y));
+  }
+  return geometry;
+}
+
 function buildInsignia(rank) {
   if (insignia) {
     card.remove(insignia);
@@ -177,7 +190,8 @@ function buildInsignia(rank) {
   const extrusion = { depth: .035, bevelEnabled: true, bevelThickness: .024, bevelSize: .025, bevelSegments: 3, steps: 1 };
   const shield = new THREE.Mesh(new THREE.ExtrudeGeometry(polygon(shieldPoints), extrusion), rimMaterial);
   insignia.add(shield);
-  const inner = new THREE.Mesh(new THREE.ExtrudeGeometry(polygon(shieldPoints.map(([x, y]) => [x * .943, y * .943])), extrusion), innerMaterial);
+  const innerGeometry = mapShieldSurface(new THREE.ExtrudeGeometry(polygon(shieldPoints.map(([x, y]) => [x * .943, y * .943])), extrusion));
+  const inner = new THREE.Mesh(innerGeometry, innerMaterial);
   inner.position.z = .043;
   insignia.add(inner);
   // Fine concentric machining catches the light around the rank device.
