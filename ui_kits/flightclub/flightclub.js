@@ -141,11 +141,13 @@ function buildInsignia(rank) {
   insignia = new THREE.Group();
   insignia.position.set(2.16, .24, .12);
   const isPioneer = rank === ranks.pioneer;
-  const rimMaterial = new THREE.MeshPhysicalMaterial({ color: rank.metal, metalness: 1, roughness: .23, bumpMap: foilGrain, bumpScale: .018, anisotropy: .75, iridescence: isPioneer ? 1 : 0, iridescenceIOR: 1.38, iridescenceThicknessMap: interferenceMap, iridescenceThicknessMinimum: 180, iridescenceThicknessMaximum: 620, clearcoat: 1, envMapIntensity: 1.6 });
-  const innerMaterial = new THREE.MeshPhysicalMaterial({ color: isPioneer ? '#35233e' : '#17181a', metalness: .8, roughness: .39, bumpMap: surfaceGrain, bumpScale: .018, clearcoat: .65, iridescence: isPioneer ? .23 : 0, iridescenceThicknessMap: interferenceMap, iridescenceThicknessMinimum: 300, iridescenceThicknessMaximum: 470, envMapIntensity: .75 });
+  const rimMaterial = new THREE.MeshPhysicalMaterial({ color: rank.metal, metalness: 1, roughness: .32, bumpMap: foilGrain, bumpScale: .018, anisotropy: .55, iridescence: isPioneer ? 1 : 0, iridescenceIOR: 1.38, iridescenceThicknessMap: interferenceMap, iridescenceThicknessMinimum: 180, iridescenceThicknessMaximum: 620, clearcoat: .32, clearcoatRoughness: .3, envMapIntensity: .9 });
+  const innerMaterial = new THREE.MeshPhysicalMaterial({ color: isPioneer ? '#291635' : '#101112', metalness: .95, roughness: .5, bumpMap: surfaceGrain, bumpScale: .018, clearcoat: .06, clearcoatRoughness: .5, iridescence: isPioneer ? .23 : 0, iridescenceThicknessMap: interferenceMap, iridescenceThicknessMinimum: 300, iridescenceThicknessMaximum: 470, envMapIntensity: .18 });
   const metalMaterial = rimMaterial.clone();
   metalMaterial.color.set(isPioneer ? '#ded0ee' : rank.metal);
-  metalMaterial.roughness = .24;
+  metalMaterial.roughness = .34;
+  metalMaterial.envMapIntensity = .85;
+  metalMaterial.clearcoat = .2;
   const shieldPoints = [[0, 1.38], [1.05, .94], [.91, -.65], [0, -1.32], [-.91, -.65], [-1.05, .94]];
   const extrusion = { depth: .035, bevelEnabled: true, bevelThickness: .024, bevelSize: .025, bevelSegments: 3, steps: 1 };
   const shield = new THREE.Mesh(new THREE.ExtrudeGeometry(polygon(shieldPoints), extrusion), rimMaterial);
@@ -389,12 +391,13 @@ async function init() {
   }
   const environment = pmrem.fromScene(room, .04);
   scene.environment = environment.texture;
+  scene.environmentRotation.set(.1, .65, 0);
   room.dispose();
   pmrem.dispose();
   const key = new THREE.DirectionalLight('#ffffff', 2.8);
-  key.position.set(-4, 5, 8);scene.add(key);
+  key.position.set(-6, 8, 4);scene.add(key);
   const edge = new THREE.DirectionalLight('#ffffff', 2.4);
-  edge.position.set(5, 2, 4);scene.add(edge);
+  edge.position.set(8, 3, 1);scene.add(edge);
   const warmth = new THREE.DirectionalLight('#ffffff', 1.5);
   warmth.position.set(-3, -3, 1);scene.add(warmth);
   scene.add(new THREE.AmbientLight('#ffffff', .35));

@@ -17,6 +17,8 @@ The carbon substrate carries the existing Exowing illustration as a crisp neutra
 
 The carbon faces use a matte finish without a reflective clearcoat to preserve text and engraving contrast. Common lighting, carbon fibers, blueprint strokes, secondary text and contact shadows are achromatic. Violet haze and iridescent edge treatment are restricted to Pioneer. Each preview has its own reverse texture; rank switches update both faces and the edge material.
 
+The badge uses a satin metal finish, a dark center with minimal clearcoat and reduced environment reflection. The studio environment and key lights are angled away from the resting face to prevent a frontal white hotspot at the slightly upward default tilt.
+
 Reduced motion suppresses idle float, pointer tilt and the reveal spin. The scene pauses in hidden tabs and provides a static fallback if WebGL initialization fails. Core card actions have keyboard-accessible buttons and announcements.
 
 This is an exploratory specimen, not an approved design-system baseline or production feature. No canonical tokens or shared components are changed. Product decisions remain in Notion Engineering.
