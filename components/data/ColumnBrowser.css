@@ -188,3 +188,13 @@
 .exds-browser-autocomplete-option:hover, .exds-browser-autocomplete-option[aria-selected="true"] { background: var(--surface-selected); color: var(--text-strong); }
 .exds-browser-field > .exds-browser-autocomplete-help { margin: 0; color: var(--text-muted); font: 400 12px/1.4 var(--ex-font-sans); }
 @media (pointer: coarse) { .exds-browser-autocomplete-option { min-height: 44px; } }
+/* Phone: the flight code is never truncated; status wraps under it and the date takes its own line. */
+@media (max-width: 560px) {
+  .exds-browser-entry-copy { grid-template-rows: auto; grid-auto-rows: auto; }
+  .exds-browser-entry-heading { grid-column: 1 / -1; flex-wrap: wrap; row-gap: 2px; }
+  .exds-browser-entry-heading strong { flex: none; overflow: visible; }
+  .exds-browser-entry-date { grid-column: 1 / -1; grid-row: 2; text-align: left; }
+  .exds-browser-entry-location { grid-row: 3; }
+  .exds-browser-entry-description { grid-row: 4; }
+  .exds-browser-entry-copy > .exds-browser-entry-duration { grid-row: 3; }
+}
