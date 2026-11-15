@@ -10,6 +10,7 @@
   ],
   "files": [
     "assets/blueprints/",
+    "assets/flight-club/",
     "assets/logo-*.svg",
     "assets/app-icon.svg",
     "_adherence.oxlintrc.json",
@@ -28,6 +29,7 @@
   ],
   "exports": {
     "./assets/blueprints/*": "./assets/blueprints/*",
+    "./assets/flight-club/*": "./assets/flight-club/*",
     ".": {
       "types": "./index.d.ts",
       "import": "./dist/index.js"
@@ -53,7 +55,7 @@
     "lint": "oxlint --config _adherence.oxlintrc.json index.js components ui_kits scripts tests",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check": "npm run build:check && npm run typecheck && npm run lint && npm test && npm pack --dry-run",
+    "check": "node scripts/export-flight-club-insignia.mjs --check && npm run build:check && npm run typecheck && npm run lint && npm test && npm pack --dry-run",
     "typecheck": "tsc --project tsconfig.json"
   },
   "devDependencies": {

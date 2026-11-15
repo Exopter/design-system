@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" class="ex-dark">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flight Club email assets</title>
+<link rel="stylesheet" href="../../tokens/fonts.css">
+<link rel="stylesheet" href="../../tokens/exopter-tokens.css">
+<link rel="stylesheet" href="../../tokens/aliases.css">
+<link rel="stylesheet" href="../../components/forms/Button.css">
+<style>
+body { margin:24px; background:var(--surface-app); color:var(--text-body); font-family:var(--ex-font-sans); }
+#scene { width:1120px; max-width:100%; height:720px; }
+#downloads { display:flex; flex-wrap:wrap; gap:12px; }
+</style>
+<script type="importmap">{"imports":{"three":"../../node_modules/three/build/three.module.js"}}</script>
+<h1>Flight Club email assets</h1>
+<p id="status" role="status">Rendering dark email assets.</p>
+<div id="downloads"></div>
+<div id="scene" aria-hidden="true"></div>
+<script type="module" src="./mail-renders.js"></script>
+</html>

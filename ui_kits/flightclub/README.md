@@ -23,4 +23,10 @@ The environment is a dark studio with long softboxes placed 20 to 40 degrees off
 
 Reduced motion suppresses idle float, pointer tilt, dragging, springs and the reveal motion. The scene pauses in hidden tabs and provides a static fallback if WebGL initialization fails. Core card actions have keyboard-accessible buttons and announcements.
 
-This is an exploratory specimen, not an approved design-system baseline or production feature. No canonical tokens or shared components are changed. Product decisions remain in Notion Engineering.
+## Rails profile integration
+
+`templates/rails/WorkbenchShell.css` owns the responsive member profile and shared photo avatar. `assets/flight-club/insignia-*.svg` provides lightweight shield counterparts for every rank. Regenerate them with `node scripts/export-flight-club-insignia.mjs`; use `--check` to verify their current sources. The exporter reads the card rank palette and stripe counts; its four-point star and upward chevron stack follow the card geometry. Core Team uses a cut diamond. Sillage synchronizes these assets with `script/sync_landing_assets` and uses them on the profile, account menu and flight comments.
+
+The profile, invitation and membership UI use the dark Sillage surfaces and semantic khaki accent. Card materials and insignia retain their rank finishes. `mail-renders.html` exports the same five physical cards on the carbon email background and a light PNG wordmark. Serve the repository root locally, open that page and save its six assets into `assets/flight-club/`; synchronize Sillage with `script/sync_landing_assets --write`. The email layouts carry inline equivalents of the canonical dark palette for mail clients.
+
+The standalone specimen remains exploratory. The Rails integration is local implementation, not a production deployment. Product and design decisions remain in [Notion Engineering](https://app.notion.com/p/3abe497e504f81c8a557e1f1a26e09ae).
