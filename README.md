@@ -54,6 +54,8 @@ The export is byte-for-byte identical to the canonical source. Consumer reposito
 
 Open `index.html` through a local static server to browse the catalogue. Product screens must reuse shared tokens and components; record new product or design decisions in Notion before extending the executable implementation.
 
+The [Flight Club membership specimen](ui_kits/flightclub/README.md) is an isolated Three.js design study with mock member data, a physical card and a replayable welcome. It does not change the shared design-system baseline.
+
 
 ## Windows Compose Watch
 

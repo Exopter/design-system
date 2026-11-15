@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4f0">
+  <title>Flight Club · Exopter</title>
+  <link rel="icon" href="../../assets/app-icon.svg">
+  <link rel="stylesheet" href="../../tokens/exopter-tokens.css">
+  <link rel="stylesheet" href="../../tokens/fonts.css">
+  <link rel="stylesheet" href="flightclub.css">
+  <script type="importmap">{"imports":{"three":"../../node_modules/three/build/three.module.js","three/addons/":"../../node_modules/three/examples/jsm/"}}</script>
+</head>
+<body>
+  <header class="header">
+    <a href="#" class="brand" aria-label="Exopter Flight Club"><img src="../../assets/logo-wordmark.svg" alt="Exopter"><span>Flight Club</span></a>
+    <span class="edition">THE FOUNDING CHAPTER / 001</span>
+    <button class="profile" id="account-button" aria-label="Open member profile"><span class="profile-rank" aria-hidden="true">Ⅰ</span><span>Julien B.</span><span class="avatar">JB</span></button>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow"><span class="status-dot"></span> A PLACE AMONG THE FIRST</p><h1>You were here<br>before the horizon.</h1></div>
+      <div class="intro-note"><span class="chapter">01 / YOUR MEMBERSHIP</span><p>Some follow the flight path.<br>Others help draw it.</p><span class="small-note">This is your place in the story.</span></div>
+    </section>
+    <section class="object-section" aria-label="Interactive membership card">
+      <div class="stage" id="stage">
+        <div class="stage-label"><span class="micro">EXOPTER FLIGHT CLUB</span><span class="vertical-rule"></span><span class="micro muted">MEMBERSHIP, MADE TANGIBLE.</span></div>
+        <div id="card-scene" role="img" aria-label="Interactive dark titanium Flight Club membership card for Julien Blancher, Pioneer, member 0001. Drag to rotate; use Turn card to inspect the reverse."></div>
+        <div id="fallback" hidden><p>Your membership</p><h2>FLIGHT CLUB</h2><strong>Julien Blancher</strong><p>PIONEER · FC 0001</p></div>
+        <div class="object-caption"><span class="micro">DARK TITANIUM</span><span class="micro muted">IRIDESCENT INSIGNIA / FIRST EDITION</span></div>
+        <div class="stage-index micro">FC<br><span>001</span></div>
+      </div>
+      <div class="object-toolbar"><span class="gesture">Move to catch the light. Drag to explore.</span><div><button class="text-button" id="flip-button">Turn card <span aria-hidden="true">↔</span></button><span class="divider"></span><button class="text-button" id="replay-button">Replay the welcome <span aria-hidden="true">↗</span></button></div></div>
+    </section>
+    <section class="membership" aria-label="Membership details">
+      <div class="member-heading"><span class="micro muted">YOUR PLACE IN THE CLUB</span><div class="member-name">Julien Blancher <span class="rank-chip" id="rank-chip">Ⅰ &nbsp; Pioneer</span></div><p>Founding member. An open sky ahead.</p></div>
+      <div class="benefit"><span class="benefit-number">01</span><div><h3>Flight + Signal</h3><p>Your entire flight world. Unlocked.</p></div><span class="enabled-dot"></span></div>
+      <div class="benefit"><span class="benefit-number">02</span><div><h3>Every flight, remembered.</h3><p>Automatic recording. Just take flight.</p></div><span class="enabled-dot"></span></div>
+    </section>
+    <section class="rank-explorer" aria-label="Explore future membership ranks"><div><span class="micro">THE INSIGNIA COLLECTION</span><p>One club. New horizons.</p></div><div class="rank-options" role="group" aria-label="Preview membership rank"><button data-rank="pioneer" aria-pressed="true"><span class="rank-icon">Ⅰ</span><strong>Pioneer</strong><small>FOUNDING EDITION</small></button><button data-rank="explorer" aria-pressed="false"><span class="rank-icon">Ⅱ</span><strong>Explorer</strong><small>20K · FUTURE CONCEPT</small></button><button data-rank="pathfinder" aria-pressed="false"><span class="rank-icon">Ⅲ</span><strong>Pathfinder</strong><small>50K · FUTURE CONCEPT</small></button><button data-rank="trailblazer" aria-pressed="false"><span class="rank-icon">Ⅳ</span><strong>Trailblazer</strong><small>100K · FUTURE CONCEPT</small></button></div></section>
+  </main>
+  <footer><span>EXOPTER © 2026</span><span>THE SKY IS ONLY THE BEGINNING.</span><span>INTERACTIVE DESIGN STUDY · MOCK DATA</span></footer>
+  <dialog id="welcome-dialog" aria-labelledby="welcome-title"><button class="close-dialog" aria-label="Close welcome">×</button><div class="welcome-top micro">EXOPTER / FLIGHT CLUB</div><div class="welcome-emblem"><img src="../../assets/logo-mark-white.svg" alt=""></div><span class="micro">YOUR INVITATION BECOMES A BELONGING.</span><h2 id="welcome-title">Welcome to<br>the first chapter.</h2><p>Julien, you’re a Pioneer.<br>Your place in Flight Club starts here.</p><button id="reveal-button" class="primary-button">Reveal my card <span aria-hidden="true">↗</span></button><span class="welcome-foot micro">MEMBER 0001 · FOUNDING EDITION</span></dialog>
+  <dialog id="account-dialog" aria-labelledby="account-title"><button class="close-dialog" aria-label="Close member profile">×</button><span class="micro muted">YOUR FLIGHT CLUB ACCOUNT</span><div class="account-avatar">JB<span>Ⅰ</span></div><h2 id="account-title">Julien Blancher</h2><span class="rank-chip">Ⅰ &nbsp; Pioneer</span><p>Member FC 0001 · Joined November 2026</p><div class="account-card"><span>FLIGHT CLUB</span><strong>PIONEER</strong><small>JULIEN BLANCHER · 0001</small></div><div class="account-entitlements"><span>Flight <b>Included</b></span><span>Signal <b>Included</b></span><span>Automatic flight recording <b>Enabled</b></span></div><button id="inspect-button" class="primary-button">Explore my card <span aria-hidden="true">↗</span></button><small class="account-note">Design preview. Membership and flights are simulated.</small></dialog>
+  <p class="sr-only" id="announcement" aria-live="polite"></p>
+  <script type="module" src="flightclub.js"></script>
+</body>
+</html>
