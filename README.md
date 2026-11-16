@@ -65,7 +65,7 @@ Primary buttons use the neutral `--control-primary` roles. Mineral khaki is
 reserved for focus, selection and small navigation accents.
 Interaction styles use `--accent`, `--focus-ring`, `--link`,
 `--selection-marker` and `--surface-selected`. Status colours remain independent:
-green for readiness, aqua for live telemetry, blue for information, amber for
+green for readiness, mineral khaki for live and active states, blue for information, amber for
 caution and red for faults. Charts retain their distinct data-series colours.
 Both workbenches exercise shared components in light and dark surfaces, including
 keyboard focus, disabled states and local form validation. This branch is a local

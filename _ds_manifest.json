@@ -273,7 +273,7 @@
     },
     {
       "name": "--ex-telemetry-live",
-      "value": "var(--ex-aqua-500)",
+      "value": "var(--ex-khaki-300)",
       "kind": "color",
       "definedIn": "tokens/exopter-tokens.css"
     },
@@ -407,13 +407,13 @@
     },
     {
       "name": "--ex-state-live-bg",
-      "value": "rgba(47, 214, 198, 0.14)",
+      "value": "rgba(98, 102, 74, 0.12)",
       "kind": "color",
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
       "name": "--ex-state-live-text",
-      "value": "#00615b",
+      "value": "#50543b",
       "kind": "color",
       "definedIn": "tokens/exopter-tokens.css"
     },
@@ -1182,7 +1182,7 @@
     },
     {
       "name": "--state-live",
-      "value": "var(--ex-aqua-500)",
+      "value": "var(--ex-khaki-600)",
       "kind": "color",
       "definedIn": "tokens/aliases.css"
     },
@@ -1333,7 +1333,7 @@
     },
     {
       "name": "--status-live-text",
-      "value": "var(--ex-aqua-500)",
+      "value": "var(--ex-khaki-300)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]",
@@ -1388,6 +1388,13 @@
     {
       "name": "--state-ready",
       "value": "var(--ex-hud-green)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
+    },
+    {
+      "name": "--state-live",
+      "value": "var(--ex-khaki-300)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]"
