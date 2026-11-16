@@ -1187,6 +1187,62 @@
       "definedIn": "tokens/aliases.css"
     },
     {
+      "name": "--avatar-tone-1",
+      "value": "#62664a",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
+      "name": "--avatar-tone-2",
+      "value": "#2f6f9f",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
+      "name": "--avatar-tone-3",
+      "value": "#8a5a12",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
+      "name": "--avatar-tone-4",
+      "value": "#6658c7",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
+      "name": "--avatar-tone-5",
+      "value": "#3f7a4d",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
+      "name": "--avatar-tone-6",
+      "value": "#a8443c",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
+      "name": "--avatar-tone-7",
+      "value": "#7d4f86",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
+      "name": "--avatar-tone-8",
+      "value": "#4f5d6b",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
       "name": "--state-pending",
       "value": "var(--ex-amber-500)",
       "kind": "color",
@@ -1736,6 +1792,14 @@
       "--accent",
       "--accent-contrast",
       "--accent-hover",
+      "--avatar-tone-1",
+      "--avatar-tone-2",
+      "--avatar-tone-3",
+      "--avatar-tone-4",
+      "--avatar-tone-5",
+      "--avatar-tone-6",
+      "--avatar-tone-7",
+      "--avatar-tone-8",
       "--border-rule",
       "--border-strong",
       "--bw-rule",
@@ -1925,6 +1989,14 @@
       "--accent": "color",
       "--accent-contrast": "color",
       "--accent-hover": "color",
+      "--avatar-tone-1": "color",
+      "--avatar-tone-2": "color",
+      "--avatar-tone-3": "color",
+      "--avatar-tone-4": "color",
+      "--avatar-tone-5": "color",
+      "--avatar-tone-6": "color",
+      "--avatar-tone-7": "color",
+      "--avatar-tone-8": "color",
       "--border-rule": "color",
       "--border-strong": "color",
       "--bw-rule": "spacing",
