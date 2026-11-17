@@ -530,7 +530,7 @@
     },
     {
       "name": "--ex-list-row-height",
-      "value": "84px",
+      "value": "44px",
       "kind": "spacing",
       "definedIn": "tokens/exopter-tokens.css",
       "annotation": "spacing"
