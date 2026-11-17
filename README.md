@@ -1,6 +1,6 @@
 # Exopter design-system implementation
 
-This repository is the canonical executable source for Exopter design tokens and shared React components. Design rationale, governance, product decisions, and roadmap content live in the [Exopter Design System in Notion](https://app.notion.com/p/3abe497e504f81c8a557e1f1a26e09ae).
+This repository is the canonical executable source for Exopter design tokens and shared React components. The durable design rules that code cannot express live in the [Exopter Design System in Notion](https://app.notion.com/p/3abe497e504f81c8a557e1f1a26e09ae); tokens, components and specimens document everything else.
 
 ## Requirements
 
@@ -69,7 +69,7 @@ green for readiness, mineral khaki for live and active states, blue for informat
 caution and red for faults. Charts retain their distinct data-series colours.
 Both workbenches exercise shared components in light and dark surfaces, including
 keyboard focus, disabled states and local form validation. This branch is a local
-proposal; consumer exports and the selected Notion design baseline are unchanged. Product screens must reuse shared tokens and components; record new product or design decisions in Notion before extending the executable implementation.
+proposal; consumer exports and the selected Notion design baseline are unchanged. Product screens must reuse shared tokens and components.
 
 The [Flight Club membership specimen](ui_kits/flightclub/README.md) is an isolated Three.js design study with mock member data, a physical card and a replayable welcome. It does not change the shared design-system baseline.
 
