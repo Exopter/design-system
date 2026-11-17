@@ -91,3 +91,18 @@ This is a reduced aerodynamic illustration, not validated CFD. No lift,
 pressure coefficient, measured speed, viscous boundary layer, separation or
 flight performance is inferred. Circulation is assumed, not solved by a Kutta
 condition. The archived simulation images inform posture, not field values.
+
+## Wing sections for the airflow model
+
+`exowing-sections.json` holds 30 sections of the half span cut from the wing
+meshes of `exowing-scene.glb`: leading edge, trailing edge and the upper and
+lower surface heights at 17 chord stations, in the GLB frame. Sillage builds its
+vortex lattice on it for the Signal Tunnel airflow view. Regenerate it whenever
+the wing scene is exported again:
+
+```sh
+uv run scripts/extract-wing-sections.py
+```
+
+The sections describe the presentation mesh. They are not a manufacturing
+definition of the aerofoil.
