@@ -7,8 +7,7 @@
   font-size: var(--fs-metric);font-weight:500;line-height:1;color:var(--text-strong);display:flex;align-items:baseline;gap:4px}
 .exds-metric__unit{font-family:var(--font-mono);font-size: var(--fs-sm);font-weight:500;color:var(--text-muted)}
 .exds-metric__delta{display:inline-flex;align-items:center;gap:3px;font-family:var(--font-mono);font-size: var(--fs-xs);font-weight:600}
-.exds-metric__delta--up{color:var(--status-ready-text)}
-.exds-metric__delta--down{color:var(--status-fault-text)}
+.exds-metric__delta--up,.exds-metric__delta--down{color:var(--text-body)}
 .exds-metric__delta--flat{color:var(--text-muted)}
 .exds-metric--ready .exds-metric__value{color:var(--status-ready-text)}
 .exds-metric--caution .exds-metric__value{color:var(--status-caution-text)}
