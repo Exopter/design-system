@@ -248,6 +248,30 @@
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
+      "name": "--ex-series-orchid",
+      "value": "#d58cf0",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-series-magenta",
+      "value": "#c8408a",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-series-olive",
+      "value": "#7d8250",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-series-navy",
+      "value": "#1f4a8c",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
       "name": "--ex-openmic-500",
       "value": "#ff3127",
       "kind": "color",
@@ -1945,6 +1969,10 @@
       "--ex-scene-light",
       "--ex-scene-surface",
       "--ex-section-gap",
+      "--ex-series-magenta",
+      "--ex-series-navy",
+      "--ex-series-olive",
+      "--ex-series-orchid",
       "--ex-shadow-nominal",
       "--ex-shadow-nominal-peak",
       "--ex-shadow-nominal-soft",
@@ -2152,6 +2180,10 @@
       "--ex-scene-light": "color",
       "--ex-scene-surface": "color",
       "--ex-section-gap": "spacing",
+      "--ex-series-magenta": "color",
+      "--ex-series-navy": "color",
+      "--ex-series-olive": "color",
+      "--ex-series-orchid": "color",
       "--ex-shadow-nominal": "shadow",
       "--ex-shadow-nominal-peak": "shadow",
       "--ex-shadow-nominal-soft": "shadow",
