@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type ReadinessState = 'ready' | 'live' | 'pending' | 'caution' | 'fault' | 'unknown';
+export type ReadinessState = 'ready' | 'live' | 'active' | 'pending' | 'caution' | 'fault' | 'unknown';
 
 export interface ReadinessItem {
   /** Uppercase mono key, e.g. "PILOT", "BATTERY", "FDR". */

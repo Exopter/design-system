@@ -129,7 +129,7 @@
           "aria-label": "Open Signal",
           title: "Open Signal"
         },
-        /* @__PURE__ */ React.createElement(Badge, { tone: "live" }, "Station 01 connected")
+        /* @__PURE__ */ React.createElement(Badge, { tone: "ready" }, "Station 01 connected")
       )), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8, paddingLeft: 4 } }, /* @__PURE__ */ React.createElement("span", { style: {
         width: 30,
         height: 30,
@@ -161,7 +161,7 @@
       { id: "FLT-2026-018", aircraft: "EXO-001", location: "Tournon", date: "14 Jun · 09:42", duration: "00:07:12", source: "ExoFDR", status: "analysed", state: "ready", label: "Analysed" },
       { id: "FLT-2026-017", aircraft: "EXO-001", location: "Gap · Tallard", date: "14 Jun · 08:15", duration: "00:06:48", source: "ExoFDR", status: "analysed", state: "ready", label: "Analysed" },
       { id: "FLT-2026-016", aircraft: "F-GOCC", location: "Millau", date: "11 Jun · 16:03", duration: "00:05:31", source: "ExoFDR", status: "review", state: "caution", label: "Sensor flag" },
-      { id: "FLT-2026-015", aircraft: "WS-TEST-02", location: "Tournon", date: "09 Jun · 11:27", duration: "00:11:54", source: "FlySight", status: "processing", state: "live", label: "Processing" }
+      { id: "FLT-2026-015", aircraft: "WS-TEST-02", location: "Tournon", date: "09 Jun · 11:27", duration: "00:11:54", source: "FlySight", status: "processing", state: "active", label: "Processing" }
     ];
     const CSS = `
     .flights-root{padding:22px 24px 30px;max-width:1180px;margin:0 auto}
@@ -216,10 +216,10 @@
       };
       const importData = ({ aircraft, source }) => {
         if (target) {
-          onFlightsChange(flights.map((f) => f.id === target.id ? { ...f, source, status: "processing", state: "live", label: "Processing" } : f));
+          onFlightsChange(flights.map((f) => f.id === target.id ? { ...f, source, status: "processing", state: "active", label: "Processing" } : f));
           setNotice(`${source} data attached to ${target.id}`);
         } else {
-          const created = { id: nextId(), aircraft, location: "Not recorded", date: "28 Jul · 16:15", duration: "—", source, status: "processing", state: "live", label: "Processing" };
+          const created = { id: nextId(), aircraft, location: "Not recorded", date: "28 Jul · 16:15", duration: "—", source, status: "processing", state: "active", label: "Processing" };
           onFlightsChange([created, ...flights]);
           setNotice(`${created.id} created and processing`);
         }
@@ -331,7 +331,7 @@
       const scrubX = CPAD + i / (N - 1) * (CW - 2 * CPAD);
       const events = [
         { t: "00:00", label: "T0 exit · 1520 m", state: "ready" },
-        { t: "02:14", label: "Best glide window", state: "live" },
+        { t: "02:14", label: "Best glide window", state: "active" },
         { t: "04:02", label: "Airspeed dip −12 km/h", state: "caution" },
         { t: "07:12", label: "Flare · landing", state: "ready" }
       ];
@@ -374,7 +374,7 @@
         { label: "Pilot", value: "A. Renaud · 88 kg", state: "ready" },
         { label: "Weather", value: "CAVOK · 6 kt", state: "ready" },
         { label: "Battery", value: "74%", state: "caution" },
-        { label: "FDR", value: "Armed", state: "live" },
+        { label: "FDR", value: "Armed", state: "active" },
         { label: "Comms", value: "VHF + intercom", state: "ready" },
         { label: "Parachute", value: "Check pending", state: "pending" }
       ];
@@ -661,7 +661,7 @@
     .signal-k{display:block;font:600 10px/1.2 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ex-graphite-400);margin-bottom:5px}
     .signal-v{font:600 13px/1.2 var(--font-data);color:var(--ex-vapor-50);font-variant-numeric:tabular-nums;white-space:nowrap}
     .signal-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ex-field-500);margin-right:7px}
-    .signal-dot.live{background:var(--ex-aqua-500)}.signal-dot.caution{background:var(--ex-amber-500)}
+    .signal-dot.live{background:var(--ex-onair-500);box-shadow:var(--ex-shadow-onair);animation:ex-onair-breathe 2s var(--ease-in-out) infinite}.signal-dot.caution{background:var(--ex-amber-500)}
     .signal-panel{background:var(--ex-carbon-900);border:1px solid var(--ex-carbon-700);border-radius:8px;overflow:hidden}
     .signal-panel-head{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-bottom:1px solid var(--ex-carbon-700)}
     .signal-title{font:600 10px/1.2 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ex-graphite-400)}
@@ -737,10 +737,10 @@
       const [startOpen, setStartOpen] = React.useState(false);
       const [events, setEvents] = React.useState([
         { t: "12:08:10", label: "Exit detected", state: "ready" },
-        { t: "12:08:22", label: "Radio link established", state: "live" },
+        { t: "12:08:22", label: "Radio link established", state: "active" },
         { t: "12:11:03", label: "Pitot differential flag", state: "caution" }
       ]);
-      const markEvent = () => setEvents((e) => [...e, { t: "12:14:50", label: `Operator marker ${e.length - 2}`, state: "live" }]);
+      const markEvent = () => setEvents((e) => [...e, { t: "12:14:50", label: `Operator marker ${e.length - 2}`, state: "active" }]);
       const setPanelMode = (id, mode) => setPanelModes((current) => {
         const next = { ...current, [id]: mode };
         if (mode === "enlarged") ["map", "instruments", "charts"].forEach((other) => {
@@ -1194,7 +1194,7 @@
     };
     const endSignalSession = () => {
       if (signalFlight) {
-        setFlights((rows) => rows.map((candidate) => candidate.id === signalFlight.id ? { ...candidate, duration: "00:06:32", status: "processing", state: "live", label: "Processing" } : candidate));
+        setFlights((rows) => rows.map((candidate) => candidate.id === signalFlight.id ? { ...candidate, duration: "00:06:32", status: "processing", state: "active", label: "Processing" } : candidate));
       }
       setSignalFlight(null);
     };

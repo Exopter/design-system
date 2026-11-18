@@ -11,7 +11,9 @@
 .exds-strip__dot--hollow{background:transparent!important;border:2px solid var(--ex-amber-500);width:9px;height:9px}
 .exds-strip__vlabel{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-weight:500}
 .is-ready .exds-strip__dot{background:var(--ex-field-500)}
-.is-live .exds-strip__dot{background:var(--state-live)}
+.is-live .exds-strip__dot{background:var(--ex-onair-500);box-shadow:var(--ex-shadow-onair);animation:ex-onair-breathe 2s var(--ease-in-out) infinite}
+.is-active .exds-strip__dot{background:var(--state-live)}
+@media (prefers-reduced-motion: reduce){.is-live .exds-strip__dot{animation:none}}
 .is-caution .exds-strip__dot{background:var(--ex-amber-500)}
 .is-fault .exds-strip__dot{background:var(--ex-red-600)}
 .is-unknown .exds-strip__dot{background:var(--ex-graphite-500)}

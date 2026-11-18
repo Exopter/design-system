@@ -62,7 +62,7 @@
             aria-label="Open Signal"
             title="Open Signal"
           >
-            <Badge tone="live">Station 01 connected</Badge>
+            <Badge tone="ready">Station 01 connected</Badge>
           </button>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingLeft: 4 }}>

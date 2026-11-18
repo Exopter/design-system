@@ -2,7 +2,8 @@
 .exds-statusdot__dot{width:9px;height:9px;border-radius:var(--radius-round);flex:none;position:relative}
 .exds-statusdot__dot--hollow{background:transparent;border:2px solid var(--ex-amber-500);width:10px;height:10px}
 .exds-statusdot--ready .exds-statusdot__dot{background:var(--ex-field-500)}
-.exds-statusdot--live .exds-statusdot__dot{background:var(--state-live)}
+.exds-statusdot--live .exds-statusdot__dot{background:var(--ex-onair-500);box-shadow:var(--ex-shadow-onair);animation:ex-onair-breathe 2s var(--ease-in-out) infinite}
+.exds-statusdot--active .exds-statusdot__dot{background:var(--state-live)}
 .exds-statusdot--caution .exds-statusdot__dot{background:var(--ex-amber-500)}
 .exds-statusdot--fault .exds-statusdot__dot{background:var(--ex-red-600)}
 .exds-statusdot--unknown .exds-statusdot__dot{background:var(--ex-graphite-500)}
@@ -10,6 +11,6 @@
 /* pulsing ring for live */
 .exds-statusdot--live.exds-statusdot--pulse .exds-statusdot__dot::after{
   content:"";position:absolute;inset:-4px;border-radius:var(--radius-round);
-  border:1px solid var(--state-live);animation:exds-pulse 1.6s var(--ease-out) infinite}
+  border:1px solid var(--ex-onair-500);animation:exds-pulse 1.6s var(--ease-out) infinite}
 @keyframes exds-pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.4);opacity:0}}
-@media (prefers-reduced-motion: reduce){.exds-statusdot--pulse .exds-statusdot__dot::after{animation:none;opacity:0}}
+@media (prefers-reduced-motion: reduce){.exds-statusdot--live .exds-statusdot__dot{animation:none}.exds-statusdot--pulse .exds-statusdot__dot::after{animation:none;opacity:0}}

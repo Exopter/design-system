@@ -66,7 +66,7 @@
 
     const events = [
       { t: '00:00', label: 'T0 exit · 1520 m', state: 'ready' },
-      { t: '02:14', label: 'Best glide window', state: 'live' },
+      { t: '02:14', label: 'Best glide window', state: 'active' },
       { t: '04:02', label: 'Airspeed dip −12 km/h', state: 'caution' },
       { t: '07:12', label: 'Flare · landing', state: 'ready' },
     ];

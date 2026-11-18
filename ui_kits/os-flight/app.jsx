@@ -57,7 +57,7 @@ function App() {
     if (signalFlight) {
       setFlights((rows) => rows.map((candidate) => (
         candidate.id === signalFlight.id
-          ? { ...candidate, duration: '00:06:32', status: 'processing', state: 'live', label: 'Processing' }
+          ? { ...candidate, duration: '00:06:32', status: 'processing', state: 'active', label: 'Processing' }
           : candidate
       )));
     }
