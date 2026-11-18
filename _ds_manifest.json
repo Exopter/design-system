@@ -242,6 +242,12 @@
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
+      "name": "--ex-onair-500",
+      "value": "#ff3127",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
       "name": "--ex-violet-500",
       "value": "#6658c7",
       "kind": "color",
@@ -454,6 +460,18 @@
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
+      "name": "--ex-state-onair-bg",
+      "value": "rgba(255, 49, 39, 0.10)",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-state-onair-text",
+      "value": "#c2190f",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
       "name": "--ex-space-1",
       "value": "4px",
       "kind": "spacing",
@@ -563,6 +581,24 @@
     {
       "name": "--ex-shadow-panel",
       "value": "0 1px 2px rgba(7, 11, 13, 0.06)",
+      "kind": "shadow",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-shadow-onair",
+      "value": "0 0 0 3px rgba(255, 49, 39, 0.16), 0 0 10px 1px rgba(255, 49, 39, 0.6)",
+      "kind": "shadow",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-shadow-onair-peak",
+      "value": "0 0 0 4px rgba(255, 49, 39, 0.24), 0 0 16px 3px rgba(255, 49, 39, 0.85)",
+      "kind": "shadow",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-shadow-onair-soft",
+      "value": "0 0 12px rgba(255, 49, 39, 0.32)",
       "kind": "shadow",
       "definedIn": "tokens/exopter-tokens.css"
     },
@@ -1155,6 +1191,13 @@
       "annotation": "color"
     },
     {
+      "name": "--status-onair-text",
+      "value": "var(--ex-state-onair-text)",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "annotation": "color"
+    },
+    {
       "name": "--status-info-text",
       "value": "#1668a8",
       "kind": "color",
@@ -1406,6 +1449,14 @@
     {
       "name": "--status-fault-text",
       "value": "#ff8b83",
+      "kind": "color",
+      "definedIn": "tokens/aliases.css",
+      "scope": ".ex-dark,\n[data-surface=\"carbon\"]",
+      "annotation": "color"
+    },
+    {
+      "name": "--status-onair-text",
+      "value": "#ff6b61",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]",
@@ -1864,6 +1915,7 @@
       "--ex-list-row-height",
       "--ex-motion-reveal-duration",
       "--ex-motion-reveal-ease",
+      "--ex-onair-500",
       "--ex-page-width",
       "--ex-panel-padding",
       "--ex-radius-instrument",
@@ -1874,6 +1926,9 @@
       "--ex-scene-light",
       "--ex-scene-surface",
       "--ex-section-gap",
+      "--ex-shadow-onair",
+      "--ex-shadow-onair-peak",
+      "--ex-shadow-onair-soft",
       "--ex-shadow-panel",
       "--ex-shadow-raised",
       "--ex-shell-header-height",
@@ -1894,6 +1949,8 @@
       "--ex-state-fault-text",
       "--ex-state-live-bg",
       "--ex-state-live-text",
+      "--ex-state-onair-bg",
+      "--ex-state-onair-text",
       "--ex-state-pending-bg",
       "--ex-state-pending-text",
       "--ex-state-ready-bg",
@@ -1973,6 +2030,7 @@
       "--status-fault-text",
       "--status-info-text",
       "--status-live-text",
+      "--status-onair-text",
       "--status-ready-text",
       "--surface-app",
       "--surface-card",
@@ -2061,6 +2119,7 @@
       "--ex-list-row-height": "spacing",
       "--ex-motion-reveal-duration": "other",
       "--ex-motion-reveal-ease": "other",
+      "--ex-onair-500": "color",
       "--ex-page-width": "spacing",
       "--ex-panel-padding": "spacing",
       "--ex-radius-instrument": "radius",
@@ -2071,6 +2130,9 @@
       "--ex-scene-light": "color",
       "--ex-scene-surface": "color",
       "--ex-section-gap": "spacing",
+      "--ex-shadow-onair": "shadow",
+      "--ex-shadow-onair-peak": "shadow",
+      "--ex-shadow-onair-soft": "shadow",
       "--ex-shadow-panel": "shadow",
       "--ex-shadow-raised": "shadow",
       "--ex-shell-header-height": "spacing",
@@ -2091,6 +2153,8 @@
       "--ex-state-fault-text": "color",
       "--ex-state-live-bg": "color",
       "--ex-state-live-text": "color",
+      "--ex-state-onair-bg": "color",
+      "--ex-state-onair-text": "color",
       "--ex-state-pending-bg": "color",
       "--ex-state-pending-text": "color",
       "--ex-state-ready-bg": "color",
@@ -2170,6 +2234,7 @@
       "--status-fault-text": "color",
       "--status-info-text": "color",
       "--status-live-text": "color",
+      "--status-onair-text": "color",
       "--status-ready-text": "color",
       "--surface-app": "color",
       "--surface-card": "color",

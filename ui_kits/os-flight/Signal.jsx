@@ -18,7 +18,7 @@
     .signal-k{display:block;font:600 10px/1.2 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ex-graphite-400);margin-bottom:5px}
     .signal-v{font:600 13px/1.2 var(--font-data);color:var(--ex-vapor-50);font-variant-numeric:tabular-nums;white-space:nowrap}
     .signal-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ex-field-500);margin-right:7px}
-    .signal-dot.live{background:var(--ex-aqua-500)}.signal-dot.caution{background:var(--ex-amber-500)}
+    .signal-dot.live{background:var(--ex-onair-500);box-shadow:var(--ex-shadow-onair);animation:ex-onair-breathe 2s var(--ease-in-out) infinite}.signal-dot.caution{background:var(--ex-amber-500)}
     .signal-panel{background:var(--ex-carbon-900);border:1px solid var(--ex-carbon-700);border-radius:8px;overflow:hidden}
     .signal-panel-head{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-bottom:1px solid var(--ex-carbon-700)}
     .signal-title{font:600 10px/1.2 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ex-graphite-400)}
@@ -90,10 +90,10 @@
     const [startOpen, setStartOpen] = React.useState(false);
     const [events, setEvents] = React.useState([
       { t: '12:08:10', label: 'Exit detected', state: 'ready' },
-      { t: '12:08:22', label: 'Radio link established', state: 'live' },
+      { t: '12:08:22', label: 'Radio link established', state: 'active' },
       { t: '12:11:03', label: 'Pitot differential flag', state: 'caution' },
     ]);
-    const markEvent = () => setEvents((e) => [...e, { t: '12:14:50', label: `Operator marker ${e.length - 2}`, state: 'live' }]);
+    const markEvent = () => setEvents((e) => [...e, { t: '12:14:50', label: `Operator marker ${e.length - 2}`, state: 'active' }]);
     const setPanelMode = (id, mode) => setPanelModes((current) => {
       const next = { ...current, [id]: mode };
       if (mode === 'enlarged') ['map', 'instruments', 'charts'].forEach((other) => { if (other !== id && next[other] === 'enlarged') next[other] = 'mini'; });

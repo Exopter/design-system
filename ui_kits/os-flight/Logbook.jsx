@@ -10,7 +10,7 @@
     { id: 'FLT-2026-018', aircraft: 'EXO-001', location: 'Tournon', date: '14 Jun · 09:42', duration: '00:07:12', source: 'ExoFDR', status: 'analysed', state: 'ready', label: 'Analysed' },
     { id: 'FLT-2026-017', aircraft: 'EXO-001', location: 'Gap · Tallard', date: '14 Jun · 08:15', duration: '00:06:48', source: 'ExoFDR', status: 'analysed', state: 'ready', label: 'Analysed' },
     { id: 'FLT-2026-016', aircraft: 'F-GOCC', location: 'Millau', date: '11 Jun · 16:03', duration: '00:05:31', source: 'ExoFDR', status: 'review', state: 'caution', label: 'Sensor flag' },
-    { id: 'FLT-2026-015', aircraft: 'WS-TEST-02', location: 'Tournon', date: '09 Jun · 11:27', duration: '00:11:54', source: 'FlySight', status: 'processing', state: 'live', label: 'Processing' },
+    { id: 'FLT-2026-015', aircraft: 'WS-TEST-02', location: 'Tournon', date: '09 Jun · 11:27', duration: '00:11:54', source: 'FlySight', status: 'processing', state: 'active', label: 'Processing' },
   ];
 
   const CSS = `
@@ -59,10 +59,10 @@
     };
     const importData = ({ aircraft, source }) => {
       if (target) {
-        onFlightsChange(flights.map((f) => f.id === target.id ? { ...f, source, status:'processing', state:'live', label:'Processing' } : f));
+        onFlightsChange(flights.map((f) => f.id === target.id ? { ...f, source, status:'processing', state:'active', label:'Processing' } : f));
         setNotice(`${source} data attached to ${target.id}`);
       } else {
-        const created = { id:nextId(), aircraft, location:'Not recorded', date:'28 Jul · 16:15', duration:'—', source, status:'processing', state:'live', label:'Processing' };
+        const created = { id:nextId(), aircraft, location:'Not recorded', date:'28 Jul · 16:15', duration:'—', source, status:'processing', state:'active', label:'Processing' };
         onFlightsChange([created, ...flights]);
         setNotice(`${created.id} created and processing`);
       }

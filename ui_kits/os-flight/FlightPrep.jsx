@@ -31,7 +31,7 @@
       { label: 'Pilot', value: 'A. Renaud · 88 kg', state: 'ready' },
       { label: 'Weather', value: 'CAVOK · 6 kt', state: 'ready' },
       { label: 'Battery', value: '74%', state: 'caution' },
-      { label: 'FDR', value: 'Armed', state: 'live' },
+      { label: 'FDR', value: 'Armed', state: 'active' },
       { label: 'Comms', value: 'VHF + intercom', state: 'ready' },
       { label: 'Parachute', value: 'Check pending', state: 'pending' },
     ];

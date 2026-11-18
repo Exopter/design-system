@@ -1,0 +1,46 @@
+<!-- @dsCard group="Colors" viewport="700x400" name="On air" subtitle="Live sessions and recordings glow red and breathe; paused and idle states stay neutral" -->
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../templates/rails/TelemetryWorkspace.css">
+<link rel="stylesheet" href="../templates/rails/FlightLibrary.css">
+<link rel="stylesheet" href="../templates/rails/TunnelRemote.css">
+<style>
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-app);padding:var(--sp-5);display:grid;gap:var(--sp-5)}
+  .group{display:grid;gap:var(--sp-3)}
+  .gl{font-family:var(--font-mono);font-size:var(--fs-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
+  .row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-5)}
+  .row > .signal-fdr-recording-control{flex:1 1 240px;max-width:300px}
+  .debrief{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-6)}
+  .debrief .flight-debrief{display:block;margin:0;padding:0;border:0}
+  .remote-demo{display:flex;align-items:center;gap:var(--sp-5);padding:var(--sp-5) var(--sp-6);border-radius:var(--radius);background:var(--ex-carbon-950)}
+  .remote-demo .remote-mic{transform:scale(.7);margin:-12px}
+</style></head>
+<body>
+  <div class="group"><span class="gl">Live</span>
+    <div class="row">
+      <span class="exds-statusdot exds-statusdot--live"><span class="exds-statusdot__dot"></span><span class="exds-statusdot__label">Live</span></span>
+      <span class="exds-statusdot exds-statusdot--live exds-statusdot--pulse"><span class="exds-statusdot__dot"></span><span class="exds-statusdot__label">Streaming</span></span>
+      <span class="exds-badge exds-badge--live">Live</span>
+      <span class="ex-dark" style="display:inline-flex;gap:8px;padding:6px 8px;border-radius:var(--radius-compact);background:var(--ex-carbon-900)"><span class="signal-live-badge" data-state="live">Live</span><span class="signal-live-badge" data-state="stale">Stale</span><span class="signal-live-badge" data-state="waiting">Waiting</span></span>
+    </div>
+  </div>
+  <div class="group"><span class="gl">Recorder</span>
+    <div class="row">
+      <div class="signal-fdr-recording-control" data-state="on"><div class="signal-fdr-recording-copy"><strong>Recording</strong></div><button type="button" class="signal-fdr-recording-switch" role="switch" aria-checked="true"><span class="signal-fdr-recording-switch-track" aria-hidden="true"><span class="signal-fdr-recording-switch-thumb"></span></span><span class="signal-fdr-recording-switch-label">On</span></button></div>
+      <div class="signal-fdr-recording-control" data-state="off"><div class="signal-fdr-recording-copy"><strong>Recording</strong></div><button type="button" class="signal-fdr-recording-switch" role="switch" aria-checked="false"><span class="signal-fdr-recording-switch-track" aria-hidden="true"><span class="signal-fdr-recording-switch-thumb"></span></span><span class="signal-fdr-recording-switch-label">Off</span></button></div>
+      <span class="exds-recording-state" data-state="recording">Recording</span>
+    </div>
+  </div>
+  <div class="group"><span class="gl">Debrief recording</span>
+    <div class="debrief">
+      <div class="flight-debrief" data-state="recording" style="--debrief-level:.7"><div class="flight-debrief-live"><span class="flight-debrief-clock">0:42</span><div class="flight-debrief-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+      <div class="flight-debrief" data-state="paused" style="--debrief-level:.7"><div class="flight-debrief-live"><span class="flight-debrief-clock">0:42</span><div class="flight-debrief-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+      <div class="remote-demo ex-dark" style="--debrief-level:.6">
+        <div class="remote-debrief" data-state="recording"><div class="remote-mic is-live"><span class="remote-mic-ring"></span><span class="remote-mic-ring"></span><span class="remote-mic-disc"><svg class="remote-mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span></div></div>
+        <div class="remote-debrief" data-state="recording"><div class="remote-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="remote-debrief" data-state="paused"><div class="remote-mic is-live"><span class="remote-mic-ring"></span><span class="remote-mic-ring"></span><span class="remote-mic-disc"><svg class="remote-mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span></div></div>
+      </div>
+    </div>
+  </div>
+</body></html>
