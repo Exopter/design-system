@@ -242,7 +242,13 @@
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
-      "name": "--ex-onair-500",
+      "name": "--ex-nominal-500",
+      "value": "#1fb84f",
+      "kind": "color",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-openmic-500",
       "value": "#ff3127",
       "kind": "color",
       "definedIn": "tokens/exopter-tokens.css"
@@ -460,14 +466,14 @@
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
-      "name": "--ex-state-onair-bg",
-      "value": "rgba(255, 49, 39, 0.10)",
+      "name": "--ex-state-nominal-bg",
+      "value": "rgba(31, 184, 79, 0.12)",
       "kind": "color",
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
-      "name": "--ex-state-onair-text",
-      "value": "#c2190f",
+      "name": "--ex-state-nominal-text",
+      "value": "#176b30",
       "kind": "color",
       "definedIn": "tokens/exopter-tokens.css"
     },
@@ -585,20 +591,32 @@
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
-      "name": "--ex-shadow-onair",
+      "name": "--ex-shadow-nominal",
+      "value": "0 0 0 3px rgba(31, 184, 79, 0.18), 0 0 10px 1px rgba(31, 184, 79, 0.6)",
+      "kind": "shadow",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-shadow-nominal-peak",
+      "value": "0 0 0 4px rgba(31, 184, 79, 0.26), 0 0 16px 3px rgba(31, 184, 79, 0.85)",
+      "kind": "shadow",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-shadow-nominal-soft",
+      "value": "0 0 12px rgba(31, 184, 79, 0.32)",
+      "kind": "shadow",
+      "definedIn": "tokens/exopter-tokens.css"
+    },
+    {
+      "name": "--ex-shadow-openmic",
       "value": "0 0 0 3px rgba(255, 49, 39, 0.16), 0 0 10px 1px rgba(255, 49, 39, 0.6)",
       "kind": "shadow",
       "definedIn": "tokens/exopter-tokens.css"
     },
     {
-      "name": "--ex-shadow-onair-peak",
+      "name": "--ex-shadow-openmic-peak",
       "value": "0 0 0 4px rgba(255, 49, 39, 0.24), 0 0 16px 3px rgba(255, 49, 39, 0.85)",
-      "kind": "shadow",
-      "definedIn": "tokens/exopter-tokens.css"
-    },
-    {
-      "name": "--ex-shadow-onair-soft",
-      "value": "0 0 12px rgba(255, 49, 39, 0.32)",
       "kind": "shadow",
       "definedIn": "tokens/exopter-tokens.css"
     },
@@ -1191,8 +1209,8 @@
       "annotation": "color"
     },
     {
-      "name": "--status-onair-text",
-      "value": "var(--ex-state-onair-text)",
+      "name": "--status-nominal-text",
+      "value": "var(--ex-state-nominal-text)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "annotation": "color"
@@ -1455,8 +1473,8 @@
       "annotation": "color"
     },
     {
-      "name": "--status-onair-text",
-      "value": "#ff6b61",
+      "name": "--status-nominal-text",
+      "value": "var(--ex-nominal-500)",
       "kind": "color",
       "definedIn": "tokens/aliases.css",
       "scope": ".ex-dark,\n[data-surface=\"carbon\"]",
@@ -1915,7 +1933,8 @@
       "--ex-list-row-height",
       "--ex-motion-reveal-duration",
       "--ex-motion-reveal-ease",
-      "--ex-onair-500",
+      "--ex-nominal-500",
+      "--ex-openmic-500",
       "--ex-page-width",
       "--ex-panel-padding",
       "--ex-radius-instrument",
@@ -1926,9 +1945,11 @@
       "--ex-scene-light",
       "--ex-scene-surface",
       "--ex-section-gap",
-      "--ex-shadow-onair",
-      "--ex-shadow-onair-peak",
-      "--ex-shadow-onair-soft",
+      "--ex-shadow-nominal",
+      "--ex-shadow-nominal-peak",
+      "--ex-shadow-nominal-soft",
+      "--ex-shadow-openmic",
+      "--ex-shadow-openmic-peak",
       "--ex-shadow-panel",
       "--ex-shadow-raised",
       "--ex-shell-header-height",
@@ -1949,8 +1970,8 @@
       "--ex-state-fault-text",
       "--ex-state-live-bg",
       "--ex-state-live-text",
-      "--ex-state-onair-bg",
-      "--ex-state-onair-text",
+      "--ex-state-nominal-bg",
+      "--ex-state-nominal-text",
       "--ex-state-pending-bg",
       "--ex-state-pending-text",
       "--ex-state-ready-bg",
@@ -2030,7 +2051,7 @@
       "--status-fault-text",
       "--status-info-text",
       "--status-live-text",
-      "--status-onair-text",
+      "--status-nominal-text",
       "--status-ready-text",
       "--surface-app",
       "--surface-card",
@@ -2119,7 +2140,8 @@
       "--ex-list-row-height": "spacing",
       "--ex-motion-reveal-duration": "other",
       "--ex-motion-reveal-ease": "other",
-      "--ex-onair-500": "color",
+      "--ex-nominal-500": "color",
+      "--ex-openmic-500": "color",
       "--ex-page-width": "spacing",
       "--ex-panel-padding": "spacing",
       "--ex-radius-instrument": "radius",
@@ -2130,9 +2152,11 @@
       "--ex-scene-light": "color",
       "--ex-scene-surface": "color",
       "--ex-section-gap": "spacing",
-      "--ex-shadow-onair": "shadow",
-      "--ex-shadow-onair-peak": "shadow",
-      "--ex-shadow-onair-soft": "shadow",
+      "--ex-shadow-nominal": "shadow",
+      "--ex-shadow-nominal-peak": "shadow",
+      "--ex-shadow-nominal-soft": "shadow",
+      "--ex-shadow-openmic": "shadow",
+      "--ex-shadow-openmic-peak": "shadow",
       "--ex-shadow-panel": "shadow",
       "--ex-shadow-raised": "shadow",
       "--ex-shell-header-height": "spacing",
@@ -2153,8 +2177,8 @@
       "--ex-state-fault-text": "color",
       "--ex-state-live-bg": "color",
       "--ex-state-live-text": "color",
-      "--ex-state-onair-bg": "color",
-      "--ex-state-onair-text": "color",
+      "--ex-state-nominal-bg": "color",
+      "--ex-state-nominal-text": "color",
       "--ex-state-pending-bg": "color",
       "--ex-state-pending-text": "color",
       "--ex-state-ready-bg": "color",
@@ -2234,7 +2258,7 @@
       "--status-fault-text": "color",
       "--status-info-text": "color",
       "--status-live-text": "color",
-      "--status-onair-text": "color",
+      "--status-nominal-text": "color",
       "--status-ready-text": "color",
       "--surface-app": "color",
       "--surface-card": "color",
