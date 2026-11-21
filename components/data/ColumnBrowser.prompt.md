@@ -28,6 +28,18 @@ sets `data-drop-active` on an eligible folder; never move external payloads.
 Only owned objects are draggable or selectable. Confirm destructive actions.
 
 Desktop uses three columns; compact screens replace the collection with its preview.
+The collection is a table on one grid: `exds-browser-entries` declares the columns,
+and `exds-browser-table-head` and each `exds-browser-entry` follow them through
+subgrid, so content-sized columns stay aligned across rows. Render every cell in
+every row, with `exds-browser-cell-blank` for a missing value. The description
+takes the free width. Mode and aircraft (`is-mode`, `is-aircraft`) leave under
+700px of collection width; under 600px the header goes and the location moves
+under the description. Day headers stay sticky under the column header.
+Two `exds-browser-panes` buttons in the collection header put the folders away
+as an icon rail (`data-folders="collapsed"`) and hide the preview
+(`data-preview="hidden"`) on the browser root. Keep `aria-expanded` and the
+button title in step, give collapsed folder links a title, and persist the
+choice per viewer. An editing panel always shows, whatever the stored choice.
 On phones the folder navigation scrolls horizontally, and `data-mobile-preview`
 shows the selected preview with an explicit Back to flights control. Keyboard
 arrows navigate entries and Enter opens their detail page. Do not intercept
@@ -58,3 +70,5 @@ Support arrow keys, Enter and Escape in the search; announce results and failure
 Cancel stale requests, exclude selected people, and apply membership only on Save.
 Empty folders, unavailable geography and raw recording states need explicit
 text. Geographic previews must visualize actual records, never sample imagery.
+
+The edge between the list and the details pane is `.exds-browser-resizer`, a `role="separator"` placed last in `.exds-browser-collection`. The host sets `--exds-browser-preview-size` and `data-preview-sized` on the root while dragging or on arrow keys, and `data-resizing` during a drag; the pane never goes under 320px and the list keeps 360px. Double-click returns to the default width. The handle is absent below 851px and while the details pane is hidden.
